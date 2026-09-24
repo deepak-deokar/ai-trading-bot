@@ -1,0 +1,4 @@
+trading_mode: backtest
+universe: [RELIANCE, TCS, INFY, HDFCBANK, ICICIBANK]
+bar_interval_seconds: 300
+log_level: INFO

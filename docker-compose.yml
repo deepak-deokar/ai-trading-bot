@@ -1,0 +1,31 @@
+services:
+  db:
+    image: postgres:17.6-bookworm
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-trading}
+      POSTGRES_DB: ${POSTGRES_DB:-trading}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", 'pg_isready -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}"']
+      interval: 5s
+      timeout: 3s
+      retries: 15
+  api:
+    build: .
+    profiles: [app]
+    environment:
+      DATABASE_URL: ${DOCKER_DATABASE_URL:-}
+      CONFIG_FILE: config/development.yaml
+      TRADING_MODE: paper
+      LIVE_TRADING_ENABLED: "false"
+    ports:
+      - "127.0.0.1:8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+volumes:
+  postgres_data:

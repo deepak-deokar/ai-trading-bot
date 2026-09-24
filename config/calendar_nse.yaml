@@ -1,0 +1,12 @@
+# Versioned corrections, not a permanent holiday list. Base: PMC NSE 5.4.0.
+version: nse-cash-2026-review-20260923
+coverage_start: 2026-01-01
+coverage_end: 2026-12-31
+closed:
+  - date: 2026-01-15
+    source: https://nsearchives.nseindia.com/content/circulars/CMTR72260.pdf
+sessions:
+  - date: 2026-02-01
+    open: '09:15'
+    close: '15:30'
+    source: https://nsearchives.nseindia.com/content/circulars/CMTR72349.pdf

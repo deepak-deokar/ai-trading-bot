@@ -1,0 +1,101 @@
+"""Explicit source/adjustment selection and completion-aware historical queries."""
+
+from datetime import datetime
+
+from sqlalchemy import Engine, Select, func, select
+from sqlalchemy.orm import Session
+
+from trading_bot.data.contracts import HistoryRequest
+from trading_bot.database.models import Instrument, MarketBar
+from trading_bot.domain.models import Bar
+
+
+class HistoryQuery:
+    def __init__(self, engine: Engine) -> None:
+        self.engine = engine
+
+    @staticmethod
+    def _statement(
+        request: HistoryRequest, source: str
+    ) -> Select[tuple[MarketBar, Instrument]]:
+        return (
+            select(MarketBar, Instrument)
+            .join(Instrument)
+            .where(
+                Instrument.exchange == request.exchange,
+                Instrument.segment == request.segment,
+                Instrument.symbol.in_(request.symbols),
+                MarketBar.timeframe == request.timeframe,
+                MarketBar.timestamp >= request.start,
+                MarketBar.timestamp < request.end,
+                MarketBar.available_at <= request.end,
+                MarketBar.source == source,
+                MarketBar.adjustment_type == request.adjustment_type,
+            )
+        )
+
+    @staticmethod
+    def _bar(row: MarketBar, instrument: Instrument) -> Bar:
+        return Bar.model_validate(
+            {
+                "exchange": instrument.exchange,
+                "segment": instrument.segment,
+                "symbol": instrument.symbol,
+                "timestamp": row.timestamp,
+                "timeframe": row.timeframe,
+                "open": row.open,
+                "high": row.high,
+                "low": row.low,
+                "close": row.close,
+                "volume": row.volume,
+                "source": row.source,
+                "adjustment_type": row.adjustment_type,
+                "open_interest": row.open_interest,
+                "trade_count": row.trade_count,
+                "vwap": row.vwap,
+            }
+        )
+
+    def get_bars(self, request: HistoryRequest, *, source: str) -> list[Bar]:
+        """Completed candles ordered by opening time, then symbol for ties."""
+        with Session(self.engine) as session:
+            rows = session.execute(
+                self._statement(request, source).order_by(
+                    MarketBar.timestamp,
+                    Instrument.symbol,
+                )
+            )
+            return [self._bar(row, instrument) for row, instrument in rows]
+
+    def get_latest_bar(self, request: HistoryRequest, *, source: str) -> Bar | None:
+        """Latest completed candle within explicit historical cutoff request.end."""
+        if len(request.symbols) != 1:
+            raise ValueError("latest-bar query requires one symbol")
+        with Session(self.engine) as session:
+            row = session.execute(
+                self._statement(request, source)
+                .order_by(MarketBar.timestamp.desc())
+                .limit(1)
+            ).first()
+            return self._bar(*row) if row else None
+
+    def get_bar_count(self, request: HistoryRequest, *, source: str) -> int:
+        with Session(self.engine) as session:
+            return (
+                session.scalar(
+                    select(func.count()).select_from(
+                        self._statement(request, source).subquery()
+                    )
+                )
+                or 0
+            )
+
+    def get_available_range(
+        self, request: HistoryRequest, *, source: str
+    ) -> tuple[datetime | None, datetime | None]:
+        with Session(self.engine) as session:
+            subquery = self._statement(request, source).subquery()
+            row = session.execute(
+                select(func.min(subquery.c.timestamp), func.max(subquery.c.timestamp))
+            ).one()
+            return row[0], row[1]

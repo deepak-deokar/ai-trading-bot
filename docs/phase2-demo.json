@@ -1,0 +1,109 @@
+{
+  "first_import": {
+    "run_id": "583ee4df-616c-4221-a003-e369d8e2f1a6",
+    "provider": "local",
+    "status": "COMPLETED",
+    "rows_received": 3,
+    "rows_valid": 3,
+    "rows_inserted": 3,
+    "rows_skipped": 0,
+    "rows_rejected": 0,
+    "duplicates": 0,
+    "conflicts": 0,
+    "missing_expected_bars": 0
+  },
+  "second_import": {
+    "run_id": "27ac051e-1aa4-4886-a7b9-aefbdbce7e46",
+    "provider": "local",
+    "status": "COMPLETED",
+    "rows_received": 3,
+    "rows_valid": 3,
+    "rows_inserted": 0,
+    "rows_skipped": 3,
+    "rows_rejected": 0,
+    "duplicates": 3,
+    "conflicts": 0,
+    "missing_expected_bars": 0
+  },
+  "conflict": {
+    "run_id": "d6e6b798-818f-46cc-b1e5-17449f711ce3",
+    "provider": "local",
+    "status": "COMPLETED_WITH_WARNINGS",
+    "rows_received": 1,
+    "rows_valid": 1,
+    "rows_inserted": 0,
+    "rows_skipped": 0,
+    "rows_rejected": 1,
+    "duplicates": 0,
+    "conflicts": 1,
+    "missing_expected_bars": 2
+  },
+  "invalid": {
+    "run_id": "57cc2ae7-e3ba-4ecd-8f6c-9b29e2b439b1",
+    "provider": "local",
+    "status": "COMPLETED_WITH_WARNINGS",
+    "rows_received": 1,
+    "rows_valid": 0,
+    "rows_inserted": 0,
+    "rows_skipped": 0,
+    "rows_rejected": 1,
+    "duplicates": 0,
+    "conflicts": 0,
+    "missing_expected_bars": 3
+  },
+  "intraday_gap": {
+    "run_id": "1e0af91f-a124-42b1-8cdf-2056705ca00a",
+    "provider": "local",
+    "status": "COMPLETED_WITH_WARNINGS",
+    "rows_received": 2,
+    "rows_valid": 2,
+    "rows_inserted": 2,
+    "rows_skipped": 0,
+    "rows_rejected": 0,
+    "duplicates": 0,
+    "conflicts": 0,
+    "missing_expected_bars": 1
+  },
+  "weekend": {
+    "run_id": "ef46cd75-9c5b-4ec0-96e8-050aac5a3637",
+    "provider": "local",
+    "status": "COMPLETED",
+    "rows_received": 2,
+    "rows_valid": 2,
+    "rows_inserted": 2,
+    "rows_skipped": 0,
+    "rows_rejected": 0,
+    "duplicates": 0,
+    "conflicts": 0,
+    "missing_expected_bars": 0
+  },
+  "overnight": {
+    "run_id": "75d12200-a6d1-4e16-b381-8c25ed923024",
+    "provider": "local",
+    "status": "COMPLETED",
+    "rows_received": 2,
+    "rows_valid": 2,
+    "rows_inserted": 2,
+    "rows_skipped": 0,
+    "rows_rejected": 0,
+    "duplicates": 0,
+    "conflicts": 0,
+    "missing_expected_bars": 0
+  },
+  "chronological_candles": [
+    {
+      "timestamp": "2026-01-05T03:45:00+00:00",
+      "close": "1501.1000000000"
+    },
+    {
+      "timestamp": "2026-01-05T03:50:00+00:00",
+      "close": "1502.1000000000"
+    },
+    {
+      "timestamp": "2026-01-05T03:55:00+00:00",
+      "close": "1503.1000000000"
+    }
+  ],
+  "live_mode": "REJECTED",
+  "groww_external_verification": "UNVERIFIED"
+}
