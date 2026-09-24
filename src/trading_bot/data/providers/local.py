@@ -12,6 +12,7 @@ class LocalCSVProvider:
     name = "local"
     required = {"symbol", "timestamp", "open", "high", "low", "close", "volume"}
     optional = {
+        "timestamp_convention",
         "exchange",
         "segment",
         "timeframe",

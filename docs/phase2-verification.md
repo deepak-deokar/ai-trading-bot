@@ -1,4 +1,6 @@
-# Phase 2 completion verification
+# Phase 2 completion verification (historical record)
+
+Current status: [Phase 2.1 hardening](phase21-hardening.md), 146 passing tests.
 
 Verified 2026-09-23 with Python 3.12.7 and local Docker PostgreSQL 17.6.
 

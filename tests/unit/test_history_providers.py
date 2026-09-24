@@ -9,6 +9,7 @@ from trading_bot.data.contracts import HistoryRequest
 from trading_bot.data.normalize import normalize
 from trading_bot.data.providers.base import ProviderError
 from trading_bot.data.providers.groww import GrowwHTTPClient, GrowwProvider
+from trading_bot.data.providers.groww_semantics import GrowwSemantics
 from trading_bot.data.providers.local import LocalCSVProvider
 from trading_bot.domain.market import AdjustmentType, Timeframe
 
@@ -23,7 +24,17 @@ def request(end="2026-01-05T10:00:00+05:30"):
 
 def provider(client):
     return GrowwProvider(
-        client, adjustment_type=AdjustmentType.RAW, timestamp_convention="open"
+        client,
+        adjustment_type=AdjustmentType.RAW,
+        timestamp_convention="open",
+        semantics=GrowwSemantics(
+            timestamp_meaning="open",
+            timezone="Asia/Kolkata",
+            adjustment_type="RAW",
+            interval_mapping={"5minute": "5minute"},
+            instrument_mapping={"NSE:CASH:RELIANCE": "NSE-RELIANCE"},
+            acknowledgement="UNVERIFIED_PROVIDER_SEMANTICS_ACCEPTED",
+        ),
     )
 
 

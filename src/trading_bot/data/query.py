@@ -1,18 +1,31 @@
 """Explicit source/adjustment selection and completion-aware historical queries."""
 
 from datetime import datetime
+from uuid import UUID
 
 from sqlalchemy import Engine, Select, func, select
 from sqlalchemy.orm import Session
 
 from trading_bot.data.contracts import HistoryRequest
-from trading_bot.database.models import Instrument, MarketBar
+from trading_bot.data.identity import DatasetIdentity
+from trading_bot.database.models import Instrument, MarketBar, SystemEvent
 from trading_bot.domain.models import Bar
 
 
 class HistoryQuery:
     def __init__(self, engine: Engine) -> None:
         self.engine = engine
+
+    def get_dataset_identity(self, run_id: UUID) -> DatasetIdentity | None:
+        """Fetch persisted semantics/selection identity; legacy imports return None."""
+        with Session(self.engine) as session:
+            event = session.scalar(
+                select(SystemEvent).where(
+                    SystemEvent.run_id == run_id,
+                    SystemEvent.event_type == "historical_dataset_identity",
+                )
+            )
+            return DatasetIdentity.model_validate(event.details) if event else None
 
     @staticmethod
     def _statement(

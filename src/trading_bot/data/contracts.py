@@ -54,6 +54,8 @@ class IssueType(StrEnum):
     PROVIDER_FAILURE = "PROVIDER_FAILURE"
     PERSISTENCE_FAILURE = "PERSISTENCE_FAILURE"
     CALENDAR_FAILURE = "CALENDAR_FAILURE"
+    CALENDAR_UNVERIFIED = "CALENDAR_UNVERIFIED"
+    PROVIDER_SEMANTICS_UNVERIFIED = "PROVIDER_SEMANTICS_UNVERIFIED"
 
 
 class DataQualityIssue(DomainModel):
@@ -77,6 +79,8 @@ class RunStatus(StrEnum):
 class IngestionReport(DomainModel):
     run_id: UUID = Field(default_factory=uuid4)
     provider: str
+    dataset_key: str | None = None
+    run_key: str | None = None
     status: RunStatus = RunStatus.CREATED
     rows_received: int = 0
     rows_valid: int = 0

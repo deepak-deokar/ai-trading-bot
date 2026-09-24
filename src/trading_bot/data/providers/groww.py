@@ -6,7 +6,7 @@ A narrow stdlib transport avoids installing the SDK's trading/feed dependencies.
 
 import json
 from collections.abc import Iterable
-from datetime import datetime, timedelta
+from datetime import timedelta
 from decimal import Decimal
 from typing import Any, Protocol
 from urllib.parse import urlencode
@@ -14,9 +14,12 @@ from urllib.request import Request, urlopen
 
 from pydantic import SecretStr
 
-from trading_bot.data.calendar import IST
 from trading_bot.data.contracts import HistoryRequest
 from trading_bot.data.providers.base import ProviderError, RawCandle
+from trading_bot.data.providers.groww_semantics import (
+    GrowwSemantics,
+    ProviderSemanticsError,
+)
 from trading_bot.domain.market import AdjustmentType, Timeframe
 
 
@@ -62,14 +65,35 @@ class GrowwProvider:
         self,
         client: CandleClient,
         *,
-        adjustment_type: AdjustmentType,
-        timestamp_convention: str,
+        adjustment_type: AdjustmentType | None = None,
+        timestamp_convention: str | None = None,
+        semantics: GrowwSemantics | None = None,
     ) -> None:
-        # Documentation does not guarantee these semantics: require operator assertion.
-        if timestamp_convention != "open":
-            raise ProviderError("Groww timestamp convention must be confirmed as open")
+        if semantics is None:
+            raise ProviderSemanticsError("explicit complete Groww semantics required")
+        if timestamp_convention not in (
+            None,
+            semantics.timestamp_meaning,
+        ) or adjustment_type not in (None, semantics.adjustment_type):
+            raise ProviderSemanticsError("conflicting Groww semantics configuration")
         self.client = client
-        self.adjustment_type = adjustment_type
+        # Take an owned validated snapshot, independent of caller-owned dictionaries.
+        self._semantics_json = GrowwSemantics.model_validate(
+            semantics.model_dump()
+        ).model_dump_json()
+        self.adjustment_type = self.semantics.adjustment_type
+
+    @property
+    def semantics(self) -> GrowwSemantics:
+        """Return a copy; mappings cannot mutate the adapter's recorded contract."""
+        return GrowwSemantics.model_validate_json(self._semantics_json)
+
+    def semantics_manifest(self) -> dict[str, Any]:
+        return {
+            **self.semantics.model_dump(mode="json"),
+            "real_api_verification": "UNVERIFIED",
+            "adapter_version": "groww-candles-v2",
+        }
 
     @staticmethod
     def max_range(timeframe: Timeframe) -> timedelta:
@@ -82,8 +106,10 @@ class GrowwProvider:
 
     def fetch_bars(self, request: HistoryRequest) -> Iterable[RawCandle]:
         """Preserve chunk boundaries for ingestion duplicate/conflict auditing."""
-        if request.adjustment_type != self.adjustment_type:
-            raise ProviderError("Groww adjustment assertion differs from request")
+        mappings = {
+            symbol: self.semantics.resolve(request, symbol)
+            for symbol in request.symbols
+        }
         row_number = 0
         for symbol in request.symbols:
             start = request.start
@@ -93,13 +119,20 @@ class GrowwProvider:
                     payload = self.client.get_historical_candles(
                         exchange=request.exchange.value,
                         segment=request.segment.value,
-                        groww_symbol=f"{request.exchange.value}-{symbol}",
+                        groww_symbol=mappings[symbol][0],
                         start_time=str(int(start.timestamp())),
                         end_time=str(int(end.timestamp())),
-                        candle_interval=request.timeframe.value,
+                        candle_interval=mappings[symbol][1],
                     )
                 except Exception:
                     raise ProviderError("Groww historical request failed") from None
+                minutes = payload.get("interval_in_minutes")
+                if minutes is not None and minutes != int(
+                    request.timeframe.duration.total_seconds() / 60
+                ):
+                    raise ProviderSemanticsError(
+                        "Groww response interval contradicts request"
+                    )
                 candles = payload.get("candles")
                 if not isinstance(candles, list):
                     raise ProviderError("Groww candle collection is malformed")
@@ -110,14 +143,15 @@ class GrowwProvider:
                         continue
                     timestamp = candle[0]
                     try:
-                        timestamp = datetime.fromisoformat(timestamp)
-                        if timestamp.tzinfo is None:
-                            timestamp = timestamp.replace(tzinfo=IST)
+                        timestamp = self.semantics.timestamp(timestamp)
                         # Normalize the inclusive provider end to [start, end).
                         if timestamp == request.end:
                             continue
                     except (ValueError, TypeError):
-                        pass  # Invalid scalar is passed to normalizer and audited.
+                        # Numeric/unknown formats must not fall through to Pydantic's
+                        # automatic epoch parsing, which would guess vendor semantics.
+                        yield RawCandle({}, row_number)
+                        continue
                     values = dict(
                         zip(
                             (

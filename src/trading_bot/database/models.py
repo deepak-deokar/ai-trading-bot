@@ -102,7 +102,11 @@ class IngestionRun(Base):
 
 
 class MarketBar(Base):
-    """Opening timestamp plus explicit session-aware availability time."""
+    """Candle covers [timestamp, available_at), both UTC; visible at available_at.
+
+    Ingestion verifies session-aligned openings and persists the calendar close.
+    Queries must always apply available_at <= the requested knowledge cutoff.
+    """
 
     __tablename__ = "market_bars"
     __table_args__ = (

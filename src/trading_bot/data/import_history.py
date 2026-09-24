@@ -4,12 +4,18 @@ import argparse
 from datetime import datetime
 from pathlib import Path
 
+import yaml
+
 from trading_bot.config.settings import load_settings
 from trading_bot.data.calendar import IST, NSECalendar
 from trading_bot.data.contracts import HistoryRequest, RunStatus
 from trading_bot.data.ingestion import IngestionService
 from trading_bot.data.providers.base import HistoricalDataProvider
 from trading_bot.data.providers.groww import GrowwHTTPClient, GrowwProvider
+from trading_bot.data.providers.groww_semantics import (
+    GrowwSemantics,
+    ProviderSemanticsError,
+)
 from trading_bot.data.providers.local import LocalCSVProvider
 from trading_bot.database.session import build_engine
 from trading_bot.domain.market import AdjustmentType, Exchange, Segment, Timeframe
@@ -39,6 +45,16 @@ def main() -> int:
     )
     parser.add_argument("--adjustment", choices=list(AdjustmentType))
     parser.add_argument("--confirm-groww-opening-timestamps", action="store_true")
+    parser.add_argument(
+        "--groww-semantics",
+        type=Path,
+        help="Explicit YAML mappings; contains no credentials",
+    )
+    parser.add_argument(
+        "--allow-unverified-calendar",
+        action="store_true",
+        help="Accept UNKNOWN historical calendar authority for research",
+    )
     args = parser.parse_args()
     try:
         settings = load_settings()
@@ -46,10 +62,11 @@ def main() -> int:
         if args.provider == "groww" and (
             not args.adjustment
             or not args.confirm_groww_opening_timestamps
+            or not args.groww_semantics
             or not settings.groww_access_token
         ):
             parser.error(
-                "Groww requires token, explicit --adjustment and timestamp confirmation"
+                "Groww requires token, semantics file and explicit confirmations"
             )
         request = HistoryRequest(
             exchange=args.exchange,
@@ -71,8 +88,13 @@ def main() -> int:
                 GrowwHTTPClient(settings.groww_access_token),
                 adjustment_type=request.adjustment_type,
                 timestamp_convention="open",
+                semantics=GrowwSemantics.model_validate(
+                    yaml.safe_load(args.groww_semantics.read_text())
+                ),
             )
-        calendar = NSECalendar(args.calendar)
+        calendar = NSECalendar(
+            args.calendar, allow_unverified_history=args.allow_unverified_calendar
+        )
         engine = build_engine(settings)
         try:
             report = IngestionService(engine, calendar).ingest(provider, request)
@@ -81,6 +103,9 @@ def main() -> int:
         print(report.model_dump_json(indent=2))
         print(f"Missing expected bars: {report.missing_expected_bars}")
         return 1 if report.status == RunStatus.FAILED else 0
+    except ProviderSemanticsError as error:
+        print(f"Provider semantics error: {error}")
+        return 1
     except Exception:
         # Never interpolate settings, local raw data, driver or vendor exceptions.
         print("Import failed; check configuration/database and the ingestion audit.")

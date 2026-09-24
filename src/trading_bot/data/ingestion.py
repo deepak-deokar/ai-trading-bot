@@ -10,7 +10,7 @@ from sqlalchemy import Engine, select, text
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.orm import Session
 
-from trading_bot.data.calendar import MarketCalendar
+from trading_bot.data.calendar import CalendarError, MarketCalendar
 from trading_bot.data.contracts import (
     DataQualityIssue,
     HistoryRequest,
@@ -19,10 +19,15 @@ from trading_bot.data.contracts import (
     RunStatus,
     Severity,
 )
+from trading_bot.data.identity import dataset_identity
 from trading_bot.data.normalize import normalize
-from trading_bot.data.providers.base import HistoricalDataProvider, ProviderError
+from trading_bot.data.providers.base import (
+    HistoricalDataProvider,
+    ProviderError,
+    SemanticsProvider,
+)
 from trading_bot.data.quality import gap_issues
-from trading_bot.database.models import IngestionRun, Instrument, MarketBar
+from trading_bot.database.models import IngestionRun, Instrument, MarketBar, SystemEvent
 from trading_bot.domain.models import Bar
 
 VALUES = (
@@ -66,6 +71,26 @@ class IngestionService:
     ) -> IngestionReport:
         """Commit a run first, then commit bars and terminal report atomically."""
         report = IngestionReport(provider=provider.name)
+        calendar_provenance = self.calendar.provenance(request.start, request.end)
+        provider_semantics = (
+            provider.semantics_manifest()
+            if isinstance(provider, SemanticsProvider)
+            else {
+                "timestamp_convention": "open",
+                "timezone": "explicit offset required",
+                "adjustment_type": request.adjustment_type.value,
+            }
+        )
+        identity = dataset_identity(
+            request,
+            provider.name,
+            report.run_id,
+            calendar_provenance,
+            provider_semantics,
+        )
+        report = report.model_copy(
+            update={"dataset_key": identity.dataset_key, "run_key": identity.run_key}
+        )
         counts = dict.fromkeys(COUNTERS, 0)
         issues: list[DataQualityIssue] = []
         with Session(self.engine) as session, session.begin():
@@ -85,11 +110,36 @@ class IngestionService:
                     calendar_version=self.calendar.version,
                 )
             )
+            session.add(
+                SystemEvent(
+                    run_id=report.run_id,
+                    event_type="historical_dataset_identity",
+                    severity="INFO",
+                    message="Historical dataset selection identity",
+                    details=identity.model_dump(mode="json"),
+                )
+            )
         stage = IssueType.CALENDAR_FAILURE
         try:
             expected = self.calendar.expected_bars(
                 request.start, request.end, request.timeframe
             )
+            if calendar_provenance["authority"] == "UNKNOWN":
+                issues.append(
+                    DataQualityIssue(
+                        type=IssueType.CALENDAR_UNVERIFIED,
+                        severity=Severity.WARNING,
+                        message="Calendar authority UNKNOWN; research opt-in recorded",
+                    )
+                )
+            if provider_semantics.get("real_api_verification") == "UNVERIFIED":
+                issues.append(
+                    DataQualityIssue(
+                        type=IssueType.PROVIDER_SEMANTICS_UNVERIFIED,
+                        severity=Severity.WARNING,
+                        message="Provider semantics asserted; real API UNVERIFIED",
+                    )
+                )
             if len(expected) * len(request.symbols) > self.max_rows:
                 raise ValueError("request exceeds bounded ingestion size")
             stage = IssueType.PROVIDER_FAILURE
@@ -246,13 +296,17 @@ class IngestionService:
                     update={**counts, "issues": tuple(issues), "status": status}
                 )
                 self._finish(session, report)
-        except Exception:
+        except Exception as error:
             counts["rows_inserted"] = 0
             issues.append(
                 DataQualityIssue(
                     type=stage,
                     severity=Severity.CRITICAL,
-                    message="Ingestion failed; uncommitted candle writes rolled back",
+                    message=(
+                        str(error)
+                        if isinstance(error, CalendarError)
+                        else "Ingestion failed; uncommitted candle writes rolled back"
+                    ),
                 )
             )
             report = report.model_copy(

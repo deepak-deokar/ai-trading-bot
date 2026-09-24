@@ -1,9 +1,12 @@
 # AI Trading Bot
 
-Safety-first infrastructure for personal Indian NSE CASH research. **Phase 2.**
+Safety-first infrastructure for personal Indian NSE CASH research. **Phase 2.1.**
 The application cannot submit orders. Live configuration is rejected, including
 when explicit enablement flags are present. Paper is a configuration label; no
 paper broker is connected.
+
+See [Phase 2.1 hardening](docs/phase21-hardening.md) for multi-year coverage,
+explicit Groww semantics, and dataset identities.
 
 Historical data now flows through provider → normalization → validation → calendar-aware
 quality checks → audited PostgreSQL storage → chronological queries.

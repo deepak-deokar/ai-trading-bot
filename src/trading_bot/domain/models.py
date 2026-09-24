@@ -3,7 +3,7 @@
 from datetime import UTC, datetime
 from decimal import Decimal
 from enum import StrEnum
-from typing import Annotated, Self
+from typing import Annotated, Literal, Self
 from uuid import UUID, uuid4
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
@@ -34,6 +34,7 @@ class Timestamped(DomainModel):
 class Bar(Timestamped):
     """Timestamp is the candle OPEN in UTC; usable only after session-aware close."""
 
+    timestamp_convention: Literal["open"] = "open"
     symbol: Symbol
     exchange: Exchange = Exchange.NSE
     segment: Segment = Segment.CASH

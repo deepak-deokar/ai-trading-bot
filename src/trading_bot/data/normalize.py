@@ -21,6 +21,8 @@ def integer(value: object) -> int:
 
 def normalize(row: RawCandle, request: HistoryRequest, source: str) -> Bar:
     """Naive local timestamps are invalid; only vendor adapter may interpret them."""
+    if row.timestamp_convention != "open":
+        raise ValueError("provider must normalize timestamps to candle openings")
     values: dict[str, Any] = dict(row.values)
     for key, default in {
         "exchange": request.exchange,

@@ -1,0 +1,10 @@
+# DATA ONLY. Example operator assertions, NOT authenticated verification.
+# Not loaded automatically. Review before selecting with --groww-semantics.
+timestamp_meaning: open
+timezone: Asia/Kolkata
+adjustment_type: RAW
+interval_mapping:
+  5minute: 5minute
+instrument_mapping:
+  NSE:CASH:RELIANCE: NSE-RELIANCE
+acknowledgement: UNVERIFIED_PROVIDER_SEMANTICS_ACCEPTED

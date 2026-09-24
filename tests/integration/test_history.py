@@ -16,6 +16,7 @@ from trading_bot.data.contracts import HistoryRequest, IssueType, RunStatus
 from trading_bot.data.ingestion import IngestionService
 from trading_bot.data.providers.base import ProviderError, RawCandle
 from trading_bot.data.providers.groww import GrowwProvider
+from trading_bot.data.providers.groww_semantics import GrowwSemantics
 from trading_bot.data.providers.local import LocalCSVProvider
 from trading_bot.data.query import HistoryQuery
 from trading_bot.database.models import IngestionRun, Instrument, MarketBar
@@ -241,7 +242,17 @@ def test_mock_groww_chunk_merge_is_idempotent(history_engine):
     candle_row = ["2026-02-04T09:15:00", 1500, 1502, 1499, 1501, 100, None]
     client.get_historical_candles.return_value = {"candles": [candle_row]}
     provider = GrowwProvider(
-        client, adjustment_type=AdjustmentType.RAW, timestamp_convention="open"
+        client,
+        adjustment_type=AdjustmentType.RAW,
+        timestamp_convention="open",
+        semantics=GrowwSemantics(
+            timestamp_meaning="open",
+            timezone="Asia/Kolkata",
+            adjustment_type="RAW",
+            interval_mapping={"5minute": "5minute"},
+            instrument_mapping={"NSE:CASH:RELIANCE": "NSE-RELIANCE"},
+            acknowledgement="UNVERIFIED_PROVIDER_SEMANTICS_ACCEPTED",
+        ),
     )
     req = request(end=dt("2026-02-05T09:20"))
     report = IngestionService(history_engine, NSECalendar()).ingest(provider, req)

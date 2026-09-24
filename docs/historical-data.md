@@ -46,7 +46,11 @@ excluded. The pinned `pandas-market-calendars==5.4.0` NSE calendar supplies its
 holiday schedule. Its inspected holiday coverage ends in 2026 and it misses some
 exceptional events; it is not a live authoritative calendar service.
 
-`config/calendar_nse.yaml` declares the currently supported **2026 calendar year**,
+`config/calendar_nse.yaml` declares dependency-backed coverage for **2020–2026**,
+with the existing reviewed policy beginning in 2026. Earlier years have UNKNOWN
+authority and require explicit `--allow-unverified-calendar` research acceptance;
+such imports retain a quality warning and unknown-authority provenance. See
+[Phase 2.1 hardening](phase21-hardening.md) for the full policy. The file declares
 a policy version, and source-linked corrections for the January 15 election
 closure and February 1 budget Sunday session. It is a bounded correction overlay,
 not an indefinitely maintained hard-coded holiday list. Requests outside its
@@ -75,7 +79,8 @@ conversion and domain validation. Invalid numeric/OHLC values are not repaired.
 
 **Local:** UTF-8 CSV with a strict, unique header and consistent column counts.
 Required columns: `symbol,timestamp,open,high,low,close,volume`. Optional columns:
-`exchange,segment,timeframe,adjustment_type,trade_count,open_interest,vwap`.
+`exchange,segment,timeframe,adjustment_type,trade_count,open_interest,vwap,timestamp_convention`.
+The optional timestamp convention must be `open`.
 Source is always `local`; callers cannot disguise it through CSV content. A file
 must describe the requested dataset. Wrong symbols, out-of-range rows, misaligned
 openings, and unfinished candles are reported/rejected, not silently filtered.
@@ -97,8 +102,11 @@ through the normal audit/deduplication path so conflicts cannot be hidden. The
 inclusive final provider endpoint is converted to the exclusive request end.
 
 Groww documentation does not sufficiently guarantee adjustment or opening-time
-semantics. The adapter requires explicit caller assertions; CLI users must pass
-`--adjustment` and `--confirm-groww-opening-timestamps`. Naive Groww timestamps
+semantics. The adapter requires a complete explicit `GrowwSemantics` contract; CLI users must
+pass `--groww-semantics PATH`, `--adjustment` and
+`--confirm-groww-opening-timestamps`. The selected file must explicitly map timezone,
+intervals, instruments, adjustment and opening labels and acknowledge UNVERIFIED
+semantics. Missing mappings fail before network access. Naive Groww timestamps
 are interpreted as IST at the adapter boundary. These assumptions, daily-bar labels,
 and real authentication remain **UNVERIFIED**. Mock tests verify parsing, chunk
 limits, boundary merging, and sanitized failures. No real Groww request was made.
@@ -136,7 +144,9 @@ certify that observation as correct; a conflict requires investigation before re
 No conflict is silently overwritten. New sources/adjustment policies form separate
 datasets and must be selected explicitly.
 
-Runs are committed RUNNING before fetching. Validated data is bounded to 100,000
+Runs and their canonical dataset identity events are committed before fetching.
+See [dataset identities](phase21-hardening.md#lightweight-dataset-identity). Runs
+are initially RUNNING. Validated data is bounded to 100,000
 received rows/expected slots per run, keeping memory and report sizes bounded.
 One PostgreSQL transaction acquires a service-wide advisory lock, resolves
 instruments, compares existing candles, bulk inserts batches of 1,000, and commits

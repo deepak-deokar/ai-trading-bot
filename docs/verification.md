@@ -1,6 +1,6 @@
 # Phase 1 verification (historical record)
 
-Current results: [Phase 2 verification](phase2-verification.md). The same local
+Current results: [Phase 2.1 hardening](phase21-hardening.md). The same local
 PostgreSQL instance now runs migration 0002. The credential-loading commands below
 still apply; also export `PYTHONPATH="$PWD/src"` for local source execution.
 
