@@ -3,7 +3,8 @@
 1. Foundation: configuration, logging, domain schemas, PostgreSQL, API, tests.
 2. Historical ingestion (implemented): provider interface, bars migration, validation, deduplication,
    session-aware missing/gap checks, reproducible ingestion provenance.
-3. Deterministic versioned features without future information.
+3. Deterministic versioned features (implemented): 29 baseline numerical outputs,
+   completion-aware queries, gap policy, reproducible identities and persistence.
 4. Event-driven backtesting, accounting, costs, execution timing.
 5. Deterministic baseline strategy and honest cost-adjusted reports.
 6. Chronological ML training, purged labels, validation, model registry.

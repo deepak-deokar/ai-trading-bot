@@ -1,4 +1,4 @@
-# Architecture and assumptions (updated through Phase 2)
+# Architecture and assumptions (updated through Phase 3)
 
 The namespaced `src/trading_bot` layout avoids collisions with generic installed
 packages such as `models`, `config`, or `data`. Dependency direction is API →
@@ -36,9 +36,12 @@ The roadmap sequence does not authorize bypassing risk in earlier backtests.
   unavailable databases yield readiness 503 without leaking driver error messages.
 - Application logs are JSON; Uvicorn maintains its own server/access logging.
   Context keys are allowlisted; arbitrary messages must still be secret-free.
-- Initial migration adds only foundation tables. Market bars and ingestion runs were added in Phase 2;
-  features, predictions, signals, orders/events/fills, positions/snapshots, risk
-  events, strategy runs, and model versions arrive alongside tested owning services.
+- Initial migration adds foundation tables; Phase 2 adds market bars and ingestion
+  runs. Phase 3 adds feature sets/values via migration 0003. Features use a bounded
+  repeatable-read historical snapshot, causal numerical engine, validated batch
+  persistence and explicit point-in-time queries. See [feature architecture](features.md).
+- Predictions, signals, orders/events/fills, positions/snapshots, risk events, strategy
+  runs and model versions remain deferred to their tested owning services.
 
 ## References
 
@@ -47,7 +50,8 @@ Schema versioning follows the [Alembic tutorial](https://alembic.sqlalchemy.org/
 
 ## Deferred infrastructure
 
-Polars/NumPy for ingestion/features; scikit-learn and LightGBM or XGBoost for
+NumPy is used for Phase 3 features; Polars remains optional and uninstalled.
+Scikit-learn and LightGBM or XGBoost for
 baselines; controlled Optuna tuning and MLflow tracking follow research validation.
 Pandas only for compatibility. No PyTorch until justified. Prometheus/Grafana and
 an authenticated operator dashboard follow working risk/execution infrastructure.

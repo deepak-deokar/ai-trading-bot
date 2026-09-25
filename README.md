@@ -1,9 +1,12 @@
 # AI Trading Bot
 
-Safety-first infrastructure for personal Indian NSE CASH research. **Phase 2.1.**
+Safety-first infrastructure for personal Indian NSE CASH research. **Phase 3.**
 The application cannot submit orders. Live configuration is rejected, including
 when explicit enablement flags are present. Paper is a configuration label; no
 paper broker is connected.
+
+See [Phase 3 features](docs/features.md) and [verification](docs/phase3-verification.md)
+for causal numerical features, persistence and the fixture demonstration.
 
 See [Phase 2.1 hardening](docs/phase21-hardening.md) for multi-year coverage,
 explicit Groww semantics, and dataset identities.
@@ -14,6 +17,8 @@ See [Phase 2 data guide](docs/historical-data.md) for exact imports, query examp
 schemas, adjustment policy, calendar limitations, and Groww verification status.
 
 ## Implemented
+
+- 29 causal numerical features, versioned registry, batch persistence and point-in-time queries.
 
 - Local CSV ingestion and optional data-only Groww candles adapter (real API UNVERIFIED).
 - NSE session calendar, duplicate/conflict auditing, and completed-candle queries.
@@ -36,7 +41,8 @@ src/trading_bot/
   domain/models.py               Bar, Prediction, OrderRequest, lifecycle vocabulary
   domain/market.py               exchange, segment, timeframe, adjustment types
   data/                          calendar, providers, normalization, quality, ingestion, query, CLI
-  database/models.py             instruments, system events, bars, ingestion runs
+  features/                      definitions, calculations, engine, repository, CLI
+  database/models.py             instruments, events, bars, ingestion runs, feature sets/values
   database/session.py            bounded engine pool and transaction factory
   monitoring/logging.py          JSON log configuration
 migrations/                      explicit, versioned schema changes
@@ -49,7 +55,7 @@ Dockerfile / docker-compose.yml   local services
 ```
 
 Empty future modules are intentionally not scaffolded. Every included module
-has working foundation or historical-data behavior. See [architecture](docs/architecture.md) for the
+has working foundation, historical-data or feature behavior. See [architecture](docs/architecture.md) for the
 boundaries that subsequent phases must preserve.
 
 ## Setup
@@ -144,7 +150,8 @@ health/readiness, safe exception logs, database constraints, and rollback.
 
 Locks pin the resolved versions, including transitive dependencies. Re-resolve and
 review them when upgrading dependencies; pins are reproducibility controls, not a
-security certification. No ML framework is installed; pandas/NumPy support the calendar dependency.
+security certification. No ML framework is installed; pandas supports calendar schedules and NumPy supports
+calendar data and numerical feature calculations.
 
 ## Scope and next checkpoint
 
@@ -152,10 +159,8 @@ The application has no execution capability. Live mode remains rejected and no
 paper orders or broker connections were made. Historical data does not imply a
 strategy is profitable or safe to deploy with capital.
 
-Phase 2 includes `market_bars` and `ingestion_runs`; later phases own features,
-models, strategy, risk, accounting, and execution tables/services. Pandas and NumPy
-are installed only as calendar dependencies, not for feature engineering or ML.
-
-Next: Phase 3 deterministic, versioned features without future-information leakage.
+Phase 3 adds `feature_sets` and `feature_values` beside the historical tables.
+Later phases own models, strategy, risk, accounting and execution. Phase 4 has not
+begun; this implementation stops after numerical feature engineering.
 See [historical data guide](docs/historical-data.md), [roadmap](docs/roadmap.md),
 [security](docs/security.md), and [Phase 2 verification](docs/phase2-verification.md).

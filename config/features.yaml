@@ -1,0 +1,113 @@
+feature_sets:
+  baseline_v1:
+  - name: return
+    output: return_1
+    params:
+      period: 1
+  - name: return
+    output: return_3
+    params:
+      period: 3
+  - name: return
+    output: return_5
+    params:
+      period: 5
+  - name: log_return
+    output: log_return_1
+    params:
+      period: 1
+  - name: sma
+    output: sma_10
+    params:
+      period: 10
+  - name: sma
+    output: sma_20
+    params:
+      period: 20
+  - name: ema
+    output: ema_10
+    params:
+      period: 10
+  - name: ema
+    output: ema_20
+    params:
+      period: 20
+  - name: sma_distance
+    output: sma_20_distance
+    params:
+      period: 20
+  - name: ema_spread
+    output: ema_spread
+    params:
+      fast: 10
+      slow: 20
+  - name: momentum
+    output: momentum_3
+    params:
+      period: 3
+  - name: momentum
+    output: momentum_5
+    params:
+      period: 5
+  - name: momentum
+    output: momentum_10
+    params:
+      period: 10
+  - name: rsi
+    output: rsi_14
+    params:
+      period: 14
+  - name: volatility
+    output: rolling_volatility
+    params:
+      period: 20
+  - name: atr
+    output: atr_14
+    params:
+      period: 14
+  - name: range_pct
+    output: range_pct
+    params: {}
+  - name: true_range
+    output: true_range
+    params: {}
+  - name: volume_change
+    output: volume_change
+    params: {}
+  - name: volume_mean
+    output: volume_mean
+    params:
+      period: 20
+  - name: volume_ratio
+    output: volume_ratio
+    params:
+      period: 20
+  - name: rolling_high
+    output: rolling_high
+    params:
+      period: 20
+  - name: rolling_low
+    output: rolling_low
+    params:
+      period: 20
+  - name: high_distance
+    output: high_distance
+    params:
+      period: 20
+  - name: low_distance
+    output: low_distance
+    params:
+      period: 20
+  - name: breakout_distance
+    output: breakout_distance
+    params:
+      period: 20
+  - name: minutes_since_open
+    output: minutes_since_open
+    params: {}
+  - name: minutes_until_close
+    output: minutes_until_close
+    params: {}
+  - name: session_progress
+    output: session_progress
+    params: {}

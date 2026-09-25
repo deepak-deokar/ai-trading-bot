@@ -8,6 +8,7 @@ from sqlalchemy.orm import Session
 
 from trading_bot.data.contracts import HistoryRequest
 from trading_bot.data.identity import DatasetIdentity
+from trading_bot.data.snapshot import HistorySnapshot, SnapshotBar
 from trading_bot.database.models import Instrument, MarketBar, SystemEvent
 from trading_bot.domain.models import Bar
 
@@ -79,6 +80,57 @@ class HistoryQuery:
                 )
             )
             return [self._bar(row, instrument) for row, instrument in rows]
+
+    def get_snapshot(
+        self, request: HistoryRequest, *, source: str, max_rows: int = 100_000
+    ) -> HistorySnapshot:
+        """Bounded, repeatable-read snapshot in two bulk queries; no float prices."""
+        if max_rows < 1:
+            raise ValueError("max_rows must be positive")
+        with (
+            self.engine.connect().execution_options(
+                isolation_level="REPEATABLE READ"
+            ) as connection,
+            Session(connection) as session,
+        ):
+            rows = session.execute(
+                self._statement(request, source)
+                .order_by(MarketBar.timestamp, Instrument.symbol)
+                .limit(max_rows + 1)
+            ).all()
+            if len(rows) > max_rows:
+                raise ValueError("historical snapshot exceeds row limit")
+            bars = tuple(
+                SnapshotBar(
+                    self._bar(row, instrument),
+                    row.available_at,
+                    instrument.id,
+                    row.ingestion_run_id,
+                )
+                for row, instrument in rows
+            )
+            run_ids = {row.ingestion_run_id for row in bars}
+            events = (
+                session.scalars(
+                    select(SystemEvent).where(
+                        SystemEvent.run_id.in_(run_ids),
+                        SystemEvent.event_type == "historical_dataset_identity",
+                    )
+                ).all()
+                if run_ids
+                else []
+            )
+            identities = tuple(
+                DatasetIdentity.model_validate(e.details) for e in events
+            )
+            if {i.run_id for i in identities} != run_ids or len(identities) != len(
+                run_ids
+            ):
+                raise ValueError(
+                    "missing or ambiguous historical dataset identity; "
+                    "legacy bars require reviewed provenance"
+                )
+            return HistorySnapshot(bars, identities)
 
     def get_latest_bar(self, request: HistoryRequest, *, source: str) -> Bar | None:
         """Latest completed candle within explicit historical cutoff request.end."""

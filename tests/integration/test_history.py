@@ -232,7 +232,7 @@ def test_migration_downgrade_reupgrade_and_drift(history_engine):
         command.upgrade(config, "head")
         assert (
             connection.execute(text("SELECT version_num FROM alembic_version")).scalar()
-            == "0002"
+            == "0003"
         )
         command.check(config)
 

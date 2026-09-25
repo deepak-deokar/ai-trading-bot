@@ -1,7 +1,7 @@
 # Phase 1 verification (historical record)
 
-Current results: [Phase 2.1 hardening](phase21-hardening.md). The same local
-PostgreSQL instance now runs migration 0002. The credential-loading commands below
+Current results: [Phase 3 verification](phase3-verification.md). The same local
+PostgreSQL instance now runs migration 0003. The credential-loading commands below
 still apply; also export `PYTHONPATH="$PWD/src"` for local source execution.
 
 Verified on Python 3.12.7 / macOS with PostgreSQL 17.6 in Docker:

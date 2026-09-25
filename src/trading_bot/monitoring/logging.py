@@ -15,6 +15,22 @@ class JsonFormatter(logging.Formatter):
         "order_id",
         "broker_order_id",
         "event_type",
+        "feature_run_id",
+        "dataset_key",
+        "feature_set_key",
+        "symbols",
+        "timeframe",
+        "range",
+        "features_requested",
+        "bars_loaded",
+        "rows_generated",
+        "rows_inserted",
+        "warmup_rows",
+        "gap_affected_rows",
+        "missing_bars",
+        "invalid_outputs",
+        "duration",
+        "status",
     )
 
     def format(self, record: logging.LogRecord) -> str:

@@ -169,3 +169,41 @@ class MarketBar(Base):
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now()
     )
+
+
+class FeatureSet(Base):
+    """One immutable selection/content/configuration identity."""
+
+    __tablename__ = "feature_sets"
+    feature_set_key: Mapped[str] = mapped_column(String(64), primary_key=True)
+    dataset_key: Mapped[str] = mapped_column(String(64), index=True)
+    name: Mapped[str] = mapped_column(String(64))
+    manifest: Mapped[dict[str, object]] = mapped_column(JSON)
+    row_count: Mapped[int] = mapped_column(Integer)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now()
+    )
+    __table_args__ = (CheckConstraint("row_count > 0", name="nonempty"),)
+
+
+class FeatureValue(Base):
+    """Float64-derived JSON numbers/nulls; exact close remains Numeric(28,10)."""
+
+    __tablename__ = "feature_values"
+    feature_set_key: Mapped[str] = mapped_column(
+        ForeignKey("feature_sets.feature_set_key"), primary_key=True
+    )
+    symbol: Mapped[str] = mapped_column(String(32), primary_key=True)
+    timestamp: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), primary_key=True
+    )
+    available_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    close: Mapped[Decimal] = mapped_column(Numeric(28, 10))
+    values: Mapped[dict[str, float | None]] = mapped_column(JSON)
+    unavailable: Mapped[dict[str, str]] = mapped_column(JSON)
+    sufficient_history: Mapped[bool]
+    gap_before: Mapped[bool]
+    __table_args__ = (
+        CheckConstraint("available_at > timestamp", name="availability"),
+        Index("ix_feature_values_available", "feature_set_key", "available_at"),
+    )
