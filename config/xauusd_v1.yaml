@@ -1,0 +1,21 @@
+# Research intent only. Not runtime trading configuration or authorization.
+instrument:
+  symbol: XAUUSD
+  asset_class: SPOT_METAL
+  base_asset: XAU
+  quote_currency: USD
+account:
+  account_currency: USD
+  reference_starting_balance: "500"
+target_platform: MT5
+research_status: DOMAIN_CONFIGURATION_ONLY
+future_risk:
+  risk_per_trade_percent: null
+  maximum_daily_loss_percent: null
+  maximum_drawdown_percent: null
+  maximum_open_positions: null
+supports_long: true
+supports_short: true
+requires_bid_ask: true
+uses_lot_quantity: true
+requires_contract_specification: true
