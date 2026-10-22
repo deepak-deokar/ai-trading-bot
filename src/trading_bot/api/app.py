@@ -14,7 +14,7 @@ from trading_bot.config.settings import Settings, load_settings
 from trading_bot.database.session import build_engine
 from trading_bot.monitoring.logging import configure_logging
 
-SCHEMA_REVISION = "0003"
+SCHEMA_REVISION = "0004"
 
 
 def create_app(

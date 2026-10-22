@@ -1,9 +1,12 @@
 # AI Trading Bot
 
-Safety-first infrastructure for personal Indian NSE CASH research. **Phase 3.**
+Safety-first infrastructure for personal Indian NSE CASH research. **Phase 4.**
 The application cannot submit orders. Live configuration is rejected, including
 when explicit enablement flags are present. Paper is a configuration label; no
 paper broker is connected.
+
+See [Phase 4 simulator](docs/backtesting.md) and [verification](docs/phase4-verification.md)
+for event-driven historical execution with scripted test intents only.
 
 See [Phase 3 features](docs/features.md) and [verification](docs/phase3-verification.md)
 for causal numerical features, persistence and the fixture demonstration.
@@ -17,6 +20,9 @@ See [Phase 2 data guide](docs/historical-data.md) for exact imports, query examp
 schemas, adjustment policy, calendar limitations, and Groww verification status.
 
 ## Implemented
+
+- Event-driven historical simulator with Decimal accounting, explicit costs/slippage,
+  conservative fills, persisted audits/ledgers and scripted test decisions.
 
 - 29 causal numerical features, versioned registry, batch persistence and point-in-time queries.
 
@@ -42,6 +48,7 @@ src/trading_bot/
   domain/market.py               exchange, segment, timeframe, adjustment types
   data/                          calendar, providers, normalization, quality, ingestion, query, CLI
   features/                      definitions, calculations, engine, repository, CLI
+  backtesting/                   simulated events, execution, accounting, results, CLI
   database/models.py             instruments, events, bars, ingestion runs, feature sets/values
   database/session.py            bounded engine pool and transaction factory
   monitoring/logging.py          JSON log configuration
@@ -160,7 +167,7 @@ paper orders or broker connections were made. Historical data does not imply a
 strategy is profitable or safe to deploy with capital.
 
 Phase 3 adds `feature_sets` and `feature_values` beside the historical tables.
-Later phases own models, strategy, risk, accounting and execution. Phase 4 has not
-begun; this implementation stops after numerical feature engineering.
+Phase 4 adds simulated execution/accounting and backtest ledgers. Later phases own
+strategy, ML and broker execution. Phase 5 has not begun.
 See [historical data guide](docs/historical-data.md), [roadmap](docs/roadmap.md),
 [security](docs/security.md), and [Phase 2 verification](docs/phase2-verification.md).

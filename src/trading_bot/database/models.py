@@ -10,6 +10,7 @@ from sqlalchemy import (
     CheckConstraint,
     DateTime,
     ForeignKey,
+    ForeignKeyConstraint,
     Index,
     Integer,
     MetaData,
@@ -207,3 +208,76 @@ class FeatureValue(Base):
         CheckConstraint("available_at > timestamp", name="availability"),
         Index("ix_feature_values_available", "feature_set_key", "available_at"),
     )
+
+
+class BacktestRun(Base):
+    __tablename__ = "backtest_runs"
+    run_id: Mapped[UUID] = mapped_column(Uuid, primary_key=True)
+    started_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    completed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    status: Mapped[str] = mapped_column(String(32))
+    config_key: Mapped[str | None] = mapped_column(String(64), index=True)
+    manifest: Mapped[dict[str, object]] = mapped_column(JSON)
+    summary: Mapped[dict[str, object]] = mapped_column(JSON)
+    __table_args__ = (
+        CheckConstraint(
+            "status IN ('RUNNING','COMPLETED','COMPLETED_WITH_WARNINGS','FAILED')",
+            name="status",
+        ),
+    )
+
+
+class BacktestOrder(Base):
+    __tablename__ = "backtest_orders"
+    run_id: Mapped[UUID] = mapped_column(
+        ForeignKey("backtest_runs.run_id"), primary_key=True
+    )
+    order_id: Mapped[str] = mapped_column(String(64), primary_key=True)
+    payload: Mapped[dict[str, object]] = mapped_column(JSON)
+
+
+class BacktestFill(Base):
+    __tablename__ = "backtest_fills"
+    run_id: Mapped[UUID] = mapped_column(
+        ForeignKey("backtest_runs.run_id"), primary_key=True
+    )
+    sequence: Mapped[int] = mapped_column(Integer, primary_key=True)
+    order_id: Mapped[str] = mapped_column(String(64))
+    timestamp: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    payload: Mapped[dict[str, object]] = mapped_column(JSON)
+    __table_args__ = (
+        ForeignKeyConstraint(
+            ["run_id", "order_id"],
+            ["backtest_orders.run_id", "backtest_orders.order_id"],
+        ),
+    )
+
+
+class BacktestTrade(Base):
+    __tablename__ = "backtest_trades"
+    run_id: Mapped[UUID] = mapped_column(
+        ForeignKey("backtest_runs.run_id"), primary_key=True
+    )
+    sequence: Mapped[int] = mapped_column(Integer, primary_key=True)
+    timestamp: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    payload: Mapped[dict[str, object]] = mapped_column(JSON)
+
+
+class BacktestEquityPoint(Base):
+    __tablename__ = "backtest_equity_points"
+    run_id: Mapped[UUID] = mapped_column(
+        ForeignKey("backtest_runs.run_id"), primary_key=True
+    )
+    sequence: Mapped[int] = mapped_column(Integer, primary_key=True)
+    timestamp: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    payload: Mapped[dict[str, object]] = mapped_column(JSON)
+
+
+class BacktestEvent(Base):
+    __tablename__ = "backtest_events"
+    run_id: Mapped[UUID] = mapped_column(
+        ForeignKey("backtest_runs.run_id"), primary_key=True
+    )
+    sequence: Mapped[int] = mapped_column(Integer, primary_key=True)
+    timestamp: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    payload: Mapped[dict[str, object]] = mapped_column(JSON)

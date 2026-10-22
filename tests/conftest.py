@@ -100,3 +100,27 @@ def feature_inputs():
         )
 
     return make
+
+
+@pytest.fixture
+def backtest_inputs(feature_inputs):
+    from trading_bot.backtesting.config import BacktestConfig
+    from trading_bot.backtesting.inputs import BacktestInputs
+    from trading_bot.data.calendar import NSECalendar
+    from trading_bot.features.engine import FeatureEngine
+
+    def make(**changes):
+        request, snapshot, features = feature_inputs(count=75, **changes)
+        result = FeatureEngine(NSECalendar()).generate(
+            snapshot, request, source="local", config=features
+        )
+        config = BacktestConfig(
+            history=request,
+            source="local",
+            feature_set_key=result.feature_set_key,
+            starting_capital="200000",
+            participation_rate=None,
+        )
+        return config, BacktestInputs(snapshot, result.rows, result.manifest)
+
+    return make

@@ -1,4 +1,4 @@
-# Architecture and assumptions (updated through Phase 3)
+# Architecture and assumptions (updated through Phase 4)
 
 The namespaced `src/trading_bot` layout avoids collisions with generic installed
 packages such as `models`, `config`, or `data`. Dependency direction is API →
@@ -55,3 +55,11 @@ Scikit-learn and LightGBM or XGBoost for
 baselines; controlled Optuna tuning and MLflow tracking follow research validation.
 Pandas only for compatibility. No PyTorch until justified. Prometheus/Grafana and
 an authenticated operator dashboard follow working risk/execution infrastructure.
+
+## Phase 4 simulation boundary
+
+The historical simulator is separate from broker/live execution. Migration 0004
+adds only backtest audit/result tables. It enforces 1× cash, long-only inventory,
+strict causal execution, session flattening and auditable failures. These limited
+simulation checks do not implement or authorize a production risk/execution system.
+See [backtesting](backtesting.md) for its explicit OHLC assumptions and limitations.

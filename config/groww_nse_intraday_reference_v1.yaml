@@ -1,0 +1,29 @@
+name: groww_nse_intraday_reference_v1
+version: '2026-09-24-research-1'
+market: NSE:CASH:INTRADAY
+sources:
+  - https://groww.in/pricing
+  - https://groww.in/help/stocks/sx-pricing/what-are-intraday-charges
+  - https://nsearchives.nseindia.com/content/circulars/FA73061.pdf
+reviewed_on: '2026-09-24'
+effective_from: null
+verification: PUBLIC_REFERENCE_ONLY_NOT_AUTHENTICATED_CONTRACT_NOTE
+rounding: PAISA_HALF_UP_PER_ORDER_COMPONENT
+rounding_verified: false
+warnings:
+  - RESEARCH_ROUNDING_ASSUMPTION_NOT_BROKER_VERIFIED
+  - GROWW_PUBLISHED_EXCHANGE_IPFT_SPLIT_DIFFERS_FROM_NSE_2026_03_01_CIRCULAR
+  - FIXED_REFERENCE_RATES_NOT_HISTORICAL_TAX_SCHEDULE
+brokerage_rate: '0.001'
+brokerage_cap: '20'
+brokerage_minimum: '5'
+minimum_turnover_cap: '0.025'
+stt_sell: '0.00025'
+stamp_buy: '0.00003'
+exchange_rate: '0.0000297'
+sebi_rate: '0.000001'
+ipft_rate: '0.000001'
+gst_rate: '0.18'
+gst_components: [brokerage, exchange, sebi, ipft, other]
+other_rate: '0'
+square_off_charge: '0'

@@ -1,0 +1,1240 @@
+{
+  "label": "SIMULATED TEST OUTPUT; no evidence of strategy profitability",
+  "dataset_key": "8cfeb390d26fd3d79d94c5beb5f7d0fbd1513c48ce2cd108dd7381366a7ea830",
+  "feature_set_key": "fef58527d9efe3a94a568b5c60cebe2f845a24afceee9c58cbe8bc3c91636f09",
+  "identical_rerun": true,
+  "distinct_run_ids": true,
+  "baseline": {
+    "run_id": "7029d147-c1e2-44ae-9b93-1041b425bf6c",
+    "config_key": "96dc236eb2b62979d3b7945f0c81c66b808d66a16fd0e4ed9b68442c17ee7583",
+    "manifest": {
+      "config": {
+        "history": {
+          "exchange": "NSE",
+          "segment": "CASH",
+          "symbols": [
+            "RELIANCE"
+          ],
+          "timeframe": "5minute",
+          "start": "2026-01-05T03:45:00Z",
+          "end": "2026-01-05T10:00:00Z",
+          "adjustment_type": "RAW"
+        },
+        "source": "local",
+        "feature_set_key": "fef58527d9efe3a94a568b5c60cebe2f845a24afceee9c58cbe8bc3c91636f09",
+        "starting_capital": "200000",
+        "participation_rate": "0.1",
+        "exit_minutes_before_close": 10,
+        "execution_policy": "STRICT_NEXT_OPEN_SETTLE_ON_COMPLETE_V1",
+        "intrabar_policy": "CONSERVATIVE",
+        "gap_policy": "FAIL_RUN",
+        "session_end": "FORCE_FLATTEN",
+        "capital_multiple": 1,
+        "shorts_enabled": false
+      },
+      "feature_manifest": {
+        "engine_version": "causal-baseline-v1",
+        "numeric": "IEEE754-float64/JSON",
+        "numpy_version": "2.5.3",
+        "dataset": {
+          "selection": {
+            "exchange": "NSE",
+            "segment": "CASH",
+            "symbols": [
+              "RELIANCE"
+            ],
+            "timeframe": "5minute",
+            "start": "2026-01-05T03:45:00Z",
+            "end": "2026-01-05T10:00:00Z",
+            "adjustment_type": "RAW"
+          },
+          "source": "local",
+          "calendar": {
+            "provider": "pandas_market_calendars:NSE",
+            "version": "pmc-5.4.0:nse-cash-multiyear-v1:e4f5f20789e53f67a45a9864dfba8dc192084ef03103982157ab8e0ec2662f9c:unverified=0",
+            "authority": "REVIEWED_POLICY",
+            "timezone": "Asia/Kolkata",
+            "coverage_start": "2020-01-01",
+            "coverage_end": "2026-12-31",
+            "allow_unverified_history": "false"
+          },
+          "historical_datasets": [
+            "76bc9d3ffc1f762d678515e9ac6fe04b0523592e7c5b341be210cc73718a6459"
+          ],
+          "input_digest": "fbe60cb64f07b713d95f0601f51731c410f5a4965e7f9bd7a15a93eb389b5cd3"
+        },
+        "dataset_key": "8cfeb390d26fd3d79d94c5beb5f7d0fbd1513c48ce2cd108dd7381366a7ea830",
+        "historical_identities": [
+          {
+            "schema_version": "historical-dataset-v1",
+            "run_id": "bf9b6028-5eed-41c2-b42c-24d03b30a354",
+            "dataset_key": "76bc9d3ffc1f762d678515e9ac6fe04b0523592e7c5b341be210cc73718a6459",
+            "run_key": "7db8eff59235a1e779f08177aedd9c52ffb831efe091b2e014e10a5429269eb0",
+            "manifest": {
+              "schema_version": "historical-dataset-v1",
+              "provider": "local",
+              "selection": {
+                "exchange": "NSE",
+                "segment": "CASH",
+                "symbols": [
+                  "RELIANCE"
+                ],
+                "timeframe": "5minute",
+                "start": "2026-01-05T03:45:00Z",
+                "end": "2026-01-05T10:00:00Z",
+                "adjustment_type": "RAW"
+              },
+              "calendar": {
+                "provider": "pandas_market_calendars:NSE",
+                "version": "pmc-5.4.0:nse-cash-multiyear-v1:e4f5f20789e53f67a45a9864dfba8dc192084ef03103982157ab8e0ec2662f9c:unverified=0",
+                "authority": "REVIEWED_POLICY",
+                "timezone": "Asia/Kolkata",
+                "coverage_start": "2020-01-01",
+                "coverage_end": "2026-12-31",
+                "allow_unverified_history": "false"
+              },
+              "timestamp_convention": "open",
+              "range_convention": "[start,end)",
+              "completion_policy": "available_at <= requested_end",
+              "provider_semantics": {
+                "timestamp_convention": "open",
+                "timezone": "explicit offset required",
+                "adjustment_type": "RAW"
+              }
+            }
+          }
+        ],
+        "feature_config": "baseline_v1",
+        "definitions": [
+          {
+            "name": "atr",
+            "version": "1",
+            "description": "Wilder smoothed true range",
+            "required_lookback": 14,
+            "input_fields": [
+              "high",
+              "low",
+              "close"
+            ],
+            "parameters": {
+              "period": 14
+            },
+            "output": "atr_14",
+            "output_type": "float64"
+          },
+          {
+            "name": "breakout_distance",
+            "version": "1",
+            "description": "Close / prior rolling high minus one",
+            "required_lookback": 20,
+            "input_fields": [
+              "high",
+              "close"
+            ],
+            "parameters": {
+              "period": 20
+            },
+            "output": "breakout_distance",
+            "output_type": "float64"
+          },
+          {
+            "name": "ema",
+            "version": "1",
+            "description": "SMA-seeded exponential mean",
+            "required_lookback": 9,
+            "input_fields": [
+              "close"
+            ],
+            "parameters": {
+              "period": 10
+            },
+            "output": "ema_10",
+            "output_type": "float64"
+          },
+          {
+            "name": "ema",
+            "version": "1",
+            "description": "SMA-seeded exponential mean",
+            "required_lookback": 19,
+            "input_fields": [
+              "close"
+            ],
+            "parameters": {
+              "period": 20
+            },
+            "output": "ema_20",
+            "output_type": "float64"
+          },
+          {
+            "name": "ema_spread",
+            "version": "1",
+            "description": "(Fast EMA - slow EMA) / close",
+            "required_lookback": 19,
+            "input_fields": [
+              "close"
+            ],
+            "parameters": {
+              "fast": 10,
+              "slow": 20
+            },
+            "output": "ema_spread",
+            "output_type": "float64"
+          },
+          {
+            "name": "high_distance",
+            "version": "1",
+            "description": "Close / rolling high minus one",
+            "required_lookback": 19,
+            "input_fields": [
+              "high",
+              "close"
+            ],
+            "parameters": {
+              "period": 20
+            },
+            "output": "high_distance",
+            "output_type": "float64"
+          },
+          {
+            "name": "log_return",
+            "version": "1",
+            "description": "Natural log of close ratio",
+            "required_lookback": 1,
+            "input_fields": [
+              "close"
+            ],
+            "parameters": {
+              "period": 1
+            },
+            "output": "log_return_1",
+            "output_type": "float64"
+          },
+          {
+            "name": "low_distance",
+            "version": "1",
+            "description": "Close / rolling low minus one",
+            "required_lookback": 19,
+            "input_fields": [
+              "low",
+              "close"
+            ],
+            "parameters": {
+              "period": 20
+            },
+            "output": "low_distance",
+            "output_type": "float64"
+          },
+          {
+            "name": "minutes_since_open",
+            "version": "1",
+            "description": "Opening timestamp minutes since session open",
+            "required_lookback": 0,
+            "input_fields": [
+              "timestamp"
+            ],
+            "parameters": {},
+            "output": "minutes_since_open",
+            "output_type": "float64"
+          },
+          {
+            "name": "minutes_until_close",
+            "version": "1",
+            "description": "Opening timestamp minutes until session close",
+            "required_lookback": 0,
+            "input_fields": [
+              "timestamp"
+            ],
+            "parameters": {},
+            "output": "minutes_until_close",
+            "output_type": "float64"
+          },
+          {
+            "name": "momentum",
+            "version": "1",
+            "description": "Close minus lagged close",
+            "required_lookback": 10,
+            "input_fields": [
+              "close"
+            ],
+            "parameters": {
+              "period": 10
+            },
+            "output": "momentum_10",
+            "output_type": "float64"
+          },
+          {
+            "name": "momentum",
+            "version": "1",
+            "description": "Close minus lagged close",
+            "required_lookback": 3,
+            "input_fields": [
+              "close"
+            ],
+            "parameters": {
+              "period": 3
+            },
+            "output": "momentum_3",
+            "output_type": "float64"
+          },
+          {
+            "name": "momentum",
+            "version": "1",
+            "description": "Close minus lagged close",
+            "required_lookback": 5,
+            "input_fields": [
+              "close"
+            ],
+            "parameters": {
+              "period": 5
+            },
+            "output": "momentum_5",
+            "output_type": "float64"
+          },
+          {
+            "name": "range_pct",
+            "version": "1",
+            "description": "(High - low) / close",
+            "required_lookback": 0,
+            "input_fields": [
+              "high",
+              "low",
+              "close"
+            ],
+            "parameters": {},
+            "output": "range_pct",
+            "output_type": "float64"
+          },
+          {
+            "name": "return",
+            "version": "1",
+            "description": "Close ratio minus one",
+            "required_lookback": 1,
+            "input_fields": [
+              "close"
+            ],
+            "parameters": {
+              "period": 1
+            },
+            "output": "return_1",
+            "output_type": "float64"
+          },
+          {
+            "name": "return",
+            "version": "1",
+            "description": "Close ratio minus one",
+            "required_lookback": 3,
+            "input_fields": [
+              "close"
+            ],
+            "parameters": {
+              "period": 3
+            },
+            "output": "return_3",
+            "output_type": "float64"
+          },
+          {
+            "name": "return",
+            "version": "1",
+            "description": "Close ratio minus one",
+            "required_lookback": 5,
+            "input_fields": [
+              "close"
+            ],
+            "parameters": {
+              "period": 5
+            },
+            "output": "return_5",
+            "output_type": "float64"
+          },
+          {
+            "name": "rolling_high",
+            "version": "1",
+            "description": "Rolling maximum high",
+            "required_lookback": 19,
+            "input_fields": [
+              "high"
+            ],
+            "parameters": {
+              "period": 20
+            },
+            "output": "rolling_high",
+            "output_type": "float64"
+          },
+          {
+            "name": "rolling_low",
+            "version": "1",
+            "description": "Rolling minimum low",
+            "required_lookback": 19,
+            "input_fields": [
+              "low"
+            ],
+            "parameters": {
+              "period": 20
+            },
+            "output": "rolling_low",
+            "output_type": "float64"
+          },
+          {
+            "name": "volatility",
+            "version": "1",
+            "description": "Population std of simple returns",
+            "required_lookback": 20,
+            "input_fields": [
+              "close"
+            ],
+            "parameters": {
+              "period": 20
+            },
+            "output": "rolling_volatility",
+            "output_type": "float64"
+          },
+          {
+            "name": "rsi",
+            "version": "1",
+            "description": "Wilder smoothed RSI; flat seed returns 50",
+            "required_lookback": 14,
+            "input_fields": [
+              "close"
+            ],
+            "parameters": {
+              "period": 14
+            },
+            "output": "rsi_14",
+            "output_type": "float64"
+          },
+          {
+            "name": "session_progress",
+            "version": "1",
+            "description": "Elapsed / scheduled session duration",
+            "required_lookback": 0,
+            "input_fields": [
+              "timestamp"
+            ],
+            "parameters": {},
+            "output": "session_progress",
+            "output_type": "float64"
+          },
+          {
+            "name": "sma",
+            "version": "1",
+            "description": "Arithmetic mean of closes",
+            "required_lookback": 9,
+            "input_fields": [
+              "close"
+            ],
+            "parameters": {
+              "period": 10
+            },
+            "output": "sma_10",
+            "output_type": "float64"
+          },
+          {
+            "name": "sma",
+            "version": "1",
+            "description": "Arithmetic mean of closes",
+            "required_lookback": 19,
+            "input_fields": [
+              "close"
+            ],
+            "parameters": {
+              "period": 20
+            },
+            "output": "sma_20",
+            "output_type": "float64"
+          },
+          {
+            "name": "sma_distance",
+            "version": "1",
+            "description": "Close / SMA minus one",
+            "required_lookback": 19,
+            "input_fields": [
+              "close"
+            ],
+            "parameters": {
+              "period": 20
+            },
+            "output": "sma_20_distance",
+            "output_type": "float64"
+          },
+          {
+            "name": "true_range",
+            "version": "1",
+            "description": "Range including previous close",
+            "required_lookback": 1,
+            "input_fields": [
+              "high",
+              "low",
+              "close"
+            ],
+            "parameters": {},
+            "output": "true_range",
+            "output_type": "float64"
+          },
+          {
+            "name": "volume_change",
+            "version": "1",
+            "description": "Volume ratio minus one",
+            "required_lookback": 1,
+            "input_fields": [
+              "volume"
+            ],
+            "parameters": {},
+            "output": "volume_change",
+            "output_type": "float64"
+          },
+          {
+            "name": "volume_mean",
+            "version": "1",
+            "description": "Rolling arithmetic volume mean",
+            "required_lookback": 19,
+            "input_fields": [
+              "volume"
+            ],
+            "parameters": {
+              "period": 20
+            },
+            "output": "volume_mean",
+            "output_type": "float64"
+          },
+          {
+            "name": "volume_ratio",
+            "version": "1",
+            "description": "Volume / rolling mean",
+            "required_lookback": 19,
+            "input_fields": [
+              "volume"
+            ],
+            "parameters": {
+              "period": 20
+            },
+            "output": "volume_ratio",
+            "output_type": "float64"
+          }
+        ],
+        "timestamp": "candle_open",
+        "availability": "candle_completion",
+        "gap_policy": "reset_all_rolling_state",
+        "overnight": "continue",
+        "warmup": "null; requested range only; no hidden preload"
+      },
+      "script": {
+        "intents": [
+          {
+            "reference": "fixture-entry",
+            "symbol": "RELIANCE",
+            "side": "BUY",
+            "quantity": 10,
+            "order_type": "MARKET",
+            "created_at": "2026-01-05T03:50:00Z",
+            "feature_timestamp": "2026-01-05T03:45:00Z",
+            "limit_price": null,
+            "trigger_price": null,
+            "oco_group": null,
+            "required_features": [
+              "session_progress"
+            ],
+            "time_in_force": "DAY"
+          },
+          {
+            "reference": "fixture-exit",
+            "symbol": "RELIANCE",
+            "side": "SELL",
+            "quantity": 10,
+            "order_type": "MARKET",
+            "created_at": "2026-01-05T05:00:00Z",
+            "feature_timestamp": "2026-01-05T04:55:00Z",
+            "limit_price": null,
+            "trigger_price": null,
+            "oco_group": null,
+            "required_features": [
+              "session_progress"
+            ],
+            "time_in_force": "DAY"
+          }
+        ]
+      },
+      "costs": {
+        "name": "groww_nse_intraday_reference_v1",
+        "version": "2026-09-24-research-1",
+        "market": "NSE:CASH:INTRADAY",
+        "sources": [
+          "https://groww.in/pricing",
+          "https://groww.in/help/stocks/sx-pricing/what-are-intraday-charges",
+          "https://nsearchives.nseindia.com/content/circulars/FA73061.pdf"
+        ],
+        "reviewed_on": "2026-09-24",
+        "effective_from": null,
+        "verification": "PUBLIC_REFERENCE_ONLY_NOT_AUTHENTICATED_CONTRACT_NOTE",
+        "rounding": "PAISA_HALF_UP_PER_ORDER_COMPONENT",
+        "rounding_verified": false,
+        "warnings": [
+          "RESEARCH_ROUNDING_ASSUMPTION_NOT_BROKER_VERIFIED",
+          "GROWW_PUBLISHED_EXCHANGE_IPFT_SPLIT_DIFFERS_FROM_NSE_2026_03_01_CIRCULAR",
+          "FIXED_REFERENCE_RATES_NOT_HISTORICAL_TAX_SCHEDULE"
+        ],
+        "brokerage_rate": "0.001",
+        "brokerage_cap": "20",
+        "brokerage_minimum": "5",
+        "minimum_turnover_cap": "0.025",
+        "stt_sell": "0.00025",
+        "stamp_buy": "0.00003",
+        "exchange_rate": "0.0000297",
+        "sebi_rate": "0.000001",
+        "ipft_rate": "0.000001",
+        "gst_rate": "0.18",
+        "gst_components": [
+          "brokerage",
+          "exchange",
+          "sebi",
+          "ipft",
+          "other"
+        ],
+        "other_rate": "0",
+        "square_off_charge": "0"
+      },
+      "slippage": {
+        "name": "basis_points",
+        "version": "1",
+        "bps": "5"
+      },
+      "version": "backtest-v1"
+    },
+    "status": "COMPLETED_WITH_WARNINGS",
+    "orders": [
+      {
+        "order_id": "order-000001",
+        "intent": {
+          "reference": "fixture-entry",
+          "symbol": "RELIANCE",
+          "side": "BUY",
+          "quantity": 10,
+          "order_type": "MARKET",
+          "created_at": "2026-01-05T03:50:00Z",
+          "feature_timestamp": "2026-01-05T03:45:00Z",
+          "limit_price": null,
+          "trigger_price": null,
+          "oco_group": null,
+          "required_features": [
+            "session_progress"
+          ],
+          "time_in_force": "DAY"
+        },
+        "eligible_from": "2026-01-05T03:55:00Z",
+        "status": "FILLED",
+        "filled_quantity": 10,
+        "executed_turnover": "15012.50250000000000",
+        "transitions": [
+          {
+            "timestamp": "2026-01-05T03:50:00Z",
+            "status": "CREATED",
+            "reason": "SCRIPTED_TEST_INTENT"
+          },
+          {
+            "timestamp": "2026-01-05T03:50:00Z",
+            "status": "ACCEPTED",
+            "reason": "SIMULATED_ONLY"
+          },
+          {
+            "timestamp": "2026-01-05T03:50:00Z",
+            "status": "PENDING",
+            "reason": "WAIT_FOR_ELIGIBLE_BAR"
+          },
+          {
+            "timestamp": "2026-01-05T04:00:00Z",
+            "status": "FILLED",
+            "reason": "fixture-entry"
+          }
+        ],
+        "forced": false
+      },
+      {
+        "order_id": "order-000002",
+        "intent": {
+          "reference": "fixture-exit",
+          "symbol": "RELIANCE",
+          "side": "SELL",
+          "quantity": 10,
+          "order_type": "MARKET",
+          "created_at": "2026-01-05T05:00:00Z",
+          "feature_timestamp": "2026-01-05T04:55:00Z",
+          "limit_price": null,
+          "trigger_price": null,
+          "oco_group": null,
+          "required_features": [
+            "session_progress"
+          ],
+          "time_in_force": "DAY"
+        },
+        "eligible_from": "2026-01-05T05:05:00Z",
+        "status": "FILLED",
+        "filled_quantity": 10,
+        "executed_turnover": "15082.45500000000000",
+        "transitions": [
+          {
+            "timestamp": "2026-01-05T05:00:00Z",
+            "status": "CREATED",
+            "reason": "SCRIPTED_TEST_INTENT"
+          },
+          {
+            "timestamp": "2026-01-05T05:00:00Z",
+            "status": "ACCEPTED",
+            "reason": "SIMULATED_ONLY"
+          },
+          {
+            "timestamp": "2026-01-05T05:00:00Z",
+            "status": "PENDING",
+            "reason": "WAIT_FOR_ELIGIBLE_BAR"
+          },
+          {
+            "timestamp": "2026-01-05T05:10:00Z",
+            "status": "FILLED",
+            "reason": "fixture-exit"
+          }
+        ],
+        "forced": false
+      }
+    ],
+    "fills": [
+      {
+        "fill_id": "fill-000001",
+        "order_id": "order-000001",
+        "symbol": "RELIANCE",
+        "side": "BUY",
+        "quantity": 10,
+        "timestamp": "2026-01-05T04:00:00Z",
+        "bar_open": "2026-01-05T03:55:00Z",
+        "base_price": "1500.5000000000",
+        "price": "1501.25025000000000",
+        "costs": {
+          "brokerage": "15.01",
+          "stt": "0",
+          "stamp_duty": "0.45",
+          "exchange": "0.45",
+          "sebi": "0.02",
+          "ipft": "0.02",
+          "gst": "2.79",
+          "other": "0.00"
+        },
+        "slippage_cost": "7.50250000000000",
+        "reason": "fixture-entry"
+      },
+      {
+        "fill_id": "fill-000002",
+        "order_id": "order-000002",
+        "symbol": "RELIANCE",
+        "side": "SELL",
+        "quantity": 10,
+        "timestamp": "2026-01-05T05:10:00Z",
+        "bar_open": "2026-01-05T05:05:00Z",
+        "base_price": "1509.0000000000",
+        "price": "1508.24550000000000",
+        "costs": {
+          "brokerage": "15.08",
+          "stt": "3.77",
+          "stamp_duty": "0",
+          "exchange": "0.45",
+          "sebi": "0.02",
+          "ipft": "0.02",
+          "gst": "2.80",
+          "other": "0.00"
+        },
+        "slippage_cost": "7.54500000000000",
+        "reason": "fixture-exit"
+      }
+    ],
+    "trades": [
+      {
+        "trade_id": "trade-000001",
+        "symbol": "RELIANCE",
+        "side": "LONG",
+        "entry_time": "2026-01-05T04:00:00Z",
+        "exit_time": "2026-01-05T05:10:00Z",
+        "entry_price": "1501.25025000000000",
+        "exit_price": "1508.24550000000000",
+        "entry_quantity": 10,
+        "gross_pnl": "85.00000000000000",
+        "execution_pnl": "69.95250000000000",
+        "costs": {
+          "brokerage": "30.09",
+          "stt": "3.77",
+          "stamp_duty": "0.45",
+          "exchange": "0.90",
+          "sebi": "0.04",
+          "ipft": "0.04",
+          "gst": "5.59",
+          "other": "0.00"
+        },
+        "slippage_cost": "15.04750000000000",
+        "net_pnl": "29.07250000000000",
+        "holding_seconds": "4200.0",
+        "exit_reason": "fixture-exit"
+      }
+    ],
+    "equity": [
+      {
+        "timestamp": "2026-01-05T03:45:00Z",
+        "cash": "200000",
+        "reserved_cash": "0",
+        "market_value": "0",
+        "equity": "200000",
+        "realized_pnl": "0",
+        "unrealized_pnl": "0",
+        "gross_exposure": "0",
+        "net_exposure": "0",
+        "peak": "200000",
+        "drawdown": "0",
+        "drawdown_pct": "0"
+      },
+      {
+        "timestamp": "2026-01-05T03:50:00Z",
+        "cash": "200000",
+        "reserved_cash": "0",
+        "market_value": "0",
+        "equity": "200000",
+        "realized_pnl": "0",
+        "unrealized_pnl": "0",
+        "gross_exposure": "0",
+        "net_exposure": "0",
+        "peak": "200000",
+        "drawdown": "0",
+        "drawdown_pct": "0"
+      },
+      {
+        "timestamp": "2026-01-05T03:55:00Z",
+        "cash": "200000",
+        "reserved_cash": "0",
+        "market_value": "0",
+        "equity": "200000",
+        "realized_pnl": "0",
+        "unrealized_pnl": "0",
+        "gross_exposure": "0",
+        "net_exposure": "0",
+        "peak": "200000",
+        "drawdown": "0",
+        "drawdown_pct": "0"
+      },
+      {
+        "timestamp": "2026-01-05T04:00:00Z",
+        "cash": "184968.75750000000000",
+        "reserved_cash": "0",
+        "market_value": "15005.0000000000",
+        "equity": "199973.75750000000000",
+        "realized_pnl": "0",
+        "unrealized_pnl": "-7.50250000000000",
+        "gross_exposure": "15005.0000000000",
+        "net_exposure": "15005.0000000000",
+        "peak": "200000",
+        "drawdown": "26.24250000000000",
+        "drawdown_pct": "0.00013121250000"
+      },
+      {
+        "timestamp": "2026-01-05T04:05:00Z",
+        "cash": "184968.75750000000000",
+        "reserved_cash": "0",
+        "market_value": "15020.0000000000",
+        "equity": "199988.75750000000000",
+        "realized_pnl": "0",
+        "unrealized_pnl": "7.49750000000000",
+        "gross_exposure": "15020.0000000000",
+        "net_exposure": "15020.0000000000",
+        "peak": "200000",
+        "drawdown": "11.24250000000000",
+        "drawdown_pct": "0.00005621250000"
+      },
+      {
+        "timestamp": "2026-01-05T05:00:00Z",
+        "cash": "184968.75750000000000",
+        "reserved_cash": "0",
+        "market_value": "15060.0000000000",
+        "equity": "200028.75750000000000",
+        "realized_pnl": "0",
+        "unrealized_pnl": "47.49750000000000",
+        "gross_exposure": "15060.0000000000",
+        "net_exposure": "15060.0000000000",
+        "peak": "200038.75750000000000",
+        "drawdown": "10.00000000000000",
+        "drawdown_pct": "0.00004999031250231595744639635646607133120190"
+      },
+      {
+        "timestamp": "2026-01-05T05:05:00Z",
+        "cash": "184968.75750000000000",
+        "reserved_cash": "0",
+        "market_value": "15075.0000000000",
+        "equity": "200043.75750000000000",
+        "realized_pnl": "0",
+        "unrealized_pnl": "62.49750000000000",
+        "gross_exposure": "15075.0000000000",
+        "net_exposure": "15075.0000000000",
+        "peak": "200043.75750000000000",
+        "drawdown": "0E-14",
+        "drawdown_pct": "0"
+      },
+      {
+        "timestamp": "2026-01-05T05:10:00Z",
+        "cash": "200029.07250000000000",
+        "reserved_cash": "0",
+        "market_value": "0",
+        "equity": "200029.07250000000000",
+        "realized_pnl": "69.95250000000000",
+        "unrealized_pnl": "0",
+        "gross_exposure": "0",
+        "net_exposure": "0",
+        "peak": "200043.75750000000000",
+        "drawdown": "14.68500000000000",
+        "drawdown_pct": "0.00007340893904174940325243590767884871388701"
+      },
+      {
+        "timestamp": "2026-01-05T05:15:00Z",
+        "cash": "200029.07250000000000",
+        "reserved_cash": "0",
+        "market_value": "0",
+        "equity": "200029.07250000000000",
+        "realized_pnl": "69.95250000000000",
+        "unrealized_pnl": "0",
+        "gross_exposure": "0",
+        "net_exposure": "0",
+        "peak": "200043.75750000000000",
+        "drawdown": "14.68500000000000",
+        "drawdown_pct": "0.00007340893904174940325243590767884871388701"
+      },
+      {
+        "timestamp": "2026-01-05T10:00:00Z",
+        "cash": "200029.07250000000000",
+        "reserved_cash": "0",
+        "market_value": "0",
+        "equity": "200029.07250000000000",
+        "realized_pnl": "69.95250000000000",
+        "unrealized_pnl": "0",
+        "gross_exposure": "0",
+        "net_exposure": "0",
+        "peak": "200043.75750000000000",
+        "drawdown": "14.68500000000000",
+        "drawdown_pct": "0.00007340893904174940325243590767884871388701"
+      }
+    ],
+    "events": [
+      {
+        "sequence": 6,
+        "timestamp": "2026-01-05T03:50:00Z",
+        "kind": "DECISION",
+        "symbol": "RELIANCE",
+        "reference": "fixture-entry",
+        "details": {
+          "feature_timestamp": "2026-01-05T03:45:00+00:00"
+        }
+      },
+      {
+        "sequence": 7,
+        "timestamp": "2026-01-05T03:50:00Z",
+        "kind": "ORDER",
+        "symbol": "RELIANCE",
+        "reference": "order-000001",
+        "details": {
+          "status": "PENDING",
+          "eligible_from": "2026-01-05T03:55:00+00:00"
+        }
+      },
+      {
+        "sequence": 14,
+        "timestamp": "2026-01-05T04:00:00Z",
+        "kind": "FILL",
+        "symbol": "RELIANCE",
+        "reference": "order-000001",
+        "details": {
+          "fill": {
+            "fill_id": "fill-000001",
+            "order_id": "order-000001",
+            "symbol": "RELIANCE",
+            "side": "BUY",
+            "quantity": 10,
+            "timestamp": "2026-01-05T04:00:00Z",
+            "bar_open": "2026-01-05T03:55:00Z",
+            "base_price": "1500.5000000000",
+            "price": "1501.25025000000000",
+            "costs": {
+              "brokerage": "15.01",
+              "stt": "0",
+              "stamp_duty": "0.45",
+              "exchange": "0.45",
+              "sebi": "0.02",
+              "ipft": "0.02",
+              "gst": "2.79",
+              "other": "0.00"
+            },
+            "slippage_cost": "7.50250000000000",
+            "reason": "fixture-entry"
+          }
+        }
+      },
+      {
+        "sequence": 15,
+        "timestamp": "2026-01-05T04:00:00Z",
+        "kind": "ORDER",
+        "symbol": "RELIANCE",
+        "reference": "order-000001",
+        "details": {
+          "status": "FILLED",
+          "reason": "fixture-entry"
+        }
+      },
+      {
+        "sequence": 66,
+        "timestamp": "2026-01-05T05:00:00Z",
+        "kind": "DECISION",
+        "symbol": "RELIANCE",
+        "reference": "fixture-exit",
+        "details": {
+          "feature_timestamp": "2026-01-05T04:55:00+00:00"
+        }
+      },
+      {
+        "sequence": 67,
+        "timestamp": "2026-01-05T05:00:00Z",
+        "kind": "ORDER",
+        "symbol": "RELIANCE",
+        "reference": "order-000002",
+        "details": {
+          "status": "PENDING",
+          "eligible_from": "2026-01-05T05:05:00+00:00"
+        }
+      },
+      {
+        "sequence": 74,
+        "timestamp": "2026-01-05T05:10:00Z",
+        "kind": "FILL",
+        "symbol": "RELIANCE",
+        "reference": "order-000002",
+        "details": {
+          "fill": {
+            "fill_id": "fill-000002",
+            "order_id": "order-000002",
+            "symbol": "RELIANCE",
+            "side": "SELL",
+            "quantity": 10,
+            "timestamp": "2026-01-05T05:10:00Z",
+            "bar_open": "2026-01-05T05:05:00Z",
+            "base_price": "1509.0000000000",
+            "price": "1508.24550000000000",
+            "costs": {
+              "brokerage": "15.08",
+              "stt": "3.77",
+              "stamp_duty": "0",
+              "exchange": "0.45",
+              "sebi": "0.02",
+              "ipft": "0.02",
+              "gst": "2.80",
+              "other": "0.00"
+            },
+            "slippage_cost": "7.54500000000000",
+            "reason": "fixture-exit"
+          }
+        }
+      },
+      {
+        "sequence": 75,
+        "timestamp": "2026-01-05T05:10:00Z",
+        "kind": "ORDER",
+        "symbol": "RELIANCE",
+        "reference": "order-000002",
+        "details": {
+          "status": "FILLED",
+          "reason": "fixture-exit"
+        }
+      }
+    ],
+    "metrics": {
+      "starting_capital": "200000",
+      "ending_equity": "200029.07250000000000",
+      "gross_pnl": "85.00000000000000",
+      "execution_pnl": "69.95250000000000",
+      "net_pnl": "29.07250000000000",
+      "total_costs": "40.88",
+      "cost_breakdown": {
+        "brokerage": "30.09",
+        "stt": "3.77",
+        "stamp_duty": "0.45",
+        "exchange": "0.90",
+        "sebi": "0.04",
+        "ipft": "0.04",
+        "gst": "5.59",
+        "other": "0.00"
+      },
+      "brokerage": "30.09",
+      "taxes_fees": "10.79",
+      "estimated_slippage_cost": "15.04750000000000",
+      "total_return": "0.00014536250000",
+      "number_of_trades": 1,
+      "winning_trades": 1,
+      "losing_trades": 0,
+      "win_rate": "1",
+      "gross_profit": "29.07250000000000",
+      "gross_loss": "0",
+      "profit_factor": null,
+      "average_winner": "29.07250000000000",
+      "average_loser": null,
+      "expectancy": "29.07250000000000",
+      "largest_winner": "29.07250000000000",
+      "largest_loser": null,
+      "max_drawdown": "26.24250000000000",
+      "max_drawdown_pct": "0.00013121250000",
+      "turnover": "30094.95750000000000",
+      "average_holding_seconds": "4200.0",
+      "exposure_percentage": 18.666666666666668,
+      "sharpe": null,
+      "sortino": null,
+      "ratio_policy": "daily closes; 252 sessions/year; zero risk-free; minimum 20 sessions",
+      "daily_pnl": {
+        "2026-01-05": "29.07250000000000"
+      }
+    },
+    "warnings": [
+      "FIXED_REFERENCE_RATES_NOT_HISTORICAL_TAX_SCHEDULE",
+      "GROWW_PUBLISHED_EXCHANGE_IPFT_SPLIT_DIFFERS_FROM_NSE_2026_03_01_CIRCULAR",
+      "RESEARCH_ROUNDING_ASSUMPTION_NOT_BROKER_VERIFIED"
+    ]
+  },
+  "larger_slippage": {
+    "config_key": "b5becf00ad4ea4cbea9831ef35a34bb0b5f7469c2d7de6cfa19d1ddf88ec9cec",
+    "metrics": {
+      "starting_capital": "200000",
+      "ending_equity": "200014.0250000000000",
+      "gross_pnl": "85.0000000000000",
+      "execution_pnl": "54.9050000000000",
+      "net_pnl": "14.0250000000000",
+      "total_costs": "40.88",
+      "cost_breakdown": {
+        "brokerage": "30.09",
+        "stt": "3.77",
+        "stamp_duty": "0.45",
+        "exchange": "0.90",
+        "sebi": "0.04",
+        "ipft": "0.04",
+        "gst": "5.59",
+        "other": "0.00"
+      },
+      "brokerage": "30.09",
+      "taxes_fees": "10.79",
+      "estimated_slippage_cost": "30.0950000000000",
+      "total_return": "0.0000701250000",
+      "number_of_trades": 1,
+      "winning_trades": 1,
+      "losing_trades": 0,
+      "win_rate": "1",
+      "gross_profit": "14.0250000000000",
+      "gross_loss": "0",
+      "profit_factor": null,
+      "average_winner": "14.0250000000000",
+      "average_loser": null,
+      "expectancy": "14.0250000000000",
+      "largest_winner": "14.0250000000000",
+      "largest_loser": null,
+      "max_drawdown": "33.7550000000000",
+      "max_drawdown_pct": "0.0001687750000",
+      "turnover": "30094.9150000000000",
+      "average_holding_seconds": "4200.0",
+      "exposure_percentage": 18.666666666666668,
+      "sharpe": null,
+      "sortino": null,
+      "ratio_policy": "daily closes; 252 sessions/year; zero risk-free; minimum 20 sessions",
+      "daily_pnl": {
+        "2026-01-05": "14.0250000000000"
+      }
+    },
+    "fills": [
+      {
+        "fill_id": "fill-000001",
+        "order_id": "order-000001",
+        "symbol": "RELIANCE",
+        "side": "BUY",
+        "quantity": 10,
+        "timestamp": "2026-01-05T04:00:00Z",
+        "bar_open": "2026-01-05T03:55:00Z",
+        "base_price": "1500.5000000000",
+        "price": "1502.0005000000000",
+        "costs": {
+          "brokerage": "15.02",
+          "stt": "0",
+          "stamp_duty": "0.45",
+          "exchange": "0.45",
+          "sebi": "0.02",
+          "ipft": "0.02",
+          "gst": "2.79",
+          "other": "0.00"
+        },
+        "slippage_cost": "15.0050000000000",
+        "reason": "fixture-entry"
+      },
+      {
+        "fill_id": "fill-000002",
+        "order_id": "order-000002",
+        "symbol": "RELIANCE",
+        "side": "SELL",
+        "quantity": 10,
+        "timestamp": "2026-01-05T05:10:00Z",
+        "bar_open": "2026-01-05T05:05:00Z",
+        "base_price": "1509.0000000000",
+        "price": "1507.4910000000000",
+        "costs": {
+          "brokerage": "15.07",
+          "stt": "3.77",
+          "stamp_duty": "0",
+          "exchange": "0.45",
+          "sebi": "0.02",
+          "ipft": "0.02",
+          "gst": "2.80",
+          "other": "0.00"
+        },
+        "slippage_cost": "15.0900000000000",
+        "reason": "fixture-exit"
+      }
+    ]
+  },
+  "zero_cost": {
+    "config_key": "6f8cc3cb07908d1b4a660d6e9ea3fd6e525230f76fde108c4a2792b200c86520",
+    "metrics": {
+      "starting_capital": "200000",
+      "ending_equity": "200069.95250000000000",
+      "gross_pnl": "85.00000000000000",
+      "execution_pnl": "69.95250000000000",
+      "net_pnl": "69.95250000000000",
+      "total_costs": "0",
+      "cost_breakdown": {
+        "brokerage": "0",
+        "stt": "0",
+        "stamp_duty": "0",
+        "exchange": "0",
+        "sebi": "0",
+        "ipft": "0",
+        "gst": "0",
+        "other": "0"
+      },
+      "brokerage": "0",
+      "taxes_fees": "0",
+      "estimated_slippage_cost": "15.04750000000000",
+      "total_return": "0.00034976250000",
+      "number_of_trades": 1,
+      "winning_trades": 1,
+      "losing_trades": 0,
+      "win_rate": "1",
+      "gross_profit": "69.95250000000000",
+      "gross_loss": "0",
+      "profit_factor": null,
+      "average_winner": "69.95250000000000",
+      "average_loser": null,
+      "expectancy": "69.95250000000000",
+      "largest_winner": "69.95250000000000",
+      "largest_loser": null,
+      "max_drawdown": "10.00000000000000",
+      "max_drawdown_pct": "0.00004999812569526299882833142292578306970717",
+      "turnover": "30094.95750000000000",
+      "average_holding_seconds": "4200.0",
+      "exposure_percentage": 18.666666666666668,
+      "sharpe": null,
+      "sortino": null,
+      "ratio_policy": "daily closes; 252 sessions/year; zero risk-free; minimum 20 sessions",
+      "daily_pnl": {
+        "2026-01-05": "69.95250000000000"
+      }
+    }
+  }
+}

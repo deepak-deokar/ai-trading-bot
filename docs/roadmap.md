@@ -5,7 +5,8 @@
    session-aware missing/gap checks, reproducible ingestion provenance.
 3. Deterministic versioned features (implemented): 29 baseline numerical outputs,
    completion-aware queries, gap policy, reproducible identities and persistence.
-4. Event-driven backtesting, accounting, costs, execution timing.
+4. Event-driven backtesting (implemented): scripted tests, simulated orders/fills,
+   Decimal accounting, reference costs, causal timing and persisted ledgers.
 5. Deterministic baseline strategy and honest cost-adjusted reports.
 6. Chronological ML training, purged labels, validation, model registry.
 7. ML signals and walk-forward evaluation with untouched final test data.
