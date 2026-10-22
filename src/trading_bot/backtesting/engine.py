@@ -3,6 +3,7 @@
 from bisect import bisect_left, bisect_right
 from datetime import datetime, timedelta
 from decimal import Decimal, localcontext
+from types import MappingProxyType
 from typing import Any
 from uuid import UUID
 
@@ -29,6 +30,9 @@ from trading_bot.data.identity import digest
 from trading_bot.data.snapshot import SnapshotBar
 from trading_bot.domain.market import Timeframe
 from trading_bot.features.engine import FeatureCalendar
+from trading_bot.strategies.contracts import StrategyContext, StrategyError
+from trading_bot.strategies.registry import StrategyPlan
+from trading_bot.strategies.runtime import StrategyRuntime
 
 
 class BacktestEngine:
@@ -46,11 +50,12 @@ class BacktestEngine:
         inputs: BacktestInputs,
         config: BacktestConfig,
         script: ScriptedDecisionSource,
+        strategy: StrategyPlan | None = None,
     ) -> BacktestResult:
         # Isolate accounting precision from caller-modified decimal contexts.
         with localcontext() as context:
             context.prec = 40
-            return Simulation(self, run_id, inputs, config, script).run()
+            return Simulation(self, run_id, inputs, config, script, strategy).run()
 
 
 class Simulation:
@@ -63,6 +68,7 @@ class Simulation:
         inputs: BacktestInputs,
         config: BacktestConfig,
         script: ScriptedDecisionSource,
+        strategy: StrategyPlan | None = None,
     ) -> None:
         self.engine, self.run_id, self.inputs, self.config, self.script = (
             engine,
@@ -71,6 +77,12 @@ class Simulation:
             config,
             script,
         )
+        if strategy is not None and script.intents:
+            raise StrategyError(
+                "strategy and scripted decisions are mutually exclusive"
+            )
+        self.strategy_plan = strategy
+        self.strategy_runtime: StrategyRuntime | None = None
         self.portfolio = Portfolio(config.starting_capital)
         self.orders: list[SimOrder] = []
         self.fills: list[Fill] = []
@@ -172,7 +184,11 @@ class Simulation:
         order = order.transition(
             Status.CREATED,
             timestamp,
-            "SCRIPTED_TEST_INTENT" if not forced else "FORCED_SESSION_EXIT",
+            (
+                ("STRATEGY_INTENT" if self.strategy_plan else "SCRIPTED_TEST_INTENT")
+                if not forced
+                else "FORCED_SESSION_EXIT"
+            ),
         )
         order = order.transition(Status.ACCEPTED, timestamp, "SIMULATED_ONLY")
         order = order.transition(Status.PENDING, timestamp, "WAIT_FOR_ELIGIBLE_BAR")
@@ -356,6 +372,54 @@ class Simulation:
         self.prices[bar.symbol] = bar.close
         self.emit(now, "FEATURE", bar.symbol, opening=bar.timestamp.isoformat())
         self.record_equity(now)
+        self.evaluate_strategy(item, session.opens, session.closes)
+
+    def evaluate_strategy(
+        self, item: SnapshotBar, session_open: datetime, session_close: datetime
+    ) -> None:
+        runtime = self.strategy_runtime
+        if runtime is None:
+            return
+        bar, now = item.bar, item.available_at
+        row = self.features[(bar.symbol, bar.timestamp)]
+        if row.available_at > now:
+            raise StrategyError("feature is not available at strategy evaluation")
+        position = self.portfolio.positions.get(bar.symbol)
+        context = StrategyContext(
+            current_time=now,
+            bar=bar.model_copy(deep=True),
+            available_at=max(item.available_at, row.available_at),
+            features=MappingProxyType(dict(row.values)),
+            unavailable=MappingProxyType(dict(row.unavailable)),
+            position_quantity=position.quantity if position else 0,
+            average_entry_price=position.average_price if position else Decimal(0),
+            cash=self.portfolio.cash,
+            equity=self.equity[-1].equity,
+            session_open=session_open,
+            session_close=session_close,
+            strategy_identity=runtime.plan.manifest()["identity"],
+            parameters=runtime.parameters,
+        )
+        intents = runtime.evaluate(context)
+        self.emit(
+            now,
+            "STRATEGY",
+            bar.symbol,
+            strategy_identity=context.strategy_identity,
+            feature_timestamp=bar.timestamp.isoformat(),
+            available_at=context.available_at.isoformat(),
+            intent_count=len(intents),
+        )
+        for intent in intents:
+            self.emit(
+                now,
+                "DECISION",
+                bar.symbol,
+                intent.reference,
+                strategy_identity=context.strategy_identity,
+                feature_timestamp=intent.feature_timestamp.isoformat(),
+            )
+            self.new_order(intent, now)
 
     def record_equity(self, now: datetime) -> None:
         point = self.portfolio.mark(now, self.prices)
@@ -364,6 +428,10 @@ class Simulation:
 
     def run(self) -> BacktestResult:
         self.validate()
+        if self.strategy_plan is not None:
+            self.strategy_runtime = StrategyRuntime(
+                self.strategy_plan, self.config.history.symbols
+            )
         self.record_equity(self.sessions[0].opens)
         for tick in timeline(self.inputs.snapshot, self.sessions, self.script):
             now = tick.timestamp
@@ -429,6 +497,8 @@ class Simulation:
             "slippage": self.engine.slippage.manifest(),
             "version": "backtest-v1",
         }
+        if self.strategy_plan is not None:
+            manifest["strategy"] = self.strategy_plan.manifest()
         # Ingestion UUIDs are provenance only; exclude them from numerical identity.
         canonical = {
             **manifest,

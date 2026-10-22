@@ -272,3 +272,102 @@ def test_backtest_cli_real_database(
     assert cli.main() == 0
     assert "SIMULATED TEST OUTPUT" in capsys.readouterr().out
     assert output.is_file()
+
+
+def test_noop_strategy_persistence_and_repeat(history_engine, prepared):
+    from trading_bot.strategies.registry import StrategyConfig, builtin_registry
+
+    strategy = builtin_registry().resolve(StrategyConfig(name="noop", version="1"))
+    service = BacktestService(history_engine, NSECalendar())
+    results = [
+        service.run(
+            prepared,
+            ScriptedDecisionSource(),
+            ZeroCostModel(),
+            ZeroSlippageModel(),
+            strategy,
+        )
+        for _ in range(2)
+    ]
+    assert results[0].deterministic_payload() == results[1].deterministic_payload()
+    for result in results:
+        loaded = BacktestRepository(history_engine).get_result(result.run_id)
+        assert loaded.deterministic_payload() == result.deterministic_payload()
+        assert loaded.manifest["strategy"] == strategy.manifest()
+        assert not loaded.orders and not loaded.fills and not loaded.trades
+        assert loaded.metrics["ending_equity"] == prepared.starting_capital
+
+
+def test_noop_cli(history_engine, prepared, monkeypatch, tmp_path, settings):
+    from trading_bot.backtesting import run as cli
+
+    output = tmp_path / "noop.json"
+    monkeypatch.setattr(cli, "load_settings", lambda: settings)
+    monkeypatch.setattr(cli, "build_engine", lambda _: history_engine)
+    monkeypatch.setattr(
+        "sys.argv",
+        [
+            "backtest",
+            "--source",
+            "local",
+            "--symbol",
+            "RELIANCE",
+            "--timeframe",
+            "5minute",
+            "--start",
+            prepared.history.start.isoformat(),
+            "--end",
+            prepared.history.end.isoformat(),
+            "--adjustment",
+            "RAW",
+            "--starting-capital",
+            "200000",
+            "--feature-set-key",
+            prepared.feature_set_key,
+            "--strategy",
+            "noop",
+            "--cost-model",
+            "zero",
+            "--json-output",
+            str(output),
+        ],
+    )
+    assert cli.main() == 0
+    import json
+
+    payload = json.loads(output.read_text())
+    assert payload["manifest"]["strategy"]["name"] == "noop"
+    assert payload["orders"] == payload["fills"] == []
+
+
+def test_strategy_error_retains_failed_audit(history_engine, prepared):
+    from trading_bot.strategies.registry import (
+        Definition,
+        NoOpParameters,
+        StrategyConfig,
+        StrategyRegistry,
+    )
+
+    class Invalid:
+        def evaluate(self, context):
+            return [None]
+
+    registry = StrategyRegistry()
+    registry.register(
+        Definition(
+            "test_only", "1", "invalid-test-v1", NoOpParameters, lambda _: Invalid()
+        )
+    )
+    strategy = registry.resolve(StrategyConfig(name="test_only", version="1"))
+    with pytest.raises(BacktestFailure) as error:
+        BacktestService(history_engine, NSECalendar()).run(
+            prepared,
+            ScriptedDecisionSource(),
+            ZeroCostModel(),
+            ZeroSlippageModel(),
+            strategy,
+        )
+    audit = BacktestRepository(history_engine).get_audit(error.value.run_id)
+    assert audit["status"] == "FAILED"
+    assert audit["manifest"]["strategy"] == strategy.manifest()
+    assert BacktestRepository(history_engine).get_result(error.value.run_id) is None

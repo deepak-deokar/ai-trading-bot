@@ -1,0 +1,50 @@
+{
+  "label": "NoOp framework verification; no trading performance claim",
+  "bars_loaded": 75,
+  "features_loaded": 75,
+  "evaluations": 75,
+  "strategy": {
+    "implementation": "noop-v1",
+    "name": "noop",
+    "parameters": {},
+    "version": "1",
+    "identity": "7a8731bbbcc497c7030c0bcf18b5b1d5e7ea73e259a012bd559d67a508adaf1f"
+  },
+  "config_key": "242ca9b9dba32370b6c345bbbfd516809c8fc7c23db2d332d4a7d5ca605e6b48",
+  "run_ids": [
+    "44df2299-4ca7-4101-a88b-31c16f17a6f9",
+    "4a5e16b9-b303-4aa4-82c5-1c1107049127"
+  ],
+  "deterministic_rerun": true,
+  "intents": 0,
+  "orders": 0,
+  "fills": 0,
+  "starting_capital": "200000",
+  "ending_capital": "200000",
+  "first_evaluation": {
+    "sequence": 6,
+    "timestamp": "2026-01-05T03:50:00Z",
+    "kind": "STRATEGY",
+    "symbol": "RELIANCE",
+    "reference": null,
+    "details": {
+      "strategy_identity": "7a8731bbbcc497c7030c0bcf18b5b1d5e7ea73e259a012bd559d67a508adaf1f",
+      "feature_timestamp": "2026-01-05T03:45:00+00:00",
+      "available_at": "2026-01-05T03:50:00+00:00",
+      "intent_count": 0
+    }
+  },
+  "last_evaluation": {
+    "sequence": 376,
+    "timestamp": "2026-01-05T10:00:00Z",
+    "kind": "STRATEGY",
+    "symbol": "RELIANCE",
+    "reference": null,
+    "details": {
+      "strategy_identity": "7a8731bbbcc497c7030c0bcf18b5b1d5e7ea73e259a012bd559d67a508adaf1f",
+      "feature_timestamp": "2026-01-05T09:55:00+00:00",
+      "available_at": "2026-01-05T10:00:00+00:00",
+      "intent_count": 0
+    }
+  }
+}

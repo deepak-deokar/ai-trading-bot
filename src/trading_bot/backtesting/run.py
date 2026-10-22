@@ -1,8 +1,10 @@
-"""Scripted historical simulator CLI. No strategy, authentication or broker calls."""
+"""Historical simulator CLI: scripted tests or registered strategies, no broker."""
 
 import argparse
 from decimal import Decimal
 from pathlib import Path
+
+import yaml
 
 from trading_bot.backtesting.config import BacktestConfig
 from trading_bot.backtesting.costs import (
@@ -21,6 +23,7 @@ from trading_bot.data.import_history import parse_time
 from trading_bot.database.session import build_engine
 from trading_bot.domain.market import AdjustmentType, Timeframe
 from trading_bot.monitoring.logging import configure_logging
+from trading_bot.strategies.registry import StrategyConfig, builtin_registry
 
 
 def main() -> int:
@@ -33,7 +36,10 @@ def main() -> int:
     parser.add_argument("--end", required=True)
     parser.add_argument("--adjustment", choices=list(AdjustmentType), required=True)
     parser.add_argument("--starting-capital", type=Decimal, required=True)
-    parser.add_argument("--decision-script", type=Path, required=True)
+    selection = parser.add_mutually_exclusive_group(required=True)
+    selection.add_argument("--decision-script", type=Path)
+    selection.add_argument("--strategy", choices=("noop",))
+    selection.add_argument("--strategy-config", type=Path)
     parser.add_argument(
         "--cost-model",
         choices=("zero", "groww_nse_intraday_reference_v1"),
@@ -73,7 +79,21 @@ def main() -> int:
             ),
             exit_minutes_before_close=args.exit_minutes_before_close,
         )
-        script = ScriptedDecisionSource.load(args.decision_script)
+        strategy = None
+        if args.strategy or args.strategy_config:
+            strategy_config = (
+                StrategyConfig.model_validate(
+                    yaml.safe_load(args.strategy_config.read_text())
+                )
+                if args.strategy_config
+                else StrategyConfig(name=args.strategy, version="1")
+            )
+            strategy = builtin_registry().resolve(strategy_config)
+        script = (
+            ScriptedDecisionSource.load(args.decision_script)
+            if args.decision_script
+            else ScriptedDecisionSource()
+        )
         costs: TradingCostModel = (
             ZeroCostModel()
             if args.cost_model == "zero"
@@ -86,7 +106,7 @@ def main() -> int:
         engine = build_engine(settings)
         try:
             result = BacktestService(engine, calendar).run(
-                config, script, costs, slippage
+                config, script, costs, slippage, strategy
             )
         finally:
             engine.dispose()

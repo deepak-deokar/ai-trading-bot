@@ -1,4 +1,4 @@
-# Architecture and assumptions (updated through Phase 4)
+# Architecture and assumptions (updated through Phase 5A)
 
 The namespaced `src/trading_bot` layout avoids collisions with generic installed
 packages such as `models`, `config`, or `data`. Dependency direction is API →
@@ -63,3 +63,10 @@ adds only backtest audit/result tables. It enforces 1× cash, long-only inventor
 strict causal execution, session flattening and auditable failures. These limited
 simulation checks do not implement or authorize a production risk/execution system.
 See [backtesting](backtesting.md) for its explicit OHLC assumptions and limitations.
+
+## Phase 5A strategy boundary
+
+The simulator calls registered per-symbol strategy instances only with detached,
+completed observations. Intents pass through existing order/accounting controls.
+Only NoOp is built in; no broker or future risk-engine capabilities are exposed.
+See [strategy framework](strategies.md). Phase 5B has not begun.

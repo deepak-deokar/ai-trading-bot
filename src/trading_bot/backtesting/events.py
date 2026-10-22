@@ -15,6 +15,7 @@ class Event(DomainModel):
         "BAR_COMPLETE",
         "FEATURE",
         "DECISION",
+        "STRATEGY",
         "ORDER",
         "FILL",
         "PORTFOLIO",

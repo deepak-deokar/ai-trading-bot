@@ -15,6 +15,8 @@ from trading_bot.backtesting.repository import BacktestRepository
 from trading_bot.backtesting.results import BacktestResult
 from trading_bot.backtesting.slippage import SlippageModel
 from trading_bot.features.engine import FeatureCalendar
+from trading_bot.strategies.contracts import StrategyError
+from trading_bot.strategies.registry import StrategyPlan
 
 logger = logging.getLogger(__name__)
 
@@ -37,6 +39,7 @@ class BacktestService:
         script: ScriptedDecisionSource,
         costs: TradingCostModel,
         slippage: SlippageModel,
+        strategy: StrategyPlan | None = None,
     ) -> BacktestResult:
         run_id = uuid4()
         started = False
@@ -48,12 +51,13 @@ class BacktestService:
                     "script": script.model_dump(mode="json"),
                     "costs": costs.manifest(),
                     "slippage": slippage.manifest(),
+                    **({"strategy": strategy.manifest()} if strategy else {}),
                 },
             )
             started = True
             inputs = load_inputs(self.database, config, self.calendar)
             result = BacktestEngine(self.calendar, costs, slippage).run(
-                run_id, inputs, config, script
+                run_id, inputs, config, script, strategy
             )
             self.repository.save(result)
             logger.info(
@@ -69,7 +73,11 @@ class BacktestService:
             reason = (
                 str(error)
                 if type(error) is BacktestError
-                else "BACKTEST_VALIDATION_OR_PERSISTENCE_FAILURE"
+                else (
+                    "STRATEGY_VALIDATION_FAILURE"
+                    if isinstance(error, StrategyError)
+                    else "BACKTEST_VALIDATION_OR_PERSISTENCE_FAILURE"
+                )
             )
             if started:
                 try:
