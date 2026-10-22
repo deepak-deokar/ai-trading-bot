@@ -13,6 +13,7 @@ class Segment(StrEnum):
 
 
 class AdjustmentType(StrEnum):
+    YAHOO_NATIVE = "YAHOO_NATIVE"
     RAW = "RAW"
     SPLIT_ADJUSTED = "SPLIT_ADJUSTED"
     FULLY_ADJUSTED = "FULLY_ADJUSTED"

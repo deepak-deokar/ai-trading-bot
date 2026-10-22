@@ -5,6 +5,9 @@ The application cannot submit orders. Live configuration is rejected, including
 when explicit enablement flags are present. Paper is a configuration label; no
 paper broker is connected.
 
+See [Yahoo RELIANCE pilot](docs/yahoo-pilot.md) for the temporary research provider,
+isolated native-price policy and the actual incomplete-data findings.
+
 See [baseline strategy](docs/baseline-strategy.md) and
 [Phase 5B-1 verification](docs/phase5b1-verification.md) for the fixed, long-only
 reference strategy. No profitability claim is made.

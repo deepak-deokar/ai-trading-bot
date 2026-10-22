@@ -65,7 +65,13 @@ def test_all_query_methods_enforce_exact_completion_boundary(history_engine):
 def test_all_adjustments_are_separate_across_all_queries(history_engine, tmp_path):
     service = IngestionService(history_engine, NSECalendar())
     query = HistoryQuery(history_engine)
-    for i, adjustment in enumerate(AdjustmentType):
+    for i, adjustment in enumerate(
+        (
+            AdjustmentType.RAW,
+            AdjustmentType.SPLIT_ADJUSTED,
+            AdjustmentType.FULLY_ADJUSTED,
+        )
+    ):
         path = tmp_path / f"{adjustment}.csv"
         path.write_text(
             "symbol,timestamp,open,high,low,close,volume\n"
@@ -74,7 +80,13 @@ def test_all_adjustments_are_separate_across_all_queries(history_engine, tmp_pat
         req = request(adjustment_type=adjustment, end=dt("2026-01-05T09:20"))
         report = service.ingest(LocalCSVProvider(path), req)
         assert report.rows_inserted == 1
-    for i, adjustment in enumerate(AdjustmentType):
+    for i, adjustment in enumerate(
+        (
+            AdjustmentType.RAW,
+            AdjustmentType.SPLIT_ADJUSTED,
+            AdjustmentType.FULLY_ADJUSTED,
+        )
+    ):
         req = request(adjustment_type=adjustment)
         bars = query.get_bars(req, source="local")
         assert len(bars) == query.get_bar_count(req, source="local") == 1

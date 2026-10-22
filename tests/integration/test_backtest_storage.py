@@ -224,7 +224,7 @@ def test_backtest_migration_roundtrip_preserves_features(history_engine, prepare
         assert conn.scalar(select(func.count()).select_from(FeatureValue)) == count
         command.upgrade(config, "head")
         command.check(config)
-        assert conn.scalar(text("SELECT version_num FROM alembic_version")) == "0004"
+        assert conn.scalar(text("SELECT version_num FROM alembic_version")) == "0005"
     assert simulate(history_engine, prepared).metrics["number_of_trades"] == 1
 
 

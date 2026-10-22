@@ -1,0 +1,281 @@
+{
+  "verdict": "PHASE 5B-2 BLOCKED \u2014 INSUFFICIENT HISTORICAL DATA",
+  "data_gate": "INSUFFICIENT HISTORICAL DATA FOR PHASE 5B-2",
+  "classification": "INSUFFICIENT DATA",
+  "audited_at_utc": "2026-10-22T04:58:57.304754+00:00",
+  "audit_scope": {
+    "database": "local development PostgreSQL",
+    "schemas_with_market_bars": [
+      "public"
+    ],
+    "schema_revision": "0004",
+    "read_only": true
+  },
+  "database_counts": {
+    "instruments": 2,
+    "market_bars": 9,
+    "ingestion_runs": 8,
+    "feature_sets": 0,
+    "feature_values": 0,
+    "backtest_runs": 0
+  },
+  "coverage": [
+    {
+      "symbol": "RELIANCE",
+      "exchange": "NSE",
+      "segment": "CASH",
+      "source": "local",
+      "adjustment_type": "RAW",
+      "timeframe": "5minute",
+      "first_open": "2026-01-05 03:45:00+00:00",
+      "last_open": "2026-01-05 03:55:00+00:00",
+      "last_available": "2026-01-05 04:00:00+00:00",
+      "bars": 3,
+      "observed_dates": 1,
+      "complete_sessions": 0,
+      "dataset_keys": [],
+      "ingestion_run_ids": [
+        "583ee4df-616c-4221-a003-e369d8e2f1a6",
+        "27ac051e-1aa4-4886-a7b9-aefbdbce7e46",
+        "d6e6b798-818f-46cc-b1e5-17449f711ce3",
+        "57cc2ae7-e3ba-4ecd-8f6c-9b29e2b439b1",
+        "f4aeeee6-b59a-448b-97d9-ded3afa359b8"
+      ],
+      "calendar_versions": [
+        "pmc-5.4.0:nse-cash-2026-review-20260923:62d22fb4a2019f30"
+      ],
+      "calendar_authority": "UNKNOWN",
+      "authority_note": "Legacy ingestion version exists, but no persisted authority manifest; not retrospectively verified.",
+      "data_classification": "SYNTHETIC_VERIFICATION_FIXTURE",
+      "quality_warnings": [
+        "CALENDAR_AUTHORITY_UNRECORDED",
+        "CONFLICT",
+        "DUPLICATE",
+        "INCOMPLETE_SESSIONS",
+        "INVALID_BAR",
+        "LARGE_GAP",
+        "MISSING_BAR",
+        "MISSING_DATASET_IDENTITY",
+        "MISSING_SYMBOL"
+      ]
+    },
+    {
+      "symbol": "TCS",
+      "exchange": "NSE",
+      "segment": "CASH",
+      "source": "local",
+      "adjustment_type": "RAW",
+      "timeframe": "5minute",
+      "first_open": "2026-01-05 03:45:00+00:00",
+      "last_open": "2026-01-12 03:45:00+00:00",
+      "last_available": "2026-01-12 03:50:00+00:00",
+      "bars": 6,
+      "observed_dates": 5,
+      "complete_sessions": 0,
+      "dataset_keys": [],
+      "ingestion_run_ids": [
+        "1e0af91f-a124-42b1-8cdf-2056705ca00a",
+        "ef46cd75-9c5b-4ec0-96e8-050aac5a3637",
+        "75d12200-a6d1-4e16-b381-8c25ed923024"
+      ],
+      "calendar_versions": [
+        "pmc-5.4.0:nse-cash-2026-review-20260923:62d22fb4a2019f30"
+      ],
+      "calendar_authority": "UNKNOWN",
+      "authority_note": "Legacy ingestion version exists, but no persisted authority manifest; not retrospectively verified.",
+      "data_classification": "SYNTHETIC_VERIFICATION_FIXTURE",
+      "quality_warnings": [
+        "CALENDAR_AUTHORITY_UNRECORDED",
+        "INCOMPLETE_SESSIONS",
+        "MISSING_BAR",
+        "MISSING_DATASET_IDENTITY",
+        "OUT_OF_ORDER"
+      ]
+    },
+    {
+      "symbol": "INFY",
+      "exchange": "NSE",
+      "segment": "CASH",
+      "source": null,
+      "adjustment_type": null,
+      "timeframe": "5minute",
+      "first_open": null,
+      "last_open": null,
+      "last_available": null,
+      "bars": 0,
+      "observed_dates": 0,
+      "complete_sessions": 0,
+      "dataset_keys": [],
+      "ingestion_run_ids": [],
+      "calendar_versions": [],
+      "calendar_authority": "NOT_APPLICABLE",
+      "authority_note": "No bars or ingestion records.",
+      "data_classification": "ABSENT",
+      "quality_warnings": [
+        "NO_DATA"
+      ]
+    },
+    {
+      "symbol": "HDFCBANK",
+      "exchange": "NSE",
+      "segment": "CASH",
+      "source": null,
+      "adjustment_type": null,
+      "timeframe": "5minute",
+      "first_open": null,
+      "last_open": null,
+      "last_available": null,
+      "bars": 0,
+      "observed_dates": 0,
+      "complete_sessions": 0,
+      "dataset_keys": [],
+      "ingestion_run_ids": [],
+      "calendar_versions": [],
+      "calendar_authority": "NOT_APPLICABLE",
+      "authority_note": "No bars or ingestion records.",
+      "data_classification": "ABSENT",
+      "quality_warnings": [
+        "NO_DATA"
+      ]
+    },
+    {
+      "symbol": "ICICIBANK",
+      "exchange": "NSE",
+      "segment": "CASH",
+      "source": null,
+      "adjustment_type": null,
+      "timeframe": "5minute",
+      "first_open": null,
+      "last_open": null,
+      "last_available": null,
+      "bars": 0,
+      "observed_dates": 0,
+      "complete_sessions": 0,
+      "dataset_keys": [],
+      "ingestion_run_ids": [],
+      "calendar_versions": [],
+      "calendar_authority": "NOT_APPLICABLE",
+      "authority_note": "No bars or ingestion records.",
+      "data_classification": "ABSENT",
+      "quality_warnings": [
+        "NO_DATA"
+      ]
+    }
+  ],
+  "strategy": {
+    "implementation": "baseline-trend-momentum-v1",
+    "name": "baseline_trend_momentum_v1",
+    "parameters": {
+      "entry_start_time": "09:30",
+      "last_entry_time": "14:45",
+      "min_volume_ratio": 1.0,
+      "quantity": 10,
+      "rsi_max": 70.0,
+      "rsi_min": 55.0,
+      "stop_atr_multiple": "1.5",
+      "target_atr_multiple": "2"
+    },
+    "version": "1",
+    "identity": "2ecdbba029f57187692ec7a44762970ace21a2d12ee2b385e84d43f04cca6006"
+  },
+  "frozen_file_sha256": {
+    "src/trading_bot/strategies/baseline.py": "b17e1409770dce09522d0653a5dc5cc701db28311b55fefe3b353d088cda0003",
+    "config/strategy_baseline_trend_momentum_v1.yaml": "19f3084bf57338cc51e6035e404de278827250005c27ea43da79748d24298706",
+    "config/groww_nse_intraday_reference_v1.yaml": "92e41180e18dc158cd1889c26f9e2b4596c5e2e8e12a4e95b7d6ee68056041eb"
+  },
+  "planned_backtest_assumptions": {
+    "executed": false,
+    "timeframe": "5minute",
+    "starting_capital_per_independent_symbol": "200000",
+    "slippage_bps": 5,
+    "sensitivity_bps": [
+      0,
+      5,
+      10
+    ],
+    "participation_rate": "0.1",
+    "intrabar_policy": "CONSERVATIVE",
+    "session_end": "FORCE_FLATTEN",
+    "exit_minutes_before_close": 10,
+    "capital_multiple": 1,
+    "long_only": true,
+    "gap_policy": "FAIL_RUN",
+    "execution_policy": "STRICT_NEXT_OPEN_SETTLE_ON_COMPLETE_V1",
+    "cost_profile": {
+      "name": "groww_nse_intraday_reference_v1",
+      "version": "2026-09-24-research-1",
+      "market": "NSE:CASH:INTRADAY",
+      "sources": [
+        "https://groww.in/pricing",
+        "https://groww.in/help/stocks/sx-pricing/what-are-intraday-charges",
+        "https://nsearchives.nseindia.com/content/circulars/FA73061.pdf"
+      ],
+      "reviewed_on": "2026-09-24",
+      "effective_from": null,
+      "verification": "PUBLIC_REFERENCE_ONLY_NOT_AUTHENTICATED_CONTRACT_NOTE",
+      "rounding": "PAISA_HALF_UP_PER_ORDER_COMPONENT",
+      "rounding_verified": false,
+      "warnings": [
+        "RESEARCH_ROUNDING_ASSUMPTION_NOT_BROKER_VERIFIED",
+        "GROWW_PUBLISHED_EXCHANGE_IPFT_SPLIT_DIFFERS_FROM_NSE_2026_03_01_CIRCULAR",
+        "FIXED_REFERENCE_RATES_NOT_HISTORICAL_TAX_SCHEDULE"
+      ],
+      "brokerage_rate": "0.001",
+      "brokerage_cap": "20",
+      "brokerage_minimum": "5",
+      "minimum_turnover_cap": "0.025",
+      "stt_sell": "0.00025",
+      "stamp_buy": "0.00003",
+      "exchange_rate": "0.0000297",
+      "sebi_rate": "0.000001",
+      "ipft_rate": "0.000001",
+      "gst_rate": "0.18",
+      "gst_components": [
+        "brokerage",
+        "exchange",
+        "sebi",
+        "ipft",
+        "other"
+      ],
+      "other_rate": "0",
+      "square_off_charge": "0"
+    }
+  },
+  "historical_data_evaluated": null,
+  "per_symbol_metrics": null,
+  "aggregate_summary": null,
+  "period_breakdowns": null,
+  "exit_breakdowns": null,
+  "cost_analysis": null,
+  "slippage_sensitivity": null,
+  "warnings": [
+    "SYNTHETIC_FIXTURES_NOT_RESEARCH_DATA",
+    "ZERO_COMPLETE_SESSIONS",
+    "NO_FEATURE_SETS",
+    "NO_DATASET_IDENTITY_EVENTS",
+    "LEGACY_CALENDAR_AUTHORITY_UNRECORDED",
+    "GROWW_UNVERIFIED"
+  ],
+  "verification": {
+    "pytest": {
+      "passed": 356,
+      "skipped": 0,
+      "warnings": 1,
+      "seconds": 13.94
+    },
+    "ruff": "PASS",
+    "black": {
+      "status": "PASS",
+      "files": 93
+    },
+    "mypy": {
+      "status": "PASS",
+      "source_files": 62
+    },
+    "alembic_current": "0004 (head)",
+    "alembic_check": "No new upgrade operations detected",
+    "freeze_matches_head": true,
+    "new_tests": 0,
+    "evaluation_layer_deferred": true
+  }
+}

@@ -147,8 +147,13 @@ class MarketBar(Base):
             name="timeframe",
         ),
         CheckConstraint(
-            "adjustment_type IN ('RAW','SPLIT_ADJUSTED','FULLY_ADJUSTED')",
+            "adjustment_type IN ('RAW','SPLIT_ADJUSTED',"
+            "'FULLY_ADJUSTED','YAHOO_NATIVE')",
             name="adjustment",
+        ),
+        CheckConstraint(
+            "(source = 'yahoo_finance') = (adjustment_type = 'YAHOO_NATIVE')",
+            name="source_adjustment",
         ),
     )
     id: Mapped[UUID] = mapped_column(Uuid, primary_key=True, default=uuid4)

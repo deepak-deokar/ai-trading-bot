@@ -57,6 +57,10 @@ class Bar(Timestamped):
 
     @model_validator(mode="after")
     def valid_ohlc(self) -> Self:
+        if (self.source == "yahoo_finance") != (
+            self.adjustment_type == AdjustmentType.YAHOO_NATIVE
+        ):
+            raise ValueError("Yahoo source requires isolated YAHOO_NATIVE policy")
         seconds = int(self.timeframe.duration.total_seconds())
         if (
             "interval_seconds" in self.model_fields_set

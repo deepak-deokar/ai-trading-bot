@@ -1,0 +1,580 @@
+{
+  "status": "YAHOO RELIANCE PILOT BLOCKED",
+  "request": {
+    "exchange": "NSE",
+    "segment": "CASH",
+    "symbols": [
+      "RELIANCE"
+    ],
+    "timeframe": "5minute",
+    "start": "2026-10-15T03:45:00Z",
+    "end": "2026-10-22T10:00:00Z",
+    "adjustment_type": "YAHOO_NATIVE"
+  },
+  "provider_symbol": "RELIANCE.NS",
+  "selected_sessions": 5,
+  "calendar": {
+    "provider": "pandas_market_calendars:NSE",
+    "version": "pmc-5.4.0:nse-cash-multiyear-v1:e4f5f20789e53f67a45a9864dfba8dc192084ef03103982157ab8e0ec2662f9c:unverified=0",
+    "authority": "REVIEWED_POLICY",
+    "timezone": "Asia/Kolkata",
+    "coverage_start": "2020-01-01",
+    "coverage_end": "2026-12-31",
+    "allow_unverified_history": "false"
+  },
+  "first_timestamp": "2026-10-15T03:45:00+00:00",
+  "last_timestamp": "2026-10-22T09:55:00+00:00",
+  "dataset_key": "19b5fe600a03fc5820c0a239fdce42b4a6ecf34b1fffc58261b8354a674024c3",
+  "ingestion": {
+    "run_id": "4af5f1e6-8e31-4cfa-bfb1-93cb66db9a41",
+    "provider": "yahoo_finance",
+    "dataset_key": "19b5fe600a03fc5820c0a239fdce42b4a6ecf34b1fffc58261b8354a674024c3",
+    "run_key": "006804ec780192ccca0205ec69c6f6c1218169327799b1290d298bc61c43bcb4",
+    "status": "COMPLETED_WITH_WARNINGS",
+    "rows_received": 375,
+    "rows_valid": 367,
+    "rows_inserted": 367,
+    "rows_skipped": 0,
+    "rows_rejected": 8,
+    "duplicates": 0,
+    "conflicts": 0,
+    "issues": [
+      {
+        "type": "PROVIDER_SEMANTICS_UNVERIFIED",
+        "severity": "WARNING",
+        "symbol": null,
+        "timestamp": null,
+        "row_number": null,
+        "message": "Provider semantics asserted; real API UNVERIFIED",
+        "details": {}
+      },
+      {
+        "type": "INVALID_BAR",
+        "severity": "ERROR",
+        "symbol": null,
+        "timestamp": null,
+        "row_number": 31,
+        "message": "Candle schema or values invalid",
+        "details": {}
+      },
+      {
+        "type": "INVALID_BAR",
+        "severity": "ERROR",
+        "symbol": null,
+        "timestamp": null,
+        "row_number": 32,
+        "message": "Candle schema or values invalid",
+        "details": {}
+      },
+      {
+        "type": "INVALID_BAR",
+        "severity": "ERROR",
+        "symbol": null,
+        "timestamp": null,
+        "row_number": 74,
+        "message": "Candle schema or values invalid",
+        "details": {}
+      },
+      {
+        "type": "INVALID_BAR",
+        "severity": "ERROR",
+        "symbol": null,
+        "timestamp": null,
+        "row_number": 149,
+        "message": "Candle schema or values invalid",
+        "details": {}
+      },
+      {
+        "type": "INVALID_BAR",
+        "severity": "ERROR",
+        "symbol": null,
+        "timestamp": null,
+        "row_number": 224,
+        "message": "Candle schema or values invalid",
+        "details": {}
+      },
+      {
+        "type": "INVALID_BAR",
+        "severity": "ERROR",
+        "symbol": null,
+        "timestamp": null,
+        "row_number": 299,
+        "message": "Candle schema or values invalid",
+        "details": {}
+      },
+      {
+        "type": "INVALID_BAR",
+        "severity": "ERROR",
+        "symbol": null,
+        "timestamp": null,
+        "row_number": 373,
+        "message": "Candle schema or values invalid",
+        "details": {}
+      },
+      {
+        "type": "INVALID_BAR",
+        "severity": "ERROR",
+        "symbol": null,
+        "timestamp": null,
+        "row_number": 374,
+        "message": "Candle schema or values invalid",
+        "details": {}
+      },
+      {
+        "type": "MISSING_BAR",
+        "severity": "WARNING",
+        "symbol": "RELIANCE",
+        "timestamp": "2026-10-15T06:15:00Z",
+        "row_number": null,
+        "message": "Expected candle missing",
+        "details": {}
+      },
+      {
+        "type": "MISSING_BAR",
+        "severity": "WARNING",
+        "symbol": "RELIANCE",
+        "timestamp": "2026-10-15T06:20:00Z",
+        "row_number": null,
+        "message": "Expected candle missing",
+        "details": {}
+      },
+      {
+        "type": "MISSING_BAR",
+        "severity": "WARNING",
+        "symbol": "RELIANCE",
+        "timestamp": "2026-10-15T09:50:00Z",
+        "row_number": null,
+        "message": "Expected candle missing",
+        "details": {}
+      },
+      {
+        "type": "MISSING_BAR",
+        "severity": "WARNING",
+        "symbol": "RELIANCE",
+        "timestamp": "2026-10-16T09:50:00Z",
+        "row_number": null,
+        "message": "Expected candle missing",
+        "details": {}
+      },
+      {
+        "type": "MISSING_BAR",
+        "severity": "WARNING",
+        "symbol": "RELIANCE",
+        "timestamp": "2026-10-19T09:50:00Z",
+        "row_number": null,
+        "message": "Expected candle missing",
+        "details": {}
+      },
+      {
+        "type": "MISSING_BAR",
+        "severity": "WARNING",
+        "symbol": "RELIANCE",
+        "timestamp": "2026-10-21T09:50:00Z",
+        "row_number": null,
+        "message": "Expected candle missing",
+        "details": {}
+      },
+      {
+        "type": "MISSING_BAR",
+        "severity": "WARNING",
+        "symbol": "RELIANCE",
+        "timestamp": "2026-10-22T09:45:00Z",
+        "row_number": null,
+        "message": "Expected candle missing",
+        "details": {}
+      },
+      {
+        "type": "MISSING_BAR",
+        "severity": "WARNING",
+        "symbol": "RELIANCE",
+        "timestamp": "2026-10-22T09:50:00Z",
+        "row_number": null,
+        "message": "Expected candle missing",
+        "details": {}
+      },
+      {
+        "type": "LARGE_GAP",
+        "severity": "WARNING",
+        "symbol": "RELIANCE",
+        "timestamp": "2026-10-15T06:15:00Z",
+        "row_number": null,
+        "message": "Multiple expected session candles missing",
+        "details": {
+          "missing_count": 8
+        }
+      }
+    ]
+  },
+  "timestamp_semantics": "CONSISTENT_WITH_SESSION_OPEN_ANCHORS",
+  "adjustment_semantics": "YAHOO_NATIVE / UNVERIFIED",
+  "provider_semantics": {
+    "adapter_version": "yahoo-native-v1",
+    "library": "yfinance",
+    "library_version": "1.7.0",
+    "symbol_mapping": {
+      "RELIANCE": "RELIANCE.NS",
+      "TCS": "TCS.NS",
+      "INFY": "INFY.NS",
+      "HDFCBANK": "HDFCBANK.NS",
+      "ICICIBANK": "ICICIBANK.NS"
+    },
+    "interval_mapping": {
+      "5minute": "5m"
+    },
+    "options": {
+      "interval": "5m",
+      "auto_adjust": false,
+      "back_adjust": false,
+      "actions": true,
+      "repair": false,
+      "keepna": true,
+      "prepost": false,
+      "rounding": false,
+      "timeout": 20
+    },
+    "adjustment_type": "YAHOO_NATIVE",
+    "adjustment_status": "UNVERIFIED",
+    "real_api_verification": "UNVERIFIED",
+    "timestamp_convention": "open",
+    "timestamp_gate": "aware NSE session-open anchors and aligned 5m labels",
+    "price_precision": "Decimal 10 places; not exchange tick rounding",
+    "evidence": {
+      "provider_symbol": "RELIANCE.NS",
+      "timezone": "Asia/Kolkata",
+      "first_open": "2026-10-15T03:45:00+00:00",
+      "last_open": "2026-10-22T09:55:00+00:00",
+      "rows_received": 375,
+      "sessions": 5,
+      "opening_labels": "CONSISTENT_WITH_SESSION_OPEN_ANCHORS",
+      "missing_expected_slots": 0,
+      "intraday_spacing_gaps": 0,
+      "actions_columns": [
+        "Dividends",
+        "Stock Splits"
+      ],
+      "corporate_actions_observed": false
+    }
+  },
+  "diagnostic_refetch": {
+    "scope": "same five-session range; read-only; no reingestion",
+    "rejected_rows": [
+      {
+        "row": 31,
+        "timestamp": "2026-10-15 06:15:00+00:00",
+        "issues": [
+          {
+            "field": [
+              "open"
+            ],
+            "type": "finite_number"
+          },
+          {
+            "field": [
+              "high"
+            ],
+            "type": "finite_number"
+          },
+          {
+            "field": [
+              "low"
+            ],
+            "type": "finite_number"
+          },
+          {
+            "field": [
+              "close"
+            ],
+            "type": "finite_number"
+          }
+        ],
+        "values": {
+          "open": "NaN",
+          "high": "NaN",
+          "low": "NaN",
+          "close": "NaN",
+          "volume": 0
+        }
+      },
+      {
+        "row": 32,
+        "timestamp": "2026-10-15 06:20:00+00:00",
+        "issues": [
+          {
+            "field": [
+              "open"
+            ],
+            "type": "finite_number"
+          },
+          {
+            "field": [
+              "high"
+            ],
+            "type": "finite_number"
+          },
+          {
+            "field": [
+              "low"
+            ],
+            "type": "finite_number"
+          },
+          {
+            "field": [
+              "close"
+            ],
+            "type": "finite_number"
+          }
+        ],
+        "values": {
+          "open": "NaN",
+          "high": "NaN",
+          "low": "NaN",
+          "close": "NaN",
+          "volume": 0
+        }
+      },
+      {
+        "row": 74,
+        "timestamp": "2026-10-15 09:50:00+00:00",
+        "issues": [
+          {
+            "field": [
+              "open"
+            ],
+            "type": "finite_number"
+          },
+          {
+            "field": [
+              "high"
+            ],
+            "type": "finite_number"
+          },
+          {
+            "field": [
+              "low"
+            ],
+            "type": "finite_number"
+          },
+          {
+            "field": [
+              "close"
+            ],
+            "type": "finite_number"
+          }
+        ],
+        "values": {
+          "open": "NaN",
+          "high": "NaN",
+          "low": "NaN",
+          "close": "NaN",
+          "volume": 0
+        }
+      },
+      {
+        "row": 149,
+        "timestamp": "2026-10-16 09:50:00+00:00",
+        "issues": [
+          {
+            "field": [
+              "open"
+            ],
+            "type": "finite_number"
+          },
+          {
+            "field": [
+              "high"
+            ],
+            "type": "finite_number"
+          },
+          {
+            "field": [
+              "low"
+            ],
+            "type": "finite_number"
+          },
+          {
+            "field": [
+              "close"
+            ],
+            "type": "finite_number"
+          }
+        ],
+        "values": {
+          "open": "NaN",
+          "high": "NaN",
+          "low": "NaN",
+          "close": "NaN",
+          "volume": 0
+        }
+      },
+      {
+        "row": 224,
+        "timestamp": "2026-10-19 09:50:00+00:00",
+        "issues": [
+          {
+            "field": [
+              "open"
+            ],
+            "type": "finite_number"
+          },
+          {
+            "field": [
+              "high"
+            ],
+            "type": "finite_number"
+          },
+          {
+            "field": [
+              "low"
+            ],
+            "type": "finite_number"
+          },
+          {
+            "field": [
+              "close"
+            ],
+            "type": "finite_number"
+          }
+        ],
+        "values": {
+          "open": "NaN",
+          "high": "NaN",
+          "low": "NaN",
+          "close": "NaN",
+          "volume": 0
+        }
+      },
+      {
+        "row": 299,
+        "timestamp": "2026-10-21 09:50:00+00:00",
+        "issues": [
+          {
+            "field": [
+              "open"
+            ],
+            "type": "finite_number"
+          },
+          {
+            "field": [
+              "high"
+            ],
+            "type": "finite_number"
+          },
+          {
+            "field": [
+              "low"
+            ],
+            "type": "finite_number"
+          },
+          {
+            "field": [
+              "close"
+            ],
+            "type": "finite_number"
+          }
+        ],
+        "values": {
+          "open": "NaN",
+          "high": "NaN",
+          "low": "NaN",
+          "close": "NaN",
+          "volume": 0
+        }
+      },
+      {
+        "row": 373,
+        "timestamp": "2026-10-22 09:45:00+00:00",
+        "issues": [
+          {
+            "field": [
+              "open"
+            ],
+            "type": "finite_number"
+          },
+          {
+            "field": [
+              "high"
+            ],
+            "type": "finite_number"
+          },
+          {
+            "field": [
+              "low"
+            ],
+            "type": "finite_number"
+          },
+          {
+            "field": [
+              "close"
+            ],
+            "type": "finite_number"
+          }
+        ],
+        "values": {
+          "open": "NaN",
+          "high": "NaN",
+          "low": "NaN",
+          "close": "NaN",
+          "volume": 0
+        }
+      },
+      {
+        "row": 374,
+        "timestamp": "2026-10-22 09:50:00+00:00",
+        "issues": [
+          {
+            "field": [
+              "open"
+            ],
+            "type": "finite_number"
+          },
+          {
+            "field": [
+              "high"
+            ],
+            "type": "finite_number"
+          },
+          {
+            "field": [
+              "low"
+            ],
+            "type": "finite_number"
+          },
+          {
+            "field": [
+              "close"
+            ],
+            "type": "finite_number"
+          }
+        ],
+        "values": {
+          "open": "NaN",
+          "high": "NaN",
+          "low": "NaN",
+          "close": "NaN",
+          "volume": 0
+        }
+      }
+    ],
+    "finding": "All eight invalid rows again had NaN OHLC and zero volume. No synthetic replacements."
+  },
+  "complete_accepted_sessions": 0,
+  "database_verified": {
+    "local_RAW_bars_unchanged": 9,
+    "yahoo_native_bars": 367,
+    "backtest_runs": 0
+  },
+  "verification": {
+    "pytest_passed": 375,
+    "previous_tests_preserved": 356,
+    "new_tests": 19,
+    "skipped": 0,
+    "seconds": 15.75,
+    "ruff": "PASS",
+    "black": "PASS: 98 files",
+    "mypy": "PASS: 63 source files",
+    "alembic_current": "0005 (head)",
+    "alembic_check": "No new upgrade operations detected",
+    "migration_roundtrip_and_guard": "PASS",
+    "pip_check": "Two conflicts from separately installed growwapi 1.5.0 with existing project pandas/certifi pins"
+  }
+}
