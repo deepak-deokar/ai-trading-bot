@@ -20,6 +20,7 @@ from sqlalchemy import (
     Uuid,
     func,
 )
+from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
@@ -286,3 +287,37 @@ class BacktestEvent(Base):
     sequence: Mapped[int] = mapped_column(Integer, primary_key=True)
     timestamp: Mapped[datetime] = mapped_column(DateTime(timezone=True))
     payload: Mapped[dict[str, object]] = mapped_column(JSON)
+
+
+class DecisionEventRecord(Base):
+    """Business audit journal, separate from SystemEvent technical records."""
+
+    __tablename__ = "decision_events"
+    __table_args__ = (
+        Index("ix_decision_events_chronology", "timestamp", "event_id"),
+        *(
+            Index(f"ix_decision_events_{name}", name, "timestamp", "event_id")
+            for name in (
+                "canonical_symbol",
+                "event_type",
+                "reason_code",
+                "trade_id",
+                "strategy_id",
+            )
+        ),
+        CheckConstraint("schema_version = 1", name="schema_version"),
+    )
+    event_id: Mapped[UUID] = mapped_column(Uuid, primary_key=True)
+    timestamp: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    canonical_symbol: Mapped[str] = mapped_column(String(32))
+    event_type: Mapped[str] = mapped_column(String(64))
+    reason_code: Mapped[str] = mapped_column(String(64))
+    strategy_id: Mapped[str | None] = mapped_column(String(128))
+    trade_id: Mapped[UUID | None] = mapped_column(Uuid)
+    evaluation_id: Mapped[UUID | None] = mapped_column(Uuid)
+    order_id: Mapped[UUID | None] = mapped_column(Uuid)
+    position_id: Mapped[UUID | None] = mapped_column(Uuid)
+    strategy_run_id: Mapped[UUID | None] = mapped_column(Uuid)
+    source: Mapped[str] = mapped_column(String(128))
+    schema_version: Mapped[int] = mapped_column(Integer)
+    payload: Mapped[dict[str, object]] = mapped_column(JSONB)
