@@ -3,9 +3,15 @@
 from datetime import datetime
 from decimal import Decimal
 from enum import StrEnum
-from typing import Literal, Self
+from typing import Any, Literal, Self
 
-from pydantic import Field, field_validator, model_validator
+from pydantic import (
+    Field,
+    SerializerFunctionWrapHandler,
+    field_validator,
+    model_serializer,
+    model_validator,
+)
 
 from trading_bot.domain.market import utc
 from trading_bot.domain.models import DomainModel, Price, Symbol
@@ -51,6 +57,14 @@ class TradeIntent(DomainModel):
     oco_group: str | None = Field(default=None, min_length=1, max_length=100)
     required_features: tuple[str, ...] = ()
     time_in_force: Literal["DAY"] = "DAY"
+    metadata: dict[str, str] = Field(default_factory=dict)
+
+    @model_serializer(mode="wrap")
+    def serialize(self, handler: SerializerFunctionWrapHandler) -> dict[str, Any]:
+        data: dict[str, Any] = handler(self)
+        if not self.metadata:
+            data.pop("metadata", None)
+        return data
 
     @field_validator("created_at", "feature_timestamp")
     @classmethod

@@ -1,0 +1,11 @@
+name: baseline_trend_momentum_v1
+version: '1'
+parameters:
+  quantity: 10
+  rsi_min: 55
+  rsi_max: 70
+  min_volume_ratio: 1.0
+  entry_start_time: '09:30'
+  last_entry_time: '14:45'
+  stop_atr_multiple: '1.5'
+  target_atr_multiple: '2.0'

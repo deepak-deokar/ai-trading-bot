@@ -8,7 +8,7 @@
 4. Event-driven backtesting (implemented): scripted tests, simulated orders/fills,
    Decimal accounting, reference costs, causal timing and persisted ledgers.
 5. Strategy framework (5A implemented): NoOp, causal context and registry.
-   Baseline trading strategy (5B) and honest cost-adjusted reports remain deferred.
+   Fixed baseline strategy (5B-1 implemented); broader validation (5B-2) deferred.
 6. Chronological ML training, purged labels, validation, model registry.
 7. ML signals and walk-forward evaluation with untouched final test data.
 8. Independent deterministic risk, sizing, persistent kill switch.

@@ -7,9 +7,11 @@ from pydantic import ValidationError
 
 from trading_bot.backtesting.orders import TradeIntent
 from trading_bot.strategies.contracts import (
+    CancelIntent,
     IntentValidationError,
     StrategyContext,
     StrategyError,
+    StrategyRequest,
 )
 from trading_bot.strategies.registry import StrategyPlan
 
@@ -23,21 +25,21 @@ class StrategyRuntime:
         self.references: set[str] = set()
         self.parameters = MappingProxyType(dict(plan.manifest()["parameters"]))
 
-    def evaluate(self, context: StrategyContext) -> tuple[TradeIntent, ...]:
+    def evaluate(self, context: StrategyContext) -> tuple[StrategyRequest, ...]:
         context.validate()
         output = self.instances[context.bar.symbol].evaluate(context)
         if not isinstance(output, Sequence) or isinstance(output, str | bytes):
             raise IntentValidationError("strategy must return an intent sequence")
         if len(output) > 10000 or len(output) + len(self.references) > 10000:
             raise IntentValidationError("strategy intent limit exceeded")
-        result = []
+        result: list[StrategyRequest] = []
         references = set(self.references)
         for raw in output:
             try:
-                if not isinstance(raw, TradeIntent):
+                if not isinstance(raw, TradeIntent | CancelIntent):
                     raise IntentValidationError("strategy returned a non-intent")
                 # Revalidate even model_construct/model_copy values before execution.
-                intent = TradeIntent.model_validate(raw.model_dump(warnings=False))
+                intent = type(raw).model_validate(raw.model_dump(warnings=False))
             except ValidationError as error:
                 raise IntentValidationError("malformed strategy intent") from error
             if (
@@ -50,7 +52,15 @@ class StrategyRuntime:
                 raise IntentValidationError(
                     "intent symbol/time/reference violates context"
                 )
-            if any(context.features.get(f) is None for f in intent.required_features):
+            if isinstance(intent, CancelIntent):
+                known = {o.reference for o in context.orders if not o.forced}
+                if not set(intent.targets) <= known:
+                    raise IntentValidationError(
+                        "cancellation targets unknown symbol orders"
+                    )
+            if isinstance(intent, TradeIntent) and any(
+                context.features.get(f) is None for f in intent.required_features
+            ):
                 raise IntentValidationError("intent requires unavailable feature")
             references.add(intent.reference)
             result.append(intent)

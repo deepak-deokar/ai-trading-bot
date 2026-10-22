@@ -1,6 +1,6 @@
 # Phase 1 verification (historical record)
 
-Current results: [Phase 5A verification](phase5a-verification.md). The same local
+Current results: [Phase 5B-1 verification](phase5b1-verification.md). The same local
 PostgreSQL instance now runs migration 0004. The credential-loading commands below
 still apply; also export `PYTHONPATH="$PWD/src"` for local source execution.
 

@@ -38,7 +38,7 @@ def main() -> int:
     parser.add_argument("--starting-capital", type=Decimal, required=True)
     selection = parser.add_mutually_exclusive_group(required=True)
     selection.add_argument("--decision-script", type=Path)
-    selection.add_argument("--strategy", choices=("noop",))
+    selection.add_argument("--strategy", choices=("noop", "baseline_trend_momentum_v1"))
     selection.add_argument("--strategy-config", type=Path)
     parser.add_argument(
         "--cost-model",

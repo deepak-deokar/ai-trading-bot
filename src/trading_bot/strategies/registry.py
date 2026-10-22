@@ -84,6 +84,20 @@ class StrategyRegistry:
 def builtin_registry() -> StrategyRegistry:
     registry = StrategyRegistry()
     registry.register(Definition("noop", "1", "noop-v1", NoOpParameters, noop_factory))
+    from trading_bot.strategies.baseline import (
+        BaselineParameters,
+        BaselineTrendMomentumStrategy,
+    )
+
+    registry.register(
+        Definition(
+            "baseline_trend_momentum_v1",
+            "1",
+            "baseline-trend-momentum-v1",
+            BaselineParameters,
+            BaselineTrendMomentumStrategy,
+        )
+    )
     return registry
 
 

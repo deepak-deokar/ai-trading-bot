@@ -1,4 +1,4 @@
-# Architecture and assumptions (updated through Phase 5A)
+# Architecture and assumptions (updated through Phase 5B-1)
 
 The namespaced `src/trading_bot` layout avoids collisions with generic installed
 packages such as `models`, `config`, or `data`. Dependency direction is API →
@@ -70,3 +70,11 @@ The simulator calls registered per-symbol strategy instances only with detached,
 completed observations. Intents pass through existing order/accounting controls.
 Only NoOp is built in; no broker or future risk-engine capabilities are exposed.
 See [strategy framework](strategies.md). Phase 5B has not begun.
+
+## Phase 5B-1 baseline boundary
+
+The fixed baseline consumes existing features and actual position snapshots.
+Symbol-local read-only order snapshots and validated cancellation requests support
+partial-fill protection and mutually exclusive exits. Accounting/execution rules
+remain in Phase 4. See [baseline strategy](baseline-strategy.md). No risk engine,
+optimization or broker capability is added; Phase 5B-2 has not begun.

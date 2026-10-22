@@ -1,16 +1,16 @@
-# Phase 5A — strategy framework
+# Strategy framework (introduced in Phase 5A)
 
 Market/completed features → Strategy → TradeIntent → existing backtester.
 **Strategy suggests. Execution executes. A future risk engine will authorize or
-reject.** The framework adds no broker capabilities or risk engine. NoOp is the
-only built-in implementation; it never requests a trade. Phase 5B has not begun.
+reject.** The framework adds no broker capabilities or risk engine. NoOp never requests a trade. Phase 5B-1 also registers the fixed
+[Baseline Trend Momentum](baseline-strategy.md) strategy. Phase 5B-2 has not begun.
 
 ## Interface and lifecycle
 
 `strategies.contracts.Strategy` is a runtime-checkable protocol:
 
 ```python
-def evaluate(self, context: StrategyContext) -> Sequence[TradeIntent]:
+def evaluate(self, context: StrategyContext) -> Sequence[StrategyRequest]:
     ...
 ```
 
@@ -111,7 +111,8 @@ runs retain their previous manifest format and numerical behavior.
 ## CLI and demonstration
 
 The existing runner takes exactly one decision source:
-`--decision-script PATH`, `--strategy noop`, or
+`--decision-script PATH`, `--strategy noop`,
+`--strategy baseline_trend_momentum_v1`, or
 `--strategy-config config/strategy_noop.yaml`.
 
 After importing the existing RELIANCE fixture and generating its feature set:
@@ -136,7 +137,17 @@ and unchanged capital, checks persistence and deterministic equality, writes com
 [demonstration evidence](phase5a-demonstration.json), then drops only its own schema.
 
 No new migration is required: existing backtest JSON manifests/events store strategy
-provenance. No real strategy, optimization, ML, broker connection or live enablement
-is added. Groww stays UNVERIFIED. Current-bar observations, scalar parameters and
+provenance. The Phase 5A checkpoint added no real strategy. Phase 5B-1 adds the fixed baseline;
+optimization, ML, broker connection and live enablement remain absent. Groww stays
+UNVERIFIED. Current-bar observations, scalar parameters and
 trusted per-symbol factories are intentional checkpoint limits. Rolling context,
 state checkpoint recovery and a production risk authorization layer are deferred.
+
+## Phase 5B-1 additions
+
+Contexts also expose immutable current-symbol OrderSnapshot values and the simulator
+exit cutoff. StrategyRequest is TradeIntent or CancelIntent; cancellations are
+validated for the current symbol and cannot target forced orders. They pass through
+the simulator transition ledger. TradeIntent optionally records structured string
+metadata; empty metadata is omitted to preserve legacy serialized intent payloads.
+See [baseline rules and partial-fill lifecycle](baseline-strategy.md).

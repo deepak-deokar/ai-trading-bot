@@ -1,12 +1,16 @@
 # AI Trading Bot
 
-Safety-first infrastructure for personal Indian NSE CASH research. **Phase 5A.**
+Safety-first infrastructure for personal Indian NSE CASH research. **Phase 5B-1.**
 The application cannot submit orders. Live configuration is rejected, including
 when explicit enablement flags are present. Paper is a configuration label; no
 paper broker is connected.
 
+See [baseline strategy](docs/baseline-strategy.md) and
+[Phase 5B-1 verification](docs/phase5b1-verification.md) for the fixed, long-only
+reference strategy. No profitability claim is made.
+
 See [Phase 5A strategy framework](docs/strategies.md) and
-[verification](docs/phase5a-verification.md) for NoOp-only causal integration.
+[verification](docs/phase5a-verification.md) for the original causal integration checkpoint.
 
 See [Phase 4 simulator](docs/backtesting.md) and [verification](docs/phase4-verification.md)
 for event-driven historical execution with scripted test intents only.
@@ -24,7 +28,8 @@ schemas, adjustment policy, calendar limitations, and Groww verification status.
 
 ## Implemented
 
-- Causal strategy protocol, immutable context, safe registry and NoOp-only integration.
+- Causal strategy protocol, immutable context, safe registry, NoOp and one fixed
+  long-only baseline with fill-based ATR protection.
 
 - Event-driven historical simulator with Decimal accounting, explicit costs/slippage,
   conservative fills, persisted audits/ledgers and scripted test decisions.
@@ -173,6 +178,6 @@ strategy is profitable or safe to deploy with capital.
 
 Phase 3 adds `feature_sets` and `feature_values` beside the historical tables.
 Phase 4 adds simulated execution/accounting and backtest ledgers. Later phases own
-strategy, ML and broker execution. Phase 5A adds the framework only; Phase 5B has not begun.
+strategy, ML and broker execution. Phase 5B-1 adds one fixed reference strategy; Phase 5B-2 has not begun.
 See [historical data guide](docs/historical-data.md), [roadmap](docs/roadmap.md),
 [security](docs/security.md), and [Phase 2 verification](docs/phase2-verification.md).

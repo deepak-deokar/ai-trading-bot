@@ -1,0 +1,308 @@
+{
+  "label": "SIMULATED BASELINE TEST OUTPUT \u2014 NOT PROFITABILITY EVIDENCE",
+  "bars_loaded": 75,
+  "feature_rows": 75,
+  "strategy": {
+    "implementation": "baseline-trend-momentum-v1",
+    "name": "baseline_trend_momentum_v1",
+    "parameters": {
+      "entry_start_time": "09:30",
+      "last_entry_time": "14:45",
+      "min_volume_ratio": 1.0,
+      "quantity": 10,
+      "rsi_max": 70.0,
+      "rsi_min": 55.0,
+      "stop_atr_multiple": "1.5",
+      "target_atr_multiple": "2"
+    },
+    "version": "1",
+    "identity": "2ecdbba029f57187692ec7a44762970ace21a2d12ee2b385e84d43f04cca6006"
+  },
+  "config_key": "6d35e7bb922920249bac4a041e0b14686bfec27eca86c406ed5f78ddc04dd077",
+  "run_ids": [
+    "8f99b6ff-c49e-48ca-9757-be8d5a9ee092",
+    "b7071ed4-856f-4790-9b45-cffe1db6862d"
+  ],
+  "deterministic_rerun": true,
+  "signal_time": "2026-01-05T05:25:00+00:00",
+  "fill_bar_open": "2026-01-05T05:30:00+00:00",
+  "fill_time": "2026-01-05T05:35:00+00:00",
+  "fill_price": "1517.75850000000000",
+  "atr_used": "2.5313029913131437",
+  "stop": "1513.9615455130",
+  "target": "1522.8211059826",
+  "exit_reason": "RELIANCE:1:STOP:3",
+  "metrics": {
+    "starting_capital": "200000",
+    "ending_equity": "199903.70000000000000",
+    "gross_pnl": "-40.00000000000000",
+    "execution_pnl": "-55.15000000000000",
+    "net_pnl": "-96.30000000000000",
+    "total_costs": "41.15",
+    "cost_breakdown": {
+      "brokerage": "30.30",
+      "stt": "3.78",
+      "stamp_duty": "0.46",
+      "exchange": "0.90",
+      "sebi": "0.04",
+      "ipft": "0.04",
+      "gst": "5.63",
+      "other": "0.00"
+    },
+    "brokerage": "30.30",
+    "taxes_fees": "10.85",
+    "estimated_slippage_cost": "15.15000000000000",
+    "total_return": "-0.00048150000000",
+    "number_of_trades": 1,
+    "winning_trades": 0,
+    "losing_trades": 1,
+    "win_rate": "0",
+    "gross_profit": "0",
+    "gross_loss": "96.30000000000000",
+    "profit_factor": "0E+14",
+    "average_winner": null,
+    "average_loser": "-96.30000000000000",
+    "expectancy": "-96.30000000000000",
+    "largest_winner": null,
+    "largest_loser": "-96.30000000000000",
+    "max_drawdown": "96.30000000000000",
+    "max_drawdown_pct": "0.00048150000000",
+    "turnover": "30300.02000000000000",
+    "average_holding_seconds": "600.0",
+    "exposure_percentage": 2.6666666666666665,
+    "sharpe": null,
+    "sortino": null,
+    "ratio_policy": "daily closes; 252 sessions/year; zero risk-free; minimum 20 sessions",
+    "daily_pnl": {
+      "2026-01-05": "-96.30000000000000"
+    }
+  },
+  "orders": [
+    {
+      "order_id": "order-000001",
+      "intent": {
+        "reference": "RELIANCE:1:ENTRY:1",
+        "symbol": "RELIANCE",
+        "side": "BUY",
+        "quantity": 10,
+        "order_type": "MARKET",
+        "created_at": "2026-01-05T05:25:00Z",
+        "feature_timestamp": "2026-01-05T05:20:00Z",
+        "limit_price": null,
+        "trigger_price": null,
+        "oco_group": null,
+        "required_features": [
+          "ema_10",
+          "ema_20",
+          "momentum_5",
+          "rsi_14",
+          "atr_14",
+          "volume_ratio",
+          "session_progress"
+        ],
+        "time_in_force": "DAY",
+        "metadata": {
+          "reason": "TREND_MOMENTUM_ENTRY",
+          "ema_10": "1508.0649177025437",
+          "ema_20": "1505.5",
+          "momentum_5": "4.0",
+          "rsi_14": "69.39227498766046",
+          "atr_14": "2.5313029913131437",
+          "volume_ratio": "1.0",
+          "session_progress": "0.25333333333333335"
+        }
+      },
+      "eligible_from": "2026-01-05T05:30:00Z",
+      "status": "FILLED",
+      "filled_quantity": 10,
+      "executed_turnover": "15177.58500000000000",
+      "transitions": [
+        {
+          "timestamp": "2026-01-05T05:25:00Z",
+          "status": "CREATED",
+          "reason": "STRATEGY_INTENT"
+        },
+        {
+          "timestamp": "2026-01-05T05:25:00Z",
+          "status": "ACCEPTED",
+          "reason": "SIMULATED_ONLY"
+        },
+        {
+          "timestamp": "2026-01-05T05:25:00Z",
+          "status": "PENDING",
+          "reason": "WAIT_FOR_ELIGIBLE_BAR"
+        },
+        {
+          "timestamp": "2026-01-05T05:35:00Z",
+          "status": "FILLED",
+          "reason": "RELIANCE:1:ENTRY:1"
+        }
+      ],
+      "forced": false
+    },
+    {
+      "order_id": "order-000002",
+      "intent": {
+        "reference": "RELIANCE:1:STOP:3",
+        "symbol": "RELIANCE",
+        "side": "SELL",
+        "quantity": 10,
+        "order_type": "STOP_MARKET",
+        "created_at": "2026-01-05T05:35:00Z",
+        "feature_timestamp": "2026-01-05T05:30:00Z",
+        "limit_price": null,
+        "trigger_price": "1513.9615455130",
+        "oco_group": "RELIANCE:1:OCO:2",
+        "required_features": [],
+        "time_in_force": "DAY",
+        "metadata": {
+          "entry_reference": "RELIANCE:1:ENTRY:1",
+          "signal_time": "2026-01-05T05:25:00+00:00",
+          "entry_atr": "2.5313029913131437",
+          "fill_basis": "1517.75850000000000",
+          "stop": "1513.9615455130",
+          "target": "1522.8211059826",
+          "reason": "ATR_STOP"
+        }
+      },
+      "eligible_from": "2026-01-05T05:40:00Z",
+      "status": "FILLED",
+      "filled_quantity": 10,
+      "executed_turnover": "15122.43500000000000",
+      "transitions": [
+        {
+          "timestamp": "2026-01-05T05:35:00Z",
+          "status": "CREATED",
+          "reason": "STRATEGY_INTENT"
+        },
+        {
+          "timestamp": "2026-01-05T05:35:00Z",
+          "status": "ACCEPTED",
+          "reason": "SIMULATED_ONLY"
+        },
+        {
+          "timestamp": "2026-01-05T05:35:00Z",
+          "status": "PENDING",
+          "reason": "WAIT_FOR_ELIGIBLE_BAR"
+        },
+        {
+          "timestamp": "2026-01-05T05:45:00Z",
+          "status": "TRIGGERED",
+          "reason": "STOP_REACHED"
+        },
+        {
+          "timestamp": "2026-01-05T05:45:00Z",
+          "status": "FILLED",
+          "reason": "RELIANCE:1:STOP:3"
+        }
+      ],
+      "forced": false
+    },
+    {
+      "order_id": "order-000003",
+      "intent": {
+        "reference": "RELIANCE:1:TARGET:4",
+        "symbol": "RELIANCE",
+        "side": "SELL",
+        "quantity": 10,
+        "order_type": "LIMIT",
+        "created_at": "2026-01-05T05:35:00Z",
+        "feature_timestamp": "2026-01-05T05:30:00Z",
+        "limit_price": "1522.8211059826",
+        "trigger_price": null,
+        "oco_group": "RELIANCE:1:OCO:2",
+        "required_features": [],
+        "time_in_force": "DAY",
+        "metadata": {
+          "entry_reference": "RELIANCE:1:ENTRY:1",
+          "signal_time": "2026-01-05T05:25:00+00:00",
+          "entry_atr": "2.5313029913131437",
+          "fill_basis": "1517.75850000000000",
+          "stop": "1513.9615455130",
+          "target": "1522.8211059826",
+          "reason": "ATR_TARGET"
+        }
+      },
+      "eligible_from": "2026-01-05T05:40:00Z",
+      "status": "CANCELLED",
+      "filled_quantity": 0,
+      "executed_turnover": "0",
+      "transitions": [
+        {
+          "timestamp": "2026-01-05T05:35:00Z",
+          "status": "CREATED",
+          "reason": "STRATEGY_INTENT"
+        },
+        {
+          "timestamp": "2026-01-05T05:35:00Z",
+          "status": "ACCEPTED",
+          "reason": "SIMULATED_ONLY"
+        },
+        {
+          "timestamp": "2026-01-05T05:35:00Z",
+          "status": "PENDING",
+          "reason": "WAIT_FOR_ELIGIBLE_BAR"
+        },
+        {
+          "timestamp": "2026-01-05T05:45:00Z",
+          "status": "CANCELLED",
+          "reason": "OCO_SIBLING_FILLED"
+        }
+      ],
+      "forced": false
+    }
+  ],
+  "fills": [
+    {
+      "fill_id": "fill-000001",
+      "order_id": "order-000001",
+      "symbol": "RELIANCE",
+      "side": "BUY",
+      "quantity": 10,
+      "timestamp": "2026-01-05T05:35:00Z",
+      "bar_open": "2026-01-05T05:30:00Z",
+      "base_price": "1517.0000000000",
+      "price": "1517.75850000000000",
+      "costs": {
+        "brokerage": "15.18",
+        "stt": "0",
+        "stamp_duty": "0.46",
+        "exchange": "0.45",
+        "sebi": "0.02",
+        "ipft": "0.02",
+        "gst": "2.82",
+        "other": "0.00"
+      },
+      "slippage_cost": "7.58500000000000",
+      "reason": "RELIANCE:1:ENTRY:1"
+    },
+    {
+      "fill_id": "fill-000002",
+      "order_id": "order-000002",
+      "symbol": "RELIANCE",
+      "side": "SELL",
+      "quantity": 10,
+      "timestamp": "2026-01-05T05:45:00Z",
+      "bar_open": "2026-01-05T05:40:00Z",
+      "base_price": "1513.0000000000",
+      "price": "1512.24350000000000",
+      "costs": {
+        "brokerage": "15.12",
+        "stt": "3.78",
+        "stamp_duty": "0",
+        "exchange": "0.45",
+        "sebi": "0.02",
+        "ipft": "0.02",
+        "gst": "2.81",
+        "other": "0.00"
+      },
+      "slippage_cost": "7.56500000000000",
+      "reason": "RELIANCE:1:STOP:3"
+    }
+  ],
+  "warnings": [
+    "FIXED_REFERENCE_RATES_NOT_HISTORICAL_TAX_SCHEDULE",
+    "GROWW_PUBLISHED_EXCHANGE_IPFT_SPLIT_DIFFERS_FROM_NSE_2026_03_01_CIRCULAR",
+    "RESEARCH_ROUNDING_ASSUMPTION_NOT_BROKER_VERIFIED"
+  ]
+}

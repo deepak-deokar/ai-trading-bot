@@ -30,7 +30,12 @@ from trading_bot.data.identity import digest
 from trading_bot.data.snapshot import SnapshotBar
 from trading_bot.domain.market import Timeframe
 from trading_bot.features.engine import FeatureCalendar
-from trading_bot.strategies.contracts import StrategyContext, StrategyError
+from trading_bot.strategies.contracts import (
+    CancelIntent,
+    OrderSnapshot,
+    StrategyContext,
+    StrategyError,
+)
 from trading_bot.strategies.registry import StrategyPlan
 from trading_bot.strategies.runtime import StrategyRuntime
 
@@ -399,6 +404,20 @@ class Simulation:
             session_close=session_close,
             strategy_identity=runtime.plan.manifest()["identity"],
             parameters=runtime.parameters,
+            orders=tuple(
+                OrderSnapshot(
+                    reference=o.intent.reference,
+                    side=o.intent.side,
+                    status=o.status,
+                    active=o.active,
+                    filled_quantity=o.filled_quantity,
+                    remaining=o.remaining,
+                    forced=o.forced,
+                )
+                for o in self.orders
+                if o.intent.symbol == bar.symbol
+            ),
+            execution_cutoff=self.cutoffs[session_open],
         )
         intents = runtime.evaluate(context)
         self.emit(
@@ -419,7 +438,16 @@ class Simulation:
                 strategy_identity=context.strategy_identity,
                 feature_timestamp=intent.feature_timestamp.isoformat(),
             )
-            self.new_order(intent, now)
+            if isinstance(intent, CancelIntent):
+                for index, order in enumerate(self.orders):
+                    if (
+                        order.active
+                        and order.intent.symbol == bar.symbol
+                        and order.intent.reference in intent.targets
+                    ):
+                        self.transition(index, Status.CANCELLED, now, intent.reason)
+            else:
+                self.new_order(intent, now)
 
     def record_equity(self, now: datetime) -> None:
         point = self.portfolio.mark(now, self.prices)
