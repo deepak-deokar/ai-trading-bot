@@ -1,0 +1,102 @@
+# Research acceptance only; never an MT5/broker trading schedule.
+provider: HISTDATA
+canonical_symbol: XAUUSD
+provider_symbol: XAU/USD
+source_timezone: UTC-05:00 fixed; no DST
+interval: 5minute
+policy_version: histdata-xauusd-research-gap-v1
+segments:
+- segment_id: 2024-01-02-through-2024-01-31
+  effective_start_date: '2024-01-02'
+  effective_end_date: '2024-01-31'
+  allowed_missing_ranges:
+  - start: '22:00:00'
+    end: '22:55:00'
+  category: OBSERVED_DAILY_PROVIDER_CLOSURE_PATTERN
+  evidence:
+    archive_sha256: 5b73733b7e1fcc5f10943602d83e54396338f7e106a2f80f03605eabf37a8990
+    source_month: 2024-01
+    report_reference: docs/histdata-gap-reconciliation.json
+    report_version: G2B2C-v1
+    report_sha256: 71da231b05109792d44fe3ce35b0033073d4faa1bf395a3234e159543476b7e3
+    normalization_version: histdata-ticks-v1
+    aggregation_version: bid-ask-utc-5minute-v1
+- segment_id: 2024-02-01-through-2024-02-29
+  effective_start_date: '2024-02-01'
+  effective_end_date: '2024-02-29'
+  allowed_missing_ranges:
+  - start: '22:00:00'
+    end: '22:55:00'
+  category: OBSERVED_DAILY_PROVIDER_CLOSURE_PATTERN
+  evidence:
+    archive_sha256: fedd441ffc428d7b8556f5328c3017fdc87b7088a0419dcd688c968ad9ceb2eb
+    source_month: 2024-02
+    report_reference: docs/histdata-2024-feb-apr-validation.json
+    report_version: G2C1-v1
+    report_sha256: 6127460039a680e4fb523dc3dee47c77bc82f44375cf85f9bd48dbb713d30039
+    normalization_version: histdata-ticks-v1
+    aggregation_version: bid-ask-utc-5minute-v1
+- segment_id: 2024-03-04-through-2024-03-07
+  effective_start_date: '2024-03-04'
+  effective_end_date: '2024-03-07'
+  allowed_missing_ranges:
+  - start: '22:00:00'
+    end: '22:55:00'
+  category: OBSERVED_DAILY_PROVIDER_CLOSURE_PATTERN
+  evidence:
+    archive_sha256: 27719c29ee4aed7a36678a9050db035fa0330f66862a01f0cd8ccbbdc6e75457
+    source_month: 2024-03
+    report_reference: docs/histdata-2024-feb-apr-validation.json
+    report_version: G2C1-v1
+    report_sha256: 6127460039a680e4fb523dc3dee47c77bc82f44375cf85f9bd48dbb713d30039
+    normalization_version: histdata-ticks-v1
+    aggregation_version: bid-ask-utc-5minute-v1
+- segment_id: 2024-03-11-through-2024-03-27
+  effective_start_date: '2024-03-11'
+  effective_end_date: '2024-03-27'
+  allowed_missing_ranges:
+  - start: '21:00:00'
+    end: '21:55:00'
+  category: OBSERVED_DAILY_PROVIDER_CLOSURE_PATTERN
+  evidence:
+    archive_sha256: 27719c29ee4aed7a36678a9050db035fa0330f66862a01f0cd8ccbbdc6e75457
+    source_month: 2024-03
+    report_reference: docs/histdata-2024-feb-apr-validation.json
+    report_version: G2C1-v1
+    report_sha256: 6127460039a680e4fb523dc3dee47c77bc82f44375cf85f9bd48dbb713d30039
+    normalization_version: histdata-ticks-v1
+    aggregation_version: bid-ask-utc-5minute-v1
+- segment_id: 2024-04-01-through-2024-04-30
+  effective_start_date: '2024-04-01'
+  effective_end_date: '2024-04-30'
+  allowed_missing_ranges:
+  - start: '22:00:00'
+    end: '22:55:00'
+  category: OBSERVED_DAILY_PROVIDER_CLOSURE_PATTERN
+  evidence:
+    archive_sha256: e7f0a460fc2b20fdc9c06fc247802a811fec43dad7255c592f17f8365754e207
+    source_month: 2024-04
+    report_reference: docs/histdata-2024-feb-apr-validation.json
+    report_version: G2C1-v1
+    report_sha256: 6127460039a680e4fb523dc3dee47c77bc82f44375cf85f9bd48dbb713d30039
+    normalization_version: histdata-ticks-v1
+    aggregation_version: bid-ask-utc-5minute-v1
+excluded_dates:
+- source_date: '2024-01-01'
+  day_type: HOLIDAY_ASSOCIATED
+  reason: New Year context; partial day
+- source_date: '2024-01-12'
+  day_type: UNEXPLAINED
+  reason: Early Friday end
+- source_date: '2024-01-15'
+  day_type: HOLIDAY_ASSOCIATED
+  reason: MLK Day context; extra gaps
+- source_date: '2024-02-19'
+  day_type: HOLIDAY_ASSOCIATED
+  reason: Washington Birthday context; extra gaps
+- source_date: '2024-03-28'
+  day_type: UNEXPLAINED
+  reason: Extended Thursday tail
+- source_date: '2024-03-29'
+  day_type: HOLIDAY_ASSOCIATED
+  reason: Good Friday context; no observations
