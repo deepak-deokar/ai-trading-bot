@@ -1,0 +1,90 @@
+{
+  "analysis_timestamp": "2026-10-31T09:48:16.648930+00:00",
+  "canonical_symbol": "XAUUSD",
+  "download_method": "normal HistData free monthly ASCII tick form; no paid access",
+  "first_five_minute_bar": {
+    "ask": {
+      "close": "2049.205000",
+      "high": "2049.642000",
+      "low": "2049.142000",
+      "open": "2049.602000"
+    },
+    "bid": {
+      "close": "2048.855000",
+      "high": "2049.435000",
+      "low": "2048.805000",
+      "open": "2049.345000"
+    },
+    "ticks": 466,
+    "timestamp": "2024-01-16T05:00:00+00:00",
+    "timestamp_convention": "open"
+  },
+  "five_minute_bar_count": 276,
+  "last_five_minute_bar": {
+    "ask": {
+      "close": "2025.645000",
+      "high": "2026.035000",
+      "low": "2025.342000",
+      "open": "2025.775000"
+    },
+    "bid": {
+      "close": "2025.355000",
+      "high": "2025.675000",
+      "low": "2025.045000",
+      "open": "2025.395000"
+    },
+    "ticks": 300,
+    "timestamp": "2024-01-17T04:55:00+00:00",
+    "timestamp_convention": "open"
+  },
+  "limitations": [
+    "research feed, not future MT5 broker feed",
+    "observed bins only; no gap filling or completeness claim",
+    "duplicates retained with stable source order",
+    "only selected source-date prefix rows analyzed"
+  ],
+  "normalization": "attach fixed offset to provider timestamp, convert to UTC; direct Decimal prices; no scaling",
+  "pilot_source_date": "2024-01-16",
+  "pilot_utc_range": [
+    "2024-01-16T05:00:00+00:00",
+    "2024-01-17T05:00:00+00:00"
+  ],
+  "provider": "HISTDATA",
+  "provider_filename_symbol": "XAUUSD",
+  "provider_symbol": "XAU/USD",
+  "rejected_source_lines_first_20": [],
+  "source_file": "HISTDATA_COM_ASCII_XAUUSD_T_202401.zip",
+  "source_file_sha256": "5b73733b7e1fcc5f10943602d83e54396338f7e106a2f80f03605eabf37a8990",
+  "source_member": "DAT_ASCII_XAUUSD_T_202401.csv",
+  "source_month": "2024-01",
+  "source_timezone": "UTC-05:00 fixed; no DST",
+  "statistics": {
+    "crossed_quote_count": 0,
+    "duplicate_timestamp_count": 0,
+    "first_quote": {
+      "ask": "2049.602000",
+      "bid": "2049.345000",
+      "canonical_symbol": "XAUUSD",
+      "source": "HISTORICAL_PROVIDER",
+      "timestamp": "2024-01-16T05:00:00.119000Z"
+    },
+    "invalid_count": 0,
+    "last_quote": {
+      "ask": "2025.645000",
+      "bid": "2025.355000",
+      "canonical_symbol": "XAUUSD",
+      "source": "HISTORICAL_PROVIDER",
+      "timestamp": "2024-01-17T04:59:58.799000Z"
+    },
+    "maximum_tick_gap_ms": 3601796,
+    "raw_count": 177064,
+    "spread_max": "1.804000",
+    "spread_median": "0.327000",
+    "spread_min": "0.001000",
+    "valid_count": 177064
+  },
+  "volume_semantics": "provider-specific/unverified; original field preserved",
+  "volume_values_and_counts": {
+    "0": 177064
+  }
+}
