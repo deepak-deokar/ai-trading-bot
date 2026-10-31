@@ -1,0 +1,132 @@
+{
+  "imports": [
+    {
+      "run_id": "f539096d-e549-489f-bd57-8bd176bb60fa",
+      "dataset_key": "1c1fcdca9646d8ae0e56079e35f82cdd7e824548fe5c80243fcd7496c1b78810",
+      "inserted": 276,
+      "existing": 0,
+      "observed": 276,
+      "missing_openings": [
+        "2024-01-16T22:00:00Z",
+        "2024-01-16T22:05:00Z",
+        "2024-01-16T22:10:00Z",
+        "2024-01-16T22:15:00Z",
+        "2024-01-16T22:20:00Z",
+        "2024-01-16T22:25:00Z",
+        "2024-01-16T22:30:00Z",
+        "2024-01-16T22:35:00Z",
+        "2024-01-16T22:40:00Z",
+        "2024-01-16T22:45:00Z",
+        "2024-01-16T22:50:00Z",
+        "2024-01-16T22:55:00Z"
+      ]
+    },
+    {
+      "run_id": "143cd3c5-d326-47c5-af26-b51213475f27",
+      "dataset_key": "1c1fcdca9646d8ae0e56079e35f82cdd7e824548fe5c80243fcd7496c1b78810",
+      "inserted": 0,
+      "existing": 276,
+      "observed": 276,
+      "missing_openings": [
+        "2024-01-16T22:00:00Z",
+        "2024-01-16T22:05:00Z",
+        "2024-01-16T22:10:00Z",
+        "2024-01-16T22:15:00Z",
+        "2024-01-16T22:20:00Z",
+        "2024-01-16T22:25:00Z",
+        "2024-01-16T22:30:00Z",
+        "2024-01-16T22:35:00Z",
+        "2024-01-16T22:40:00Z",
+        "2024-01-16T22:45:00Z",
+        "2024-01-16T22:50:00Z",
+        "2024-01-16T22:55:00Z"
+      ]
+    }
+  ],
+  "stored_count": 276,
+  "provenance": {
+    "manifest": {
+      "provider": "HISTDATA",
+      "provider_symbol": "XAU/USD",
+      "canonical_symbol": "XAUUSD",
+      "source_archive": "HISTDATA_COM_ASCII_XAUUSD_T_202401.zip",
+      "source_sha256": "5b73733b7e1fcc5f10943602d83e54396338f7e106a2f80f03605eabf37a8990",
+      "source_month": "2024-01",
+      "selected_source_date": "2024-01-16",
+      "start": "2024-01-16T05:00:00Z",
+      "end": "2024-01-17T05:00:00Z",
+      "source_timezone": "UTC-05:00 fixed; no DST",
+      "normalization_version": "histdata-ticks-v1",
+      "aggregation_version": "bid-ask-utc-5minute-v1",
+      "interval": "5minute",
+      "raw_ticks": 177064,
+      "valid_ticks": 177064,
+      "invalid_ticks": 0,
+      "observed_bars": 276,
+      "expected_bins": 288,
+      "missing_openings": [
+        "2024-01-16T22:00:00+00:00",
+        "2024-01-16T22:05:00+00:00",
+        "2024-01-16T22:10:00+00:00",
+        "2024-01-16T22:15:00+00:00",
+        "2024-01-16T22:20:00+00:00",
+        "2024-01-16T22:25:00+00:00",
+        "2024-01-16T22:30:00+00:00",
+        "2024-01-16T22:35:00+00:00",
+        "2024-01-16T22:40:00+00:00",
+        "2024-01-16T22:45:00+00:00",
+        "2024-01-16T22:50:00+00:00",
+        "2024-01-16T22:55:00+00:00"
+      ]
+    },
+    "result": {
+      "run_id": "f539096d-e549-489f-bd57-8bd176bb60fa",
+      "dataset_key": "1c1fcdca9646d8ae0e56079e35f82cdd7e824548fe5c80243fcd7496c1b78810",
+      "inserted": 276,
+      "existing": 0,
+      "observed": 276,
+      "missing_openings": [
+        "2024-01-16T22:00:00Z",
+        "2024-01-16T22:05:00Z",
+        "2024-01-16T22:10:00Z",
+        "2024-01-16T22:15:00Z",
+        "2024-01-16T22:20:00Z",
+        "2024-01-16T22:25:00Z",
+        "2024-01-16T22:30:00Z",
+        "2024-01-16T22:35:00Z",
+        "2024-01-16T22:40:00Z",
+        "2024-01-16T22:45:00Z",
+        "2024-01-16T22:50:00Z",
+        "2024-01-16T22:55:00Z"
+      ]
+    }
+  },
+  "first_bar": {
+    "canonical_symbol": "XAUUSD",
+    "interval": "5minute",
+    "opening_timestamp": "2024-01-16T05:00:00Z",
+    "bid_open": "2049.3450000000",
+    "bid_high": "2049.4350000000",
+    "bid_low": "2048.8050000000",
+    "bid_close": "2048.8550000000",
+    "ask_open": "2049.6020000000",
+    "ask_high": "2049.6420000000",
+    "ask_low": "2049.1420000000",
+    "ask_close": "2049.2050000000",
+    "tick_count": 466
+  },
+  "last_bar": {
+    "canonical_symbol": "XAUUSD",
+    "interval": "5minute",
+    "opening_timestamp": "2024-01-17T04:55:00Z",
+    "bid_open": "2025.3950000000",
+    "bid_high": "2025.6750000000",
+    "bid_low": "2025.0450000000",
+    "bid_close": "2025.3550000000",
+    "ask_open": "2025.7750000000",
+    "ask_high": "2026.0350000000",
+    "ask_low": "2025.3420000000",
+    "ask_close": "2025.6450000000",
+    "tick_count": 300
+  }
+}

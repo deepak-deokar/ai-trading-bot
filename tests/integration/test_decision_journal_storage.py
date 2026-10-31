@@ -84,7 +84,7 @@ def test_journal_migration_downgrade_upgrade_and_guard(history_engine):
         assert conn.scalar(text("SELECT to_regclass('decision_events')")) is None
         command.upgrade(config, "head")
         command.check(config)
-        assert conn.scalar(text("SELECT version_num FROM alembic_version")) == "0006"
+        assert conn.scalar(text("SELECT version_num FROM alembic_version")) == "0007"
     journal = DecisionJournal(history_engine)
     event = synthetic_events(Path("config/xauusd_v1.yaml"))[0]
     journal.record_event(event)

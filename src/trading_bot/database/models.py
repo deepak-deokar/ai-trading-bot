@@ -321,3 +321,56 @@ class DecisionEventRecord(Base):
     source: Mapped[str] = mapped_column(String(128))
     schema_version: Mapped[int] = mapped_column(Integer)
     payload: Mapped[dict[str, object]] = mapped_column(JSONB)
+
+
+class BidAskBar(Base):
+    """Independent research quotes, with original successful import provenance."""
+
+    __tablename__ = "bid_ask_bars"
+    __table_args__ = (
+        Index(
+            "ix_bid_ask_bars_selection",
+            "canonical_symbol",
+            "interval",
+            "opening_timestamp",
+            "provider",
+        ),
+        CheckConstraint("interval = '5minute'", name="interval"),
+        CheckConstraint("canonical_symbol = 'XAUUSD'", name="symbol"),
+        CheckConstraint("tick_count > 0", name="tick_count"),
+        CheckConstraint(
+            "mod(extract(epoch from opening_timestamp),300)=0", name="opening"
+        ),
+        *(
+            CheckConstraint(
+                f"{side}_low > 0 AND {side}_low <= {side}_open "
+                f"AND {side}_low <= {side}_close "
+                f"AND {side}_high >= {side}_open AND {side}_high >= {side}_close",
+                name=f"{side}_ohlc",
+            )
+            for side in ("bid", "ask")
+        ),
+        CheckConstraint(
+            "ask_open >= bid_open AND ask_high >= bid_high "
+            "AND ask_low >= bid_low AND ask_close >= bid_close",
+            name="not_crossed",
+        ),
+    )
+    dataset_key: Mapped[str] = mapped_column(String(64), primary_key=True)
+    opening_timestamp: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), primary_key=True
+    )
+    canonical_symbol: Mapped[str] = mapped_column(String(32))
+    interval: Mapped[str] = mapped_column(String(16))
+    provider: Mapped[str] = mapped_column(String(32))
+    provider_symbol: Mapped[str] = mapped_column(String(128))
+    run_id: Mapped[UUID] = mapped_column(Uuid)
+    tick_count: Mapped[int] = mapped_column(BigInteger)
+    bid_open: Mapped[Decimal] = mapped_column(Numeric(28, 10))
+    bid_high: Mapped[Decimal] = mapped_column(Numeric(28, 10))
+    bid_low: Mapped[Decimal] = mapped_column(Numeric(28, 10))
+    bid_close: Mapped[Decimal] = mapped_column(Numeric(28, 10))
+    ask_open: Mapped[Decimal] = mapped_column(Numeric(28, 10))
+    ask_high: Mapped[Decimal] = mapped_column(Numeric(28, 10))
+    ask_low: Mapped[Decimal] = mapped_column(Numeric(28, 10))
+    ask_close: Mapped[Decimal] = mapped_column(Numeric(28, 10))
