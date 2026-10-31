@@ -1,0 +1,605 @@
+{
+  "sha256": "5b73733b7e1fcc5f10943602d83e54396338f7e106a2f80f03605eabf37a8990",
+  "days": [
+    {
+      "date": "2024-01-01",
+      "weekday": "Monday",
+      "ticks": 21423,
+      "invalid": 0,
+      "observed": 72,
+      "missing": 216,
+      "first": "2024-01-01T23:00:00.312000Z",
+      "last": "2024-01-02T04:59:59.252000Z",
+      "missing_runs": [
+        [
+          "2024-01-01T05:00:00Z",
+          "2024-01-01T22:55:00Z"
+        ]
+      ],
+      "daily_gap_absent": true,
+      "classification": "HOLIDAY_ASSOCIATED_PATTERN",
+      "preferred_v1_research_candidate": false
+    },
+    {
+      "date": "2024-01-02",
+      "weekday": "Tuesday",
+      "ticks": 137079,
+      "invalid": 0,
+      "observed": 276,
+      "missing": 12,
+      "first": "2024-01-02T05:00:00.056000Z",
+      "last": "2024-01-03T04:59:56.545000Z",
+      "missing_runs": [
+        [
+          "2024-01-02T22:00:00Z",
+          "2024-01-02T22:55:00Z"
+        ]
+      ],
+      "daily_gap_absent": true,
+      "classification": "NORMAL_OBSERVED_PROVIDER_PATTERN",
+      "preferred_v1_research_candidate": true
+    },
+    {
+      "date": "2024-01-03",
+      "weekday": "Wednesday",
+      "ticks": 164179,
+      "invalid": 0,
+      "observed": 276,
+      "missing": 12,
+      "first": "2024-01-03T05:00:00.109000Z",
+      "last": "2024-01-04T04:59:59.992000Z",
+      "missing_runs": [
+        [
+          "2024-01-03T22:00:00Z",
+          "2024-01-03T22:55:00Z"
+        ]
+      ],
+      "daily_gap_absent": true,
+      "classification": "NORMAL_OBSERVED_PROVIDER_PATTERN",
+      "preferred_v1_research_candidate": true
+    },
+    {
+      "date": "2024-01-04",
+      "weekday": "Thursday",
+      "ticks": 120908,
+      "invalid": 0,
+      "observed": 276,
+      "missing": 12,
+      "first": "2024-01-04T05:00:00.093000Z",
+      "last": "2024-01-05T04:59:59.883000Z",
+      "missing_runs": [
+        [
+          "2024-01-04T22:00:00Z",
+          "2024-01-04T22:55:00Z"
+        ]
+      ],
+      "daily_gap_absent": true,
+      "classification": "NORMAL_OBSERVED_PROVIDER_PATTERN",
+      "preferred_v1_research_candidate": true
+    },
+    {
+      "date": "2024-01-05",
+      "weekday": "Friday",
+      "ticks": 149518,
+      "invalid": 0,
+      "observed": 204,
+      "missing": 84,
+      "first": "2024-01-05T05:00:00.590000Z",
+      "last": "2024-01-05T21:59:59.062000Z",
+      "missing_runs": [
+        [
+          "2024-01-05T22:00:00Z",
+          "2024-01-06T04:55:00Z"
+        ]
+      ],
+      "daily_gap_absent": true,
+      "classification": "WEEKEND_BOUNDARY_PATTERN",
+      "preferred_v1_research_candidate": false
+    },
+    {
+      "date": "2024-01-06",
+      "weekday": "Saturday",
+      "ticks": 0,
+      "invalid": 0,
+      "observed": 0,
+      "missing": 288,
+      "first": null,
+      "last": null,
+      "missing_runs": [
+        [
+          "2024-01-06T05:00:00Z",
+          "2024-01-07T04:55:00Z"
+        ]
+      ],
+      "daily_gap_absent": true,
+      "classification": "WEEKEND_BOUNDARY_PATTERN",
+      "preferred_v1_research_candidate": false
+    },
+    {
+      "date": "2024-01-07",
+      "weekday": "Sunday",
+      "ticks": 23631,
+      "invalid": 0,
+      "observed": 72,
+      "missing": 216,
+      "first": "2024-01-07T23:00:02.003000Z",
+      "last": "2024-01-08T04:59:56.138000Z",
+      "missing_runs": [
+        [
+          "2024-01-07T05:00:00Z",
+          "2024-01-07T22:55:00Z"
+        ]
+      ],
+      "daily_gap_absent": true,
+      "classification": "WEEKEND_BOUNDARY_PATTERN",
+      "preferred_v1_research_candidate": false
+    },
+    {
+      "date": "2024-01-08",
+      "weekday": "Monday",
+      "ticks": 150639,
+      "invalid": 0,
+      "observed": 276,
+      "missing": 12,
+      "first": "2024-01-08T05:00:00.154000Z",
+      "last": "2024-01-09T04:59:53.821000Z",
+      "missing_runs": [
+        [
+          "2024-01-08T22:00:00Z",
+          "2024-01-08T22:55:00Z"
+        ]
+      ],
+      "daily_gap_absent": true,
+      "classification": "NORMAL_OBSERVED_PROVIDER_PATTERN",
+      "preferred_v1_research_candidate": true
+    },
+    {
+      "date": "2024-01-09",
+      "weekday": "Tuesday",
+      "ticks": 137018,
+      "invalid": 0,
+      "observed": 276,
+      "missing": 12,
+      "first": "2024-01-09T05:00:00.797000Z",
+      "last": "2024-01-10T04:59:51.087000Z",
+      "missing_runs": [
+        [
+          "2024-01-09T22:00:00Z",
+          "2024-01-09T22:55:00Z"
+        ]
+      ],
+      "daily_gap_absent": true,
+      "classification": "NORMAL_OBSERVED_PROVIDER_PATTERN",
+      "preferred_v1_research_candidate": true
+    },
+    {
+      "date": "2024-01-10",
+      "weekday": "Wednesday",
+      "ticks": 126984,
+      "invalid": 0,
+      "observed": 276,
+      "missing": 12,
+      "first": "2024-01-10T05:00:01.475000Z",
+      "last": "2024-01-11T04:59:59.359000Z",
+      "missing_runs": [
+        [
+          "2024-01-10T22:00:00Z",
+          "2024-01-10T22:55:00Z"
+        ]
+      ],
+      "daily_gap_absent": true,
+      "classification": "NORMAL_OBSERVED_PROVIDER_PATTERN",
+      "preferred_v1_research_candidate": true
+    },
+    {
+      "date": "2024-01-11",
+      "weekday": "Thursday",
+      "ticks": 183508,
+      "invalid": 0,
+      "observed": 276,
+      "missing": 12,
+      "first": "2024-01-11T05:00:00.212000Z",
+      "last": "2024-01-12T04:59:59.483000Z",
+      "missing_runs": [
+        [
+          "2024-01-11T22:00:00Z",
+          "2024-01-11T22:55:00Z"
+        ]
+      ],
+      "daily_gap_absent": true,
+      "classification": "NORMAL_OBSERVED_PROVIDER_PATTERN",
+      "preferred_v1_research_candidate": true
+    },
+    {
+      "date": "2024-01-12",
+      "weekday": "Friday",
+      "ticks": 125774,
+      "invalid": 0,
+      "observed": 156,
+      "missing": 132,
+      "first": "2024-01-12T05:00:00.187000Z",
+      "last": "2024-01-12T17:59:59.620000Z",
+      "missing_runs": [
+        [
+          "2024-01-12T18:00:00Z",
+          "2024-01-13T04:55:00Z"
+        ]
+      ],
+      "daily_gap_absent": true,
+      "classification": "UNEXPLAINED_GAP",
+      "preferred_v1_research_candidate": false
+    },
+    {
+      "date": "2024-01-13",
+      "weekday": "Saturday",
+      "ticks": 0,
+      "invalid": 0,
+      "observed": 0,
+      "missing": 288,
+      "first": null,
+      "last": null,
+      "missing_runs": [
+        [
+          "2024-01-13T05:00:00Z",
+          "2024-01-14T04:55:00Z"
+        ]
+      ],
+      "daily_gap_absent": true,
+      "classification": "WEEKEND_BOUNDARY_PATTERN",
+      "preferred_v1_research_candidate": false
+    },
+    {
+      "date": "2024-01-14",
+      "weekday": "Sunday",
+      "ticks": 27202,
+      "invalid": 0,
+      "observed": 72,
+      "missing": 216,
+      "first": "2024-01-14T23:00:00.337000Z",
+      "last": "2024-01-15T04:59:59.915000Z",
+      "missing_runs": [
+        [
+          "2024-01-14T05:00:00Z",
+          "2024-01-14T22:55:00Z"
+        ]
+      ],
+      "daily_gap_absent": true,
+      "classification": "WEEKEND_BOUNDARY_PATTERN",
+      "preferred_v1_research_candidate": false
+    },
+    {
+      "date": "2024-01-15",
+      "weekday": "Monday",
+      "ticks": 84831,
+      "invalid": 0,
+      "observed": 246,
+      "missing": 42,
+      "first": "2024-01-15T05:00:00.167000Z",
+      "last": "2024-01-16T04:59:47.750000Z",
+      "missing_runs": [
+        [
+          "2024-01-15T19:30:00Z",
+          "2024-01-15T22:55:00Z"
+        ]
+      ],
+      "daily_gap_absent": true,
+      "classification": "HOLIDAY_ASSOCIATED_PATTERN",
+      "preferred_v1_research_candidate": false
+    },
+    {
+      "date": "2024-01-16",
+      "weekday": "Tuesday",
+      "ticks": 177064,
+      "invalid": 0,
+      "observed": 276,
+      "missing": 12,
+      "first": "2024-01-16T05:00:00.119000Z",
+      "last": "2024-01-17T04:59:58.799000Z",
+      "missing_runs": [
+        [
+          "2024-01-16T22:00:00Z",
+          "2024-01-16T22:55:00Z"
+        ]
+      ],
+      "daily_gap_absent": true,
+      "classification": "NORMAL_OBSERVED_PROVIDER_PATTERN",
+      "preferred_v1_research_candidate": true
+    },
+    {
+      "date": "2024-01-17",
+      "weekday": "Wednesday",
+      "ticks": 159858,
+      "invalid": 0,
+      "observed": 276,
+      "missing": 12,
+      "first": "2024-01-17T05:00:01.212000Z",
+      "last": "2024-01-18T04:59:56.489000Z",
+      "missing_runs": [
+        [
+          "2024-01-17T22:00:00Z",
+          "2024-01-17T22:55:00Z"
+        ]
+      ],
+      "daily_gap_absent": true,
+      "classification": "NORMAL_OBSERVED_PROVIDER_PATTERN",
+      "preferred_v1_research_candidate": true
+    },
+    {
+      "date": "2024-01-18",
+      "weekday": "Thursday",
+      "ticks": 130884,
+      "invalid": 0,
+      "observed": 276,
+      "missing": 12,
+      "first": "2024-01-18T05:00:01.959000Z",
+      "last": "2024-01-19T04:59:57.448000Z",
+      "missing_runs": [
+        [
+          "2024-01-18T22:00:00Z",
+          "2024-01-18T22:55:00Z"
+        ]
+      ],
+      "daily_gap_absent": true,
+      "classification": "NORMAL_OBSERVED_PROVIDER_PATTERN",
+      "preferred_v1_research_candidate": true
+    },
+    {
+      "date": "2024-01-19",
+      "weekday": "Friday",
+      "ticks": 99908,
+      "invalid": 0,
+      "observed": 204,
+      "missing": 84,
+      "first": "2024-01-19T05:00:00.162000Z",
+      "last": "2024-01-19T21:59:58.647000Z",
+      "missing_runs": [
+        [
+          "2024-01-19T22:00:00Z",
+          "2024-01-20T04:55:00Z"
+        ]
+      ],
+      "daily_gap_absent": true,
+      "classification": "WEEKEND_BOUNDARY_PATTERN",
+      "preferred_v1_research_candidate": false
+    },
+    {
+      "date": "2024-01-20",
+      "weekday": "Saturday",
+      "ticks": 0,
+      "invalid": 0,
+      "observed": 0,
+      "missing": 288,
+      "first": null,
+      "last": null,
+      "missing_runs": [
+        [
+          "2024-01-20T05:00:00Z",
+          "2024-01-21T04:55:00Z"
+        ]
+      ],
+      "daily_gap_absent": true,
+      "classification": "WEEKEND_BOUNDARY_PATTERN",
+      "preferred_v1_research_candidate": false
+    },
+    {
+      "date": "2024-01-21",
+      "weekday": "Sunday",
+      "ticks": 19923,
+      "invalid": 0,
+      "observed": 72,
+      "missing": 216,
+      "first": "2024-01-21T23:00:01.094000Z",
+      "last": "2024-01-22T04:59:58.480000Z",
+      "missing_runs": [
+        [
+          "2024-01-21T05:00:00Z",
+          "2024-01-21T22:55:00Z"
+        ]
+      ],
+      "daily_gap_absent": true,
+      "classification": "WEEKEND_BOUNDARY_PATTERN",
+      "preferred_v1_research_candidate": false
+    },
+    {
+      "date": "2024-01-22",
+      "weekday": "Monday",
+      "ticks": 129124,
+      "invalid": 0,
+      "observed": 276,
+      "missing": 12,
+      "first": "2024-01-22T05:00:00.037000Z",
+      "last": "2024-01-23T04:59:58.026000Z",
+      "missing_runs": [
+        [
+          "2024-01-22T22:00:00Z",
+          "2024-01-22T22:55:00Z"
+        ]
+      ],
+      "daily_gap_absent": true,
+      "classification": "NORMAL_OBSERVED_PROVIDER_PATTERN",
+      "preferred_v1_research_candidate": true
+    },
+    {
+      "date": "2024-01-23",
+      "weekday": "Tuesday",
+      "ticks": 120902,
+      "invalid": 0,
+      "observed": 276,
+      "missing": 12,
+      "first": "2024-01-23T05:00:00.087000Z",
+      "last": "2024-01-24T04:59:52.751000Z",
+      "missing_runs": [
+        [
+          "2024-01-23T22:00:00Z",
+          "2024-01-23T22:55:00Z"
+        ]
+      ],
+      "daily_gap_absent": true,
+      "classification": "NORMAL_OBSERVED_PROVIDER_PATTERN",
+      "preferred_v1_research_candidate": true
+    },
+    {
+      "date": "2024-01-24",
+      "weekday": "Wednesday",
+      "ticks": 143420,
+      "invalid": 0,
+      "observed": 276,
+      "missing": 12,
+      "first": "2024-01-24T05:00:00.078000Z",
+      "last": "2024-01-25T04:59:59.483000Z",
+      "missing_runs": [
+        [
+          "2024-01-24T22:00:00Z",
+          "2024-01-24T22:55:00Z"
+        ]
+      ],
+      "daily_gap_absent": true,
+      "classification": "NORMAL_OBSERVED_PROVIDER_PATTERN",
+      "preferred_v1_research_candidate": true
+    },
+    {
+      "date": "2024-01-25",
+      "weekday": "Thursday",
+      "ticks": 134754,
+      "invalid": 0,
+      "observed": 276,
+      "missing": 12,
+      "first": "2024-01-25T05:00:00.388000Z",
+      "last": "2024-01-26T04:59:59.352000Z",
+      "missing_runs": [
+        [
+          "2024-01-25T22:00:00Z",
+          "2024-01-25T22:55:00Z"
+        ]
+      ],
+      "daily_gap_absent": true,
+      "classification": "NORMAL_OBSERVED_PROVIDER_PATTERN",
+      "preferred_v1_research_candidate": true
+    },
+    {
+      "date": "2024-01-26",
+      "weekday": "Friday",
+      "ticks": 85882,
+      "invalid": 0,
+      "observed": 204,
+      "missing": 84,
+      "first": "2024-01-26T05:00:00.157000Z",
+      "last": "2024-01-26T21:59:58.987000Z",
+      "missing_runs": [
+        [
+          "2024-01-26T22:00:00Z",
+          "2024-01-27T04:55:00Z"
+        ]
+      ],
+      "daily_gap_absent": true,
+      "classification": "WEEKEND_BOUNDARY_PATTERN",
+      "preferred_v1_research_candidate": false
+    },
+    {
+      "date": "2024-01-27",
+      "weekday": "Saturday",
+      "ticks": 0,
+      "invalid": 0,
+      "observed": 0,
+      "missing": 288,
+      "first": null,
+      "last": null,
+      "missing_runs": [
+        [
+          "2024-01-27T05:00:00Z",
+          "2024-01-28T04:55:00Z"
+        ]
+      ],
+      "daily_gap_absent": true,
+      "classification": "WEEKEND_BOUNDARY_PATTERN",
+      "preferred_v1_research_candidate": false
+    },
+    {
+      "date": "2024-01-28",
+      "weekday": "Sunday",
+      "ticks": 23552,
+      "invalid": 0,
+      "observed": 72,
+      "missing": 216,
+      "first": "2024-01-28T23:00:01.078000Z",
+      "last": "2024-01-29T04:59:59.824000Z",
+      "missing_runs": [
+        [
+          "2024-01-28T05:00:00Z",
+          "2024-01-28T22:55:00Z"
+        ]
+      ],
+      "daily_gap_absent": true,
+      "classification": "WEEKEND_BOUNDARY_PATTERN",
+      "preferred_v1_research_candidate": false
+    },
+    {
+      "date": "2024-01-29",
+      "weekday": "Monday",
+      "ticks": 94532,
+      "invalid": 0,
+      "observed": 276,
+      "missing": 12,
+      "first": "2024-01-29T05:00:00.176000Z",
+      "last": "2024-01-30T04:59:59.441000Z",
+      "missing_runs": [
+        [
+          "2024-01-29T22:00:00Z",
+          "2024-01-29T22:55:00Z"
+        ]
+      ],
+      "daily_gap_absent": true,
+      "classification": "NORMAL_OBSERVED_PROVIDER_PATTERN",
+      "preferred_v1_research_candidate": true
+    },
+    {
+      "date": "2024-01-30",
+      "weekday": "Tuesday",
+      "ticks": 118824,
+      "invalid": 0,
+      "observed": 276,
+      "missing": 12,
+      "first": "2024-01-30T05:00:00.496000Z",
+      "last": "2024-01-31T04:59:59.748000Z",
+      "missing_runs": [
+        [
+          "2024-01-30T22:00:00Z",
+          "2024-01-30T22:55:00Z"
+        ]
+      ],
+      "daily_gap_absent": true,
+      "classification": "NORMAL_OBSERVED_PROVIDER_PATTERN",
+      "preferred_v1_research_candidate": true
+    },
+    {
+      "date": "2024-01-31",
+      "weekday": "Wednesday",
+      "ticks": 170899,
+      "invalid": 0,
+      "observed": 276,
+      "missing": 12,
+      "first": "2024-01-31T05:00:00.201000Z",
+      "last": "2024-02-01T04:59:56.887000Z",
+      "missing_runs": [
+        [
+          "2024-01-31T22:00:00Z",
+          "2024-01-31T22:55:00Z"
+        ]
+      ],
+      "daily_gap_absent": true,
+      "classification": "NORMAL_OBSERVED_PROVIDER_PATTERN",
+      "preferred_v1_research_candidate": true
+    }
+  ],
+  "provider": "HISTDATA",
+  "canonical_symbol": "XAUUSD",
+  "provider_symbol": "XAU/USD",
+  "source_archive": "HISTDATA_COM_ASCII_XAUUSD_T_202401.zip",
+  "archive_member": "DAT_ASCII_XAUUSD_T_202401.csv",
+  "analyzed_at": "2026-10-31T21:23:40.395370+00:00",
+  "source_timezone": "UTC-05:00 fixed; no DST",
+  "normalization_version": "histdata-ticks-v1",
+  "method": "Stream existing parse_tick over archive; count distinct UTC five-minute opening bins; compute complement within each source day [05:00 UTC, next 05:00 UTC). No OHLC creation or persistence.",
+  "missing_range_convention": "Inclusive opening labels, five-minute bins; not exact tick outage boundaries",
+  "classification_scope": "Descriptive January 2024 observations only; does not change accepted coverage policy"
+}
