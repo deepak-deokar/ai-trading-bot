@@ -32,6 +32,9 @@ class QuoteDataset(DomainModel):
     aggregation_version: str = Field(min_length=1)
     interval: Literal["5minute"] = "5minute"
 
+    gap_policy_version: str | None = Field(default=None, min_length=1)
+    gap_policy_key: str | None = Field(default=None, pattern=r"^[a-f0-9]{64}$")
+
     @field_validator("start", "end")
     @classmethod
     def bound(cls, value: datetime) -> datetime:
@@ -42,6 +45,8 @@ class QuoteDataset(DomainModel):
 
     @model_validator(mode="after")
     def ordered(self) -> Self:
+        if (self.gap_policy_version is None) != (self.gap_policy_key is None):
+            raise ValueError("policy version and content key must be supplied together")
         if not timedelta(0) < self.end - self.start <= timedelta(days=1):
             raise ValueError("research dataset must be positive and at most one day")
         return self
@@ -49,7 +54,9 @@ class QuoteDataset(DomainModel):
     @property
     def dataset_key(self) -> str:
         data = json.dumps(
-            self.model_dump(mode="json"), sort_keys=True, separators=(",", ":")
+            self.model_dump(mode="json", exclude_none=True),
+            sort_keys=True,
+            separators=(",", ":"),
         )
         return hashlib.sha256(data.encode()).hexdigest()
 
@@ -102,7 +109,7 @@ class QuoteBarRepository:
             raise ValueError("bar lies outside dataset range")
         missing = tuple(sorted(expected - openings))
         run = uuid4()
-        manifest = dataset.model_dump(mode="json") | {
+        manifest = dataset.model_dump(mode="json", exclude_none=True) | {
             "raw_ticks": raw_ticks,
             "valid_ticks": raw_ticks - invalid_ticks,
             "invalid_ticks": invalid_ticks,
