@@ -124,6 +124,6 @@ def test_native_migration_guard_and_roundtrip(history_engine, sample):
         config.attributes["connection"] = conn
         command.downgrade(config, "0004")
     with history_engine.connect() as conn:
-        assert conn.scalar(text("SELECT version_num FROM alembic_version")) == "0007"
+        assert conn.scalar(text("SELECT version_num FROM alembic_version")) == "0008"
     with Session(history_engine) as session:
         assert len(session.scalars(select(MarketBar)).all()) == 75

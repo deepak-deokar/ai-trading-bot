@@ -255,7 +255,7 @@ def test_feature_migration_roundtrip_retains_candles(history_engine, feature_inp
         assert conn.scalar(text("SELECT count(*) FROM market_bars")) == 40
         command.upgrade(config, "head")
         command.check(config)
-        assert conn.scalar(text("SELECT version_num FROM alembic_version")) == "0007"
+        assert conn.scalar(text("SELECT version_num FROM alembic_version")) == "0008"
     assert generate(history_engine, req, cfg).rows_inserted == 40
 
 

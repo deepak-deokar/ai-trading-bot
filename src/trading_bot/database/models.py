@@ -374,3 +374,32 @@ class BidAskBar(Base):
     ask_high: Mapped[Decimal] = mapped_column(Numeric(28, 10))
     ask_low: Mapped[Decimal] = mapped_column(Numeric(28, 10))
     ask_close: Mapped[Decimal] = mapped_column(Numeric(28, 10))
+
+
+class ResearchFeatureBar(Base):
+    """Exact Decimal strings and explicit JSON nulls; source bar is mandatory."""
+
+    __tablename__ = "research_feature_bars"
+    source_dataset_key: Mapped[str] = mapped_column(String(64), primary_key=True)
+    opening_timestamp: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), primary_key=True
+    )
+    feature_version: Mapped[str] = mapped_column(String(64), primary_key=True)
+    canonical_symbol: Mapped[str] = mapped_column(String(32))
+    interval: Mapped[str] = mapped_column(String(16))
+    available_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    feature_dataset_key: Mapped[str] = mapped_column(String(64))
+    payload: Mapped[dict[str, object]] = mapped_column(JSONB)
+    __table_args__ = (
+        ForeignKeyConstraint(
+            ["source_dataset_key", "opening_timestamp"],
+            ["bid_ask_bars.dataset_key", "bid_ask_bars.opening_timestamp"],
+        ),
+        CheckConstraint("available_at > opening_timestamp", name="availability"),
+        Index(
+            "ix_research_feature_selection",
+            "canonical_symbol",
+            "feature_version",
+            "opening_timestamp",
+        ),
+    )
