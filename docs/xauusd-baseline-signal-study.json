@@ -1,0 +1,89 @@
+{
+  "strategy_version": "xauusd-trend-momentum-v1",
+  "feature_set_version": "xauusd-baseline-features-v1",
+  "source_feature_dataset_key": "d54c300e5eead78243c38058a62a2506240247327fd46a4b9ac25ac94867ad41",
+  "rows_evaluated": 13524,
+  "months": {
+    "2024-02": {
+      "rows": 4416,
+      "counts": {
+        "BUY": 714,
+        "SELL": 627,
+        "NO_TRADE": 3075
+      },
+      "percentages": {
+        "BUY": "16.17",
+        "SELL": "14.20",
+        "NO_TRADE": "69.63"
+      },
+      "major_no_trade_reasons": {
+        "WARMUP_INCOMPLETE": 800,
+        "SIGNALS_CONFLICT": 1577,
+        "RSI_NO_CONFIRMATION": 354,
+        "RSI_TOO_EXTENDED": 333,
+        "SPREAD_TOO_WIDE": 11
+      }
+    },
+    "2024-03": {
+      "rows": 4140,
+      "counts": {
+        "BUY": 707,
+        "SELL": 560,
+        "NO_TRADE": 2873
+      },
+      "percentages": {
+        "BUY": "17.08",
+        "SELL": "13.53",
+        "NO_TRADE": "69.40"
+      },
+      "major_no_trade_reasons": {
+        "WARMUP_INCOMPLETE": 750,
+        "RSI_TOO_EXTENDED": 234,
+        "SIGNALS_CONFLICT": 1520,
+        "RSI_NO_CONFIRMATION": 356,
+        "SPREAD_TOO_WIDE": 13
+      }
+    },
+    "2024-04": {
+      "rows": 4968,
+      "counts": {
+        "BUY": 719,
+        "SELL": 757,
+        "NO_TRADE": 3492
+      },
+      "percentages": {
+        "BUY": "14.47",
+        "SELL": "15.24",
+        "NO_TRADE": "70.29"
+      },
+      "major_no_trade_reasons": {
+        "WARMUP_INCOMPLETE": 900,
+        "SIGNALS_CONFLICT": 1808,
+        "RSI_NO_CONFIRMATION": 414,
+        "RSI_TOO_EXTENDED": 358,
+        "SPREAD_TOO_WIDE": 12
+      }
+    }
+  },
+  "counts": {
+    "NO_TRADE": 9440,
+    "SELL": 1944,
+    "BUY": 2140
+  },
+  "percentages": {
+    "BUY": "15.82",
+    "SELL": "14.37",
+    "NO_TRADE": "69.80"
+  },
+  "major_no_trade_reasons": {
+    "WARMUP_INCOMPLETE": 2450,
+    "SIGNALS_CONFLICT": 4905,
+    "RSI_NO_CONFIRMATION": 1124,
+    "RSI_TOO_EXTENDED": 925,
+    "SPREAD_TOO_WIDE": 36
+  },
+  "decision_content_hash": "70747f730c72c5bb69442ab4055f2acf83cccd2d0f51c86cdcc98218016cbaaf",
+  "near_universal_signal_warning": false,
+  "thresholds_tuned": false,
+  "database_writes": 0
+}
