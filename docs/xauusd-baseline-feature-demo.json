@@ -1,0 +1,29 @@
+{
+  "source_date": "2024-02-20",
+  "dataset_key": "e546c376d9809657adee6c9d10068a448e5dc7aaf0ab9669e99efe52e328cae1",
+  "policy_key": "3ca1de378bb35c6abbacf25652a1b8600ee107e23db6fa2f31e607bcee63a28d",
+  "feature_set_version": "xauusd-baseline-features-v1",
+  "input_bars": 276,
+  "output_rows": 276,
+  "discontinuity_resets": 1,
+  "dataset_resets": 1,
+  "rows_with_unavailable": 50,
+  "unavailable_by_feature": {
+    "return_1": 2,
+    "return_3": 6,
+    "momentum_3": 6,
+    "return_12": 24,
+    "momentum_12": 24,
+    "ema_12": 22,
+    "ema_26": 50,
+    "ema_difference": 50,
+    "rsi_14": 28
+  },
+  "unavailable_reasons": {
+    "WARMUP": 106,
+    "GAP_WARMUP": 106
+  },
+  "first_opening": "2024-02-20T05:00:00+00:00",
+  "last_opening": "2024-02-21T04:55:00+00:00",
+  "feature_rows_persisted": 0
+}
