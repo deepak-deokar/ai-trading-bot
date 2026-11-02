@@ -1,0 +1,121 @@
+{
+  "scope": "synthetic execution mechanics only; no account P&L",
+  "examples": [
+    {
+      "direction": "LONG",
+      "synthetic_volume": "0.37",
+      "lifecycle": {
+        "simulation_id": "00000000-0000-0000-0000-000000000001",
+        "position": {
+          "position_id": "adea2e89-176f-5031-8eb5-f759cb92a751",
+          "canonical_symbol": "XAUUSD",
+          "direction": "LONG",
+          "volume": "0.37",
+          "entry_price": "2000.50",
+          "opened_at": "2024-02-20T10:00:00Z",
+          "closed_at": "2024-02-20T10:00:00Z",
+          "exit_price": "2000.00"
+        },
+        "fills": [
+          {
+            "execution_id": "011e79c7-f109-52e8-bf54-27ba96105e54",
+            "position_id": "adea2e89-176f-5031-8eb5-f759cb92a751",
+            "intent": "OPEN",
+            "direction": "LONG",
+            "action": "buy",
+            "executed_price": "2000.50",
+            "quote": {
+              "canonical_symbol": "XAUUSD",
+              "timestamp": "2024-02-20T10:00:00Z",
+              "bid": "2000.00",
+              "ask": "2000.50",
+              "source": "TEST_FIXTURE"
+            },
+            "source_market_data_id": "synthetic:unchanged-quote",
+            "strategy_decision_id": null
+          },
+          {
+            "execution_id": "c5955a2f-f9eb-52d4-95b6-6c635d3acda6",
+            "position_id": "adea2e89-176f-5031-8eb5-f759cb92a751",
+            "intent": "CLOSE",
+            "direction": "LONG",
+            "action": "sell",
+            "executed_price": "2000.00",
+            "quote": {
+              "canonical_symbol": "XAUUSD",
+              "timestamp": "2024-02-20T10:00:00Z",
+              "bid": "2000.00",
+              "ask": "2000.50",
+              "source": "TEST_FIXTURE"
+            },
+            "source_market_data_id": "synthetic:unchanged-quote",
+            "strategy_decision_id": null
+          }
+        ]
+      },
+      "entry_fill": "2000.50",
+      "exit_fill": "2000.00",
+      "quote_spread": "0.50",
+      "raw_directional_price_movement": "-0.50",
+      "spread_disadvantage_price_units": "0.50"
+    },
+    {
+      "direction": "SHORT",
+      "synthetic_volume": "0.37",
+      "lifecycle": {
+        "simulation_id": "00000000-0000-0000-0000-000000000002",
+        "position": {
+          "position_id": "e8ded635-c964-505d-9f96-e4c87427e2a3",
+          "canonical_symbol": "XAUUSD",
+          "direction": "SHORT",
+          "volume": "0.37",
+          "entry_price": "2000.00",
+          "opened_at": "2024-02-20T10:00:00Z",
+          "closed_at": "2024-02-20T10:00:00Z",
+          "exit_price": "2000.50"
+        },
+        "fills": [
+          {
+            "execution_id": "bf3a78f9-48ff-5555-9632-dff43934d63c",
+            "position_id": "e8ded635-c964-505d-9f96-e4c87427e2a3",
+            "intent": "OPEN",
+            "direction": "SHORT",
+            "action": "sell",
+            "executed_price": "2000.00",
+            "quote": {
+              "canonical_symbol": "XAUUSD",
+              "timestamp": "2024-02-20T10:00:00Z",
+              "bid": "2000.00",
+              "ask": "2000.50",
+              "source": "TEST_FIXTURE"
+            },
+            "source_market_data_id": "synthetic:unchanged-quote",
+            "strategy_decision_id": null
+          },
+          {
+            "execution_id": "d3c25140-1490-55b0-8af6-2a24661d5475",
+            "position_id": "e8ded635-c964-505d-9f96-e4c87427e2a3",
+            "intent": "CLOSE",
+            "direction": "SHORT",
+            "action": "buy",
+            "executed_price": "2000.50",
+            "quote": {
+              "canonical_symbol": "XAUUSD",
+              "timestamp": "2024-02-20T10:00:00Z",
+              "bid": "2000.00",
+              "ask": "2000.50",
+              "source": "TEST_FIXTURE"
+            },
+            "source_market_data_id": "synthetic:unchanged-quote",
+            "strategy_decision_id": null
+          }
+        ]
+      },
+      "entry_fill": "2000.00",
+      "exit_fill": "2000.50",
+      "quote_spread": "0.50",
+      "raw_directional_price_movement": "-0.50",
+      "spread_disadvantage_price_units": "0.50"
+    }
+  ]
+}
