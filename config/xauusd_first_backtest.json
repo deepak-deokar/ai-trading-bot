@@ -1,0 +1,20 @@
+{
+  "research_only": true,
+  "starting_balance": "500",
+  "risk_fraction": "0.01",
+  "contract": {
+    "specification": {
+      "contract_size": "10",
+      "minimum_volume": "0.25",
+      "maximum_volume": "2",
+      "volume_step": "0.25",
+      "tick_size": "0.01",
+      "specification_source": "TEST_FIXTURE"
+    },
+    "price_unit": "USD_PER_TROY_OUNCE",
+    "contract_size_unit": "TROY_OUNCES_PER_VOLUME_UNIT",
+    "quote_currency": "USD",
+    "account_currency": "USD"
+  },
+  "commission": {"currency": "USD", "fixed_round_trip_usd": "1.25"}
+}
