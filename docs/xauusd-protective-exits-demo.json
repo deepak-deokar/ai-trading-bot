@@ -1,0 +1,1571 @@
+{
+  "scope": "RESEARCH DEMONSTRATION ONLY",
+  "scenarios": [
+    {
+      "scenario": "long_target",
+      "evaluation": {
+        "instruction": {
+          "position_id": "adea2e89-176f-5031-8eb5-f759cb92a751",
+          "direction": "LONG",
+          "stop_price": "1995",
+          "target_price": "2005",
+          "created_at": "2024-02-20T10:00:00Z",
+          "source_identity": "synthetic:long_target:instruction",
+          "creation_quote": {
+            "canonical_symbol": "XAUUSD",
+            "timestamp": "2024-02-20T10:00:00Z",
+            "bid": "2000",
+            "ask": "2001",
+            "source": "TEST_FIXTURE"
+          }
+        },
+        "lifecycle": {
+          "simulation_id": "00000000-0000-0000-0000-000000000001",
+          "position": {
+            "position_id": "adea2e89-176f-5031-8eb5-f759cb92a751",
+            "canonical_symbol": "XAUUSD",
+            "direction": "LONG",
+            "volume": "0.5",
+            "entry_price": "2001",
+            "opened_at": "2024-02-20T10:00:00Z",
+            "closed_at": "2024-02-20T10:05:00Z",
+            "exit_price": "2005"
+          },
+          "fills": [
+            {
+              "execution_id": "011e79c7-f109-52e8-bf54-27ba96105e54",
+              "position_id": "adea2e89-176f-5031-8eb5-f759cb92a751",
+              "intent": "OPEN",
+              "direction": "LONG",
+              "action": "buy",
+              "executed_price": "2001",
+              "quote": {
+                "canonical_symbol": "XAUUSD",
+                "timestamp": "2024-02-20T10:00:00Z",
+                "bid": "2000",
+                "ask": "2001",
+                "source": "TEST_FIXTURE"
+              },
+              "protective_bar": null,
+              "source_market_data_id": "synthetic:long_target:entry",
+              "strategy_decision_id": null
+            },
+            {
+              "execution_id": "c5955a2f-f9eb-52d4-95b6-6c635d3acda6",
+              "position_id": "adea2e89-176f-5031-8eb5-f759cb92a751",
+              "intent": "CLOSE",
+              "direction": "LONG",
+              "action": "sell",
+              "executed_price": "2005",
+              "quote": null,
+              "protective_bar": {
+                "instruction": {
+                  "position_id": "adea2e89-176f-5031-8eb5-f759cb92a751",
+                  "direction": "LONG",
+                  "stop_price": "1995",
+                  "target_price": "2005",
+                  "created_at": "2024-02-20T10:00:00Z",
+                  "source_identity": "synthetic:long_target:instruction",
+                  "creation_quote": {
+                    "canonical_symbol": "XAUUSD",
+                    "timestamp": "2024-02-20T10:00:00Z",
+                    "bid": "2000",
+                    "ask": "2001",
+                    "source": "TEST_FIXTURE"
+                  }
+                },
+                "bar": {
+                  "canonical_symbol": "XAUUSD",
+                  "interval": "5minute",
+                  "opening_timestamp": "2024-02-20T10:00:00Z",
+                  "bid_open": "2000",
+                  "bid_high": "2006",
+                  "bid_low": "1998",
+                  "bid_close": "2000",
+                  "ask_open": "2001",
+                  "ask_high": "2007",
+                  "ask_low": "1999",
+                  "ask_close": "2001",
+                  "tick_count": 10
+                },
+                "evaluated_at": "2024-02-20T10:05:00Z",
+                "source_market_data_id": "synthetic:long_target:bar",
+                "policy": "STOP_FIRST_CONSERVATIVE",
+                "fill_convention": "LEVEL_OR_WORSE_STOP_OPEN_TARGET_AT_LEVEL"
+              },
+              "source_market_data_id": "synthetic:long_target:bar",
+              "strategy_decision_id": null
+            }
+          ]
+        },
+        "observation": {
+          "instruction": {
+            "position_id": "adea2e89-176f-5031-8eb5-f759cb92a751",
+            "direction": "LONG",
+            "stop_price": "1995",
+            "target_price": "2005",
+            "created_at": "2024-02-20T10:00:00Z",
+            "source_identity": "synthetic:long_target:instruction",
+            "creation_quote": {
+              "canonical_symbol": "XAUUSD",
+              "timestamp": "2024-02-20T10:00:00Z",
+              "bid": "2000",
+              "ask": "2001",
+              "source": "TEST_FIXTURE"
+            }
+          },
+          "bar": {
+            "canonical_symbol": "XAUUSD",
+            "interval": "5minute",
+            "opening_timestamp": "2024-02-20T10:00:00Z",
+            "bid_open": "2000",
+            "bid_high": "2006",
+            "bid_low": "1998",
+            "bid_close": "2000",
+            "ask_open": "2001",
+            "ask_high": "2007",
+            "ask_low": "1999",
+            "ask_close": "2001",
+            "tick_count": 10
+          },
+          "evaluated_at": "2024-02-20T10:05:00Z",
+          "source_market_data_id": "synthetic:long_target:bar",
+          "policy": "STOP_FIRST_CONSERVATIVE",
+          "fill_convention": "LEVEL_OR_WORSE_STOP_OPEN_TARGET_AT_LEVEL"
+        },
+        "evaluated_at": "2024-02-20T10:05:00Z",
+        "trigger": "TARGET_TRIGGERED",
+        "source_market_data_id": "synthetic:long_target:bar"
+      },
+      "audit": {
+        "position_id": "adea2e89-176f-5031-8eb5-f759cb92a751",
+        "execution_side": "sell",
+        "trigger_market_side": "BID",
+        "fill_price": "2005",
+        "fill_id": "c5955a2f-f9eb-52d4-95b6-6c635d3acda6",
+        "intrabar_ambiguous": false,
+        "ambiguity_reason": null,
+        "raw_price_movement": "4"
+      },
+      "accounting": {
+        "lifecycle": {
+          "simulation_id": "00000000-0000-0000-0000-000000000001",
+          "position": {
+            "position_id": "adea2e89-176f-5031-8eb5-f759cb92a751",
+            "canonical_symbol": "XAUUSD",
+            "direction": "LONG",
+            "volume": "0.5",
+            "entry_price": "2001",
+            "opened_at": "2024-02-20T10:00:00Z",
+            "closed_at": "2024-02-20T10:05:00Z",
+            "exit_price": "2005"
+          },
+          "fills": [
+            {
+              "execution_id": "011e79c7-f109-52e8-bf54-27ba96105e54",
+              "position_id": "adea2e89-176f-5031-8eb5-f759cb92a751",
+              "intent": "OPEN",
+              "direction": "LONG",
+              "action": "buy",
+              "executed_price": "2001",
+              "quote": {
+                "canonical_symbol": "XAUUSD",
+                "timestamp": "2024-02-20T10:00:00Z",
+                "bid": "2000",
+                "ask": "2001",
+                "source": "TEST_FIXTURE"
+              },
+              "protective_bar": null,
+              "source_market_data_id": "synthetic:long_target:entry",
+              "strategy_decision_id": null
+            },
+            {
+              "execution_id": "c5955a2f-f9eb-52d4-95b6-6c635d3acda6",
+              "position_id": "adea2e89-176f-5031-8eb5-f759cb92a751",
+              "intent": "CLOSE",
+              "direction": "LONG",
+              "action": "sell",
+              "executed_price": "2005",
+              "quote": null,
+              "protective_bar": {
+                "instruction": {
+                  "position_id": "adea2e89-176f-5031-8eb5-f759cb92a751",
+                  "direction": "LONG",
+                  "stop_price": "1995",
+                  "target_price": "2005",
+                  "created_at": "2024-02-20T10:00:00Z",
+                  "source_identity": "synthetic:long_target:instruction",
+                  "creation_quote": {
+                    "canonical_symbol": "XAUUSD",
+                    "timestamp": "2024-02-20T10:00:00Z",
+                    "bid": "2000",
+                    "ask": "2001",
+                    "source": "TEST_FIXTURE"
+                  }
+                },
+                "bar": {
+                  "canonical_symbol": "XAUUSD",
+                  "interval": "5minute",
+                  "opening_timestamp": "2024-02-20T10:00:00Z",
+                  "bid_open": "2000",
+                  "bid_high": "2006",
+                  "bid_low": "1998",
+                  "bid_close": "2000",
+                  "ask_open": "2001",
+                  "ask_high": "2007",
+                  "ask_low": "1999",
+                  "ask_close": "2001",
+                  "tick_count": 10
+                },
+                "evaluated_at": "2024-02-20T10:05:00Z",
+                "source_market_data_id": "synthetic:long_target:bar",
+                "policy": "STOP_FIRST_CONSERVATIVE",
+                "fill_convention": "LEVEL_OR_WORSE_STOP_OPEN_TARGET_AT_LEVEL"
+              },
+              "source_market_data_id": "synthetic:long_target:bar",
+              "strategy_decision_id": null
+            }
+          ]
+        },
+        "contract": {
+          "specification": {
+            "canonical_symbol": "XAUUSD",
+            "broker_symbol": null,
+            "contract_size": "10",
+            "minimum_volume": "0.25",
+            "maximum_volume": "2",
+            "volume_step": "0.25",
+            "tick_size": "0.01",
+            "tick_value": null,
+            "price_digits": null,
+            "minimum_stop_distance": null,
+            "specification_source": "TEST_FIXTURE",
+            "observed_at": null,
+            "schema_version": 1
+          },
+          "price_unit": "USD_PER_TROY_OUNCE",
+          "contract_size_unit": "TROY_OUNCES_PER_VOLUME_UNIT",
+          "quote_currency": "USD",
+          "account_currency": "USD"
+        },
+        "contract_specification_id": "f9d861b7fd4e7e44cc0a1df3463849a7e43619e96db78bfa60b4132d0d06ba3a",
+        "conversion_id": "4abb103e01ada43b7fcf12465f6ad91004677d1d2b14700b1b7a83c914ab461f",
+        "commission_model": {
+          "currency": "USD",
+          "fixed_round_trip_usd": "1.25"
+        },
+        "raw_price_movement": "4",
+        "gross_usd": "20.0",
+        "commission_usd": "1.25",
+        "net_usd": "18.75",
+        "slippage_usd": "0",
+        "spread_treatment": "EMBEDDED_IN_FILLS_NO_EXTRA_DEDUCTION"
+      }
+    },
+    {
+      "scenario": "long_stop",
+      "evaluation": {
+        "instruction": {
+          "position_id": "e8ded635-c964-505d-9f96-e4c87427e2a3",
+          "direction": "LONG",
+          "stop_price": "1995",
+          "target_price": "2005",
+          "created_at": "2024-02-20T10:00:00Z",
+          "source_identity": "synthetic:long_stop:instruction",
+          "creation_quote": {
+            "canonical_symbol": "XAUUSD",
+            "timestamp": "2024-02-20T10:00:00Z",
+            "bid": "2000",
+            "ask": "2001",
+            "source": "TEST_FIXTURE"
+          }
+        },
+        "lifecycle": {
+          "simulation_id": "00000000-0000-0000-0000-000000000002",
+          "position": {
+            "position_id": "e8ded635-c964-505d-9f96-e4c87427e2a3",
+            "canonical_symbol": "XAUUSD",
+            "direction": "LONG",
+            "volume": "0.5",
+            "entry_price": "2001",
+            "opened_at": "2024-02-20T10:00:00Z",
+            "closed_at": "2024-02-20T10:05:00Z",
+            "exit_price": "1995"
+          },
+          "fills": [
+            {
+              "execution_id": "bf3a78f9-48ff-5555-9632-dff43934d63c",
+              "position_id": "e8ded635-c964-505d-9f96-e4c87427e2a3",
+              "intent": "OPEN",
+              "direction": "LONG",
+              "action": "buy",
+              "executed_price": "2001",
+              "quote": {
+                "canonical_symbol": "XAUUSD",
+                "timestamp": "2024-02-20T10:00:00Z",
+                "bid": "2000",
+                "ask": "2001",
+                "source": "TEST_FIXTURE"
+              },
+              "protective_bar": null,
+              "source_market_data_id": "synthetic:long_stop:entry",
+              "strategy_decision_id": null
+            },
+            {
+              "execution_id": "d3c25140-1490-55b0-8af6-2a24661d5475",
+              "position_id": "e8ded635-c964-505d-9f96-e4c87427e2a3",
+              "intent": "CLOSE",
+              "direction": "LONG",
+              "action": "sell",
+              "executed_price": "1995",
+              "quote": null,
+              "protective_bar": {
+                "instruction": {
+                  "position_id": "e8ded635-c964-505d-9f96-e4c87427e2a3",
+                  "direction": "LONG",
+                  "stop_price": "1995",
+                  "target_price": "2005",
+                  "created_at": "2024-02-20T10:00:00Z",
+                  "source_identity": "synthetic:long_stop:instruction",
+                  "creation_quote": {
+                    "canonical_symbol": "XAUUSD",
+                    "timestamp": "2024-02-20T10:00:00Z",
+                    "bid": "2000",
+                    "ask": "2001",
+                    "source": "TEST_FIXTURE"
+                  }
+                },
+                "bar": {
+                  "canonical_symbol": "XAUUSD",
+                  "interval": "5minute",
+                  "opening_timestamp": "2024-02-20T10:00:00Z",
+                  "bid_open": "2000",
+                  "bid_high": "2002",
+                  "bid_low": "1994",
+                  "bid_close": "2000",
+                  "ask_open": "2001",
+                  "ask_high": "2003",
+                  "ask_low": "1995",
+                  "ask_close": "2001",
+                  "tick_count": 10
+                },
+                "evaluated_at": "2024-02-20T10:05:00Z",
+                "source_market_data_id": "synthetic:long_stop:bar",
+                "policy": "STOP_FIRST_CONSERVATIVE",
+                "fill_convention": "LEVEL_OR_WORSE_STOP_OPEN_TARGET_AT_LEVEL"
+              },
+              "source_market_data_id": "synthetic:long_stop:bar",
+              "strategy_decision_id": null
+            }
+          ]
+        },
+        "observation": {
+          "instruction": {
+            "position_id": "e8ded635-c964-505d-9f96-e4c87427e2a3",
+            "direction": "LONG",
+            "stop_price": "1995",
+            "target_price": "2005",
+            "created_at": "2024-02-20T10:00:00Z",
+            "source_identity": "synthetic:long_stop:instruction",
+            "creation_quote": {
+              "canonical_symbol": "XAUUSD",
+              "timestamp": "2024-02-20T10:00:00Z",
+              "bid": "2000",
+              "ask": "2001",
+              "source": "TEST_FIXTURE"
+            }
+          },
+          "bar": {
+            "canonical_symbol": "XAUUSD",
+            "interval": "5minute",
+            "opening_timestamp": "2024-02-20T10:00:00Z",
+            "bid_open": "2000",
+            "bid_high": "2002",
+            "bid_low": "1994",
+            "bid_close": "2000",
+            "ask_open": "2001",
+            "ask_high": "2003",
+            "ask_low": "1995",
+            "ask_close": "2001",
+            "tick_count": 10
+          },
+          "evaluated_at": "2024-02-20T10:05:00Z",
+          "source_market_data_id": "synthetic:long_stop:bar",
+          "policy": "STOP_FIRST_CONSERVATIVE",
+          "fill_convention": "LEVEL_OR_WORSE_STOP_OPEN_TARGET_AT_LEVEL"
+        },
+        "evaluated_at": "2024-02-20T10:05:00Z",
+        "trigger": "STOP_TRIGGERED",
+        "source_market_data_id": "synthetic:long_stop:bar"
+      },
+      "audit": {
+        "position_id": "e8ded635-c964-505d-9f96-e4c87427e2a3",
+        "execution_side": "sell",
+        "trigger_market_side": "BID",
+        "fill_price": "1995",
+        "fill_id": "d3c25140-1490-55b0-8af6-2a24661d5475",
+        "intrabar_ambiguous": false,
+        "ambiguity_reason": null,
+        "raw_price_movement": "-6"
+      },
+      "accounting": {
+        "lifecycle": {
+          "simulation_id": "00000000-0000-0000-0000-000000000002",
+          "position": {
+            "position_id": "e8ded635-c964-505d-9f96-e4c87427e2a3",
+            "canonical_symbol": "XAUUSD",
+            "direction": "LONG",
+            "volume": "0.5",
+            "entry_price": "2001",
+            "opened_at": "2024-02-20T10:00:00Z",
+            "closed_at": "2024-02-20T10:05:00Z",
+            "exit_price": "1995"
+          },
+          "fills": [
+            {
+              "execution_id": "bf3a78f9-48ff-5555-9632-dff43934d63c",
+              "position_id": "e8ded635-c964-505d-9f96-e4c87427e2a3",
+              "intent": "OPEN",
+              "direction": "LONG",
+              "action": "buy",
+              "executed_price": "2001",
+              "quote": {
+                "canonical_symbol": "XAUUSD",
+                "timestamp": "2024-02-20T10:00:00Z",
+                "bid": "2000",
+                "ask": "2001",
+                "source": "TEST_FIXTURE"
+              },
+              "protective_bar": null,
+              "source_market_data_id": "synthetic:long_stop:entry",
+              "strategy_decision_id": null
+            },
+            {
+              "execution_id": "d3c25140-1490-55b0-8af6-2a24661d5475",
+              "position_id": "e8ded635-c964-505d-9f96-e4c87427e2a3",
+              "intent": "CLOSE",
+              "direction": "LONG",
+              "action": "sell",
+              "executed_price": "1995",
+              "quote": null,
+              "protective_bar": {
+                "instruction": {
+                  "position_id": "e8ded635-c964-505d-9f96-e4c87427e2a3",
+                  "direction": "LONG",
+                  "stop_price": "1995",
+                  "target_price": "2005",
+                  "created_at": "2024-02-20T10:00:00Z",
+                  "source_identity": "synthetic:long_stop:instruction",
+                  "creation_quote": {
+                    "canonical_symbol": "XAUUSD",
+                    "timestamp": "2024-02-20T10:00:00Z",
+                    "bid": "2000",
+                    "ask": "2001",
+                    "source": "TEST_FIXTURE"
+                  }
+                },
+                "bar": {
+                  "canonical_symbol": "XAUUSD",
+                  "interval": "5minute",
+                  "opening_timestamp": "2024-02-20T10:00:00Z",
+                  "bid_open": "2000",
+                  "bid_high": "2002",
+                  "bid_low": "1994",
+                  "bid_close": "2000",
+                  "ask_open": "2001",
+                  "ask_high": "2003",
+                  "ask_low": "1995",
+                  "ask_close": "2001",
+                  "tick_count": 10
+                },
+                "evaluated_at": "2024-02-20T10:05:00Z",
+                "source_market_data_id": "synthetic:long_stop:bar",
+                "policy": "STOP_FIRST_CONSERVATIVE",
+                "fill_convention": "LEVEL_OR_WORSE_STOP_OPEN_TARGET_AT_LEVEL"
+              },
+              "source_market_data_id": "synthetic:long_stop:bar",
+              "strategy_decision_id": null
+            }
+          ]
+        },
+        "contract": {
+          "specification": {
+            "canonical_symbol": "XAUUSD",
+            "broker_symbol": null,
+            "contract_size": "10",
+            "minimum_volume": "0.25",
+            "maximum_volume": "2",
+            "volume_step": "0.25",
+            "tick_size": "0.01",
+            "tick_value": null,
+            "price_digits": null,
+            "minimum_stop_distance": null,
+            "specification_source": "TEST_FIXTURE",
+            "observed_at": null,
+            "schema_version": 1
+          },
+          "price_unit": "USD_PER_TROY_OUNCE",
+          "contract_size_unit": "TROY_OUNCES_PER_VOLUME_UNIT",
+          "quote_currency": "USD",
+          "account_currency": "USD"
+        },
+        "contract_specification_id": "f9d861b7fd4e7e44cc0a1df3463849a7e43619e96db78bfa60b4132d0d06ba3a",
+        "conversion_id": "4abb103e01ada43b7fcf12465f6ad91004677d1d2b14700b1b7a83c914ab461f",
+        "commission_model": {
+          "currency": "USD",
+          "fixed_round_trip_usd": "1.25"
+        },
+        "raw_price_movement": "-6",
+        "gross_usd": "-30.0",
+        "commission_usd": "1.25",
+        "net_usd": "-31.25",
+        "slippage_usd": "0",
+        "spread_treatment": "EMBEDDED_IN_FILLS_NO_EXTRA_DEDUCTION"
+      }
+    },
+    {
+      "scenario": "short_target",
+      "evaluation": {
+        "instruction": {
+          "position_id": "8a286f6e-4b01-5f5a-9326-2eebd236d3c9",
+          "direction": "SHORT",
+          "stop_price": "2005",
+          "target_price": "1995",
+          "created_at": "2024-02-20T10:00:00Z",
+          "source_identity": "synthetic:short_target:instruction",
+          "creation_quote": {
+            "canonical_symbol": "XAUUSD",
+            "timestamp": "2024-02-20T10:00:00Z",
+            "bid": "2000",
+            "ask": "2001",
+            "source": "TEST_FIXTURE"
+          }
+        },
+        "lifecycle": {
+          "simulation_id": "00000000-0000-0000-0000-000000000003",
+          "position": {
+            "position_id": "8a286f6e-4b01-5f5a-9326-2eebd236d3c9",
+            "canonical_symbol": "XAUUSD",
+            "direction": "SHORT",
+            "volume": "0.5",
+            "entry_price": "2000",
+            "opened_at": "2024-02-20T10:00:00Z",
+            "closed_at": "2024-02-20T10:05:00Z",
+            "exit_price": "1995"
+          },
+          "fills": [
+            {
+              "execution_id": "6a24701c-795a-5608-84f9-4ebca4a76a6f",
+              "position_id": "8a286f6e-4b01-5f5a-9326-2eebd236d3c9",
+              "intent": "OPEN",
+              "direction": "SHORT",
+              "action": "sell",
+              "executed_price": "2000",
+              "quote": {
+                "canonical_symbol": "XAUUSD",
+                "timestamp": "2024-02-20T10:00:00Z",
+                "bid": "2000",
+                "ask": "2001",
+                "source": "TEST_FIXTURE"
+              },
+              "protective_bar": null,
+              "source_market_data_id": "synthetic:short_target:entry",
+              "strategy_decision_id": null
+            },
+            {
+              "execution_id": "ebed704a-d9f2-5089-93f8-37d5b2f79ccf",
+              "position_id": "8a286f6e-4b01-5f5a-9326-2eebd236d3c9",
+              "intent": "CLOSE",
+              "direction": "SHORT",
+              "action": "buy",
+              "executed_price": "1995",
+              "quote": null,
+              "protective_bar": {
+                "instruction": {
+                  "position_id": "8a286f6e-4b01-5f5a-9326-2eebd236d3c9",
+                  "direction": "SHORT",
+                  "stop_price": "2005",
+                  "target_price": "1995",
+                  "created_at": "2024-02-20T10:00:00Z",
+                  "source_identity": "synthetic:short_target:instruction",
+                  "creation_quote": {
+                    "canonical_symbol": "XAUUSD",
+                    "timestamp": "2024-02-20T10:00:00Z",
+                    "bid": "2000",
+                    "ask": "2001",
+                    "source": "TEST_FIXTURE"
+                  }
+                },
+                "bar": {
+                  "canonical_symbol": "XAUUSD",
+                  "interval": "5minute",
+                  "opening_timestamp": "2024-02-20T10:00:00Z",
+                  "bid_open": "2000",
+                  "bid_high": "2002",
+                  "bid_low": "1994",
+                  "bid_close": "2000",
+                  "ask_open": "2001",
+                  "ask_high": "2003",
+                  "ask_low": "1995",
+                  "ask_close": "2001",
+                  "tick_count": 10
+                },
+                "evaluated_at": "2024-02-20T10:05:00Z",
+                "source_market_data_id": "synthetic:short_target:bar",
+                "policy": "STOP_FIRST_CONSERVATIVE",
+                "fill_convention": "LEVEL_OR_WORSE_STOP_OPEN_TARGET_AT_LEVEL"
+              },
+              "source_market_data_id": "synthetic:short_target:bar",
+              "strategy_decision_id": null
+            }
+          ]
+        },
+        "observation": {
+          "instruction": {
+            "position_id": "8a286f6e-4b01-5f5a-9326-2eebd236d3c9",
+            "direction": "SHORT",
+            "stop_price": "2005",
+            "target_price": "1995",
+            "created_at": "2024-02-20T10:00:00Z",
+            "source_identity": "synthetic:short_target:instruction",
+            "creation_quote": {
+              "canonical_symbol": "XAUUSD",
+              "timestamp": "2024-02-20T10:00:00Z",
+              "bid": "2000",
+              "ask": "2001",
+              "source": "TEST_FIXTURE"
+            }
+          },
+          "bar": {
+            "canonical_symbol": "XAUUSD",
+            "interval": "5minute",
+            "opening_timestamp": "2024-02-20T10:00:00Z",
+            "bid_open": "2000",
+            "bid_high": "2002",
+            "bid_low": "1994",
+            "bid_close": "2000",
+            "ask_open": "2001",
+            "ask_high": "2003",
+            "ask_low": "1995",
+            "ask_close": "2001",
+            "tick_count": 10
+          },
+          "evaluated_at": "2024-02-20T10:05:00Z",
+          "source_market_data_id": "synthetic:short_target:bar",
+          "policy": "STOP_FIRST_CONSERVATIVE",
+          "fill_convention": "LEVEL_OR_WORSE_STOP_OPEN_TARGET_AT_LEVEL"
+        },
+        "evaluated_at": "2024-02-20T10:05:00Z",
+        "trigger": "TARGET_TRIGGERED",
+        "source_market_data_id": "synthetic:short_target:bar"
+      },
+      "audit": {
+        "position_id": "8a286f6e-4b01-5f5a-9326-2eebd236d3c9",
+        "execution_side": "buy",
+        "trigger_market_side": "ASK",
+        "fill_price": "1995",
+        "fill_id": "ebed704a-d9f2-5089-93f8-37d5b2f79ccf",
+        "intrabar_ambiguous": false,
+        "ambiguity_reason": null,
+        "raw_price_movement": "5"
+      },
+      "accounting": {
+        "lifecycle": {
+          "simulation_id": "00000000-0000-0000-0000-000000000003",
+          "position": {
+            "position_id": "8a286f6e-4b01-5f5a-9326-2eebd236d3c9",
+            "canonical_symbol": "XAUUSD",
+            "direction": "SHORT",
+            "volume": "0.5",
+            "entry_price": "2000",
+            "opened_at": "2024-02-20T10:00:00Z",
+            "closed_at": "2024-02-20T10:05:00Z",
+            "exit_price": "1995"
+          },
+          "fills": [
+            {
+              "execution_id": "6a24701c-795a-5608-84f9-4ebca4a76a6f",
+              "position_id": "8a286f6e-4b01-5f5a-9326-2eebd236d3c9",
+              "intent": "OPEN",
+              "direction": "SHORT",
+              "action": "sell",
+              "executed_price": "2000",
+              "quote": {
+                "canonical_symbol": "XAUUSD",
+                "timestamp": "2024-02-20T10:00:00Z",
+                "bid": "2000",
+                "ask": "2001",
+                "source": "TEST_FIXTURE"
+              },
+              "protective_bar": null,
+              "source_market_data_id": "synthetic:short_target:entry",
+              "strategy_decision_id": null
+            },
+            {
+              "execution_id": "ebed704a-d9f2-5089-93f8-37d5b2f79ccf",
+              "position_id": "8a286f6e-4b01-5f5a-9326-2eebd236d3c9",
+              "intent": "CLOSE",
+              "direction": "SHORT",
+              "action": "buy",
+              "executed_price": "1995",
+              "quote": null,
+              "protective_bar": {
+                "instruction": {
+                  "position_id": "8a286f6e-4b01-5f5a-9326-2eebd236d3c9",
+                  "direction": "SHORT",
+                  "stop_price": "2005",
+                  "target_price": "1995",
+                  "created_at": "2024-02-20T10:00:00Z",
+                  "source_identity": "synthetic:short_target:instruction",
+                  "creation_quote": {
+                    "canonical_symbol": "XAUUSD",
+                    "timestamp": "2024-02-20T10:00:00Z",
+                    "bid": "2000",
+                    "ask": "2001",
+                    "source": "TEST_FIXTURE"
+                  }
+                },
+                "bar": {
+                  "canonical_symbol": "XAUUSD",
+                  "interval": "5minute",
+                  "opening_timestamp": "2024-02-20T10:00:00Z",
+                  "bid_open": "2000",
+                  "bid_high": "2002",
+                  "bid_low": "1994",
+                  "bid_close": "2000",
+                  "ask_open": "2001",
+                  "ask_high": "2003",
+                  "ask_low": "1995",
+                  "ask_close": "2001",
+                  "tick_count": 10
+                },
+                "evaluated_at": "2024-02-20T10:05:00Z",
+                "source_market_data_id": "synthetic:short_target:bar",
+                "policy": "STOP_FIRST_CONSERVATIVE",
+                "fill_convention": "LEVEL_OR_WORSE_STOP_OPEN_TARGET_AT_LEVEL"
+              },
+              "source_market_data_id": "synthetic:short_target:bar",
+              "strategy_decision_id": null
+            }
+          ]
+        },
+        "contract": {
+          "specification": {
+            "canonical_symbol": "XAUUSD",
+            "broker_symbol": null,
+            "contract_size": "10",
+            "minimum_volume": "0.25",
+            "maximum_volume": "2",
+            "volume_step": "0.25",
+            "tick_size": "0.01",
+            "tick_value": null,
+            "price_digits": null,
+            "minimum_stop_distance": null,
+            "specification_source": "TEST_FIXTURE",
+            "observed_at": null,
+            "schema_version": 1
+          },
+          "price_unit": "USD_PER_TROY_OUNCE",
+          "contract_size_unit": "TROY_OUNCES_PER_VOLUME_UNIT",
+          "quote_currency": "USD",
+          "account_currency": "USD"
+        },
+        "contract_specification_id": "f9d861b7fd4e7e44cc0a1df3463849a7e43619e96db78bfa60b4132d0d06ba3a",
+        "conversion_id": "4abb103e01ada43b7fcf12465f6ad91004677d1d2b14700b1b7a83c914ab461f",
+        "commission_model": {
+          "currency": "USD",
+          "fixed_round_trip_usd": "1.25"
+        },
+        "raw_price_movement": "5",
+        "gross_usd": "25.0",
+        "commission_usd": "1.25",
+        "net_usd": "23.75",
+        "slippage_usd": "0",
+        "spread_treatment": "EMBEDDED_IN_FILLS_NO_EXTRA_DEDUCTION"
+      }
+    },
+    {
+      "scenario": "short_stop",
+      "evaluation": {
+        "instruction": {
+          "position_id": "280fa6f3-1d07-55ba-be99-74c832d50d9a",
+          "direction": "SHORT",
+          "stop_price": "2005",
+          "target_price": "1995",
+          "created_at": "2024-02-20T10:00:00Z",
+          "source_identity": "synthetic:short_stop:instruction",
+          "creation_quote": {
+            "canonical_symbol": "XAUUSD",
+            "timestamp": "2024-02-20T10:00:00Z",
+            "bid": "2000",
+            "ask": "2001",
+            "source": "TEST_FIXTURE"
+          }
+        },
+        "lifecycle": {
+          "simulation_id": "00000000-0000-0000-0000-000000000004",
+          "position": {
+            "position_id": "280fa6f3-1d07-55ba-be99-74c832d50d9a",
+            "canonical_symbol": "XAUUSD",
+            "direction": "SHORT",
+            "volume": "0.5",
+            "entry_price": "2000",
+            "opened_at": "2024-02-20T10:00:00Z",
+            "closed_at": "2024-02-20T10:05:00Z",
+            "exit_price": "2005"
+          },
+          "fills": [
+            {
+              "execution_id": "33ed9031-082d-540a-9b68-e8b4c76d9e94",
+              "position_id": "280fa6f3-1d07-55ba-be99-74c832d50d9a",
+              "intent": "OPEN",
+              "direction": "SHORT",
+              "action": "sell",
+              "executed_price": "2000",
+              "quote": {
+                "canonical_symbol": "XAUUSD",
+                "timestamp": "2024-02-20T10:00:00Z",
+                "bid": "2000",
+                "ask": "2001",
+                "source": "TEST_FIXTURE"
+              },
+              "protective_bar": null,
+              "source_market_data_id": "synthetic:short_stop:entry",
+              "strategy_decision_id": null
+            },
+            {
+              "execution_id": "a637ed2f-a9a7-5942-871b-bd2306e437b2",
+              "position_id": "280fa6f3-1d07-55ba-be99-74c832d50d9a",
+              "intent": "CLOSE",
+              "direction": "SHORT",
+              "action": "buy",
+              "executed_price": "2005",
+              "quote": null,
+              "protective_bar": {
+                "instruction": {
+                  "position_id": "280fa6f3-1d07-55ba-be99-74c832d50d9a",
+                  "direction": "SHORT",
+                  "stop_price": "2005",
+                  "target_price": "1995",
+                  "created_at": "2024-02-20T10:00:00Z",
+                  "source_identity": "synthetic:short_stop:instruction",
+                  "creation_quote": {
+                    "canonical_symbol": "XAUUSD",
+                    "timestamp": "2024-02-20T10:00:00Z",
+                    "bid": "2000",
+                    "ask": "2001",
+                    "source": "TEST_FIXTURE"
+                  }
+                },
+                "bar": {
+                  "canonical_symbol": "XAUUSD",
+                  "interval": "5minute",
+                  "opening_timestamp": "2024-02-20T10:00:00Z",
+                  "bid_open": "2000",
+                  "bid_high": "2004",
+                  "bid_low": "1998",
+                  "bid_close": "2000",
+                  "ask_open": "2001",
+                  "ask_high": "2005",
+                  "ask_low": "1999",
+                  "ask_close": "2001",
+                  "tick_count": 10
+                },
+                "evaluated_at": "2024-02-20T10:05:00Z",
+                "source_market_data_id": "synthetic:short_stop:bar",
+                "policy": "STOP_FIRST_CONSERVATIVE",
+                "fill_convention": "LEVEL_OR_WORSE_STOP_OPEN_TARGET_AT_LEVEL"
+              },
+              "source_market_data_id": "synthetic:short_stop:bar",
+              "strategy_decision_id": null
+            }
+          ]
+        },
+        "observation": {
+          "instruction": {
+            "position_id": "280fa6f3-1d07-55ba-be99-74c832d50d9a",
+            "direction": "SHORT",
+            "stop_price": "2005",
+            "target_price": "1995",
+            "created_at": "2024-02-20T10:00:00Z",
+            "source_identity": "synthetic:short_stop:instruction",
+            "creation_quote": {
+              "canonical_symbol": "XAUUSD",
+              "timestamp": "2024-02-20T10:00:00Z",
+              "bid": "2000",
+              "ask": "2001",
+              "source": "TEST_FIXTURE"
+            }
+          },
+          "bar": {
+            "canonical_symbol": "XAUUSD",
+            "interval": "5minute",
+            "opening_timestamp": "2024-02-20T10:00:00Z",
+            "bid_open": "2000",
+            "bid_high": "2004",
+            "bid_low": "1998",
+            "bid_close": "2000",
+            "ask_open": "2001",
+            "ask_high": "2005",
+            "ask_low": "1999",
+            "ask_close": "2001",
+            "tick_count": 10
+          },
+          "evaluated_at": "2024-02-20T10:05:00Z",
+          "source_market_data_id": "synthetic:short_stop:bar",
+          "policy": "STOP_FIRST_CONSERVATIVE",
+          "fill_convention": "LEVEL_OR_WORSE_STOP_OPEN_TARGET_AT_LEVEL"
+        },
+        "evaluated_at": "2024-02-20T10:05:00Z",
+        "trigger": "STOP_TRIGGERED",
+        "source_market_data_id": "synthetic:short_stop:bar"
+      },
+      "audit": {
+        "position_id": "280fa6f3-1d07-55ba-be99-74c832d50d9a",
+        "execution_side": "buy",
+        "trigger_market_side": "ASK",
+        "fill_price": "2005",
+        "fill_id": "a637ed2f-a9a7-5942-871b-bd2306e437b2",
+        "intrabar_ambiguous": false,
+        "ambiguity_reason": null,
+        "raw_price_movement": "-5"
+      },
+      "accounting": {
+        "lifecycle": {
+          "simulation_id": "00000000-0000-0000-0000-000000000004",
+          "position": {
+            "position_id": "280fa6f3-1d07-55ba-be99-74c832d50d9a",
+            "canonical_symbol": "XAUUSD",
+            "direction": "SHORT",
+            "volume": "0.5",
+            "entry_price": "2000",
+            "opened_at": "2024-02-20T10:00:00Z",
+            "closed_at": "2024-02-20T10:05:00Z",
+            "exit_price": "2005"
+          },
+          "fills": [
+            {
+              "execution_id": "33ed9031-082d-540a-9b68-e8b4c76d9e94",
+              "position_id": "280fa6f3-1d07-55ba-be99-74c832d50d9a",
+              "intent": "OPEN",
+              "direction": "SHORT",
+              "action": "sell",
+              "executed_price": "2000",
+              "quote": {
+                "canonical_symbol": "XAUUSD",
+                "timestamp": "2024-02-20T10:00:00Z",
+                "bid": "2000",
+                "ask": "2001",
+                "source": "TEST_FIXTURE"
+              },
+              "protective_bar": null,
+              "source_market_data_id": "synthetic:short_stop:entry",
+              "strategy_decision_id": null
+            },
+            {
+              "execution_id": "a637ed2f-a9a7-5942-871b-bd2306e437b2",
+              "position_id": "280fa6f3-1d07-55ba-be99-74c832d50d9a",
+              "intent": "CLOSE",
+              "direction": "SHORT",
+              "action": "buy",
+              "executed_price": "2005",
+              "quote": null,
+              "protective_bar": {
+                "instruction": {
+                  "position_id": "280fa6f3-1d07-55ba-be99-74c832d50d9a",
+                  "direction": "SHORT",
+                  "stop_price": "2005",
+                  "target_price": "1995",
+                  "created_at": "2024-02-20T10:00:00Z",
+                  "source_identity": "synthetic:short_stop:instruction",
+                  "creation_quote": {
+                    "canonical_symbol": "XAUUSD",
+                    "timestamp": "2024-02-20T10:00:00Z",
+                    "bid": "2000",
+                    "ask": "2001",
+                    "source": "TEST_FIXTURE"
+                  }
+                },
+                "bar": {
+                  "canonical_symbol": "XAUUSD",
+                  "interval": "5minute",
+                  "opening_timestamp": "2024-02-20T10:00:00Z",
+                  "bid_open": "2000",
+                  "bid_high": "2004",
+                  "bid_low": "1998",
+                  "bid_close": "2000",
+                  "ask_open": "2001",
+                  "ask_high": "2005",
+                  "ask_low": "1999",
+                  "ask_close": "2001",
+                  "tick_count": 10
+                },
+                "evaluated_at": "2024-02-20T10:05:00Z",
+                "source_market_data_id": "synthetic:short_stop:bar",
+                "policy": "STOP_FIRST_CONSERVATIVE",
+                "fill_convention": "LEVEL_OR_WORSE_STOP_OPEN_TARGET_AT_LEVEL"
+              },
+              "source_market_data_id": "synthetic:short_stop:bar",
+              "strategy_decision_id": null
+            }
+          ]
+        },
+        "contract": {
+          "specification": {
+            "canonical_symbol": "XAUUSD",
+            "broker_symbol": null,
+            "contract_size": "10",
+            "minimum_volume": "0.25",
+            "maximum_volume": "2",
+            "volume_step": "0.25",
+            "tick_size": "0.01",
+            "tick_value": null,
+            "price_digits": null,
+            "minimum_stop_distance": null,
+            "specification_source": "TEST_FIXTURE",
+            "observed_at": null,
+            "schema_version": 1
+          },
+          "price_unit": "USD_PER_TROY_OUNCE",
+          "contract_size_unit": "TROY_OUNCES_PER_VOLUME_UNIT",
+          "quote_currency": "USD",
+          "account_currency": "USD"
+        },
+        "contract_specification_id": "f9d861b7fd4e7e44cc0a1df3463849a7e43619e96db78bfa60b4132d0d06ba3a",
+        "conversion_id": "4abb103e01ada43b7fcf12465f6ad91004677d1d2b14700b1b7a83c914ab461f",
+        "commission_model": {
+          "currency": "USD",
+          "fixed_round_trip_usd": "1.25"
+        },
+        "raw_price_movement": "-5",
+        "gross_usd": "-25.0",
+        "commission_usd": "1.25",
+        "net_usd": "-26.25",
+        "slippage_usd": "0",
+        "spread_treatment": "EMBEDDED_IN_FILLS_NO_EXTRA_DEDUCTION"
+      }
+    },
+    {
+      "scenario": "long_gap_stop",
+      "evaluation": {
+        "instruction": {
+          "position_id": "b9b03b64-69f5-5155-8e72-53ee1494ba6d",
+          "direction": "LONG",
+          "stop_price": "1995",
+          "target_price": "2005",
+          "created_at": "2024-02-20T10:00:00Z",
+          "source_identity": "synthetic:long_gap_stop:instruction",
+          "creation_quote": {
+            "canonical_symbol": "XAUUSD",
+            "timestamp": "2024-02-20T10:00:00Z",
+            "bid": "2000",
+            "ask": "2001",
+            "source": "TEST_FIXTURE"
+          }
+        },
+        "lifecycle": {
+          "simulation_id": "00000000-0000-0000-0000-000000000005",
+          "position": {
+            "position_id": "b9b03b64-69f5-5155-8e72-53ee1494ba6d",
+            "canonical_symbol": "XAUUSD",
+            "direction": "LONG",
+            "volume": "0.5",
+            "entry_price": "2001",
+            "opened_at": "2024-02-20T10:00:00Z",
+            "closed_at": "2024-02-20T10:05:00Z",
+            "exit_price": "1993"
+          },
+          "fills": [
+            {
+              "execution_id": "05a3f5c3-dfff-523e-994f-c8537d7c8b21",
+              "position_id": "b9b03b64-69f5-5155-8e72-53ee1494ba6d",
+              "intent": "OPEN",
+              "direction": "LONG",
+              "action": "buy",
+              "executed_price": "2001",
+              "quote": {
+                "canonical_symbol": "XAUUSD",
+                "timestamp": "2024-02-20T10:00:00Z",
+                "bid": "2000",
+                "ask": "2001",
+                "source": "TEST_FIXTURE"
+              },
+              "protective_bar": null,
+              "source_market_data_id": "synthetic:long_gap_stop:entry",
+              "strategy_decision_id": null
+            },
+            {
+              "execution_id": "be5fbf99-a506-5e28-bca5-fe16acfd7da8",
+              "position_id": "b9b03b64-69f5-5155-8e72-53ee1494ba6d",
+              "intent": "CLOSE",
+              "direction": "LONG",
+              "action": "sell",
+              "executed_price": "1993",
+              "quote": null,
+              "protective_bar": {
+                "instruction": {
+                  "position_id": "b9b03b64-69f5-5155-8e72-53ee1494ba6d",
+                  "direction": "LONG",
+                  "stop_price": "1995",
+                  "target_price": "2005",
+                  "created_at": "2024-02-20T10:00:00Z",
+                  "source_identity": "synthetic:long_gap_stop:instruction",
+                  "creation_quote": {
+                    "canonical_symbol": "XAUUSD",
+                    "timestamp": "2024-02-20T10:00:00Z",
+                    "bid": "2000",
+                    "ask": "2001",
+                    "source": "TEST_FIXTURE"
+                  }
+                },
+                "bar": {
+                  "canonical_symbol": "XAUUSD",
+                  "interval": "5minute",
+                  "opening_timestamp": "2024-02-20T10:00:00Z",
+                  "bid_open": "1993",
+                  "bid_high": "2002",
+                  "bid_low": "1993",
+                  "bid_close": "2000",
+                  "ask_open": "1994",
+                  "ask_high": "2003",
+                  "ask_low": "1994",
+                  "ask_close": "2001",
+                  "tick_count": 10
+                },
+                "evaluated_at": "2024-02-20T10:05:00Z",
+                "source_market_data_id": "synthetic:long_gap_stop:bar",
+                "policy": "STOP_FIRST_CONSERVATIVE",
+                "fill_convention": "LEVEL_OR_WORSE_STOP_OPEN_TARGET_AT_LEVEL"
+              },
+              "source_market_data_id": "synthetic:long_gap_stop:bar",
+              "strategy_decision_id": null
+            }
+          ]
+        },
+        "observation": {
+          "instruction": {
+            "position_id": "b9b03b64-69f5-5155-8e72-53ee1494ba6d",
+            "direction": "LONG",
+            "stop_price": "1995",
+            "target_price": "2005",
+            "created_at": "2024-02-20T10:00:00Z",
+            "source_identity": "synthetic:long_gap_stop:instruction",
+            "creation_quote": {
+              "canonical_symbol": "XAUUSD",
+              "timestamp": "2024-02-20T10:00:00Z",
+              "bid": "2000",
+              "ask": "2001",
+              "source": "TEST_FIXTURE"
+            }
+          },
+          "bar": {
+            "canonical_symbol": "XAUUSD",
+            "interval": "5minute",
+            "opening_timestamp": "2024-02-20T10:00:00Z",
+            "bid_open": "1993",
+            "bid_high": "2002",
+            "bid_low": "1993",
+            "bid_close": "2000",
+            "ask_open": "1994",
+            "ask_high": "2003",
+            "ask_low": "1994",
+            "ask_close": "2001",
+            "tick_count": 10
+          },
+          "evaluated_at": "2024-02-20T10:05:00Z",
+          "source_market_data_id": "synthetic:long_gap_stop:bar",
+          "policy": "STOP_FIRST_CONSERVATIVE",
+          "fill_convention": "LEVEL_OR_WORSE_STOP_OPEN_TARGET_AT_LEVEL"
+        },
+        "evaluated_at": "2024-02-20T10:05:00Z",
+        "trigger": "STOP_TRIGGERED",
+        "source_market_data_id": "synthetic:long_gap_stop:bar"
+      },
+      "audit": {
+        "position_id": "b9b03b64-69f5-5155-8e72-53ee1494ba6d",
+        "execution_side": "sell",
+        "trigger_market_side": "BID",
+        "fill_price": "1993",
+        "fill_id": "be5fbf99-a506-5e28-bca5-fe16acfd7da8",
+        "intrabar_ambiguous": false,
+        "ambiguity_reason": null,
+        "raw_price_movement": "-8"
+      },
+      "accounting": {
+        "lifecycle": {
+          "simulation_id": "00000000-0000-0000-0000-000000000005",
+          "position": {
+            "position_id": "b9b03b64-69f5-5155-8e72-53ee1494ba6d",
+            "canonical_symbol": "XAUUSD",
+            "direction": "LONG",
+            "volume": "0.5",
+            "entry_price": "2001",
+            "opened_at": "2024-02-20T10:00:00Z",
+            "closed_at": "2024-02-20T10:05:00Z",
+            "exit_price": "1993"
+          },
+          "fills": [
+            {
+              "execution_id": "05a3f5c3-dfff-523e-994f-c8537d7c8b21",
+              "position_id": "b9b03b64-69f5-5155-8e72-53ee1494ba6d",
+              "intent": "OPEN",
+              "direction": "LONG",
+              "action": "buy",
+              "executed_price": "2001",
+              "quote": {
+                "canonical_symbol": "XAUUSD",
+                "timestamp": "2024-02-20T10:00:00Z",
+                "bid": "2000",
+                "ask": "2001",
+                "source": "TEST_FIXTURE"
+              },
+              "protective_bar": null,
+              "source_market_data_id": "synthetic:long_gap_stop:entry",
+              "strategy_decision_id": null
+            },
+            {
+              "execution_id": "be5fbf99-a506-5e28-bca5-fe16acfd7da8",
+              "position_id": "b9b03b64-69f5-5155-8e72-53ee1494ba6d",
+              "intent": "CLOSE",
+              "direction": "LONG",
+              "action": "sell",
+              "executed_price": "1993",
+              "quote": null,
+              "protective_bar": {
+                "instruction": {
+                  "position_id": "b9b03b64-69f5-5155-8e72-53ee1494ba6d",
+                  "direction": "LONG",
+                  "stop_price": "1995",
+                  "target_price": "2005",
+                  "created_at": "2024-02-20T10:00:00Z",
+                  "source_identity": "synthetic:long_gap_stop:instruction",
+                  "creation_quote": {
+                    "canonical_symbol": "XAUUSD",
+                    "timestamp": "2024-02-20T10:00:00Z",
+                    "bid": "2000",
+                    "ask": "2001",
+                    "source": "TEST_FIXTURE"
+                  }
+                },
+                "bar": {
+                  "canonical_symbol": "XAUUSD",
+                  "interval": "5minute",
+                  "opening_timestamp": "2024-02-20T10:00:00Z",
+                  "bid_open": "1993",
+                  "bid_high": "2002",
+                  "bid_low": "1993",
+                  "bid_close": "2000",
+                  "ask_open": "1994",
+                  "ask_high": "2003",
+                  "ask_low": "1994",
+                  "ask_close": "2001",
+                  "tick_count": 10
+                },
+                "evaluated_at": "2024-02-20T10:05:00Z",
+                "source_market_data_id": "synthetic:long_gap_stop:bar",
+                "policy": "STOP_FIRST_CONSERVATIVE",
+                "fill_convention": "LEVEL_OR_WORSE_STOP_OPEN_TARGET_AT_LEVEL"
+              },
+              "source_market_data_id": "synthetic:long_gap_stop:bar",
+              "strategy_decision_id": null
+            }
+          ]
+        },
+        "contract": {
+          "specification": {
+            "canonical_symbol": "XAUUSD",
+            "broker_symbol": null,
+            "contract_size": "10",
+            "minimum_volume": "0.25",
+            "maximum_volume": "2",
+            "volume_step": "0.25",
+            "tick_size": "0.01",
+            "tick_value": null,
+            "price_digits": null,
+            "minimum_stop_distance": null,
+            "specification_source": "TEST_FIXTURE",
+            "observed_at": null,
+            "schema_version": 1
+          },
+          "price_unit": "USD_PER_TROY_OUNCE",
+          "contract_size_unit": "TROY_OUNCES_PER_VOLUME_UNIT",
+          "quote_currency": "USD",
+          "account_currency": "USD"
+        },
+        "contract_specification_id": "f9d861b7fd4e7e44cc0a1df3463849a7e43619e96db78bfa60b4132d0d06ba3a",
+        "conversion_id": "4abb103e01ada43b7fcf12465f6ad91004677d1d2b14700b1b7a83c914ab461f",
+        "commission_model": {
+          "currency": "USD",
+          "fixed_round_trip_usd": "1.25"
+        },
+        "raw_price_movement": "-8",
+        "gross_usd": "-40.0",
+        "commission_usd": "1.25",
+        "net_usd": "-41.25",
+        "slippage_usd": "0",
+        "spread_treatment": "EMBEDDED_IN_FILLS_NO_EXTRA_DEDUCTION"
+      }
+    },
+    {
+      "scenario": "long_ambiguous",
+      "evaluation": {
+        "instruction": {
+          "position_id": "e208d683-e2ac-5234-abdf-c6abeaf2c2af",
+          "direction": "LONG",
+          "stop_price": "1995",
+          "target_price": "2005",
+          "created_at": "2024-02-20T10:00:00Z",
+          "source_identity": "synthetic:long_ambiguous:instruction",
+          "creation_quote": {
+            "canonical_symbol": "XAUUSD",
+            "timestamp": "2024-02-20T10:00:00Z",
+            "bid": "2000",
+            "ask": "2001",
+            "source": "TEST_FIXTURE"
+          }
+        },
+        "lifecycle": {
+          "simulation_id": "00000000-0000-0000-0000-000000000006",
+          "position": {
+            "position_id": "e208d683-e2ac-5234-abdf-c6abeaf2c2af",
+            "canonical_symbol": "XAUUSD",
+            "direction": "LONG",
+            "volume": "0.5",
+            "entry_price": "2001",
+            "opened_at": "2024-02-20T10:00:00Z",
+            "closed_at": "2024-02-20T10:05:00Z",
+            "exit_price": "1995"
+          },
+          "fills": [
+            {
+              "execution_id": "2748e6fd-4682-58d2-b0be-c80bfbe0422f",
+              "position_id": "e208d683-e2ac-5234-abdf-c6abeaf2c2af",
+              "intent": "OPEN",
+              "direction": "LONG",
+              "action": "buy",
+              "executed_price": "2001",
+              "quote": {
+                "canonical_symbol": "XAUUSD",
+                "timestamp": "2024-02-20T10:00:00Z",
+                "bid": "2000",
+                "ask": "2001",
+                "source": "TEST_FIXTURE"
+              },
+              "protective_bar": null,
+              "source_market_data_id": "synthetic:long_ambiguous:entry",
+              "strategy_decision_id": null
+            },
+            {
+              "execution_id": "22b4fa4e-4069-5c3e-bf2c-1267d932fd8c",
+              "position_id": "e208d683-e2ac-5234-abdf-c6abeaf2c2af",
+              "intent": "CLOSE",
+              "direction": "LONG",
+              "action": "sell",
+              "executed_price": "1995",
+              "quote": null,
+              "protective_bar": {
+                "instruction": {
+                  "position_id": "e208d683-e2ac-5234-abdf-c6abeaf2c2af",
+                  "direction": "LONG",
+                  "stop_price": "1995",
+                  "target_price": "2005",
+                  "created_at": "2024-02-20T10:00:00Z",
+                  "source_identity": "synthetic:long_ambiguous:instruction",
+                  "creation_quote": {
+                    "canonical_symbol": "XAUUSD",
+                    "timestamp": "2024-02-20T10:00:00Z",
+                    "bid": "2000",
+                    "ask": "2001",
+                    "source": "TEST_FIXTURE"
+                  }
+                },
+                "bar": {
+                  "canonical_symbol": "XAUUSD",
+                  "interval": "5minute",
+                  "opening_timestamp": "2024-02-20T10:00:00Z",
+                  "bid_open": "2000",
+                  "bid_high": "2006",
+                  "bid_low": "1994",
+                  "bid_close": "2000",
+                  "ask_open": "2001",
+                  "ask_high": "2007",
+                  "ask_low": "1995",
+                  "ask_close": "2001",
+                  "tick_count": 10
+                },
+                "evaluated_at": "2024-02-20T10:05:00Z",
+                "source_market_data_id": "synthetic:long_ambiguous:bar",
+                "policy": "STOP_FIRST_CONSERVATIVE",
+                "fill_convention": "LEVEL_OR_WORSE_STOP_OPEN_TARGET_AT_LEVEL"
+              },
+              "source_market_data_id": "synthetic:long_ambiguous:bar",
+              "strategy_decision_id": null
+            }
+          ]
+        },
+        "observation": {
+          "instruction": {
+            "position_id": "e208d683-e2ac-5234-abdf-c6abeaf2c2af",
+            "direction": "LONG",
+            "stop_price": "1995",
+            "target_price": "2005",
+            "created_at": "2024-02-20T10:00:00Z",
+            "source_identity": "synthetic:long_ambiguous:instruction",
+            "creation_quote": {
+              "canonical_symbol": "XAUUSD",
+              "timestamp": "2024-02-20T10:00:00Z",
+              "bid": "2000",
+              "ask": "2001",
+              "source": "TEST_FIXTURE"
+            }
+          },
+          "bar": {
+            "canonical_symbol": "XAUUSD",
+            "interval": "5minute",
+            "opening_timestamp": "2024-02-20T10:00:00Z",
+            "bid_open": "2000",
+            "bid_high": "2006",
+            "bid_low": "1994",
+            "bid_close": "2000",
+            "ask_open": "2001",
+            "ask_high": "2007",
+            "ask_low": "1995",
+            "ask_close": "2001",
+            "tick_count": 10
+          },
+          "evaluated_at": "2024-02-20T10:05:00Z",
+          "source_market_data_id": "synthetic:long_ambiguous:bar",
+          "policy": "STOP_FIRST_CONSERVATIVE",
+          "fill_convention": "LEVEL_OR_WORSE_STOP_OPEN_TARGET_AT_LEVEL"
+        },
+        "evaluated_at": "2024-02-20T10:05:00Z",
+        "trigger": "STOP_TRIGGERED_AMBIGUOUS",
+        "source_market_data_id": "synthetic:long_ambiguous:bar"
+      },
+      "audit": {
+        "position_id": "e208d683-e2ac-5234-abdf-c6abeaf2c2af",
+        "execution_side": "sell",
+        "trigger_market_side": "BID",
+        "fill_price": "1995",
+        "fill_id": "22b4fa4e-4069-5c3e-bf2c-1267d932fd8c",
+        "intrabar_ambiguous": true,
+        "ambiguity_reason": "BOTH_LEVELS_TOUCHED_TICK_ORDER_UNKNOWN",
+        "raw_price_movement": "-6"
+      },
+      "accounting": {
+        "lifecycle": {
+          "simulation_id": "00000000-0000-0000-0000-000000000006",
+          "position": {
+            "position_id": "e208d683-e2ac-5234-abdf-c6abeaf2c2af",
+            "canonical_symbol": "XAUUSD",
+            "direction": "LONG",
+            "volume": "0.5",
+            "entry_price": "2001",
+            "opened_at": "2024-02-20T10:00:00Z",
+            "closed_at": "2024-02-20T10:05:00Z",
+            "exit_price": "1995"
+          },
+          "fills": [
+            {
+              "execution_id": "2748e6fd-4682-58d2-b0be-c80bfbe0422f",
+              "position_id": "e208d683-e2ac-5234-abdf-c6abeaf2c2af",
+              "intent": "OPEN",
+              "direction": "LONG",
+              "action": "buy",
+              "executed_price": "2001",
+              "quote": {
+                "canonical_symbol": "XAUUSD",
+                "timestamp": "2024-02-20T10:00:00Z",
+                "bid": "2000",
+                "ask": "2001",
+                "source": "TEST_FIXTURE"
+              },
+              "protective_bar": null,
+              "source_market_data_id": "synthetic:long_ambiguous:entry",
+              "strategy_decision_id": null
+            },
+            {
+              "execution_id": "22b4fa4e-4069-5c3e-bf2c-1267d932fd8c",
+              "position_id": "e208d683-e2ac-5234-abdf-c6abeaf2c2af",
+              "intent": "CLOSE",
+              "direction": "LONG",
+              "action": "sell",
+              "executed_price": "1995",
+              "quote": null,
+              "protective_bar": {
+                "instruction": {
+                  "position_id": "e208d683-e2ac-5234-abdf-c6abeaf2c2af",
+                  "direction": "LONG",
+                  "stop_price": "1995",
+                  "target_price": "2005",
+                  "created_at": "2024-02-20T10:00:00Z",
+                  "source_identity": "synthetic:long_ambiguous:instruction",
+                  "creation_quote": {
+                    "canonical_symbol": "XAUUSD",
+                    "timestamp": "2024-02-20T10:00:00Z",
+                    "bid": "2000",
+                    "ask": "2001",
+                    "source": "TEST_FIXTURE"
+                  }
+                },
+                "bar": {
+                  "canonical_symbol": "XAUUSD",
+                  "interval": "5minute",
+                  "opening_timestamp": "2024-02-20T10:00:00Z",
+                  "bid_open": "2000",
+                  "bid_high": "2006",
+                  "bid_low": "1994",
+                  "bid_close": "2000",
+                  "ask_open": "2001",
+                  "ask_high": "2007",
+                  "ask_low": "1995",
+                  "ask_close": "2001",
+                  "tick_count": 10
+                },
+                "evaluated_at": "2024-02-20T10:05:00Z",
+                "source_market_data_id": "synthetic:long_ambiguous:bar",
+                "policy": "STOP_FIRST_CONSERVATIVE",
+                "fill_convention": "LEVEL_OR_WORSE_STOP_OPEN_TARGET_AT_LEVEL"
+              },
+              "source_market_data_id": "synthetic:long_ambiguous:bar",
+              "strategy_decision_id": null
+            }
+          ]
+        },
+        "contract": {
+          "specification": {
+            "canonical_symbol": "XAUUSD",
+            "broker_symbol": null,
+            "contract_size": "10",
+            "minimum_volume": "0.25",
+            "maximum_volume": "2",
+            "volume_step": "0.25",
+            "tick_size": "0.01",
+            "tick_value": null,
+            "price_digits": null,
+            "minimum_stop_distance": null,
+            "specification_source": "TEST_FIXTURE",
+            "observed_at": null,
+            "schema_version": 1
+          },
+          "price_unit": "USD_PER_TROY_OUNCE",
+          "contract_size_unit": "TROY_OUNCES_PER_VOLUME_UNIT",
+          "quote_currency": "USD",
+          "account_currency": "USD"
+        },
+        "contract_specification_id": "f9d861b7fd4e7e44cc0a1df3463849a7e43619e96db78bfa60b4132d0d06ba3a",
+        "conversion_id": "4abb103e01ada43b7fcf12465f6ad91004677d1d2b14700b1b7a83c914ab461f",
+        "commission_model": {
+          "currency": "USD",
+          "fixed_round_trip_usd": "1.25"
+        },
+        "raw_price_movement": "-6",
+        "gross_usd": "-30.0",
+        "commission_usd": "1.25",
+        "net_usd": "-31.25",
+        "slippage_usd": "0",
+        "spread_treatment": "EMBEDDED_IN_FILLS_NO_EXTRA_DEDUCTION"
+      }
+    }
+  ]
+}

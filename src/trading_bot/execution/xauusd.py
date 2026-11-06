@@ -16,6 +16,7 @@ from trading_bot.domain.positions import (
     raw_price_movement,
 )
 from trading_bot.domain.quotes import MarketQuote
+from trading_bot.execution.protection import ProtectiveBarEvidence
 
 
 class ExecutionError(ValueError):
@@ -29,7 +30,8 @@ class ExecutionFill(DomainModel):
     direction: PositionDirection
     action: Side
     executed_price: ExactPositive
-    quote: MarketQuote
+    quote: MarketQuote | None = None
+    protective_bar: ProtectiveBarEvidence | None = None
     source_market_data_id: str = Field(min_length=1)
     strategy_decision_id: UUID | None = None
 
@@ -40,33 +42,54 @@ class ExecutionFill(DomainModel):
             if self.intent == "OPEN"
             else self.direction.closing_side
         )
-        if self.quote.canonical_symbol != "XAUUSD":
-            raise ValueError("execution requires canonical XAUUSD")
-        if self.action != expected or self.executed_price != self.quote.price_for_side(
-            expected
-        ):
-            raise ValueError("fill must use the direction/intent executable quote side")
+        if (self.quote is None) == (self.protective_bar is None):
+            raise ValueError(
+                "fill requires exactly one quote or protective bar evidence"
+            )
+        price: Decimal | None
+        if self.quote is not None:
+            if self.quote.canonical_symbol != "XAUUSD":
+                raise ValueError("execution requires canonical XAUUSD")
+            price = self.quote.price_for_side(expected)
+        else:
+            assert self.protective_bar is not None
+            evidence = self.protective_bar
+            if (
+                self.intent != "CLOSE"
+                or evidence.instruction.position_id != self.position_id
+                or evidence.instruction.direction != self.direction
+                or evidence.source_market_data_id != self.source_market_data_id
+            ):
+                raise ValueError("protective bar evidence must match this close")
+            price = evidence.fill_price
+        if self.action != expected or self.executed_price != price:
+            raise ValueError(
+                "fill must match executable quote or explicit bar convention"
+            )
         return self
 
     @property
     def timestamp(self) -> datetime:
-        return self.quote.timestamp
+        if self.quote is not None:
+            return self.quote.timestamp
+        assert self.protective_bar is not None
+        return self.protective_bar.bar.closing_timestamp
 
     @property
     def canonical_symbol(self) -> str:
-        return self.quote.canonical_symbol
+        return "XAUUSD"
 
     @property
-    def bid(self) -> Decimal:
-        return self.quote.bid
+    def bid(self) -> Decimal | None:
+        return self.quote.bid if self.quote is not None else None
 
     @property
-    def ask(self) -> Decimal:
-        return self.quote.ask
+    def ask(self) -> Decimal | None:
+        return self.quote.ask if self.quote is not None else None
 
     @property
-    def spread(self) -> Decimal:
-        return self.quote.spread
+    def spread(self) -> Decimal | None:
+        return self.quote.spread if self.quote is not None else None
 
 
 class XAUUSDExecution(DomainModel):
@@ -101,6 +124,14 @@ class XAUUSDExecution(DomainModel):
                 or fill.executed_price != (p.exit_price if i else p.entry_price)
             ):
                 raise ValueError("fill does not match position lifecycle")
+            if fill.protective_bar is not None:
+                evidence = fill.protective_bar
+                if (
+                    not p.opened_at
+                    <= evidence.instruction.created_at
+                    <= evidence.bar.opening_timestamp
+                ):
+                    raise ValueError("protective instruction/bar cannot precede entry")
         return self
 
     @property
@@ -197,6 +228,36 @@ class XAUUSDExecution(DomainModel):
             quote=quote,
             source_market_data_id=source_market_data_id,
             strategy_decision_id=strategy_decision_id,
+        )
+        return XAUUSDExecution(
+            simulation_id=self.simulation_id, position=closed, fills=(*self.fills, fill)
+        )
+
+    def close_protective_bar(
+        self, evidence: ProtectiveBarEvidence
+    ) -> "XAUUSDExecution":
+        """Close once using auditable modeled OHLC evidence, not a synthetic quote."""
+        self = XAUUSDExecution.model_validate(self.model_dump())
+        evidence = ProtectiveBarEvidence.model_validate(evidence.model_dump())
+        p = self.position
+        if p is None or p.closed_at is not None:
+            raise ExecutionError("close requires an open position")
+        price = evidence.fill_price
+        if price is None:
+            raise ExecutionError("bar has no protective trigger")
+        closed = PositionSnapshot.model_validate(
+            p.model_dump()
+            | {"closed_at": evidence.bar.closing_timestamp, "exit_price": price}
+        )
+        fill = ExecutionFill(
+            execution_id=uuid5(self.simulation_id, "CLOSE"),
+            position_id=p.position_id,
+            intent="CLOSE",
+            direction=p.direction,
+            action=p.direction.closing_side,
+            executed_price=price,
+            protective_bar=evidence,
+            source_market_data_id=evidence.source_market_data_id,
         )
         return XAUUSDExecution(
             simulation_id=self.simulation_id, position=closed, fills=(*self.fills, fill)
