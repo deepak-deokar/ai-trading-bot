@@ -1,0 +1,193 @@
+{
+  "scope": "RESEARCH DEMONSTRATION ONLY",
+  "results": [
+    {
+      "request": {
+        "account_equity": "500",
+        "account_currency": "USD",
+        "risk_fraction": "0.01",
+        "risk_amount": null,
+        "stop_distance": "0.1",
+        "contract": {
+          "specification": {
+            "canonical_symbol": "XAUUSD",
+            "broker_symbol": null,
+            "contract_size": "10",
+            "minimum_volume": "0.25",
+            "maximum_volume": "2",
+            "volume_step": "0.25",
+            "tick_size": "0.01",
+            "tick_value": null,
+            "price_digits": null,
+            "minimum_stop_distance": null,
+            "specification_source": "TEST_FIXTURE",
+            "observed_at": null,
+            "schema_version": 1
+          },
+          "price_unit": "USD_PER_TROY_OUNCE",
+          "contract_size_unit": "TROY_OUNCES_PER_VOLUME_UNIT",
+          "quote_currency": "USD",
+          "account_currency": "USD"
+        },
+        "commission": {
+          "currency": "USD",
+          "fixed_round_trip_usd": "1.25"
+        },
+        "stop_convention": "EXECUTABLE_ENTRY_TO_EXECUTABLE_STOP_EXIT"
+      },
+      "contract_specification_id": "f9d861b7fd4e7e44cc0a1df3463849a7e43619e96db78bfa60b4132d0d06ba3a",
+      "conversion_id": "4abb103e01ada43b7fcf12465f6ad91004677d1d2b14700b1b7a83c914ab461f",
+      "risk_budget_usd": "5",
+      "selected_volume": "2",
+      "projected_gross_stop_loss": "2",
+      "projected_explicit_costs": "1.25",
+      "projected_net_stop_loss": "3.25",
+      "next_valid_volume": null,
+      "next_step_projected_loss": null,
+      "status": "SIZED",
+      "reason": "CONTRACT_MAXIMUM",
+      "calculation_version": "linear-usd-stop-risk-v1"
+    },
+    {
+      "request": {
+        "account_equity": "500",
+        "account_currency": "USD",
+        "risk_fraction": "0.01",
+        "risk_amount": null,
+        "stop_distance": "0.5",
+        "contract": {
+          "specification": {
+            "canonical_symbol": "XAUUSD",
+            "broker_symbol": null,
+            "contract_size": "10",
+            "minimum_volume": "0.25",
+            "maximum_volume": "2",
+            "volume_step": "0.25",
+            "tick_size": "0.01",
+            "tick_value": null,
+            "price_digits": null,
+            "minimum_stop_distance": null,
+            "specification_source": "TEST_FIXTURE",
+            "observed_at": null,
+            "schema_version": 1
+          },
+          "price_unit": "USD_PER_TROY_OUNCE",
+          "contract_size_unit": "TROY_OUNCES_PER_VOLUME_UNIT",
+          "quote_currency": "USD",
+          "account_currency": "USD"
+        },
+        "commission": {
+          "currency": "USD",
+          "fixed_round_trip_usd": "1.25"
+        },
+        "stop_convention": "EXECUTABLE_ENTRY_TO_EXECUTABLE_STOP_EXIT"
+      },
+      "contract_specification_id": "f9d861b7fd4e7e44cc0a1df3463849a7e43619e96db78bfa60b4132d0d06ba3a",
+      "conversion_id": "4abb103e01ada43b7fcf12465f6ad91004677d1d2b14700b1b7a83c914ab461f",
+      "risk_budget_usd": "5",
+      "selected_volume": "0.75",
+      "projected_gross_stop_loss": "3.75",
+      "projected_explicit_costs": "1.25",
+      "projected_net_stop_loss": "5",
+      "next_valid_volume": "1",
+      "next_step_projected_loss": "6.25",
+      "status": "SIZED",
+      "reason": "RISK_BOUND",
+      "calculation_version": "linear-usd-stop-risk-v1"
+    },
+    {
+      "request": {
+        "account_equity": "500",
+        "account_currency": "USD",
+        "risk_fraction": "0.01",
+        "risk_amount": null,
+        "stop_distance": "1",
+        "contract": {
+          "specification": {
+            "canonical_symbol": "XAUUSD",
+            "broker_symbol": null,
+            "contract_size": "10",
+            "minimum_volume": "0.25",
+            "maximum_volume": "2",
+            "volume_step": "0.25",
+            "tick_size": "0.01",
+            "tick_value": null,
+            "price_digits": null,
+            "minimum_stop_distance": null,
+            "specification_source": "TEST_FIXTURE",
+            "observed_at": null,
+            "schema_version": 1
+          },
+          "price_unit": "USD_PER_TROY_OUNCE",
+          "contract_size_unit": "TROY_OUNCES_PER_VOLUME_UNIT",
+          "quote_currency": "USD",
+          "account_currency": "USD"
+        },
+        "commission": {
+          "currency": "USD",
+          "fixed_round_trip_usd": "1.25"
+        },
+        "stop_convention": "EXECUTABLE_ENTRY_TO_EXECUTABLE_STOP_EXIT"
+      },
+      "contract_specification_id": "f9d861b7fd4e7e44cc0a1df3463849a7e43619e96db78bfa60b4132d0d06ba3a",
+      "conversion_id": "4abb103e01ada43b7fcf12465f6ad91004677d1d2b14700b1b7a83c914ab461f",
+      "risk_budget_usd": "5",
+      "selected_volume": "0.25",
+      "projected_gross_stop_loss": "2.5",
+      "projected_explicit_costs": "1.25",
+      "projected_net_stop_loss": "3.75",
+      "next_valid_volume": "0.5",
+      "next_step_projected_loss": "6.25",
+      "status": "SIZED",
+      "reason": "RISK_BOUND",
+      "calculation_version": "linear-usd-stop-risk-v1"
+    },
+    {
+      "request": {
+        "account_equity": "500",
+        "account_currency": "USD",
+        "risk_fraction": "0.01",
+        "risk_amount": null,
+        "stop_distance": "2",
+        "contract": {
+          "specification": {
+            "canonical_symbol": "XAUUSD",
+            "broker_symbol": null,
+            "contract_size": "10",
+            "minimum_volume": "0.25",
+            "maximum_volume": "2",
+            "volume_step": "0.25",
+            "tick_size": "0.01",
+            "tick_value": null,
+            "price_digits": null,
+            "minimum_stop_distance": null,
+            "specification_source": "TEST_FIXTURE",
+            "observed_at": null,
+            "schema_version": 1
+          },
+          "price_unit": "USD_PER_TROY_OUNCE",
+          "contract_size_unit": "TROY_OUNCES_PER_VOLUME_UNIT",
+          "quote_currency": "USD",
+          "account_currency": "USD"
+        },
+        "commission": {
+          "currency": "USD",
+          "fixed_round_trip_usd": "1.25"
+        },
+        "stop_convention": "EXECUTABLE_ENTRY_TO_EXECUTABLE_STOP_EXIT"
+      },
+      "contract_specification_id": "f9d861b7fd4e7e44cc0a1df3463849a7e43619e96db78bfa60b4132d0d06ba3a",
+      "conversion_id": "4abb103e01ada43b7fcf12465f6ad91004677d1d2b14700b1b7a83c914ab461f",
+      "risk_budget_usd": "5",
+      "selected_volume": null,
+      "projected_gross_stop_loss": null,
+      "projected_explicit_costs": "1.25",
+      "projected_net_stop_loss": null,
+      "next_valid_volume": null,
+      "next_step_projected_loss": null,
+      "status": "NO_VALID_VOLUME",
+      "reason": "MINIMUM_EXCEEDS_BUDGET",
+      "calculation_version": "linear-usd-stop-risk-v1"
+    }
+  ]
+}
