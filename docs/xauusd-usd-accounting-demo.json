@@ -1,0 +1,173 @@
+{
+  "scope": "SYNTHETIC / TEST ONLY; no broker specification or strategy performance claim",
+  "results": [
+    {
+      "lifecycle": {
+        "simulation_id": "00000000-0000-0000-0000-000000000001",
+        "position": {
+          "position_id": "adea2e89-176f-5031-8eb5-f759cb92a751",
+          "canonical_symbol": "XAUUSD",
+          "direction": "LONG",
+          "volume": "0.5",
+          "entry_price": "2000.50",
+          "opened_at": "2024-02-20T10:00:00Z",
+          "closed_at": "2024-02-20T10:00:01Z",
+          "exit_price": "2002"
+        },
+        "fills": [
+          {
+            "execution_id": "011e79c7-f109-52e8-bf54-27ba96105e54",
+            "position_id": "adea2e89-176f-5031-8eb5-f759cb92a751",
+            "intent": "OPEN",
+            "direction": "LONG",
+            "action": "buy",
+            "executed_price": "2000.50",
+            "quote": {
+              "canonical_symbol": "XAUUSD",
+              "timestamp": "2024-02-20T10:00:00Z",
+              "bid": "2000",
+              "ask": "2000.50",
+              "source": "TEST_FIXTURE"
+            },
+            "source_market_data_id": "synthetic:entry",
+            "strategy_decision_id": null
+          },
+          {
+            "execution_id": "c5955a2f-f9eb-52d4-95b6-6c635d3acda6",
+            "position_id": "adea2e89-176f-5031-8eb5-f759cb92a751",
+            "intent": "CLOSE",
+            "direction": "LONG",
+            "action": "sell",
+            "executed_price": "2002",
+            "quote": {
+              "canonical_symbol": "XAUUSD",
+              "timestamp": "2024-02-20T10:00:01Z",
+              "bid": "2002",
+              "ask": "2002.50",
+              "source": "TEST_FIXTURE"
+            },
+            "source_market_data_id": "synthetic:exit",
+            "strategy_decision_id": null
+          }
+        ]
+      },
+      "contract": {
+        "specification": {
+          "canonical_symbol": "XAUUSD",
+          "broker_symbol": null,
+          "contract_size": "10",
+          "minimum_volume": "0.25",
+          "maximum_volume": "2",
+          "volume_step": "0.25",
+          "tick_size": "0.01",
+          "tick_value": null,
+          "price_digits": null,
+          "minimum_stop_distance": null,
+          "specification_source": "TEST_FIXTURE",
+          "observed_at": null,
+          "schema_version": 1
+        },
+        "price_unit": "USD_PER_TROY_OUNCE",
+        "contract_size_unit": "TROY_OUNCES_PER_VOLUME_UNIT",
+        "quote_currency": "USD",
+        "account_currency": "USD"
+      },
+      "contract_specification_id": "f9d861b7fd4e7e44cc0a1df3463849a7e43619e96db78bfa60b4132d0d06ba3a",
+      "conversion_id": "4abb103e01ada43b7fcf12465f6ad91004677d1d2b14700b1b7a83c914ab461f",
+      "commission_model": {
+        "currency": "USD",
+        "fixed_round_trip_usd": "1.25"
+      },
+      "raw_price_movement": "1.50",
+      "gross_usd": "7.500",
+      "commission_usd": "1.25",
+      "net_usd": "6.250",
+      "slippage_usd": "0",
+      "spread_treatment": "EMBEDDED_IN_FILLS_NO_EXTRA_DEDUCTION"
+    },
+    {
+      "lifecycle": {
+        "simulation_id": "00000000-0000-0000-0000-000000000002",
+        "position": {
+          "position_id": "e8ded635-c964-505d-9f96-e4c87427e2a3",
+          "canonical_symbol": "XAUUSD",
+          "direction": "SHORT",
+          "volume": "0.5",
+          "entry_price": "2000",
+          "opened_at": "2024-02-20T10:00:00Z",
+          "closed_at": "2024-02-20T10:00:01Z",
+          "exit_price": "1998.50"
+        },
+        "fills": [
+          {
+            "execution_id": "bf3a78f9-48ff-5555-9632-dff43934d63c",
+            "position_id": "e8ded635-c964-505d-9f96-e4c87427e2a3",
+            "intent": "OPEN",
+            "direction": "SHORT",
+            "action": "sell",
+            "executed_price": "2000",
+            "quote": {
+              "canonical_symbol": "XAUUSD",
+              "timestamp": "2024-02-20T10:00:00Z",
+              "bid": "2000",
+              "ask": "2000.50",
+              "source": "TEST_FIXTURE"
+            },
+            "source_market_data_id": "synthetic:entry",
+            "strategy_decision_id": null
+          },
+          {
+            "execution_id": "d3c25140-1490-55b0-8af6-2a24661d5475",
+            "position_id": "e8ded635-c964-505d-9f96-e4c87427e2a3",
+            "intent": "CLOSE",
+            "direction": "SHORT",
+            "action": "buy",
+            "executed_price": "1998.50",
+            "quote": {
+              "canonical_symbol": "XAUUSD",
+              "timestamp": "2024-02-20T10:00:01Z",
+              "bid": "1998",
+              "ask": "1998.50",
+              "source": "TEST_FIXTURE"
+            },
+            "source_market_data_id": "synthetic:exit",
+            "strategy_decision_id": null
+          }
+        ]
+      },
+      "contract": {
+        "specification": {
+          "canonical_symbol": "XAUUSD",
+          "broker_symbol": null,
+          "contract_size": "10",
+          "minimum_volume": "0.25",
+          "maximum_volume": "2",
+          "volume_step": "0.25",
+          "tick_size": "0.01",
+          "tick_value": null,
+          "price_digits": null,
+          "minimum_stop_distance": null,
+          "specification_source": "TEST_FIXTURE",
+          "observed_at": null,
+          "schema_version": 1
+        },
+        "price_unit": "USD_PER_TROY_OUNCE",
+        "contract_size_unit": "TROY_OUNCES_PER_VOLUME_UNIT",
+        "quote_currency": "USD",
+        "account_currency": "USD"
+      },
+      "contract_specification_id": "f9d861b7fd4e7e44cc0a1df3463849a7e43619e96db78bfa60b4132d0d06ba3a",
+      "conversion_id": "4abb103e01ada43b7fcf12465f6ad91004677d1d2b14700b1b7a83c914ab461f",
+      "commission_model": {
+        "currency": "USD",
+        "fixed_round_trip_usd": "1.25"
+      },
+      "raw_price_movement": "1.50",
+      "gross_usd": "7.500",
+      "commission_usd": "1.25",
+      "net_usd": "6.250",
+      "slippage_usd": "0",
+      "spread_treatment": "EMBEDDED_IN_FILLS_NO_EXTRA_DEDUCTION"
+    }
+  ]
+}
