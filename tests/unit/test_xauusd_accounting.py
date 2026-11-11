@@ -130,5 +130,33 @@ def test_decimal_and_closed_requirement():
         realize_usd(open_state, contract(), zero())
     with pytest.raises(ValueError):
         contract(tick_value=Decimal("1"))
-    with pytest.raises(ValueError):
-        realize_usd(lifecycle(bid="2002.001", ask="2002.501"), contract(), zero())
+    result = realize_usd(lifecycle(bid="2002.001", ask="2002.501"), contract(), zero())
+    assert result.gross_usd == Decimal("7.505")
+
+
+@pytest.mark.parametrize(
+    "direction,bid,ask,gross",
+    [
+        ("LONG", "2035.956", "2036.156", "177.280"),
+        ("SHORT", "2035.756", "2035.956", "-179.780"),
+    ],
+)
+def test_off_grid_market_exit_exact_accounting(direction, bid, ask, gross):
+    state = lifecycle(direction, bid, ask)
+    fee = Commission(currency="USD", fixed_round_trip_usd=Decimal("1.25"))
+    result = realize_usd(state, contract(), fee)
+    assert state.position.exit_price == Decimal("2035.956")
+    assert result.gross_usd == Decimal(gross)
+    assert result.net_usd == Decimal(gross) - Decimal("1.25")
+    assert result.commission_usd == Decimal("1.25")
+
+
+@pytest.mark.parametrize(
+    "price",
+    [Decimal("0"), Decimal("-1"), Decimal("NaN"), Decimal("Infinity"), 2035.956],
+)
+def test_invalid_observed_prices_remain_rejected(price):
+    with pytest.raises((ValueError, TypeError)):
+        MarketQuote(
+            canonical_symbol="XAUUSD", timestamp=T, bid=price, ask=Decimal("3000")
+        )

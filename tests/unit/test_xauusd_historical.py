@@ -249,15 +249,17 @@ def test_end_to_end_future_mutation_preserves_closed_prefix():
     assert original.records[0].balance_after == later.records[0].balance_after
 
 
-def test_every_signal_including_structure_and_alignment_failure_accounted():
+def test_every_signal_including_structure_and_off_grid_entry_accounted():
     data = day(signals=(5, 11, 23), changes={12: {"ask_open": "2001.001"}})
     result = run_historical([data], config())
     assert [r.status for r in result.records] == [
         "NO_TRADE_INSUFFICIENT_STRUCTURE",
-        "NO_TRADE_CONTRACT_ALIGNMENT",
+        "CLOSED_END_OF_RESEARCH_DAY",
         "NO_TRADE_RESEARCH_BOUNDARY",
     ]
-    assert result.metrics.signals_generated == result.metrics.rejected_plans == 3
+    assert result.metrics.signals_generated == 3
+    assert result.metrics.rejected_plans == 2
+    assert result.records[1].entry_fill == D("2001.001")
 
 
 def test_no_size_from_nonpositive_balance():

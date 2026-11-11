@@ -14,7 +14,7 @@ from uuid import NAMESPACE_URL, uuid5
 from pydantic import Field
 
 from trading_bot.data.quote_bar_storage import QuoteDataset
-from trading_bot.domain.contracts import ContractValidationError, ExactPositive
+from trading_bot.domain.contracts import ExactPositive
 from trading_bot.domain.market import utc
 from trading_bot.domain.models import DomainModel, Side
 from trading_bot.domain.positions import PositionDirection, raw_price_movement
@@ -240,12 +240,7 @@ def finalize_levels(
             "ENTRY_GAP_INVALIDATES_ORIGINAL_EXECUTABLE_STOP",
         )
     specification = contract.specification
-    try:
-        specification.validate_price(entry)
-    except ContractValidationError:
-        return rejected(
-            PlanningStatus.NO_TRADE_CONTRACT_ALIGNMENT, "ENTRY_NOT_TICK_ALIGNED"
-        )
+    # MarketQuote validates the observed entry; only generated levels use the grid.
     stop = _align(raw_stop, specification.tick_size, upward=not long)
     if stop <= 0:
         return rejected(

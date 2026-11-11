@@ -263,11 +263,8 @@ def test_conservative_tick_alignment_and_precision(side, raw, aligned):
         assert final.target >= final.raw_target
 
 
-def test_off_grid_entry_rejected_and_nonpositive_short_target():
-    assert (
-        finalize(structure(), ask="2002.03", tick="0.1").status
-        == "NO_TRADE_CONTRACT_ALIGNMENT"
-    )
+def test_off_grid_entry_accepted_and_nonpositive_short_target():
+    assert finalize(structure(), ask="2002.03", tick="0.1").status == "PLANNED"
     assert (
         finalize(structure(side=Side.SELL), bid="100", ask="101").status
         == "NO_TRADE_INVALID_TARGET"
@@ -336,3 +333,24 @@ def test_entry_utc_and_no_entry_before_signal_completion():
         )
     with pytest.raises(ValidationError):
         MarketQuote(canonical_symbol="XAUUSD", timestamp=T, bid=2000.0, ask=D("2001"))
+
+
+@pytest.mark.parametrize("side", [Side.BUY, Side.SELL])
+def test_off_grid_observed_entry_with_grid_valid_generated_levels(side):
+    items = bars()
+    items = [
+        item.model_copy(
+            update={"bar": item.bar.model_copy(update={"ask_high": D("2050")})}
+        )
+        for item in items
+    ]
+    planned = structure(items, side=side)
+    result = finalize(planned, bid="2042.165", ask="2042.365")
+    assert result.status == "PLANNED"
+    expected = D("2042.365") if side == Side.BUY else D("2042.165")
+    assert result.entry_quote.price_for_side(side) == expected
+    spec = result.trade_plan.contract.specification
+    assert spec.tick_size == D("0.01")
+    spec.validate_price(result.aligned_stop)
+    spec.validate_price(result.target)
+    assert result.sizing_request.stop_distance == abs(expected - result.aligned_stop)

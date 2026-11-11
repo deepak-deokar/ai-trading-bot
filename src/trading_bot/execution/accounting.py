@@ -74,8 +74,14 @@ def realize_usd(
         raise ValueError("realized monetary accounting requires a CLOSED position")
     specification = contract.specification
     specification.validate_volume(position.volume)
-    specification.validate_price(position.entry_price)
-    specification.validate_price(position.exit_price)
+    # Lifecycle revalidation enforces finite positive Decimal execution prices
+    # and their quote/bar evidence. Observed fills need not lie on a submitted grid.
+    for fill in lifecycle.fills:
+        if fill.protective_bar is not None:
+            instruction = fill.protective_bar.instruction
+            specification.validate_price(instruction.stop_price)
+            if instruction.target_price is not None:
+                specification.validate_price(instruction.target_price)
     movement = lifecycle.price_movement
     assert movement is not None
     factors = (movement, specification.contract_size, position.volume)

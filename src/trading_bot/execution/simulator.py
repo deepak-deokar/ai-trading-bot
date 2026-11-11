@@ -311,7 +311,7 @@ def simulate_trade(
                     source_identity=plan.source_identity,
                 )
                 specification = plan.contract.specification
-                for price in (entry_price, plan.stop_price, plan.target_price):
+                for price in (plan.stop_price, plan.target_price):
                     if price is not None:
                         specification.validate_price(price)
             except (ValidationError, ContractValidationError):

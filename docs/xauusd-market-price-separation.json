@@ -1,0 +1,19 @@
+{
+  "checkpoint": "G2C4C3B",
+  "frozen_report_identity": "8e0c6cfc45a26b28df143208503828a599382834f7777b3ec851ff9ba71cb210",
+  "approved_bars_hash_verified": 13524,
+  "candidate_entries_examined": 4054,
+  "previous_entry_grid_rejections": 4047,
+  "remaining_observed_market_grid_rejections": 0,
+  "planning_outcomes": {
+    "PLANNED": 4054
+  },
+  "generated_stops_grid_valid": 4054,
+  "generated_targets_grid_valid": 4054,
+  "source_features_hash_verified": true,
+  "database_read_only": true,
+  "trade_simulation_performed": false,
+  "starting_balance": "500",
+  "risk_fraction": "0.01",
+  "tick_size": "0.01"
+}

@@ -359,3 +359,55 @@ def test_risk_rejection_is_terminal_without_consuming_future():
     result = run(plan(risk_fraction=D("0.01")), guarded())
     assert result.status == "NO_TRADE_RISK"
     assert result.position_id is result.entry_observation is None
+
+
+@pytest.mark.parametrize("direction", [Direction.LONG, Direction.SHORT])
+def test_observed_off_grid_entry_preserved_and_sizing_reused(direction):
+    p = plan(
+        direction,
+        stop_price=D("2030") if direction == Direction.LONG else D("2050"),
+        target_price=D("2060") if direction == Direction.LONG else D("2020"),
+        risk_fraction=D("0.1"),
+    )
+    bar = observation(
+        bid_open="2042.165",
+        bid_high="2043",
+        bid_low="2041",
+        bid_close="2042",
+        ask_open="2042.365",
+        ask_high="2044",
+        ask_low="2042",
+        ask_close="2043",
+    )
+    result = run(p, [bar])
+    assert result.status == "OPEN_AT_END"
+    expected = D("2042.365") if direction == Direction.LONG else D("2042.165")
+    assert result.entry_fill.executed_price == expected
+    assert result.sizing.request.stop_distance == abs(expected - p.stop_price)
+    assert result.sizing == size_position(result.sizing.request)
+
+
+def test_off_grid_gap_fill_and_exact_accounting():
+    result = run(
+        plan(),
+        [
+            observation(),
+            observation(
+                1,
+                bid_open="1993.957",
+                bid_low="1993.957",
+                ask_open="1994.157",
+                ask_low="1994.157",
+            ),
+        ],
+    )
+    assert result.status == "CLOSED_STOP"
+    assert result.exit_fill.executed_price == D("1993.957")
+    assert result.gross_pnl == D("-17.6075")
+    assert result.net_pnl == D("-18.8575")
+
+
+def test_off_grid_generated_target_still_rejected():
+    result = run(plan(target_price=D("2005.001")), [observation()])
+    assert result.status == "REJECTED_INVALID_PLAN"
+    assert not result.lifecycle.fills
