@@ -11,7 +11,7 @@ from fractions import Fraction
 from typing import Annotated, Literal
 from uuid import NAMESPACE_URL, uuid5
 
-from pydantic import Field
+from pydantic import Field, TypeAdapter
 
 from trading_bot.data.quote_bar_storage import QuoteDataset
 from trading_bot.domain.contracts import ExactPositive
@@ -25,6 +25,9 @@ from trading_bot.execution.protection import ProtectiveInstruction
 from trading_bot.execution.simulator import TradePlan
 from trading_bot.execution.sizing import SizingRequest
 from trading_bot.strategies.xauusd import XAUUSDSignalDecision
+from trading_bot.strategies.xauusd_confirmation import MomentumConfirmationDecision
+
+SignalDecision = XAUUSDSignalDecision | MomentumConfirmationDecision
 
 
 class StructureBar(DomainModel):
@@ -47,7 +50,7 @@ class PlanningStatus(StrEnum):
 
 
 class StructurePlan(DomainModel):
-    decision: XAUUSDSignalDecision
+    decision: SignalDecision
     decision_key: str
     direction: PositionDirection | None
     source_bars: tuple[StructureBar, ...]
@@ -76,12 +79,14 @@ class FinalizedLevels(DomainModel):
 
 
 def plan_structure(
-    decision: XAUUSDSignalDecision,
+    decision: SignalDecision,
     observations: Iterable[StructureBar],
     *,
     as_of: datetime,
 ) -> StructurePlan:
-    decision = XAUUSDSignalDecision.model_validate(decision.model_dump())
+    decision = TypeAdapter[SignalDecision](SignalDecision).validate_python(
+        decision.model_dump()
+    )
     if utc(as_of) < decision.available_at:
         raise ValueError("signal is not available at cutoff")
     if decision.available_at != decision.opening_timestamp + timedelta(minutes=5):

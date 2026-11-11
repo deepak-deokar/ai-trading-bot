@@ -292,3 +292,133 @@ def test_unexpected_gap_and_missing_boundary_fail():
             ],
             config(),
         )
+
+
+def confirmation_day(side="BUY", momentum="1", **kwargs):
+    data = day(side=side, **kwargs)
+    rows = tuple(
+        row.model_copy(
+            update={
+                "values": (
+                    *row.values,
+                    FeatureValue(
+                        name="momentum_12",
+                        value=D(momentum) if momentum is not None else None,
+                        unavailable="WARMUP" if momentum is None else None,
+                    ),
+                )
+            }
+        )
+        for row in data.features
+    )
+    return data.model_copy(update={"features": rows})
+
+
+@pytest.mark.parametrize(
+    "side,momentum,expected",
+    [
+        ("BUY", "0.000001", "BUY"),
+        ("SELL", "-0.000001", "SELL"),
+        ("BUY", "-1", "NO_TRADE"),
+        ("SELL", "1", "NO_TRADE"),
+        ("BUY", "0", "NO_TRADE"),
+        ("SELL", "0", "NO_TRADE"),
+        ("BUY", None, "NO_TRADE"),
+    ],
+)
+def test_confirmation_only_adds_sign_requirement(side, momentum, expected):
+    from trading_bot.strategies.xauusd import evaluate_xauusd
+    from trading_bot.strategies.xauusd_confirmation import (
+        VERSION,
+        evaluate_confirmation,
+    )
+
+    row = confirmation_day(side, momentum).features[11]
+    before = row.model_dump()
+    original = evaluate_xauusd(row, as_of=row.available_at)
+    result = evaluate_confirmation(row, as_of=row.available_at)
+    assert original.action == side
+    assert result.action == expected
+    assert result.strategy_version == VERSION
+    assert result.source_feature_row_hash == original.source_feature_row_hash
+    assert result.feature_snapshot[:-1] == original.feature_snapshot
+    assert row.model_dump() == before
+    assert result == evaluate_confirmation(row, as_of=row.available_at)
+    with pytest.raises(ValueError):
+        evaluate_confirmation(row, as_of=row.available_at - timedelta(seconds=1))
+    with pytest.raises(ValueError):
+        evaluate_confirmation(row, as_of=row.available_at.replace(tzinfo=None))
+
+
+def test_confirmation_never_promotes_v1_no_trade_and_missing_fails_closed():
+    from trading_bot.strategies.xauusd_confirmation import evaluate_confirmation
+
+    row = confirmation_day().features[0]
+    assert evaluate_confirmation(row, as_of=row.available_at).action == "NO_TRADE"
+    missing = day().features[11]
+    result = evaluate_confirmation(missing, as_of=missing.available_at)
+    assert result.action == "NO_TRADE"
+    assert result.reasons[-1] == "MOMENTUM_12_UNAVAILABLE"
+
+
+@pytest.mark.parametrize("side,momentum", [("BUY", "1"), ("SELL", "-1")])
+def test_confirmation_pipeline_identity_and_default_v1_unchanged(side, momentum):
+    from trading_bot.strategies.xauusd_confirmation import VERSION
+
+    data = confirmation_day(side, momentum)
+    v1 = run_historical([data], config())
+    v2 = run_historical([data], config(), strategy_version=VERSION)
+    assert v1.strategy_version == "xauusd-trend-momentum-v1"
+    assert v2.strategy_version == VERSION
+    assert v1.metrics == v2.metrics
+    assert v1.report_identity != v2.report_identity
+    assert v2 == run_historical([data], config(), strategy_version=VERSION)
+    assert all(r.strategy_version == VERSION for r in v2.records)
+    assert v2.records[0].entry_fill == v1.records[0].entry_fill
+    assert v2.records[0].exit_fill == v1.records[0].exit_fill
+    assert v1 == run_historical([data], config())
+
+
+def test_confirmation_future_mutation_preserves_closed_prefix():
+    from trading_bot.strategies.xauusd_confirmation import VERSION
+
+    early = {14: {"bid_high": "2014", "ask_high": "2015"}}
+    original = run_historical(
+        [confirmation_day(changes=early, signals=(11, 18))],
+        config(),
+        strategy_version=VERSION,
+    )
+    changed = confirmation_day(
+        changes=early | {20: {"bid_high": "9999", "ask_high": "10000"}},
+        signals=(11, 19, 20),
+    )
+    rows = tuple(
+        (
+            row
+            if i < 20
+            else row.model_copy(
+                update={
+                    "values": tuple(
+                        (
+                            v
+                            if v.name != "momentum_12"
+                            else v.model_copy(update={"value": D("-999")})
+                        )
+                        for v in row.values
+                    )
+                }
+            )
+        )
+        for i, row in enumerate(changed.features)
+    )
+    later = run_historical(
+        [changed.model_copy(update={"features": rows})],
+        config(),
+        strategy_version=VERSION,
+    )
+    cutoff = T + 15 * STEP
+    assert original.records[0] == later.records[0]
+    assert original.records[0].exit_timestamp == cutoff
+    assert tuple(d for d in original.decisions if d.timestamp <= cutoff) == tuple(
+        d for d in later.decisions if d.timestamp <= cutoff
+    )

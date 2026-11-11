@@ -23,6 +23,7 @@ from trading_bot.execution.xauusd import XAUUSDExecution
 from trading_bot.features.research_repository import content_hash
 from trading_bot.features.xauusd import XAUUSDFeatureRow
 from trading_bot.strategies.xauusd import evaluate_xauusd
+from trading_bot.strategies.xauusd_confirmation import evaluate_confirmation
 from trading_bot.strategies.xauusd_levels import (
     PlanningStatus,
     StructureBar,
@@ -246,7 +247,9 @@ class HistoricalResult(DomainModel):
     backtest_version: Literal["xauusd-first-historical-v1"] = (
         "xauusd-first-historical-v1"
     )
-    strategy_version: Literal["xauusd-trend-momentum-v1"] = "xauusd-trend-momentum-v1"
+    strategy_version: Literal[
+        "xauusd-trend-momentum-v1", "xauusd-trend-momentum-v2-long-confirmation"
+    ] = "xauusd-trend-momentum-v1"
     feature_version: Literal["xauusd-baseline-features-v1"] = (
         "xauusd-baseline-features-v1"
     )
@@ -262,13 +265,28 @@ class HistoricalResult(DomainModel):
 
 
 def run_historical(
-    days: Iterable[ResearchDay], config: ResearchBacktestConfig
+    days: Iterable[ResearchDay],
+    config: ResearchBacktestConfig,
+    *,
+    strategy_version: Literal[
+        "xauusd-trend-momentum-v1", "xauusd-trend-momentum-v2-long-confirmation"
+    ] = "xauusd-trend-momentum-v1",
 ) -> HistoricalResult:
     """Opening pending entry -> completion protection/boundary close -> signal.
 
     Boundary schedules are fixed research policy inputs, never inferred by
     peeking at future bars. Unexpected missing observations fail, not carry.
     """
+    if strategy_version not in (
+        "xauusd-trend-momentum-v1",
+        "xauusd-trend-momentum-v2-long-confirmation",
+    ):
+        raise ValueError("unsupported research strategy")
+    evaluator = (
+        evaluate_xauusd
+        if strategy_version == "xauusd-trend-momentum-v1"
+        else evaluate_confirmation
+    )
     config = ResearchBacktestConfig.model_validate(config.model_dump())
     balance = config.starting_balance
     records: list[SignalRecord] = []
@@ -510,7 +528,7 @@ def run_historical(
                     discontinuity_before=row.sequence_reset is not None,
                 )
             )
-            decision = evaluate_xauusd(row, as_of=bar.closing_timestamp)
+            decision = evaluator(row, as_of=bar.closing_timestamp)
             key = content_hash(decision.model_dump(mode="json"))
             decisions.append(
                 DecisionAudit(
@@ -599,6 +617,7 @@ def run_historical(
     ):
         raise ValueError("unaccounted strategy signal")
     return HistoricalResult(
+        strategy_version=strategy_version,
         config=config,
         records=frozen,
         decisions=tuple(decisions),
