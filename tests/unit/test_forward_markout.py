@@ -104,3 +104,24 @@ def test_validation_and_repeated_independent_measurement():
         run(bars() + (bars()[-1].model_copy(update={"opening_timestamp": DS.end}),))
     assert run() == run()
     assert run(signal_opening=T + STEP).entry_timestamp == T + 2 * STEP
+
+
+def test_inversion_recomputes_source_sides_not_negated_markout():
+    original_buy = run(side=Side.BUY)
+    original_sell = run(side=Side.SELL)
+    assert original_buy.entry_price == D("100.323")
+    assert original_sell.entry_price == D("100.123")
+    assert original_sell.markout == D("-1.077")
+    assert original_buy.markout == D("0.677")
+    assert original_buy.markout != -original_sell.markout
+    # Opposite markouts sum to minus the sum of entry and endpoint spreads.
+    assert original_buy.markout + original_sell.markout == D("-0.4")
+    assert original_buy.entry_timestamp == original_sell.entry_timestamp
+    assert original_buy.ending_timestamp == original_sell.ending_timestamp
+
+
+@pytest.mark.parametrize("horizon", [5, 10, 20])
+def test_inverted_directions_share_unavailable_window(horizon):
+    source = bars()[:3] + bars()[4:]
+    assert run(source, Side.BUY, horizon).unavailable == "DISCONTINUITY"
+    assert run(source, Side.SELL, horizon).unavailable == "DISCONTINUITY"

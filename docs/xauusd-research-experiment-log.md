@@ -37,3 +37,22 @@ relative deficit narrows, with modestly above-random SELL means but below-random
 BUY means. These are dependent in-sample descriptive observations, not formal
 significance or a production edge. No parameter changes or new strategy version.
 See `xauusd-random-entry-benchmark.md` and its JSON for fixed methodology/results.
+
+## G2C4D4 — contrarian / inverted signal diagnostic
+
+Hypothesis fixed before results: failed continuation signals may identify short-term
+directional exhaustion rather than continuation. Analysis only: original BUY →
+hypothetical SELL; original SELL → hypothetical BUY, at unchanged timestamps.
+No parameter change. Use February–April 2024 DEVELOPMENT data, D2's fixed 5/10/20
+horizons and source BID/ASK semantics, plus D3's matching method with inverted
+direction strata. No new strategy, execution, trade management or holdout analysis.
+A positive descriptive finding would require a separately frozen future candidate;
+it is not automatic strategy approval or validation.
+
+D4 result/status: completed. Inverted V1/V2 means and medians remain negative after
+spread at all three horizons. Both outperform matched random in aggregate; the
+consistent relative effect is concentrated in original BUY → hypothetical SELL.
+Original SELL → BUY is modestly above random for V1, below random for V2. No
+positive executable tendency, validated strategy or universal reversal effect is
+claimed. Source-side inversion and 1,000-trial deterministic repeats verified.
+See `xauusd-contrarian-signal-diagnostic.md` and JSON. No further experiment begun.
