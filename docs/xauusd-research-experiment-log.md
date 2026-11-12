@@ -56,3 +56,21 @@ Original SELL → BUY is modestly above random for V1, below random for V2. No
 positive executable tendency, validated strategy or universal reversal effect is
 claimed. Source-side inversion and 1,000-trial deterministic repeats verified.
 See `xauusd-contrarian-signal-diagnostic.md` and JSON. No further experiment begun.
+
+## G2C4E1 — frozen pullback-resumption hypothesis
+
+Before screening: a broader trend combined with a short-term momentum pullback
+and resumption may provide a better-timed continuation entry than entering during
+already-positive/negative short-term momentum. New family
+`xauusd-pullback-resumption-v1`; February–April 2024 development data only.
+Exactly the requested EMA12/26, momentum12 direction, momentum3 sign crossing and
+spread filters; no RSI, optimization, account backtest or holdout inspection.
+Only 5/10/20-bar markouts and 1,000 matched controls per horizon.
+
+E1 result: 547 BUY and 479 SELL signals. ALL mean-markout percentiles versus
+matched random: 69.7 / 91.8 / 26.6 at 5/10/20 bars. BUY carries the favorable
+relative pattern (87.1 / 98.9 / 85.2); SELL underperforms (35.1 / 30 / 2.7).
+ALL means remain negative. This is mixed in-sample screening evidence, not a
+consistent two-sided advantage or profitability result. No rules changed and no
+follow-on candidate or simulator run was started. See the pullback-resumption
+signal-study Markdown/JSON. Full-repeat content hashes are identical.
