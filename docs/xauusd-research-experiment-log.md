@@ -93,3 +93,14 @@ have extended gaps; Fridays/weekends and those dates remain excluded. The 50
 dates are proposed only, with archive-bound date allowlists and exact missing-set
 matching; no policy activation or persistence. Strategy outcomes remain unseen.
 August–October stays locked. See `histdata-validation-may-july-2024.md`/JSON.
+
+## G2C4E2B — frozen validation dataset materialized
+
+Dataset preparation only: May/June/July 2024 have 17/15/18 approved dates under
+`histdata-xauusd-validation-gap-v1`. Persisted 13,800 observed bid/ask bars and
+13,800 `xauusd-baseline-features-v1` rows. Identical second imports inserted zero
+and matched 13,800 rows each. Verified 50 dataset-boundary and 50 provider-gap
+resets. Frozen development counts/hashes remain unchanged (13,524 bars/features).
+Validation dataset content key: `811d9f5db6bf55d128147b2247197d2364e31b185d005c69b33b2349ffa589c5`.
+No validation strategy outcomes inspected; E1 unchanged. August–October remains
+LOCKED / UNPROCESSED. See `xauusd-may-july-validation-dataset.md`/JSON.
