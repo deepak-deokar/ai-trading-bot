@@ -74,3 +74,22 @@ ALL means remain negative. This is mixed in-sample screening evidence, not a
 consistent two-sided advantage or profitability result. No rules changed and no
 follow-on candidate or simulator run was started. See the pullback-resumption
 signal-study Markdown/JSON. Full-repeat content hashes are identical.
+
+## G2C4E2A — validation data partition (before inspection)
+
+February–April 2024: **DEVELOPMENT / IN-SAMPLE**.
+May–July 2024: **FIRST UNSEEN VALIDATION PERIOD** — data quality may be
+inspected; strategy outcomes have not been inspected.
+August–October 2024: **LOCKED HOLDOUT PERIOD** — no data processing or strategy
+results inspection in this checkpoint. Source-calendar dates define partitions.
+Only archive integrity, fixed-offset parsing, bid/ask quality, observed five-minute
+coverage and proposed date-bounded gap patterns are in scope. No strategy signals,
+markouts, random benchmarks or account simulation on validation data. E1 is frozen.
+
+E2A data-quality result: 15,390,112 valid ticks; no invalid/crossed/duplicate
+observations. Independent monthly discovery finds 22:00–22:55 UTC gaps on
+17 May, 15 June and 18 July normal-day candidates. May 27, June 19 and July 4
+have extended gaps; Fridays/weekends and those dates remain excluded. The 50
+dates are proposed only, with archive-bound date allowlists and exact missing-set
+matching; no policy activation or persistence. Strategy outcomes remain unseen.
+August–October stays locked. See `histdata-validation-may-july-2024.md`/JSON.
