@@ -133,3 +133,28 @@ positive development BUY result did not reproduce. Two full runs match exactly.
 No rule changed, no SELL alternative or account simulation was evaluated, and
 August–October remains locked. May–July is now an inspected validation sample,
 not an unused holdout for later tuning. See the BUY validation Markdown/JSON.
+
+## G2C4F1 — structural breakout, frozen before screening
+
+New family `xauusd-structural-breakout-v1`. Hypothesis: a fresh break beyond the
+previous 12 completed bars may contain more directional information than entering
+solely from trend/momentum conditions. February–April DEVELOPMENT ONLY. May–July
+is consumed validation and is not used for design, tuning or analysis here;
+August–October remains locked. No account simulation, protection or sizing.
+
+Frozen freshness rule: T BID close > max BID high(T-12..T-1), and T-1 BID close
+<= max BID high(T-13..T-2), for BUY. SELL mirrors using ASK close < min ASK low
+and previous ASK close >= its own prior minimum. Each reference contains exactly
+12 bars, excluding its tested bar. Thirteen continuous prior bars are needed to
+prove the previous condition; until then NO_TRADE. Consecutive breakout bars do
+not repeat. Require current spread_close <= 0.75 and relative_spread <= 0.0003.
+No EMA/RSI/momentum filter. No alternative lookbacks. Fixed D2 5/10/20-bar markouts
+and 1,000 D3 matched-random trials per horizon. No tuning after results.
+
+F1 result: 653 BUY + 529 SELL = 1,182 signals. ALL means at 5/10/20 bars are
+-0.392886/-0.389484/-0.402255, below matched random (percentiles 21.4/24.6/23.8).
+BUY underperforms at all horizons (5.9/7.6/18.4). SELL is modestly above random
+at 5/10 (67.1/68.0), not at 20 (47.4). All means/medians remain negative and
+all favorable/adverse ratios below one. No consistent matched-random advantage
+established. Two full runs match; no tuning or account simulation. May–July
+not used; August–October locked. See structural-breakout study Markdown/JSON.
