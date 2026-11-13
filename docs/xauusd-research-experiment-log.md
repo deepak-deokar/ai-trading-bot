@@ -104,3 +104,32 @@ resets. Frozen development counts/hashes remain unchanged (13,524 bars/features)
 Validation dataset content key: `811d9f5db6bf55d128147b2247197d2364e31b185d005c69b33b2349ffa589c5`.
 No validation strategy outcomes inspected; E1 unchanged. August–October remains
 LOCKED / UNPROCESSED. See `xauusd-may-july-validation-dataset.md`/JSON.
+
+## G2C4E2C — predeclared first unseen BUY validation
+
+Frozen before reading May–July strategy outcomes: the E1 BUY-side pullback/resumption
+hypothesis may contain forward directional information. Use only E2B identity
+`811d9f5db6bf55d128147b2247197d2364e31b185d005c69b33b2349ffa589c5`.
+BUY rule unchanged: EMA12 > EMA26, momentum12 > 0, prior momentum3 <= 0,
+current momentum3 > 0, spread <= 0.75, relative spread <= 0.0003; no RSI.
+10 bars PRIMARY; 5 and 20 supporting. D2 executable BUY markouts; D3 exact
+month/session matching with 1,000 deterministic trials. Fixed E1 strategy name
+remains the seed label. No SELL evaluation, tuning, account simulation or holdout.
+
+Predeclared descriptive interpretation at 10 bars: STRONG VALIDATION SUPPORT
+requires mean > 0 and mean-markout empirical percentile >= 95. PARTIAL SUPPORT
+means actual mean exceeds the random mean but fails a strong-support condition.
+Otherwise NO VALIDATION SUPPORT. A negative mean, even if relatively better than
+random, does not establish favorable executable movement. Percentiles are not
+formal significance. The two supporting horizons cannot replace the primary one.
+August–October remains locked; no further candidate or backtest is authorized.
+
+E2C result: NO VALIDATION SUPPORT under the predeclared primary rule. First
+validation inspection found 577 BUY signals (May 177, June 195, July 205).
+At 10 bars the mean is -0.344745 versus matched-random -0.218556, percentile
+26.1. Supporting 5/20-bar means are -0.477007/-0.554895, percentiles 8.7/3.6.
+All three means and medians are negative and below matched-random means. The
+positive development BUY result did not reproduce. Two full runs match exactly.
+No rule changed, no SELL alternative or account simulation was evaluated, and
+August–October remains locked. May–July is now an inspected validation sample,
+not an unused holdout for later tuning. See the BUY validation Markdown/JSON.

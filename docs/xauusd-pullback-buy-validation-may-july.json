@@ -1,0 +1,494 @@
+{
+  "checkpoint": "G2C4E2C",
+  "strategy": "xauusd-pullback-resumption-v1",
+  "side": "BUY_ONLY",
+  "primary_horizon": 10,
+  "supporting_horizons": [
+    5,
+    20
+  ],
+  "dataset_key": "811d9f5db6bf55d128147b2247197d2364e31b185d005c69b33b2349ffa589c5",
+  "dataset_report_sha256": "8867442f67250a015d371479a128e6e2a10799efc5cc1684103de7eb05906ac7",
+  "session_config_sha256": "79872ce8e6a6fa2f751dfd3fecd704596e18a37314d87b21c8c44d77349a4561",
+  "frozen_candidate_source_sha256": "1d383253614fa32b20187254663597ffc66e33c7eb33897a6f364cfe854901ff",
+  "runner_sha256": "9370e431ea30b5a7b8f8fed29af2e2d13e1ff9c25b97c5370b768ace9dc6c424",
+  "python_version": "3.12.7",
+  "seed_namespace": "xauusd-g2c4d3-matched-random-v1",
+  "seed_strategy": "xauusd-pullback-resumption-v1",
+  "trials": 1000,
+  "classification": "NO VALIDATION SUPPORT",
+  "rerun_equal": true,
+  "study_hash": "531d43b1f632adbd68c3f7ce5c5bb5160d686c3f98661c5f06aa34365e9f9f98",
+  "august_october": "LOCKED_UNPROCESSED",
+  "development_context": {
+    "5": {
+      "mean": "-0.132739",
+      "percentile": "87.1"
+    },
+    "10": {
+      "mean": "0.217478",
+      "percentile": "98.9"
+    },
+    "20": {
+      "mean": "0.265121",
+      "percentile": "85.2"
+    }
+  },
+  "buy_signals": 577,
+  "monthly_buy": {
+    "2024-05": 177,
+    "2024-06": 195,
+    "2024-07": 205
+  },
+  "session_buy": {
+    "ASIA": 135,
+    "LONDON": 140,
+    "LONDON_NEW_YORK_OVERLAP": 112,
+    "NEW_YORK": 156,
+    "OFF_SESSION": 34
+  },
+  "results": {
+    "5": {
+      "actual": {
+        "signals": 577,
+        "eligible": 559,
+        "unavailable": 18,
+        "unavailable_reasons": {
+          "DISCONTINUITY": 13,
+          "SIGNAL_AT_BOUNDARY": 1,
+          "INCOMPLETE_HORIZON": 4
+        },
+        "mean_markout": "-0.477007155635062611806797853309481216457960644007155635062612",
+        "median_markout": "-0.4140000000",
+        "mean_favorable": "1.65241681574239713774597495527728085867620751341681574239714",
+        "median_favorable": "0.9900000000",
+        "mean_adverse": "2.50857602862254025044722719141323792486583184257602862254025",
+        "median_adverse": "1.8470000000",
+        "positive": 242,
+        "pct_positive": "43.2915921288014311270125223613595706618962432915921288014311",
+        "negative": 316,
+        "pct_negative": "56.5295169946332737030411449016100178890876565295169946332737",
+        "zero": 1,
+        "pct_zero": "0.178890876565295169946332737030411449016100178890876565295170"
+      },
+      "random": {
+        "mean_markout": {
+          "random_mean": "-0.305782783542039355992844364937388193202146690518783542039359",
+          "random_median": "-0.302774597495527728085867620751341681574239713774597495527728",
+          "p05": "-0.521930232558139534883720930232558139534883720930232558139535",
+          "p95": "-0.0953810375670840787119856887298747763864042933810375670840787",
+          "actual": "-0.477007155635062611806797853309481216457960644007155635062612",
+          "actual_percentile": "8.7"
+        },
+        "positive_pct": {
+          "random_mean": "43.9758497316636851520572450805008944543828264758497316636845",
+          "random_median": "44.0071556350626118067978533094812164579606440071556350626118",
+          "p05": "40.6082289803220035778175313059033989266547406082289803220036",
+          "p95": "47.2271914132379248658318425760286225402504472271914132379249",
+          "actual": "43.2915921288014311270125223613595706618962432915921288014311",
+          "actual_percentile": "36.3"
+        },
+        "mean_favorable": {
+          "random_mean": "1.76834880858676207513416815742397137745974955277280858676215",
+          "random_median": "1.76812790697674418604651162790697674418604651162790697674418",
+          "p05": "1.63810554561717352415026833631484794275491949910554561717352",
+          "p95": "1.90435599284436493738819320214669051878354203935599284436494",
+          "actual": "1.65241681574239713774597495527728085867620751341681574239714",
+          "actual_percentile": "7.2"
+        },
+        "mean_adverse": {
+          "random_mean": "2.48448155813953488372093023255813953488372093023255813953503",
+          "random_median": "2.48406797853309481216457960644007155635062611806797853309481",
+          "p05": "2.34780679785330948121645796064400715563506261180679785330948",
+          "p95": "2.62896779964221824686940966010733452593917710196779964221825",
+          "actual": "2.50857602862254025044722719141323792486583184257602862254025",
+          "actual_percentile": "62.3"
+        }
+      }
+    },
+    "10": {
+      "actual": {
+        "signals": 577,
+        "eligible": 529,
+        "unavailable": 48,
+        "unavailable_reasons": {
+          "DISCONTINUITY": 25,
+          "INCOMPLETE_HORIZON": 22,
+          "SIGNAL_AT_BOUNDARY": 1
+        },
+        "mean_markout": "-0.344744801512287334593572778827977315689981096408317580340265",
+        "median_markout": "-0.3870000000",
+        "mean_favorable": "2.59376370510396975425330812854442344045368620037807183364839",
+        "median_favorable": "1.6660000000",
+        "mean_adverse": "3.45381852551984877126654064272211720226843100189035916824197",
+        "median_adverse": "2.5800000000",
+        "positive": 237,
+        "pct_positive": "44.8015122873345935727788279773156899810964083175803402646503",
+        "negative": 292,
+        "pct_negative": "55.1984877126654064272211720226843100189035916824196597353497",
+        "zero": 0,
+        "pct_zero": "0"
+      },
+      "random": {
+        "mean_markout": {
+          "random_mean": "-0.218556192816635160680529300567107750472589792060491493383747",
+          "random_median": "-0.214974480151228733459357277882797731568998109640831758034026",
+          "p05": "-0.540137996219281663516068052930056710775047258979206049149338",
+          "p95": "0.0799054820415879017013232514177693761814744801512287334593573",
+          "actual": "-0.344744801512287334593572778827977315689981096408317580340265",
+          "actual_percentile": "26.1"
+        },
+        "positive_pct": {
+          "random_mean": "47.156899810964083175803402646502835538752362948960302457466",
+          "random_median": "47.2589792060491493383742911153119092627599243856332703213611",
+          "p05": "43.4782608695652173913043478260869565217391304347826086956522",
+          "p95": "50.6616257088846880907372400756143667296786389413988657844991",
+          "actual": "44.8015122873345935727788279773156899810964083175803402646503",
+          "actual_percentile": "15.1"
+        },
+        "mean_favorable": {
+          "random_mean": "2.7393415047258979206049149338374291115311909262759924385632",
+          "random_median": "2.74191398865784499054820415879017013232514177693761814744802",
+          "p05": "2.53115689981096408317580340264650283553875236294896030245747",
+          "p95": "2.94086389413988657844990548204158790170132325141776937618147",
+          "actual": "2.59376370510396975425330812854442344045368620037807183364839",
+          "actual_percentile": "12.5"
+        },
+        "mean_adverse": {
+          "random_mean": "3.41519557655954631379962192816635160680529300567107750472587",
+          "random_median": "3.41475897920604914933837429111531190926275992438563327032136",
+          "p05": "3.20964650283553875236294896030245746691871455576559546313800",
+          "p95": "3.62893383742911153119092627599243856332703213610586011342155",
+          "actual": "3.45381852551984877126654064272211720226843100189035916824197",
+          "actual_percentile": "63.8"
+        }
+      }
+    },
+    "20": {
+      "actual": {
+        "signals": 577,
+        "eligible": 477,
+        "unavailable": 100,
+        "unavailable_reasons": {
+          "DISCONTINUITY": 54,
+          "INCOMPLETE_HORIZON": 45,
+          "SIGNAL_AT_BOUNDARY": 1
+        },
+        "mean_markout": "-0.554895178197064989517819706498951781970649895178197064989518",
+        "median_markout": "-0.3810000000",
+        "mean_favorable": "3.95566247379454926624737945492662473794549266247379454926625",
+        "median_favorable": "2.5830000000",
+        "mean_adverse": "4.95911111111111111111111111111111111111111111111111111111111",
+        "median_adverse": "3.5200000000",
+        "positive": 220,
+        "pct_positive": "46.1215932914046121593291404612159329140461215932914046121593",
+        "negative": 257,
+        "pct_negative": "53.8784067085953878406708595387840670859538784067085953878407",
+        "zero": 0,
+        "pct_zero": "0"
+      },
+      "random": {
+        "mean_markout": {
+          "random_mean": "-0.0695260125786163522012578616352201257861635220125786163522015",
+          "random_median": "-0.0758312368972746331236897274633123689727463312368972746331235",
+          "p05": "-0.497310272536687631027253668763102725366876310272536687631027",
+          "p95": "0.364041928721174004192872117400419287211740041928721174004193",
+          "actual": "-0.554895178197064989517819706498951781970649895178197064989518",
+          "actual_percentile": "3.6"
+        },
+        "positive_pct": {
+          "random_mean": "49.8754716981132075471698113207547169811320754716981132075474",
+          "random_median": "49.8951781970649895178197064989517819706498951781970649895178",
+          "p05": "46.5408805031446540880503144654088050314465408805031446540881",
+          "p95": "53.4591194968553459119496855345911949685534591194968553459119",
+          "actual": "46.1215932914046121593291404612159329140461215932914046121593",
+          "actual_percentile": "3.4"
+        },
+        "mean_favorable": {
+          "random_mean": "4.21804469601677148846960167714884696016771488469601677148862",
+          "random_median": "4.21011425576519916142557651991614255765199161425576519916142",
+          "p05": "3.90555555555555555555555555555555555555555555555555555555556",
+          "p95": "4.52370230607966457023060796645702306079664570230607966457023",
+          "actual": "3.95566247379454926624737945492662473794549266247379454926625",
+          "actual_percentile": "7.4"
+        },
+        "mean_adverse": {
+          "random_mean": "4.81699783228511530398322851153039832285115303983228511530413",
+          "random_median": "4.81624004192872117400419287211740041928721174004192872117400",
+          "p05": "4.51628930817610062893081761006289308176100628930817610062893",
+          "p95": "5.12711530398322851153039832285115303983228511530398322851153",
+          "actual": "4.95911111111111111111111111111111111111111111111111111111111",
+          "actual_percentile": "78"
+        }
+      }
+    }
+  },
+  "matching": {
+    "5": [
+      {
+        "month": "2024-05",
+        "session": "ASIA",
+        "requested": 46,
+        "candidates": 1547
+      },
+      {
+        "month": "2024-05",
+        "session": "LONDON",
+        "requested": 34,
+        "candidates": 1020
+      },
+      {
+        "month": "2024-05",
+        "session": "LONDON_NEW_YORK_OVERLAP",
+        "requested": 41,
+        "candidates": 612
+      },
+      {
+        "month": "2024-05",
+        "session": "NEW_YORK",
+        "requested": 47,
+        "candidates": 1020
+      },
+      {
+        "month": "2024-05",
+        "session": "OFF_SESSION",
+        "requested": 4,
+        "candidates": 323
+      },
+      {
+        "month": "2024-06",
+        "session": "ASIA",
+        "requested": 34,
+        "candidates": 1365
+      },
+      {
+        "month": "2024-06",
+        "session": "LONDON",
+        "requested": 49,
+        "candidates": 900
+      },
+      {
+        "month": "2024-06",
+        "session": "LONDON_NEW_YORK_OVERLAP",
+        "requested": 36,
+        "candidates": 540
+      },
+      {
+        "month": "2024-06",
+        "session": "NEW_YORK",
+        "requested": 62,
+        "candidates": 900
+      },
+      {
+        "month": "2024-06",
+        "session": "OFF_SESSION",
+        "requested": 8,
+        "candidates": 285
+      },
+      {
+        "month": "2024-07",
+        "session": "ASIA",
+        "requested": 50,
+        "candidates": 1638
+      },
+      {
+        "month": "2024-07",
+        "session": "LONDON",
+        "requested": 57,
+        "candidates": 1080
+      },
+      {
+        "month": "2024-07",
+        "session": "LONDON_NEW_YORK_OVERLAP",
+        "requested": 35,
+        "candidates": 648
+      },
+      {
+        "month": "2024-07",
+        "session": "NEW_YORK",
+        "requested": 47,
+        "candidates": 1080
+      },
+      {
+        "month": "2024-07",
+        "session": "OFF_SESSION",
+        "requested": 9,
+        "candidates": 342
+      }
+    ],
+    "10": [
+      {
+        "month": "2024-05",
+        "session": "ASIA",
+        "requested": 42,
+        "candidates": 1462
+      },
+      {
+        "month": "2024-05",
+        "session": "LONDON",
+        "requested": 34,
+        "candidates": 1020
+      },
+      {
+        "month": "2024-05",
+        "session": "LONDON_NEW_YORK_OVERLAP",
+        "requested": 41,
+        "candidates": 612
+      },
+      {
+        "month": "2024-05",
+        "session": "NEW_YORK",
+        "requested": 47,
+        "candidates": 1020
+      },
+      {
+        "month": "2024-05",
+        "session": "OFF_SESSION",
+        "requested": 2,
+        "candidates": 238
+      },
+      {
+        "month": "2024-06",
+        "session": "ASIA",
+        "requested": 27,
+        "candidates": 1290
+      },
+      {
+        "month": "2024-06",
+        "session": "LONDON",
+        "requested": 49,
+        "candidates": 900
+      },
+      {
+        "month": "2024-06",
+        "session": "LONDON_NEW_YORK_OVERLAP",
+        "requested": 36,
+        "candidates": 540
+      },
+      {
+        "month": "2024-06",
+        "session": "NEW_YORK",
+        "requested": 62,
+        "candidates": 900
+      },
+      {
+        "month": "2024-06",
+        "session": "OFF_SESSION",
+        "requested": 5,
+        "candidates": 210
+      },
+      {
+        "month": "2024-07",
+        "session": "ASIA",
+        "requested": 43,
+        "candidates": 1548
+      },
+      {
+        "month": "2024-07",
+        "session": "LONDON",
+        "requested": 57,
+        "candidates": 1080
+      },
+      {
+        "month": "2024-07",
+        "session": "LONDON_NEW_YORK_OVERLAP",
+        "requested": 35,
+        "candidates": 648
+      },
+      {
+        "month": "2024-07",
+        "session": "NEW_YORK",
+        "requested": 47,
+        "candidates": 1080
+      },
+      {
+        "month": "2024-07",
+        "session": "OFF_SESSION",
+        "requested": 2,
+        "candidates": 252
+      }
+    ],
+    "20": [
+      {
+        "month": "2024-05",
+        "session": "ASIA",
+        "requested": 36,
+        "candidates": 1292
+      },
+      {
+        "month": "2024-05",
+        "session": "LONDON",
+        "requested": 34,
+        "candidates": 1020
+      },
+      {
+        "month": "2024-05",
+        "session": "LONDON_NEW_YORK_OVERLAP",
+        "requested": 41,
+        "candidates": 612
+      },
+      {
+        "month": "2024-05",
+        "session": "NEW_YORK",
+        "requested": 41,
+        "candidates": 901
+      },
+      {
+        "month": "2024-06",
+        "session": "ASIA",
+        "requested": 20,
+        "candidates": 1140
+      },
+      {
+        "month": "2024-06",
+        "session": "LONDON",
+        "requested": 49,
+        "candidates": 900
+      },
+      {
+        "month": "2024-06",
+        "session": "LONDON_NEW_YORK_OVERLAP",
+        "requested": 36,
+        "candidates": 540
+      },
+      {
+        "month": "2024-06",
+        "session": "NEW_YORK",
+        "requested": 57,
+        "candidates": 795
+      },
+      {
+        "month": "2024-07",
+        "session": "ASIA",
+        "requested": 33,
+        "candidates": 1368
+      },
+      {
+        "month": "2024-07",
+        "session": "LONDON",
+        "requested": 57,
+        "candidates": 1080
+      },
+      {
+        "month": "2024-07",
+        "session": "LONDON_NEW_YORK_OVERLAP",
+        "requested": 35,
+        "candidates": 648
+      },
+      {
+        "month": "2024-07",
+        "session": "NEW_YORK",
+        "requested": 38,
+        "candidates": 954
+      }
+    ]
+  },
+  "trial_hashes": {
+    "5": "1e3720deda9a13a312d7cd91511e7d186bba10bdae96c3c9b360eca62709cf67",
+    "10": "54bfd2153dea6371ee18a2e5004387308ad32282c97d599da828b13bb6a05d1a",
+    "20": "44e118a681ddb68ee062892d93e1b3a57e4800f70f9bb56c69b91230a99f72ee"
+  },
+  "decision_hash": "8c66eb35226b79980374edf8839b17620a13e5aee4f20e7ecf7c976c8c89834b",
+  "observation_hash": "31335b616f90e965695f780614991c3283b9a028b50d1ce35a4d09f644dc51c4",
+  "content_hash": "98d7db7993ff048741eb2d413f07b8705a33c644ff70400020e8a0ed2bfa7720"
+}
