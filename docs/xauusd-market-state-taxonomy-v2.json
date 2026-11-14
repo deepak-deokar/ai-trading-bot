@@ -1,0 +1,239 @@
+{
+  "g1_report_sha256": "2f388d203670608c8a1337bb9566b43e27158e5461c50a0107f0eb3c7ae5cf4d",
+  "g2_report_sha256": "96c395cdfa7bd811c036f900dc30b183e46768610cf98eaa32cf82ec18cf46b4",
+  "engine_sha256": "68554227667e2d83158131f7046e68c521fefe0c7ab7103aee2cfb418cdcc005",
+  "session_config_sha256": "79872ce8e6a6fa2f751dfd3fecd704596e18a37314d87b21c8c44d77349a4561",
+  "rerun_equal": true,
+  "may_july_used": false,
+  "august_october": "LOCKED_UNPROCESSED",
+  "policy": {
+    "taxonomy_version": "xauusd-market-state-taxonomy-v2",
+    "feature_set_version": "xauusd-market-state-features-v2",
+    "volatility_low": "0.70772125992621078662459452035253405481804084608722",
+    "volatility_high": "1.1983084785966187971510743249379515934834203015313",
+    "efficiency_low": "0.15451438336656223298205639418968954713756764454571",
+    "efficiency_high": "0.34332645184453819226281303294138766717529844717709",
+    "range_reference": 1,
+    "range_feature": "volatility_ratio_12_36",
+    "development_hash": "c75186ca8e7eb54cd572a9157b6d4acaf2885591cb22b7b6ac7a9b1ce392d4c3",
+    "methodology": "pooled-nearest-rank-0.333333-0.666667-lower-inclusive"
+  },
+  "core_counts_identical": true,
+  "thresholds_identical": true,
+  "core_counts": {
+    "UNCLASSIFIED_WARMUP": 3528,
+    "NORMAL_VOL_MIXED": 1094,
+    "NORMAL_VOL_DIRECTIONAL": 1051,
+    "NORMAL_VOL_CHOPPY": 1188,
+    "HIGH_VOL_DIRECTIONAL": 1280,
+    "HIGH_VOL_MIXED": 1069,
+    "HIGH_VOL_CHOPPY": 982,
+    "LOW_VOL_CHOPPY": 1126,
+    "LOW_VOL_MIXED": 1121,
+    "LOW_VOL_DIRECTIONAL": 1085
+  },
+  "overall": {
+    "rows": 13524,
+    "valid": 9996,
+    "unavailable": 3528,
+    "states": {
+      "COMPRESSED": {
+        "count": 6208,
+        "pct_valid": "62.104841936774709883953581432573029211684673869548",
+        "pct_all": "45.903578822833481218574386276249630286897367642709"
+      },
+      "NEUTRAL": {
+        "count": 0,
+        "pct_valid": "0",
+        "pct_all": "0"
+      },
+      "EXPANDED": {
+        "count": 3788,
+        "pct_valid": "37.895158063225290116046418567426970788315326130452",
+        "pct_all": "28.009464655427388346643005028098195800059154096421"
+      }
+    }
+  },
+  "months": {
+    "2024-02": {
+      "rows": 4416,
+      "valid": 3264,
+      "unavailable": 1152,
+      "states": {
+        "COMPRESSED": {
+          "count": 2095,
+          "pct_valid": "64.185049019607843137254901960784313725490196078431",
+          "pct_all": "47.441123188405797101449275362318840579710144927536"
+        },
+        "NEUTRAL": {
+          "count": 0,
+          "pct_valid": "0",
+          "pct_all": "0"
+        },
+        "EXPANDED": {
+          "count": 1169,
+          "pct_valid": "35.814950980392156862745098039215686274509803921569",
+          "pct_all": "26.471920289855072463768115942028985507246376811594"
+        }
+      }
+    },
+    "2024-03": {
+      "rows": 4140,
+      "valid": 3060,
+      "unavailable": 1080,
+      "states": {
+        "COMPRESSED": {
+          "count": 1946,
+          "pct_valid": "63.594771241830065359477124183006535947712418300654",
+          "pct_all": "47.004830917874396135265700483091787439613526570048"
+        },
+        "NEUTRAL": {
+          "count": 0,
+          "pct_valid": "0",
+          "pct_all": "0"
+        },
+        "EXPANDED": {
+          "count": 1114,
+          "pct_valid": "36.405228758169934640522875816993464052287581699346",
+          "pct_all": "26.908212560386473429951690821256038647342995169082"
+        }
+      }
+    },
+    "2024-04": {
+      "rows": 4968,
+      "valid": 3672,
+      "unavailable": 1296,
+      "states": {
+        "COMPRESSED": {
+          "count": 2167,
+          "pct_valid": "59.014161220043572984749455337690631808278867102397",
+          "pct_all": "43.619162640901771336553945249597423510466988727858"
+        },
+        "NEUTRAL": {
+          "count": 0,
+          "pct_valid": "0",
+          "pct_all": "0"
+        },
+        "EXPANDED": {
+          "count": 1505,
+          "pct_valid": "40.985838779956427015250544662309368191721132897603",
+          "pct_all": "30.293880837359098228663446054750402576489533011272"
+        }
+      }
+    }
+  },
+  "sessions": {
+    "ASIA": {
+      "rows": 4704,
+      "valid": 1896,
+      "unavailable": 2808,
+      "states": {
+        "COMPRESSED": {
+          "count": 1110,
+          "pct_valid": "58.544303797468354430379746835443037974683544303797",
+          "pct_all": "23.596938775510204081632653061224489795918367346939"
+        },
+        "NEUTRAL": {
+          "count": 0,
+          "pct_valid": "0",
+          "pct_all": "0"
+        },
+        "EXPANDED": {
+          "count": 786,
+          "pct_valid": "41.455696202531645569620253164556962025316455696203",
+          "pct_all": "16.709183673469387755102040816326530612244897959184"
+        }
+      }
+    },
+    "LONDON": {
+      "rows": 2940,
+      "valid": 2891,
+      "unavailable": 49,
+      "states": {
+        "COMPRESSED": {
+          "count": 1699,
+          "pct_valid": "58.768592182635766170875129712902109996540989277067",
+          "pct_all": "57.789115646258503401360544217687074829931972789116"
+        },
+        "NEUTRAL": {
+          "count": 0,
+          "pct_valid": "0",
+          "pct_all": "0"
+        },
+        "EXPANDED": {
+          "count": 1192,
+          "pct_valid": "41.231407817364233829124870287097890003459010722933",
+          "pct_all": "40.544217687074829931972789115646258503401360544218"
+        }
+      }
+    },
+    "LONDON_NEW_YORK_OVERLAP": {
+      "rows": 1764,
+      "valid": 1764,
+      "unavailable": 0,
+      "states": {
+        "COMPRESSED": {
+          "count": 554,
+          "pct_valid": "31.405895691609977324263038548752834467120181405896",
+          "pct_all": "31.405895691609977324263038548752834467120181405896"
+        },
+        "NEUTRAL": {
+          "count": 0,
+          "pct_valid": "0",
+          "pct_all": "0"
+        },
+        "EXPANDED": {
+          "count": 1210,
+          "pct_valid": "68.594104308390022675736961451247165532879818594104",
+          "pct_all": "68.594104308390022675736961451247165532879818594104"
+        }
+      }
+    },
+    "NEW_YORK": {
+      "rows": 2940,
+      "valid": 2940,
+      "unavailable": 0,
+      "states": {
+        "COMPRESSED": {
+          "count": 2397,
+          "pct_valid": "81.530612244897959183673469387755102040816326530612",
+          "pct_all": "81.530612244897959183673469387755102040816326530612"
+        },
+        "NEUTRAL": {
+          "count": 0,
+          "pct_valid": "0",
+          "pct_all": "0"
+        },
+        "EXPANDED": {
+          "count": 543,
+          "pct_valid": "18.469387755102040816326530612244897959183673469388",
+          "pct_all": "18.469387755102040816326530612244897959183673469388"
+        }
+      }
+    },
+    "OFF_SESSION": {
+      "rows": 1176,
+      "valid": 505,
+      "unavailable": 671,
+      "states": {
+        "COMPRESSED": {
+          "count": 448,
+          "pct_valid": "88.712871287128712871287128712871287128712871287129",
+          "pct_all": "38.095238095238095238095238095238095238095238095238"
+        },
+        "NEUTRAL": {
+          "count": 0,
+          "pct_valid": "0",
+          "pct_all": "0"
+        },
+        "EXPANDED": {
+          "count": 57,
+          "pct_valid": "11.287128712871287128712871287128712871287128712871",
+          "pct_all": "4.8469387755102040816326530612244897959183673469388"
+        }
+      }
+    }
+  },
+  "classification_hash": "472d09e2fcc182c0bd6b13115ef0d9bc889c9ab5c0d69ecb2ec3ff5c19f1ba7f",
+  "content_hash": "5fa8c8f1f914d94cb592c3be122e1440934030e5264a1edd4d83e0035f71e86b"
+}

@@ -1,0 +1,316 @@
+{
+  "g1_report_sha256": "2f388d203670608c8a1337bb9566b43e27158e5461c50a0107f0eb3c7ae5cf4d",
+  "g2_report_sha256": "96c395cdfa7bd811c036f900dc30b183e46768610cf98eaa32cf82ec18cf46b4",
+  "engine_sha256": "68554227667e2d83158131f7046e68c521fefe0c7ab7103aee2cfb418cdcc005",
+  "session_config_sha256": "79872ce8e6a6fa2f751dfd3fecd704596e18a37314d87b21c8c44d77349a4561",
+  "rerun_equal": true,
+  "may_july_used": false,
+  "august_october": "LOCKED_UNPROCESSED",
+  "feature_set_version": "xauusd-market-state-features-v2",
+  "days": 49,
+  "rows": 13524,
+  "availability": {
+    "WARMUP": 1764,
+    "AVAILABLE": 9996,
+    "GAP_WARMUP": 1764
+  },
+  "datasets": [
+    {
+      "dataset_key": "2b34eb0775c2995abcfbc4241ddf95efc98ee16f7e5437aa1d2a788bdf25289e",
+      "rows": 276,
+      "v1_hash": "3f3613e969cdcbb00fcbd2a0e31d050fcba87d6a18c0d5fa5c8d7fb7cff3ed5e",
+      "v2_hash": "52de151c9f4aa893888b0ad8bdad63fc8a42e194f9e145f76408892c3a116477"
+    },
+    {
+      "dataset_key": "beec742abd1aed864e2fd808f132bb99c0a5baadfe49297361fb3d2d7d51e2a5",
+      "rows": 276,
+      "v1_hash": "49f8020603627a31f6c93a3b2c3e494b2f041f142a6bbc5d5e6fcf9bfcd63ffc",
+      "v2_hash": "1af0b590ad63e50b3efe8ef576bb7dd3c10f08f2a2d42423184463778e2c2a9e"
+    },
+    {
+      "dataset_key": "622df67007d22746c09eb0b43a6c67a19fb053415d4bd7b0ee4499f22dd6eb27",
+      "rows": 276,
+      "v1_hash": "e32d945d6979d25f876f517e88a8d52dca6b22ae1536ded6098d19cfb1be4b42",
+      "v2_hash": "0e6a66e98cea11839f781fb283d81ab19451d6910b06e58555423d6988a42c0e"
+    },
+    {
+      "dataset_key": "5f2378b2711c4c16bc2b5ec64bc247cf93a3898ff6a566eee6e80d2fb6f66ae6",
+      "rows": 276,
+      "v1_hash": "39b2a9618d27b4c799f59754579a5a346cb4b790d8b754e592577e23d01a7528",
+      "v2_hash": "9540530e0fb8375de9d97a7443e97c52ee2ed30428f209d653a0b55929c2a9a3"
+    },
+    {
+      "dataset_key": "c4bf85944aecd60b803115f04025b7ebb90ec5a543dcf4401b99af0098a2454a",
+      "rows": 276,
+      "v1_hash": "0de6769d24dd452d7d6519be44ae8c015ea1e23f71324d8e67184d353c149b1a",
+      "v2_hash": "2ef780297611c6ed0f0ca27dc0611d3e5b6780c1f64224dae630ccc64e468ca4"
+    },
+    {
+      "dataset_key": "184d19c9ed429cb6634cbaf220559c55c834513f000077f558cb9e60caa82561",
+      "rows": 276,
+      "v1_hash": "1a76984110fde9cd7a78d10b57089e2edecf9b91d3950409dca362a959cf6fde",
+      "v2_hash": "780127445c1886fa01df81e401c8ac21f7b1b4917c02370d281d02d840113722"
+    },
+    {
+      "dataset_key": "c43f50c07e8c18f3bddf0460397470e1f7f15f4258f217f9286ba44ada0e23d2",
+      "rows": 276,
+      "v1_hash": "53a01a4dcb15227e01d8376db9f320ee7cb47e204911d0f9b38980740b0f2595",
+      "v2_hash": "2ce3e48d2711d43846a9103681a30dd078aafe00c986acdf41e10bb9807cd280"
+    },
+    {
+      "dataset_key": "c6997db6790af9b658f53b16a6b4580c48fe098fa22b1175820b401c350bf609",
+      "rows": 276,
+      "v1_hash": "025e4e38c9bf01a6116fdde5d422985b0d64186754f5f2872d4e1b2f3229457c",
+      "v2_hash": "82b2e1b72e4f17a0b0d9dbd2e03d583b91e36d50d1c958e66310bcd30a48cb2e"
+    },
+    {
+      "dataset_key": "4429d7c2ee61ee5fb208c4784bf2af79838a5c8afb4959784a0e8a96162c0ed5",
+      "rows": 276,
+      "v1_hash": "57023eb9424f085b12a126249ec240cbb2791538e26a7631b0a9452ab837c0cd",
+      "v2_hash": "542638f712d0e6bd973554250da437421b5ffecb7f698e6ffe01474b09a3ffd1"
+    },
+    {
+      "dataset_key": "e546c376d9809657adee6c9d10068a448e5dc7aaf0ab9669e99efe52e328cae1",
+      "rows": 276,
+      "v1_hash": "efabc67b2498e5475d583a800d8e53f44c0a03d594b3db6fd2e3e579f26a2d1f",
+      "v2_hash": "ed7fec2d8d8193a42d17c844dfc1eb87c42664225465962b1d2b2b12036501c4"
+    },
+    {
+      "dataset_key": "d88b1398eb564ae325a15633c7883a865aadc41d21799f4047a8a5ce419a12e5",
+      "rows": 276,
+      "v1_hash": "7a749996f461649c2b22b8a6a1f8e388caac65cfa70d46f3b41564b2de9c1f8d",
+      "v2_hash": "4edb25a7aafcd3377d6f2ad3ef9fef40f09ab186f6758b4c847f3558c6c4251f"
+    },
+    {
+      "dataset_key": "e71365e1b5b9bfbd4296c155ce78c4fc4181a376470a2d8bc7fac8b99e1b5c08",
+      "rows": 276,
+      "v1_hash": "b32e9d3ae6fcdc647506b56a5e8e2ee2392d25115c765114c8dbc824815d0f05",
+      "v2_hash": "cd92b3ee24b6763a57a8c45e9a71951e5f7024cfe4c1ed84bb13a7b930f5e29d"
+    },
+    {
+      "dataset_key": "1ea840762ec5d570c2634be85e7bb9a493e10212fc2861a7b7dc90df2567c317",
+      "rows": 276,
+      "v1_hash": "c8bc75beafb3895ffd8730370428a82a178299b9cc40c0111592a4dd60a26933",
+      "v2_hash": "2c5b64637375f61fad2293f0993db90a15e42338fce2ba665e2c5a2cd5ca8e2d"
+    },
+    {
+      "dataset_key": "b36929ede98ad6698a0fa67fa20acc0af4692e503258d651a2f4cf5e8194e949",
+      "rows": 276,
+      "v1_hash": "6c09d8ee5f7c27d786d377070c841bb8bc821cc02f619d569a583fa7c11105e1",
+      "v2_hash": "20a4c6732e9a14c3e68df7e30023882f74cc9b2cb42b7bf3f2dadcb0d6f61e22"
+    },
+    {
+      "dataset_key": "8515b8983d859ff9097bb355dc1e129dfaa72affe664782fec63426ca2a1dc0c",
+      "rows": 276,
+      "v1_hash": "8cb6e178f1026025834b3769e16691c376a14017a531e0c50c90bdcc87dcc663",
+      "v2_hash": "d850369052ea2048c484cfa866740174aaabb01fddd8f5f6da75503404ec455f"
+    },
+    {
+      "dataset_key": "cedba86b9644f433b4e22dd52f3070f8cbd8896cf434fed16b497b59504dce0d",
+      "rows": 276,
+      "v1_hash": "18eb38499fe7cf198c9e110dd4ff1ef9170316e0f6fd4a453acc47d1f9a8d20c",
+      "v2_hash": "8fe61043b0230a49afc43bb44ea76bcb7c6e69f1e6e15549d2878b61a56fb7a7"
+    },
+    {
+      "dataset_key": "83ed041fc7973287209e8b6e9b5288decf9704009e5816ad81cd52043c48908b",
+      "rows": 276,
+      "v1_hash": "3bb5c653d70df0005a5f0e03a3979e143ae8005067370788572589c5f2fcff93",
+      "v2_hash": "c0488d5e56d49dd3389365bcb23c36e6b041e504983c7305bd5ab73b83afb815"
+    },
+    {
+      "dataset_key": "70e68e0b1effb64fc284ea5c6bfc989c4fb573779b79ee0a580dd1fbca30fe92",
+      "rows": 276,
+      "v1_hash": "c026a4f90ad9a8725426d9d6d32ddbb4dbc6859cb8d1dd5064806e13ed988869",
+      "v2_hash": "3aada790b879f0fd39e3858a41102735033fdcc3ce21145bf678f604b25b9e98"
+    },
+    {
+      "dataset_key": "49a103e2e99370d2ad4fcf836f59487cc6e1c04cb17cb5b122cf1e45985377f1",
+      "rows": 276,
+      "v1_hash": "7c2b1056a10a138249508642dba848b607cc58bb19ceba557b1d1a2099a616ae",
+      "v2_hash": "09c9ed4d92bd9d81cb3b79979e505cfec1ff86221321bd227735087aa33f6f43"
+    },
+    {
+      "dataset_key": "f04c5cb55f4b834e7a34c9db36c3addb402de0f177f6c5a004eea20eaf696453",
+      "rows": 276,
+      "v1_hash": "9d085ef6fadea01bcddfa7e9129c68fca53f343c3ba9fae861d2cdc2cf718239",
+      "v2_hash": "2d5966be5881e097d4a7c11672ebb826092c6ca057efef8d636d3c49407b3ece"
+    },
+    {
+      "dataset_key": "a80c8afc60777870159090b609e0d0d76cd853546128feba228b7915134528f7",
+      "rows": 276,
+      "v1_hash": "de396e451c9ebb1b6f2aaa60c9ccb4ecfb7025b862e75163d9444ca693c76631",
+      "v2_hash": "a7ddd817fbceb36a403bec2892c90300aa6e4d891296d34ee31ece8ccab62802"
+    },
+    {
+      "dataset_key": "5f3a08028a618776f38167b3bae55038e71d1e158893a07d508466d1cdcec968",
+      "rows": 276,
+      "v1_hash": "6748390fb16d46b4fed44fa0a1296755038be5f642d65a29106b0e9047a6d6e3",
+      "v2_hash": "af9d8f5b6c49ba1fe03009ec2a0e57f621becc369ec6baebb29c7d4a5ae01886"
+    },
+    {
+      "dataset_key": "7c3d7c3452449096ca13587560a90cc0f763bf0b2735a71a3600eaeb08d8d5b3",
+      "rows": 276,
+      "v1_hash": "705fb0640641f7ac5c035021782f136a66a48e278d1fa42cd246c9300d1ee770",
+      "v2_hash": "f6df179b64b1333867a511ab4d9586c6d39fb1f2eb1a1d9300a93b16e414bdf4"
+    },
+    {
+      "dataset_key": "69aa89695197bdaf4c994fd6d339a10fb6a12482c57fad5073bb21826ba3c411",
+      "rows": 276,
+      "v1_hash": "cbdcb3e174189dda19ed4831b2242b654041cc52afe53a62b8f9743095fc9116",
+      "v2_hash": "0cbd355230db83fbc090deccc1c33dd676cd2d84a2012d02d7361e49a9a5e24c"
+    },
+    {
+      "dataset_key": "f845ffc3b45d31706613948673e6f7d3cacbe315d3d39e240fabaae467c18a2c",
+      "rows": 276,
+      "v1_hash": "a7150e1dac070d6b70f55c2669726fd07daf8f42c666c8a50fe5d86b54b5aa69",
+      "v2_hash": "79cb3c7b53c3f799039fea104954537ab4a37835e62c2288a030a01d2ed81db0"
+    },
+    {
+      "dataset_key": "ea5c97bb12b9a6a5d42dda570c4201a6e61dcf9c0a2d2631b05a57fb9409d57f",
+      "rows": 276,
+      "v1_hash": "96ed0c8ee47d5fa01a9ffe756626578658e7f1f71c34f9d83b46579ac2c3edae",
+      "v2_hash": "d2c647d9909b0e630288e3ba51a88bf23d6c3e5b22c16d21e4110c12fd5171a1"
+    },
+    {
+      "dataset_key": "01730783e01bb4d46a268bfce3a1a9efce58c7ba11d36cb8139e2c91bc539d19",
+      "rows": 276,
+      "v1_hash": "de10efc1ba78b4eca9166a6a62295f5c1481a37d817a9d185f4d934ac0c3a590",
+      "v2_hash": "ba2ea6c151eae68ca1f699ccbca2f09235b7f8beaa8e36159cf1e6084c9ae1c8"
+    },
+    {
+      "dataset_key": "d3cfa384da59a0b53abfd208af7b6abf5089eb73432bfd7f4ab11814a532bc6a",
+      "rows": 276,
+      "v1_hash": "e88b929b0ea295a11bb4d5bd9bb0d65b9215381e01de50d051a84bbee3d90178",
+      "v2_hash": "4777c2fe281c8bae49be31d146a8a96a83eacd209edd9df1dfd3380ab2a76ad8"
+    },
+    {
+      "dataset_key": "d366fe746416ff1aedbcf7a57e1412217bb33e47e1b93ddfd732a87bb887cb3e",
+      "rows": 276,
+      "v1_hash": "c22be3e6ee528ca24889a62a443ef15214a578c89f1a0bab5f9fc9f8aa184b20",
+      "v2_hash": "ff42a098699042624938750f5d1c884879e086dd6a8292923fb5269735c19685"
+    },
+    {
+      "dataset_key": "a9a86e3485fe59721ae2395595cf9a72a0489c2ce168897d882929790e4b6b46",
+      "rows": 276,
+      "v1_hash": "61019bcb3c4c2440d5a2b20d2fd04867873ca67bda5138b18292926ba9ea23aa",
+      "v2_hash": "532cdaa0f58450923eb63c948009b19d121a42629361201b5bf1749e0071488f"
+    },
+    {
+      "dataset_key": "c0e36296d87f756a07f088a20ec6665b1f3023d9ef6b89526b539319cc6d1be6",
+      "rows": 276,
+      "v1_hash": "644b40cb739a5cfe408c01515abef008532ffde04d0759a8d516465a8b0c650d",
+      "v2_hash": "eae82c236330aed0339fbd70f3cbe25721298ddd8bdaaffb6221556f77d74ed0"
+    },
+    {
+      "dataset_key": "76bbfcff59c87be4502f812a6162de0976413c2dde68f6b4cec5fc93ae4cbde6",
+      "rows": 276,
+      "v1_hash": "0ce35e56513aa2cff95aa4d4e961da0683abd04031252b31b4461a8b070750ea",
+      "v2_hash": "9481b46b9360645d1f9c7cc84e72351317788dbcaf668157ba33483709425b25"
+    },
+    {
+      "dataset_key": "0924f3b3a8b2c70fb54458748e15275016cb3f083158d757e969b186c8423266",
+      "rows": 276,
+      "v1_hash": "6eeacf09fd29c13261332a62fa664138fb66dad4321691b3799cfef83a758fcc",
+      "v2_hash": "d6a6d4dcf2b10d791b6133e7618682ff383f2764cb578c93dc8e47db9d9a55be"
+    },
+    {
+      "dataset_key": "a747d42fa1f007e175950190ad3e0b71cce486dd5321f8010ea33ae5451e168a",
+      "rows": 276,
+      "v1_hash": "edc72d7eb635cf40d12c647ae0d4541557b695d743040612319fff7f185db622",
+      "v2_hash": "9c02ed4faab36402a62b4108ff9deec0d5c03362717d8a244166df076c3cf6de"
+    },
+    {
+      "dataset_key": "d4728f2fd962463cac59b2f4ac15f0af24271f4a485661646ed7a1f9627b0cd1",
+      "rows": 276,
+      "v1_hash": "a7197af8fbf667011ec29963651a5d528aa95e8063e06d01b69437a6753a7eb6",
+      "v2_hash": "8fd18cc0946305cd5be3d61c53d3041e2e86039035b3669314e58d746df6ae09"
+    },
+    {
+      "dataset_key": "1706f994046fda88b20ae161dba5f844308fb24797cd56696ca4020fcdf743c5",
+      "rows": 276,
+      "v1_hash": "3333fa0efc7d87de369b442fd283e876a0635afc0b78737490a0219484d6738b",
+      "v2_hash": "4857ef9619712f394f090472cb061b39af9b8a4131205bb955be34b1ef6a5deb"
+    },
+    {
+      "dataset_key": "071020b14f92bf70a86f5c3f112b7783b3e53aee664b5756e418ee97b43802b3",
+      "rows": 276,
+      "v1_hash": "3feed3aac228c5294d8838c5cde53b36204fa5bd6b96292f8ea1ab4025a51fc9",
+      "v2_hash": "4e646c24fa3aa63fc2ba4466097abb5061508ab7112030ed271dfdb06de3a7f5"
+    },
+    {
+      "dataset_key": "25d3350ec4f80dd5f39fd2561885c8ab664ca1264d1a228ef1086ea920e5f32a",
+      "rows": 276,
+      "v1_hash": "e23e7960d3c2ab348e9d7f866a13cf62a36d334d2d063c91d296126550964efd",
+      "v2_hash": "8cbfa44702c202b59f76ef9fee6e2ff8acbbe1cce07268622fe505dc597fc55a"
+    },
+    {
+      "dataset_key": "740e1bcbf6f30cc686be2197ba574bf436d2c6dfa9c6d646d00ad16c0438a4af",
+      "rows": 276,
+      "v1_hash": "ba9d95d4eaa631425e7f185fc721adf9cfaf9e4d2af22c4852fa597169a1428a",
+      "v2_hash": "0890b0f661044ca649c8457658de4f89d9ade9c8ff4efd45a6c096990a13ac1f"
+    },
+    {
+      "dataset_key": "d6525cd14bf9c5ac9f2e3d404d3520aa43ebba6dd84c7da608c01430f668281c",
+      "rows": 276,
+      "v1_hash": "bcd911252efedb207adc047c7806d36dc644a9a2e5dc27c940386369b9d33bd9",
+      "v2_hash": "766b28748830393b73c3da8bae86e4cd3f3003cf1bc0a9e1a59889eb66aea467"
+    },
+    {
+      "dataset_key": "4649edef3f448b13af4d0e73a476a9a2da5942325940624745c4fa5a636a603e",
+      "rows": 276,
+      "v1_hash": "e062c7f56d07ccba6091d33c8e9ccfb1abb77680b3f99b1f6eff2a5e0db891e4",
+      "v2_hash": "c2e04c7b3bdd226e5525c10c6d94dfa222b4273f887419e4520f2c091ef3f9ee"
+    },
+    {
+      "dataset_key": "4c8726cad5a83b48ebe5d6ed4f7f968daf0f92bb81edb219560bb36ad39e99bd",
+      "rows": 276,
+      "v1_hash": "ca7d3f8b0df9c3e3f3b1da62a017a1265ab81587e937a0dd3a269f8b6ca6956c",
+      "v2_hash": "41e550e747745bab251d43dc69ca432ad9a68502347d675875a3c1d7ca25c06c"
+    },
+    {
+      "dataset_key": "09f6eec49140abc0430d9f75747532f976ff9644968cb611822c5d3ce55614b9",
+      "rows": 276,
+      "v1_hash": "ee0652cb18d86279d3ab26f254844262aba65eeebe2ee16732efa435fc2acde7",
+      "v2_hash": "80e205964cc6d7225e47d7bc91d95429338cbc6651c1edfa96f99db9714a84cc"
+    },
+    {
+      "dataset_key": "fcb49894831e0a4ffc5e38e6410b6307e9a91770a5045ee456a73c189036d7fe",
+      "rows": 276,
+      "v1_hash": "29f1893d1433d9be91de91cc9870ad42878d2f223a13543901c47c0c776f0a70",
+      "v2_hash": "1e8ce663451f2d2df703a96623b2ac7630c24ba8362c6291ae27d7f4eca8466e"
+    },
+    {
+      "dataset_key": "ad021e5a641a0694d36796760186906c2a478d22ecfbb5e74c8628f9b2ea20cb",
+      "rows": 276,
+      "v1_hash": "a72ba9226cbd61c6d26b7d07189542af49d4971ac15b7b6dbde856236c899b2c",
+      "v2_hash": "8ba21840f62d330aaee3e20d9d32e968986d0f7f60d48ff6335b7fa617cd6553"
+    },
+    {
+      "dataset_key": "cdd3cd70e6fcdb5ff04c696e4f35530bfb2e5f8329d733358b3d3da599d64b87",
+      "rows": 276,
+      "v1_hash": "05aae4b35085ab6593afe98678d5b2dde4c45c7a5627e762a66a2e6360cc2de2",
+      "v2_hash": "d33e15d12e81e33397ef36a2f7afa3332ffdfc2758ef6139f45bb35272a3fccc"
+    },
+    {
+      "dataset_key": "4945f582033550bf4e1fe140e1d130b996d98d31f75848d4be147598ba21dfea",
+      "rows": 276,
+      "v1_hash": "01328bbb77a7b9467389e57a5d157ae5905ae48fc8c6bf7ff5c882d750cbc6b0",
+      "v2_hash": "3df0e29a579ba9726973fa0380ee5bf9b9a999aecfb1a0d2c0a88ad2227c7845"
+    },
+    {
+      "dataset_key": "2e3f4f914d6250b0bcf5a35b3dcda9dd8c0cd184a6444c10591e68c11afb023a",
+      "rows": 276,
+      "v1_hash": "fef32a8cbeb1973d06d2c83ba0c3718a87f39d6a33c4e81fc20216726c838d62",
+      "v2_hash": "5a460ba8a65e1dadd2c5d1249d61824d837fc00db7b5d2b69a6d287ab0b7fe9f"
+    },
+    {
+      "dataset_key": "0bdfe79118121933f4a7b957c2f63284f536b84ad404f92ae2de2073ac8bc701",
+      "rows": 276,
+      "v1_hash": "7dc98a5c39ef2827f981c63d5601e5986b5a0cab511360040b7f14e22ece2f6c",
+      "v2_hash": "34ce684ff8c38e7595752435c5bcccafb3a8aca20dffaf9688ca6a6c65e097cb"
+    }
+  ],
+  "prefix_causality": true,
+  "v1_measurements_identical": true,
+  "content_hash": "c1a4e095598233ce849a62107284ce1a97b69d656d92db1d65c8cfb6bc42e8ad"
+}
