@@ -1,0 +1,10 @@
+taxonomy_version: xauusd-market-state-taxonomy-v1
+feature_set_version: xauusd-market-state-features-v1
+volatility_low: '0.70772125992621078662459452035253405481804084608722'
+volatility_high: '1.1983084785966187971510743249379515934834203015313'
+efficiency_low: '0.15451438336656223298205639418968954713756764454571'
+efficiency_high: '0.34332645184453819226281303294138766717529844717709'
+range_reference: 1
+range_feature: bid_range_ratio_12_36
+development_hash: c75186ca8e7eb54cd572a9157b6d4acaf2885591cb22b7b6ac7a9b1ce392d4c3
+methodology: pooled-nearest-rank-0.333333-0.666667-lower-inclusive
