@@ -1,0 +1,24 @@
+# Deliberately expensive retail XAUUSD broker costs for backtesting.
+# A strategy must stay profitable under these (and under the 2x stress below) so that
+# a cheaper real/demo broker leaves margin. Replace with the chosen broker's real
+# values once the MT5 demo account exists (MT5: right-click XAUUSD > Specification).
+cost_profile: xauusd-expensive-retail-v1
+contract:
+  contract_size_oz: 100        # 1.00 lot = 100 troy ounces
+  min_lot: 0.01
+  lot_step: 0.01
+  max_lot: 50
+  tick_size: 0.01
+spread:
+  # Use the real bid/ask recorded in the data at each moment (spreads widen at
+  # session opens and news), then widen it by this extra amount per ounce.
+  source: data_bid_ask
+  extra_usd_per_oz: 0.20
+commission:
+  usd_per_lot_round_trip: 8.0
+slippage:
+  usd_per_oz_per_fill: 0.10    # applied against us on every entry and every exit
+swap:
+  applies: false               # all trades close inside the session window
+stress_test:
+  cost_multiplier: 2.0         # spread extra, commission and slippage all doubled
