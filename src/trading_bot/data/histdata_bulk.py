@@ -38,6 +38,7 @@ PAGE_URL = (
 POST_URL = "https://www.histdata.com/get.php"
 USER_AGENT = "Mozilla/5.0 (research data client)"
 SOURCE_OFFSET_SECONDS = 5 * 3600  # source clock is UTC-05:00 fixed
+MAX_JITTER_SECONDS = 2  # tolerated backward timestamp step between ticks
 
 BAR_FIELDS = (
     "bid_open",
@@ -111,6 +112,7 @@ class MonthQuality:
     nonpositive: int = 0
     crossed: int = 0
     out_of_order: int = 0
+    jitter_kept: int = 0
     spreads_sample: list[float] = field(default_factory=list)
 
 
@@ -187,8 +189,13 @@ def build_minute_bars(
             quality.crossed += 1
             continue
         if epoch < last_epoch:
-            quality.out_of_order += 1
-            continue
+            # Recent feeds jitter by about 1 second; keep such ticks at the latest
+            # time seen (never moving a bar backwards). Larger reversals are rejected.
+            if last_epoch - epoch > MAX_JITTER_SECONDS:
+                quality.out_of_order += 1
+                continue
+            quality.jitter_kept += 1
+            epoch = last_epoch
         last_epoch = epoch
         quality.valid_ticks += 1
         spread = ask - bid
@@ -236,7 +243,7 @@ def convert_archive(archive: Path, out_path: Path) -> MonthQuality:
             text = io.TextIOWrapper(raw, encoding="ascii", errors="replace")
             arrays, quality = build_minute_bars(text)
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    np.savez_compressed(out_path, **arrays)
+    np.savez_compressed(out_path, **arrays)  # type: ignore[arg-type]
     return quality
 
 

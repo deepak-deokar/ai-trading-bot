@@ -50,3 +50,15 @@ def test_bad_rows_are_counted_not_used() -> None:
     assert quality.out_of_order == 1
     assert quality.valid_ticks == 1
     assert len(bars["minute_utc"]) == 1
+
+
+def test_one_second_jitter_is_kept_in_current_bar() -> None:
+    data = io.StringIO(
+        "20240116 120010000,2000.10,2000.40,0\n"
+        "20240116 120009000,1999.00,1999.30,0\n"  # 1s backwards: kept
+        "20240116 120005000,2005.00,2005.30,0\n"  # 5s backwards: rejected
+    )
+    bars, quality = build_minute_bars(data)
+    assert (quality.valid_ticks, quality.jitter_kept, quality.out_of_order) == (2, 1, 1)
+    assert bars["bid_low"][0] == 1999.00
+    assert bars["bid_high"][0] == 2000.10

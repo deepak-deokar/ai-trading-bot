@@ -27,7 +27,9 @@ def convert_one(args: tuple[Path, Path]) -> dict[str, object]:
     out = out_dir / f"XAUUSD_{month}.npz"
     q = convert_archive(archive, out)
     spreads = sorted(q.spreads_sample)
+    minute_bars = int(len(np.load(out)["minute_utc"]))
     return {
+        "minute_bars": minute_bars,
         "month": f"{month[:4]}-{month[4:]}",
         "raw_rows": q.raw_rows,
         "valid_ticks": q.valid_ticks,
@@ -35,6 +37,7 @@ def convert_one(args: tuple[Path, Path]) -> dict[str, object]:
         "nonpositive": q.nonpositive,
         "crossed": q.crossed,
         "out_of_order": q.out_of_order,
+        "jitter_kept": q.jitter_kept,
         "spread_median": round(statistics.median(spreads), 4) if spreads else None,
         "spread_p95": round(spreads[int(len(spreads) * 0.95)], 4) if spreads else None,
     }
@@ -99,6 +102,24 @@ def audit_bars(files: list[Path]) -> dict[str, object]:
     }
 
 
+FINDINGS = [
+    "## Findings",
+    "",
+    "- Largest gaps are market holidays (Christmas, New Year, Good Friday), "
+    "not data faults.",
+    "- February–July 2023 is thin (66–84% of normal bars): HistData feed holes. "
+    "Strategy tests skip any day missing minutes inside its trading window.",
+    "- Ticks stepping back ≤2 seconds (feed jitter, mostly 2019+) are kept at the "
+    "latest seen time; larger backward steps are rejected (~0.007% of ticks).",
+    "- 2014–2018 spreads are almost constant (0.35–0.51): that feed quoted fixed "
+    "spreads, so it understates spread spikes. The expensive cost profile adds "
+    "extra spread on top of every quote.",
+    "- Spreads widened in 2025–2026 (median ~0.6) as gold rose above $3,000–5,000.",
+    "- 1-minute moves over 1% cluster at 13:30 UTC (US data releases) and Sunday "
+    "opens, plus the January–February 2026 sell-off: real market moves.",
+]
+
+
 def write_markdown(report: dict, path: Path) -> None:
     a = report["audit"]
     first, last = report["months"][0]["month"], report["months"][-1]["month"]
@@ -138,6 +159,20 @@ def write_markdown(report: dict, path: Path) -> None:
             f"{statistics.median(meds):.3f} | {statistics.median(p95):.3f} | "
             f"{g['count']} | {g['total_minutes']:,} |"
         )
+    typical = statistics.median(m["minute_bars"] for m in report["months"])
+    thin = [m for m in report["months"] if m["minute_bars"] < 0.85 * typical]
+    lines += [
+        "",
+        f"## Months with under 85% of the typical {typical:,.0f} one-minute bars",
+        "",
+        "| Month | Bars | % of typical |",
+        "| --- | ---: | ---: |",
+    ]
+    lines += [
+        f"| {m['month']} | {m['minute_bars']:,} | "
+        f"{100 * m['minute_bars'] / typical:.0f}% |"
+        for m in thin
+    ]
     lines += [
         "",
         "## Largest unexplained gaps",
@@ -165,6 +200,7 @@ def write_markdown(report: dict, path: Path) -> None:
         "Spread figures are this feed's quotes (USD per ounce), "
         "sampled every 50th tick.",
     ]
+    lines += ["", *FINDINGS]
     path.write_text("\n".join(lines) + "\n")
 
 
