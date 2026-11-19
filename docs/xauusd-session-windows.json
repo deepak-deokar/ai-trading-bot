@@ -1,0 +1,3870 @@
+{
+  "account_usd": 3000.0,
+  "risk_per_trade_usd": 30.0,
+  "cost_profile": "config/xauusd_costs_expensive.yaml",
+  "dev_years": [
+    2014,
+    2024
+  ],
+  "check_year": 2025,
+  "holdout": "2026 not loaded",
+  "skipped_incomplete_windows": {
+    "asia_open": 392,
+    "london_open": 13,
+    "us_data": 113,
+    "ny_open": 97,
+    "london_fix": 110
+  },
+  "survey": {
+    "asia_open": {
+      "label": "Tokyo 09:00",
+      "dev": {
+        "days": 2443,
+        "median_range": 1.465,
+        "median_abs_move": 0.6,
+        "median_entry_spread": 0.35,
+        "median_round_trip_cost": 0.83,
+        "range_to_cost": 1.77
+      },
+      "by_year": {
+        "2014": {
+          "days": 172,
+          "median_range": 1.365,
+          "median_abs_move": 0.58,
+          "median_entry_spread": 0.51,
+          "median_round_trip_cost": 0.99,
+          "range_to_cost": 1.38
+        },
+        "2015": {
+          "days": 162,
+          "median_range": 1.22,
+          "median_abs_move": 0.47,
+          "median_entry_spread": 0.35,
+          "median_round_trip_cost": 0.83,
+          "range_to_cost": 1.47
+        },
+        "2016": {
+          "days": 246,
+          "median_range": 1.645,
+          "median_abs_move": 0.665,
+          "median_entry_spread": 0.35,
+          "median_round_trip_cost": 0.83,
+          "range_to_cost": 1.98
+        },
+        "2017": {
+          "days": 250,
+          "median_range": 1.09,
+          "median_abs_move": 0.475,
+          "median_entry_spread": 0.35,
+          "median_round_trip_cost": 0.83,
+          "range_to_cost": 1.31
+        },
+        "2018": {
+          "days": 234,
+          "median_range": 0.985,
+          "median_abs_move": 0.41,
+          "median_entry_spread": 0.35,
+          "median_round_trip_cost": 0.83,
+          "range_to_cost": 1.19
+        },
+        "2019": {
+          "days": 221,
+          "median_range": 1.04,
+          "median_abs_move": 0.421,
+          "median_entry_spread": 0.314,
+          "median_round_trip_cost": 0.794,
+          "range_to_cost": 1.31
+        },
+        "2020": {
+          "days": 251,
+          "median_range": 2.377,
+          "median_abs_move": 0.99,
+          "median_entry_spread": 0.504,
+          "median_round_trip_cost": 0.984,
+          "range_to_cost": 2.42
+        },
+        "2021": {
+          "days": 250,
+          "median_range": 1.452,
+          "median_abs_move": 0.578,
+          "median_entry_spread": 0.394,
+          "median_round_trip_cost": 0.874,
+          "range_to_cost": 1.66
+        },
+        "2022": {
+          "days": 257,
+          "median_range": 1.653,
+          "median_abs_move": 0.74,
+          "median_entry_spread": 0.414,
+          "median_round_trip_cost": 0.894,
+          "range_to_cost": 1.85
+        },
+        "2023": {
+          "days": 148,
+          "median_range": 1.805,
+          "median_abs_move": 0.718,
+          "median_entry_spread": 0.374,
+          "median_round_trip_cost": 0.854,
+          "range_to_cost": 2.11
+        },
+        "2024": {
+          "days": 252,
+          "median_range": 2.011,
+          "median_abs_move": 0.829,
+          "median_entry_spread": 0.471,
+          "median_round_trip_cost": 0.951,
+          "range_to_cost": 2.11
+        },
+        "2025": {
+          "days": 253,
+          "median_range": 4.875,
+          "median_abs_move": 2.305,
+          "median_entry_spread": 0.83,
+          "median_round_trip_cost": 1.31,
+          "range_to_cost": 3.72
+        }
+      },
+      "raw_edge": {
+        "orb": {
+          "trades": 1365,
+          "usd_per_oz": -0.015,
+          "t_stat": -0.54
+        },
+        "momentum": {
+          "trades": 2416,
+          "usd_per_oz": -0.024,
+          "t_stat": -1.35
+        }
+      }
+    },
+    "london_open": {
+      "label": "London 08:00",
+      "dev": {
+        "days": 2823,
+        "median_range": 2.501,
+        "median_abs_move": 1.04,
+        "median_entry_spread": 0.35,
+        "median_round_trip_cost": 0.83,
+        "range_to_cost": 3.01
+      },
+      "by_year": {
+        "2014": {
+          "days": 251,
+          "median_range": 1.93,
+          "median_abs_move": 0.92,
+          "median_entry_spread": 0.51,
+          "median_round_trip_cost": 0.99,
+          "range_to_cost": 1.95
+        },
+        "2015": {
+          "days": 256,
+          "median_range": 1.8,
+          "median_abs_move": 0.8,
+          "median_entry_spread": 0.35,
+          "median_round_trip_cost": 0.83,
+          "range_to_cost": 2.17
+        },
+        "2016": {
+          "days": 257,
+          "median_range": 2.07,
+          "median_abs_move": 0.83,
+          "median_entry_spread": 0.35,
+          "median_round_trip_cost": 0.83,
+          "range_to_cost": 2.49
+        },
+        "2017": {
+          "days": 256,
+          "median_range": 1.54,
+          "median_abs_move": 0.66,
+          "median_entry_spread": 0.35,
+          "median_round_trip_cost": 0.83,
+          "range_to_cost": 1.86
+        },
+        "2018": {
+          "days": 258,
+          "median_range": 1.63,
+          "median_abs_move": 0.695,
+          "median_entry_spread": 0.35,
+          "median_round_trip_cost": 0.83,
+          "range_to_cost": 1.96
+        },
+        "2019": {
+          "days": 257,
+          "median_range": 2.025,
+          "median_abs_move": 0.84,
+          "median_entry_spread": 0.287,
+          "median_round_trip_cost": 0.767,
+          "range_to_cost": 2.64
+        },
+        "2020": {
+          "days": 258,
+          "median_range": 4.074,
+          "median_abs_move": 1.698,
+          "median_entry_spread": 0.421,
+          "median_round_trip_cost": 0.901,
+          "range_to_cost": 4.52
+        },
+        "2021": {
+          "days": 256,
+          "median_range": 3.203,
+          "median_abs_move": 1.531,
+          "median_entry_spread": 0.356,
+          "median_round_trip_cost": 0.836,
+          "range_to_cost": 3.83
+        },
+        "2022": {
+          "days": 258,
+          "median_range": 3.308,
+          "median_abs_move": 1.648,
+          "median_entry_spread": 0.394,
+          "median_round_trip_cost": 0.874,
+          "range_to_cost": 3.79
+        },
+        "2023": {
+          "days": 257,
+          "median_range": 3.13,
+          "median_abs_move": 1.206,
+          "median_entry_spread": 0.341,
+          "median_round_trip_cost": 0.821,
+          "range_to_cost": 3.81
+        },
+        "2024": {
+          "days": 259,
+          "median_range": 3.981,
+          "median_abs_move": 1.751,
+          "median_entry_spread": 0.371,
+          "median_round_trip_cost": 0.851,
+          "range_to_cost": 4.68
+        },
+        "2025": {
+          "days": 257,
+          "median_range": 7.55,
+          "median_abs_move": 3.305,
+          "median_entry_spread": 0.57,
+          "median_round_trip_cost": 1.05,
+          "range_to_cost": 7.19
+        }
+      },
+      "raw_edge": {
+        "orb": {
+          "trades": 2031,
+          "usd_per_oz": 0.037,
+          "t_stat": 0.99
+        },
+        "momentum": {
+          "trades": 2809,
+          "usd_per_oz": 0.043,
+          "t_stat": 1.55
+        }
+      }
+    },
+    "us_data": {
+      "label": "New York 08:30",
+      "dev": {
+        "days": 2719,
+        "median_range": 2.75,
+        "median_abs_move": 1.123,
+        "median_entry_spread": 0.35,
+        "median_round_trip_cost": 0.83,
+        "range_to_cost": 3.31
+      },
+      "by_year": {
+        "2014": {
+          "days": 253,
+          "median_range": 2.34,
+          "median_abs_move": 0.93,
+          "median_entry_spread": 0.51,
+          "median_round_trip_cost": 0.99,
+          "range_to_cost": 2.36
+        },
+        "2015": {
+          "days": 255,
+          "median_range": 2.21,
+          "median_abs_move": 0.92,
+          "median_entry_spread": 0.35,
+          "median_round_trip_cost": 0.83,
+          "range_to_cost": 2.66
+        },
+        "2016": {
+          "days": 258,
+          "median_range": 2.26,
+          "median_abs_move": 0.947,
+          "median_entry_spread": 0.35,
+          "median_round_trip_cost": 0.83,
+          "range_to_cost": 2.72
+        },
+        "2017": {
+          "days": 257,
+          "median_range": 1.73,
+          "median_abs_move": 0.74,
+          "median_entry_spread": 0.35,
+          "median_round_trip_cost": 0.83,
+          "range_to_cost": 2.08
+        },
+        "2018": {
+          "days": 258,
+          "median_range": 1.78,
+          "median_abs_move": 0.82,
+          "median_entry_spread": 0.35,
+          "median_round_trip_cost": 0.83,
+          "range_to_cost": 2.14
+        },
+        "2019": {
+          "days": 257,
+          "median_range": 2.17,
+          "median_abs_move": 0.923,
+          "median_entry_spread": 0.29,
+          "median_round_trip_cost": 0.77,
+          "range_to_cost": 2.82
+        },
+        "2020": {
+          "days": 257,
+          "median_range": 4.414,
+          "median_abs_move": 1.918,
+          "median_entry_spread": 0.407,
+          "median_round_trip_cost": 0.887,
+          "range_to_cost": 4.98
+        },
+        "2021": {
+          "days": 257,
+          "median_range": 3.513,
+          "median_abs_move": 1.391,
+          "median_entry_spread": 0.345,
+          "median_round_trip_cost": 0.825,
+          "range_to_cost": 4.26
+        },
+        "2022": {
+          "days": 258,
+          "median_range": 3.947,
+          "median_abs_move": 1.814,
+          "median_entry_spread": 0.354,
+          "median_round_trip_cost": 0.834,
+          "range_to_cost": 4.73
+        },
+        "2023": {
+          "days": 150,
+          "median_range": 3.345,
+          "median_abs_move": 1.368,
+          "median_entry_spread": 0.328,
+          "median_round_trip_cost": 0.808,
+          "range_to_cost": 4.14
+        },
+        "2024": {
+          "days": 259,
+          "median_range": 4.756,
+          "median_abs_move": 2.076,
+          "median_entry_spread": 0.397,
+          "median_round_trip_cost": 0.877,
+          "range_to_cost": 5.42
+        },
+        "2025": {
+          "days": 258,
+          "median_range": 7.576,
+          "median_abs_move": 3.197,
+          "median_entry_spread": 0.6,
+          "median_round_trip_cost": 1.08,
+          "range_to_cost": 7.02
+        }
+      },
+      "raw_edge": {
+        "orb": {
+          "trades": 1810,
+          "usd_per_oz": -0.079,
+          "t_stat": -1.51
+        },
+        "momentum": {
+          "trades": 2706,
+          "usd_per_oz": 0.045,
+          "t_stat": 1.23
+        }
+      }
+    },
+    "ny_open": {
+      "label": "New York 09:30",
+      "dev": {
+        "days": 2732,
+        "median_range": 4.25,
+        "median_abs_move": 1.697,
+        "median_entry_spread": 0.35,
+        "median_round_trip_cost": 0.83,
+        "range_to_cost": 5.12
+      },
+      "by_year": {
+        "2014": {
+          "days": 256,
+          "median_range": 3.365,
+          "median_abs_move": 1.415,
+          "median_entry_spread": 0.51,
+          "median_round_trip_cost": 0.99,
+          "range_to_cost": 3.4
+        },
+        "2015": {
+          "days": 258,
+          "median_range": 3.39,
+          "median_abs_move": 1.51,
+          "median_entry_spread": 0.35,
+          "median_round_trip_cost": 0.83,
+          "range_to_cost": 4.08
+        },
+        "2016": {
+          "days": 258,
+          "median_range": 3.5,
+          "median_abs_move": 1.555,
+          "median_entry_spread": 0.35,
+          "median_round_trip_cost": 0.83,
+          "range_to_cost": 4.22
+        },
+        "2017": {
+          "days": 257,
+          "median_range": 2.73,
+          "median_abs_move": 1.08,
+          "median_entry_spread": 0.35,
+          "median_round_trip_cost": 0.83,
+          "range_to_cost": 3.29
+        },
+        "2018": {
+          "days": 258,
+          "median_range": 2.47,
+          "median_abs_move": 1.083,
+          "median_entry_spread": 0.35,
+          "median_round_trip_cost": 0.83,
+          "range_to_cost": 2.98
+        },
+        "2019": {
+          "days": 257,
+          "median_range": 3.0,
+          "median_abs_move": 1.241,
+          "median_entry_spread": 0.297,
+          "median_round_trip_cost": 0.777,
+          "range_to_cost": 3.86
+        },
+        "2020": {
+          "days": 257,
+          "median_range": 6.144,
+          "median_abs_move": 2.585,
+          "median_entry_spread": 0.407,
+          "median_round_trip_cost": 0.887,
+          "range_to_cost": 6.93
+        },
+        "2021": {
+          "days": 257,
+          "median_range": 6.033,
+          "median_abs_move": 2.697,
+          "median_entry_spread": 0.368,
+          "median_round_trip_cost": 0.848,
+          "range_to_cost": 7.11
+        },
+        "2022": {
+          "days": 258,
+          "median_range": 6.046,
+          "median_abs_move": 2.355,
+          "median_entry_spread": 0.367,
+          "median_round_trip_cost": 0.847,
+          "range_to_cost": 7.14
+        },
+        "2023": {
+          "days": 157,
+          "median_range": 5.745,
+          "median_abs_move": 2.27,
+          "median_entry_spread": 0.337,
+          "median_round_trip_cost": 0.817,
+          "range_to_cost": 7.03
+        },
+        "2024": {
+          "days": 259,
+          "median_range": 7.178,
+          "median_abs_move": 2.987,
+          "median_entry_spread": 0.39,
+          "median_round_trip_cost": 0.87,
+          "range_to_cost": 8.25
+        },
+        "2025": {
+          "days": 258,
+          "median_range": 10.661,
+          "median_abs_move": 5.122,
+          "median_entry_spread": 0.62,
+          "median_round_trip_cost": 1.1,
+          "range_to_cost": 9.69
+        }
+      },
+      "raw_edge": {
+        "orb": {
+          "trades": 1939,
+          "usd_per_oz": 0.046,
+          "t_stat": 0.65
+        },
+        "momentum": {
+          "trades": 2719,
+          "usd_per_oz": 0.096,
+          "t_stat": 1.86
+        }
+      }
+    },
+    "london_fix": {
+      "label": "London 15:00",
+      "dev": {
+        "days": 2723,
+        "median_range": 3.893,
+        "median_abs_move": 1.515,
+        "median_entry_spread": 0.35,
+        "median_round_trip_cost": 0.83,
+        "range_to_cost": 4.69
+      },
+      "by_year": {
+        "2014": {
+          "days": 256,
+          "median_range": 2.945,
+          "median_abs_move": 0.995,
+          "median_entry_spread": 0.51,
+          "median_round_trip_cost": 0.99,
+          "range_to_cost": 2.97
+        },
+        "2015": {
+          "days": 257,
+          "median_range": 3.52,
+          "median_abs_move": 1.48,
+          "median_entry_spread": 0.35,
+          "median_round_trip_cost": 0.83,
+          "range_to_cost": 4.24
+        },
+        "2016": {
+          "days": 258,
+          "median_range": 3.52,
+          "median_abs_move": 1.43,
+          "median_entry_spread": 0.35,
+          "median_round_trip_cost": 0.83,
+          "range_to_cost": 4.24
+        },
+        "2017": {
+          "days": 257,
+          "median_range": 2.36,
+          "median_abs_move": 1.0,
+          "median_entry_spread": 0.35,
+          "median_round_trip_cost": 0.83,
+          "range_to_cost": 2.84
+        },
+        "2018": {
+          "days": 258,
+          "median_range": 2.53,
+          "median_abs_move": 0.94,
+          "median_entry_spread": 0.35,
+          "median_round_trip_cost": 0.83,
+          "range_to_cost": 3.05
+        },
+        "2019": {
+          "days": 258,
+          "median_range": 3.063,
+          "median_abs_move": 1.227,
+          "median_entry_spread": 0.287,
+          "median_round_trip_cost": 0.767,
+          "range_to_cost": 3.99
+        },
+        "2020": {
+          "days": 257,
+          "median_range": 6.0,
+          "median_abs_move": 2.544,
+          "median_entry_spread": 0.397,
+          "median_round_trip_cost": 0.877,
+          "range_to_cost": 6.84
+        },
+        "2021": {
+          "days": 257,
+          "median_range": 4.942,
+          "median_abs_move": 1.846,
+          "median_entry_spread": 0.351,
+          "median_round_trip_cost": 0.831,
+          "range_to_cost": 5.95
+        },
+        "2022": {
+          "days": 258,
+          "median_range": 5.172,
+          "median_abs_move": 2.106,
+          "median_entry_spread": 0.352,
+          "median_round_trip_cost": 0.832,
+          "range_to_cost": 6.22
+        },
+        "2023": {
+          "days": 148,
+          "median_range": 4.774,
+          "median_abs_move": 2.19,
+          "median_entry_spread": 0.34,
+          "median_round_trip_cost": 0.82,
+          "range_to_cost": 5.82
+        },
+        "2024": {
+          "days": 259,
+          "median_range": 6.665,
+          "median_abs_move": 2.762,
+          "median_entry_spread": 0.38,
+          "median_round_trip_cost": 0.86,
+          "range_to_cost": 7.75
+        },
+        "2025": {
+          "days": 258,
+          "median_range": 10.424,
+          "median_abs_move": 4.075,
+          "median_entry_spread": 0.6,
+          "median_round_trip_cost": 1.08,
+          "range_to_cost": 9.65
+        }
+      },
+      "raw_edge": {
+        "orb": {
+          "trades": 1565,
+          "usd_per_oz": -0.063,
+          "t_stat": -0.87
+        },
+        "momentum": {
+          "trades": 2717,
+          "usd_per_oz": 0.011,
+          "t_stat": 0.25
+        }
+      }
+    }
+  },
+  "rules_tested": 60,
+  "rules_profitable_dev": 0,
+  "dev_results": [
+    {
+      "window": "asia_open",
+      "rule": "orb/1R/filter",
+      "base": {
+        "window_days": 2443,
+        "trades": 652,
+        "win_rate": 0.1641,
+        "net_usd": -8264.91,
+        "avg_per_trade": -12.68,
+        "avg_per_window_day": -3.38,
+        "worst_day": -33.94,
+        "best_day": 25.79,
+        "max_drawdown_usd": 8264.91,
+        "profit_factor": 0.115,
+        "by_year": {
+          "2014": -354.24,
+          "2015": -599.18,
+          "2016": -746.55,
+          "2017": -755.14,
+          "2018": -406.63,
+          "2019": -755.54,
+          "2020": -1071.53,
+          "2021": -1021.64,
+          "2022": -1023.04,
+          "2023": -739.28,
+          "2024": -792.15
+        }
+      },
+      "double": {
+        "window_days": 2443,
+        "trades": 283,
+        "win_rate": 0.1095,
+        "net_usd": -3694.41,
+        "avg_per_trade": -13.05,
+        "avg_per_window_day": -1.51,
+        "worst_day": -31.92,
+        "best_day": 22.0,
+        "max_drawdown_usd": 3694.41,
+        "profit_factor": 0.07,
+        "by_year": {
+          "2014": -232.88,
+          "2015": -202.0,
+          "2016": -257.93,
+          "2017": -159.8,
+          "2018": -104.59,
+          "2019": -323.79,
+          "2020": -759.23,
+          "2021": -336.73,
+          "2022": -480.89,
+          "2023": -444.17,
+          "2024": -392.4
+        }
+      }
+    },
+    {
+      "window": "asia_open",
+      "rule": "orb/time-exit/filter",
+      "base": {
+        "window_days": 2443,
+        "trades": 652,
+        "win_rate": 0.158,
+        "net_usd": -8295.06,
+        "avg_per_trade": -12.72,
+        "avg_per_window_day": -3.4,
+        "worst_day": -33.94,
+        "best_day": 84.3,
+        "max_drawdown_usd": 8295.06,
+        "profit_factor": 0.116,
+        "by_year": {
+          "2014": -367.76,
+          "2015": -593.06,
+          "2016": -727.04,
+          "2017": -755.14,
+          "2018": -418.24,
+          "2019": -755.54,
+          "2020": -1117.18,
+          "2021": -1036.58,
+          "2022": -1020.25,
+          "2023": -705.51,
+          "2024": -798.77
+        }
+      },
+      "double": {
+        "window_days": 2443,
+        "trades": 283,
+        "win_rate": 0.1025,
+        "net_usd": -3716.57,
+        "avg_per_trade": -13.13,
+        "avg_per_window_day": -1.52,
+        "worst_day": -31.92,
+        "best_day": 61.68,
+        "max_drawdown_usd": 3716.57,
+        "profit_factor": 0.069,
+        "by_year": {
+          "2014": -232.88,
+          "2015": -200.79,
+          "2016": -223.09,
+          "2017": -159.8,
+          "2018": -104.59,
+          "2019": -323.79,
+          "2020": -790.97,
+          "2021": -357.42,
+          "2022": -480.89,
+          "2023": -441.62,
+          "2024": -400.73
+        }
+      }
+    },
+    {
+      "window": "asia_open",
+      "rule": "orb/2R/filter",
+      "base": {
+        "window_days": 2443,
+        "trades": 652,
+        "win_rate": 0.158,
+        "net_usd": -8301.3,
+        "avg_per_trade": -12.73,
+        "avg_per_window_day": -3.4,
+        "worst_day": -33.94,
+        "best_day": 49.2,
+        "max_drawdown_usd": 8301.3,
+        "profit_factor": 0.115,
+        "by_year": {
+          "2014": -367.76,
+          "2015": -593.06,
+          "2016": -762.14,
+          "2017": -755.14,
+          "2018": -418.24,
+          "2019": -755.54,
+          "2020": -1117.18,
+          "2021": -1036.58,
+          "2022": -990.66,
+          "2023": -706.24,
+          "2024": -798.77
+        }
+      },
+      "double": {
+        "window_days": 2443,
+        "trades": 283,
+        "win_rate": 0.1025,
+        "net_usd": -3737.45,
+        "avg_per_trade": -13.21,
+        "avg_per_window_day": -1.53,
+        "worst_day": -31.92,
+        "best_day": 40.8,
+        "max_drawdown_usd": 3737.45,
+        "profit_factor": 0.064,
+        "by_year": {
+          "2014": -232.88,
+          "2015": -200.79,
+          "2016": -243.97,
+          "2017": -159.8,
+          "2018": -104.59,
+          "2019": -323.79,
+          "2020": -790.97,
+          "2021": -357.42,
+          "2022": -480.89,
+          "2023": -441.62,
+          "2024": -400.73
+        }
+      }
+    },
+    {
+      "window": "london_fix",
+      "rule": "orb/time-exit/filter",
+      "base": {
+        "window_days": 2723,
+        "trades": 1420,
+        "win_rate": 0.2725,
+        "net_usd": -10121.54,
+        "avg_per_trade": -7.13,
+        "avg_per_window_day": -3.72,
+        "worst_day": -31.45,
+        "best_day": 98.01,
+        "max_drawdown_usd": 10298.57,
+        "profit_factor": 0.348,
+        "by_year": {
+          "2014": -925.96,
+          "2015": -974.01,
+          "2016": -1029.7,
+          "2017": -1338.4,
+          "2018": -1692.59,
+          "2019": -1428.34,
+          "2020": -393.21,
+          "2021": -755.22,
+          "2022": -546.66,
+          "2023": -450.9,
+          "2024": -586.57
+        }
+      },
+      "double": {
+        "window_days": 2723,
+        "trades": 1295,
+        "win_rate": 0.2255,
+        "net_usd": -11620.18,
+        "avg_per_trade": -8.97,
+        "avg_per_window_day": -4.27,
+        "worst_day": -31.92,
+        "best_day": 72.07,
+        "max_drawdown_usd": 11687.6,
+        "profit_factor": 0.231,
+        "by_year": {
+          "2014": -966.71,
+          "2015": -1265.8,
+          "2016": -1244.89,
+          "2017": -1222.13,
+          "2018": -1455.46,
+          "2019": -1503.45,
+          "2020": -724.18,
+          "2021": -968.01,
+          "2022": -788.55,
+          "2023": -606.23,
+          "2024": -874.78
+        }
+      }
+    },
+    {
+      "window": "london_fix",
+      "rule": "orb/2R/filter",
+      "base": {
+        "window_days": 2723,
+        "trades": 1420,
+        "win_rate": 0.2725,
+        "net_usd": -10126.12,
+        "avg_per_trade": -7.13,
+        "avg_per_window_day": -3.72,
+        "worst_day": -31.45,
+        "best_day": 56.35,
+        "max_drawdown_usd": 10357.29,
+        "profit_factor": 0.348,
+        "by_year": {
+          "2014": -854.85,
+          "2015": -980.48,
+          "2016": -1014.74,
+          "2017": -1282.73,
+          "2018": -1725.59,
+          "2019": -1452.45,
+          "2020": -467.17,
+          "2021": -761.26,
+          "2022": -557.5,
+          "2023": -450.9,
+          "2024": -578.46
+        }
+      },
+      "double": {
+        "window_days": 2723,
+        "trades": 1295,
+        "win_rate": 0.2255,
+        "net_usd": -11590.15,
+        "avg_per_trade": -8.95,
+        "avg_per_window_day": -4.26,
+        "worst_day": -31.92,
+        "best_day": 51.52,
+        "max_drawdown_usd": 11677.46,
+        "profit_factor": 0.233,
+        "by_year": {
+          "2014": -931.71,
+          "2015": -1246.84,
+          "2016": -1222.14,
+          "2017": -1217.4,
+          "2018": -1455.46,
+          "2019": -1517.25,
+          "2020": -771.63,
+          "2021": -963.83,
+          "2022": -797.59,
+          "2023": -606.23,
+          "2024": -860.07
+        }
+      }
+    },
+    {
+      "window": "london_fix",
+      "rule": "orb/1R/filter",
+      "base": {
+        "window_days": 2723,
+        "trades": 1420,
+        "win_rate": 0.2817,
+        "net_usd": -10132.95,
+        "avg_per_trade": -7.14,
+        "avg_per_window_day": -3.72,
+        "worst_day": -31.45,
+        "best_day": 27.68,
+        "max_drawdown_usd": 10297.1,
+        "profit_factor": 0.342,
+        "by_year": {
+          "2014": -897.81,
+          "2015": -1020.77,
+          "2016": -1059.14,
+          "2017": -1366.58,
+          "2018": -1674.11,
+          "2019": -1377.69,
+          "2020": -586.34,
+          "2021": -719.96,
+          "2022": -449.25,
+          "2023": -384.7,
+          "2024": -596.6
+        }
+      },
+      "double": {
+        "window_days": 2723,
+        "trades": 1295,
+        "win_rate": 0.2324,
+        "net_usd": -11611.82,
+        "avg_per_trade": -8.97,
+        "avg_per_window_day": -4.26,
+        "worst_day": -31.92,
+        "best_day": 26.86,
+        "max_drawdown_usd": 11676.84,
+        "profit_factor": 0.225,
+        "by_year": {
+          "2014": -961.51,
+          "2015": -1288.74,
+          "2016": -1284.31,
+          "2017": -1229.17,
+          "2018": -1421.45,
+          "2019": -1461.83,
+          "2020": -873.94,
+          "2021": -961.27,
+          "2022": -730.47,
+          "2023": -527.15,
+          "2024": -871.99
+        }
+      }
+    },
+    {
+      "window": "london_fix",
+      "rule": "orb/time-exit/all-days",
+      "base": {
+        "window_days": 2723,
+        "trades": 1564,
+        "win_rate": 0.2717,
+        "net_usd": -11409.39,
+        "avg_per_trade": -7.3,
+        "avg_per_window_day": -4.19,
+        "worst_day": -31.45,
+        "best_day": 98.01,
+        "max_drawdown_usd": 11540.03,
+        "profit_factor": 0.344,
+        "by_year": {
+          "2014": -1229.05,
+          "2015": -1054.84,
+          "2016": -1128.9,
+          "2017": -1455.27,
+          "2018": -1798.74,
+          "2019": -1644.24,
+          "2020": -598.63,
+          "2021": -886.14,
+          "2022": -519.69,
+          "2023": -494.59,
+          "2024": -599.3
+        }
+      },
+      "double": {
+        "window_days": 2723,
+        "trades": 1564,
+        "win_rate": 0.2155,
+        "net_usd": -15311.58,
+        "avg_per_trade": -9.79,
+        "avg_per_window_day": -5.62,
+        "worst_day": -32.19,
+        "best_day": 72.07,
+        "max_drawdown_usd": 15360.25,
+        "profit_factor": 0.215,
+        "by_year": {
+          "2014": -1523.81,
+          "2015": -1517.78,
+          "2016": -1557.61,
+          "2017": -1867.97,
+          "2018": -2296.62,
+          "2019": -2067.99,
+          "2020": -946.97,
+          "2021": -1123.21,
+          "2022": -799.59,
+          "2023": -690.62,
+          "2024": -919.41
+        }
+      }
+    },
+    {
+      "window": "london_fix",
+      "rule": "orb/2R/all-days",
+      "base": {
+        "window_days": 2723,
+        "trades": 1564,
+        "win_rate": 0.2717,
+        "net_usd": -11417.16,
+        "avg_per_trade": -7.3,
+        "avg_per_window_day": -4.19,
+        "worst_day": -31.45,
+        "best_day": 56.35,
+        "max_drawdown_usd": 11564.1,
+        "profit_factor": 0.344,
+        "by_year": {
+          "2014": -1157.94,
+          "2015": -1050.46,
+          "2016": -1124.17,
+          "2017": -1364.8,
+          "2018": -1831.74,
+          "2019": -1668.35,
+          "2020": -672.6,
+          "2021": -892.17,
+          "2022": -543.91,
+          "2023": -494.59,
+          "2024": -616.44
+        }
+      },
+      "double": {
+        "window_days": 2723,
+        "trades": 1564,
+        "win_rate": 0.2155,
+        "net_usd": -15278.95,
+        "avg_per_trade": -9.77,
+        "avg_per_window_day": -5.61,
+        "worst_day": -32.19,
+        "best_day": 51.52,
+        "max_drawdown_usd": 15347.52,
+        "profit_factor": 0.216,
+        "by_year": {
+          "2014": -1458.18,
+          "2015": -1498.82,
+          "2016": -1538.16,
+          "2017": -1851.72,
+          "2018": -2315.82,
+          "2019": -2081.79,
+          "2020": -994.41,
+          "2021": -1119.03,
+          "2022": -811.25,
+          "2023": -690.62,
+          "2024": -919.14
+        }
+      }
+    },
+    {
+      "window": "london_fix",
+      "rule": "orb/1R/all-days",
+      "base": {
+        "window_days": 2723,
+        "trades": 1564,
+        "win_rate": 0.2801,
+        "net_usd": -11504.65,
+        "avg_per_trade": -7.36,
+        "avg_per_window_day": -4.22,
+        "worst_day": -31.45,
+        "best_day": 28.0,
+        "max_drawdown_usd": 11634.78,
+        "profit_factor": 0.333,
+        "by_year": {
+          "2014": -1198.37,
+          "2015": -1120.99,
+          "2016": -1187.88,
+          "2017": -1474.55,
+          "2018": -1780.26,
+          "2019": -1593.6,
+          "2020": -794.61,
+          "2021": -832.85,
+          "2022": -432.88,
+          "2023": -440.82,
+          "2024": -647.86
+        }
+      },
+      "double": {
+        "window_days": 2723,
+        "trades": 1564,
+        "win_rate": 0.2225,
+        "net_usd": -15376.04,
+        "avg_per_trade": -9.83,
+        "avg_per_window_day": -5.65,
+        "worst_day": -32.19,
+        "best_day": 27.84,
+        "max_drawdown_usd": 15428.83,
+        "profit_factor": 0.206,
+        "by_year": {
+          "2014": -1537.38,
+          "2015": -1539.82,
+          "2016": -1620.54,
+          "2017": -1834.74,
+          "2018": -2304.59,
+          "2019": -2026.37,
+          "2020": -1097.62,
+          "2021": -1116.47,
+          "2022": -736.1,
+          "2023": -621.17,
+          "2024": -941.25
+        }
+      }
+    },
+    {
+      "window": "ny_open",
+      "rule": "orb/1R/filter",
+      "base": {
+        "window_days": 2732,
+        "trades": 1730,
+        "win_rate": 0.322,
+        "net_usd": -11837.86,
+        "avg_per_trade": -6.84,
+        "avg_per_window_day": -4.33,
+        "worst_day": -31.8,
+        "best_day": 28.48,
+        "max_drawdown_usd": 11837.86,
+        "profit_factor": 0.411,
+        "by_year": {
+          "2014": -1085.27,
+          "2015": -1034.96,
+          "2016": -1118.03,
+          "2017": -1440.17,
+          "2018": -1405.21,
+          "2019": -1190.88,
+          "2020": -1279.66,
+          "2021": -718.74,
+          "2022": -935.59,
+          "2023": -639.68,
+          "2024": -989.67
+        }
+      },
+      "double": {
+        "window_days": 2732,
+        "trades": 1467,
+        "win_rate": 0.2747,
+        "net_usd": -12575.9,
+        "avg_per_trade": -8.57,
+        "avg_per_window_day": -4.6,
+        "worst_day": -31.92,
+        "best_day": 26.64,
+        "max_drawdown_usd": 12575.9,
+        "profit_factor": 0.299,
+        "by_year": {
+          "2014": -950.29,
+          "2015": -951.8,
+          "2016": -964.29,
+          "2017": -1018.98,
+          "2018": -1113.26,
+          "2019": -1252.97,
+          "2020": -1582.71,
+          "2021": -1141.19,
+          "2022": -1391.47,
+          "2023": -720.52,
+          "2024": -1488.4
+        }
+      }
+    },
+    {
+      "window": "ny_open",
+      "rule": "orb/2R/filter",
+      "base": {
+        "window_days": 2732,
+        "trades": 1730,
+        "win_rate": 0.3029,
+        "net_usd": -12164.51,
+        "avg_per_trade": -7.03,
+        "avg_per_window_day": -4.45,
+        "worst_day": -31.8,
+        "best_day": 55.17,
+        "max_drawdown_usd": 12164.51,
+        "profit_factor": 0.405,
+        "by_year": {
+          "2014": -1040.76,
+          "2015": -1141.49,
+          "2016": -1140.19,
+          "2017": -1485.5,
+          "2018": -1300.57,
+          "2019": -1272.36,
+          "2020": -1437.22,
+          "2021": -689.66,
+          "2022": -991.56,
+          "2023": -565.53,
+          "2024": -1099.67
+        }
+      },
+      "double": {
+        "window_days": 2732,
+        "trades": 1467,
+        "win_rate": 0.2577,
+        "net_usd": -12950.37,
+        "avg_per_trade": -8.83,
+        "avg_per_window_day": -4.74,
+        "worst_day": -31.92,
+        "best_day": 51.95,
+        "max_drawdown_usd": 12950.37,
+        "profit_factor": 0.289,
+        "by_year": {
+          "2014": -931.85,
+          "2015": -1068.58,
+          "2016": -998.24,
+          "2017": -1074.17,
+          "2018": -1091.59,
+          "2019": -1239.34,
+          "2020": -1735.63,
+          "2021": -1121.35,
+          "2022": -1412.52,
+          "2023": -736.7,
+          "2024": -1540.4
+        }
+      }
+    },
+    {
+      "window": "ny_open",
+      "rule": "orb/time-exit/filter",
+      "base": {
+        "window_days": 2732,
+        "trades": 1730,
+        "win_rate": 0.3023,
+        "net_usd": -12331.34,
+        "avg_per_trade": -7.13,
+        "avg_per_window_day": -4.51,
+        "worst_day": -31.8,
+        "best_day": 105.18,
+        "max_drawdown_usd": 12331.34,
+        "profit_factor": 0.398,
+        "by_year": {
+          "2014": -1090.68,
+          "2015": -1165.14,
+          "2016": -1114.39,
+          "2017": -1460.94,
+          "2018": -1272.18,
+          "2019": -1327.03,
+          "2020": -1479.49,
+          "2021": -711.31,
+          "2022": -1005.66,
+          "2023": -520.91,
+          "2024": -1183.61
+        }
+      },
+      "double": {
+        "window_days": 2732,
+        "trades": 1467,
+        "win_rate": 0.257,
+        "net_usd": -12999.08,
+        "avg_per_trade": -8.86,
+        "avg_per_window_day": -4.76,
+        "worst_day": -31.92,
+        "best_day": 102.3,
+        "max_drawdown_usd": 12999.08,
+        "profit_factor": 0.286,
+        "by_year": {
+          "2014": -985.82,
+          "2015": -1097.38,
+          "2016": -946.16,
+          "2017": -1059.1,
+          "2018": -1098.94,
+          "2019": -1248.35,
+          "2020": -1789.84,
+          "2021": -1138.71,
+          "2022": -1423.48,
+          "2023": -628.19,
+          "2024": -1583.11
+        }
+      }
+    },
+    {
+      "window": "ny_open",
+      "rule": "orb/1R/all-days",
+      "base": {
+        "window_days": 2732,
+        "trades": 1939,
+        "win_rate": 0.3187,
+        "net_usd": -13938.51,
+        "avg_per_trade": -7.19,
+        "avg_per_window_day": -5.1,
+        "worst_day": -31.8,
+        "best_day": 28.48,
+        "max_drawdown_usd": 13978.67,
+        "profit_factor": 0.4,
+        "by_year": {
+          "2014": -1485.16,
+          "2015": -1215.32,
+          "2016": -1232.23,
+          "2017": -1703.22,
+          "2018": -1746.19,
+          "2019": -1479.14,
+          "2020": -1334.76,
+          "2021": -902.7,
+          "2022": -947.35,
+          "2023": -731.74,
+          "2024": -1160.71
+        }
+      },
+      "double": {
+        "window_days": 2732,
+        "trades": 1939,
+        "win_rate": 0.2553,
+        "net_usd": -19236.06,
+        "avg_per_trade": -9.92,
+        "avg_per_window_day": -7.04,
+        "worst_day": -32.87,
+        "best_day": 26.64,
+        "max_drawdown_usd": 19264.98,
+        "profit_factor": 0.255,
+        "by_year": {
+          "2014": -1907.94,
+          "2015": -1680.79,
+          "2016": -1756.12,
+          "2017": -2315.82,
+          "2018": -2312.89,
+          "2019": -2093.88,
+          "2020": -1705.91,
+          "2021": -1335.59,
+          "2022": -1444.99,
+          "2023": -980.41,
+          "2024": -1701.73
+        }
+      }
+    },
+    {
+      "window": "ny_open",
+      "rule": "orb/2R/all-days",
+      "base": {
+        "window_days": 2732,
+        "trades": 1939,
+        "win_rate": 0.3002,
+        "net_usd": -13958.92,
+        "avg_per_trade": -7.2,
+        "avg_per_window_day": -5.11,
+        "worst_day": -31.8,
+        "best_day": 55.35,
+        "max_drawdown_usd": 14008.01,
+        "profit_factor": 0.409,
+        "by_year": {
+          "2014": -1422.01,
+          "2015": -1297.25,
+          "2016": -1284.36,
+          "2017": -1677.03,
+          "2018": -1581.36,
+          "2019": -1554.8,
+          "2020": -1447.28,
+          "2021": -864.3,
+          "2022": -974.28,
+          "2023": -629.07,
+          "2024": -1227.18
+        }
+      },
+      "double": {
+        "window_days": 2732,
+        "trades": 1939,
+        "win_rate": 0.2398,
+        "net_usd": -19414.11,
+        "avg_per_trade": -10.01,
+        "avg_per_window_day": -7.11,
+        "worst_day": -32.87,
+        "best_day": 51.95,
+        "max_drawdown_usd": 19441.44,
+        "profit_factor": 0.257,
+        "by_year": {
+          "2014": -1883.03,
+          "2015": -1784.84,
+          "2016": -1796.52,
+          "2017": -2296.92,
+          "2018": -2207.34,
+          "2019": -2136.63,
+          "2020": -1818.88,
+          "2021": -1327.11,
+          "2022": -1441.71,
+          "2023": -983.48,
+          "2024": -1737.66
+        }
+      }
+    },
+    {
+      "window": "ny_open",
+      "rule": "orb/time-exit/all-days",
+      "base": {
+        "window_days": 2732,
+        "trades": 1939,
+        "win_rate": 0.2996,
+        "net_usd": -14133.19,
+        "avg_per_trade": -7.29,
+        "avg_per_window_day": -5.17,
+        "worst_day": -31.8,
+        "best_day": 105.18,
+        "max_drawdown_usd": 14182.28,
+        "profit_factor": 0.401,
+        "by_year": {
+          "2014": -1490.83,
+          "2015": -1293.78,
+          "2016": -1258.08,
+          "2017": -1712.53,
+          "2018": -1558.77,
+          "2019": -1609.47,
+          "2020": -1450.56,
+          "2021": -899.22,
+          "2022": -972.06,
+          "2023": -583.88,
+          "2024": -1304.01
+        }
+      },
+      "double": {
+        "window_days": 2732,
+        "trades": 1939,
+        "win_rate": 0.2393,
+        "net_usd": -19473.78,
+        "avg_per_trade": -10.04,
+        "avg_per_window_day": -7.13,
+        "worst_day": -32.87,
+        "best_day": 102.3,
+        "max_drawdown_usd": 19501.11,
+        "profit_factor": 0.255,
+        "by_year": {
+          "2014": -1957.93,
+          "2015": -1804.1,
+          "2016": -1759.44,
+          "2017": -2336.31,
+          "2018": -2191.63,
+          "2019": -2145.63,
+          "2020": -1856.46,
+          "2021": -1344.46,
+          "2022": -1442.07,
+          "2023": -877.5,
+          "2024": -1758.24
+        }
+      }
+    },
+    {
+      "window": "us_data",
+      "rule": "orb/1R/filter",
+      "base": {
+        "window_days": 2719,
+        "trades": 1466,
+        "win_rate": 0.2551,
+        "net_usd": -14287.38,
+        "avg_per_trade": -9.75,
+        "avg_per_window_day": -5.25,
+        "worst_day": -31.6,
+        "best_day": 27.85,
+        "max_drawdown_usd": 14306.53,
+        "profit_factor": 0.256,
+        "by_year": {
+          "2014": -1224.18,
+          "2015": -951.74,
+          "2016": -1760.34,
+          "2017": -1368.35,
+          "2018": -1466.81,
+          "2019": -1628.98,
+          "2020": -991.85,
+          "2021": -1398.46,
+          "2022": -1527.77,
+          "2023": -915.58,
+          "2024": -1053.33
+        }
+      },
+      "double": {
+        "window_days": 2719,
+        "trades": 1054,
+        "win_rate": 0.2106,
+        "net_usd": -11510.02,
+        "avg_per_trade": -10.92,
+        "avg_per_window_day": -4.23,
+        "worst_day": -31.97,
+        "best_day": 25.03,
+        "max_drawdown_usd": 11529.21,
+        "profit_factor": 0.187,
+        "by_year": {
+          "2014": -791.31,
+          "2015": -763.88,
+          "2016": -1169.91,
+          "2017": -390.97,
+          "2018": -639.65,
+          "2019": -987.93,
+          "2020": -1138.37,
+          "2021": -1580.82,
+          "2022": -1817.8,
+          "2023": -869.52,
+          "2024": -1359.86
+        }
+      }
+    },
+    {
+      "window": "us_data",
+      "rule": "orb/2R/filter",
+      "base": {
+        "window_days": 2719,
+        "trades": 1466,
+        "win_rate": 0.2449,
+        "net_usd": -14444.2,
+        "avg_per_trade": -9.85,
+        "avg_per_window_day": -5.31,
+        "worst_day": -31.6,
+        "best_day": 56.83,
+        "max_drawdown_usd": 14507.13,
+        "profit_factor": 0.256,
+        "by_year": {
+          "2014": -1285.16,
+          "2015": -980.11,
+          "2016": -1823.12,
+          "2017": -1375.7,
+          "2018": -1498.92,
+          "2019": -1643.22,
+          "2020": -916.16,
+          "2021": -1359.63,
+          "2022": -1437.79,
+          "2023": -883.46,
+          "2024": -1240.94
+        }
+      },
+      "double": {
+        "window_days": 2719,
+        "trades": 1054,
+        "win_rate": 0.2049,
+        "net_usd": -11544.46,
+        "avg_per_trade": -10.95,
+        "avg_per_window_day": -4.25,
+        "worst_day": -31.97,
+        "best_day": 50.94,
+        "max_drawdown_usd": 11604.66,
+        "profit_factor": 0.19,
+        "by_year": {
+          "2014": -803.19,
+          "2015": -776.67,
+          "2016": -1196.48,
+          "2017": -407.11,
+          "2018": -687.2,
+          "2019": -987.46,
+          "2020": -1107.28,
+          "2021": -1536.58,
+          "2022": -1771.07,
+          "2023": -876.62,
+          "2024": -1394.8
+        }
+      }
+    },
+    {
+      "window": "us_data",
+      "rule": "orb/time-exit/filter",
+      "base": {
+        "window_days": 2719,
+        "trades": 1466,
+        "win_rate": 0.2449,
+        "net_usd": -14478.48,
+        "avg_per_trade": -9.88,
+        "avg_per_window_day": -5.32,
+        "worst_day": -31.6,
+        "best_day": 115.69,
+        "max_drawdown_usd": 14557.23,
+        "profit_factor": 0.254,
+        "by_year": {
+          "2014": -1285.16,
+          "2015": -989.68,
+          "2016": -1823.12,
+          "2017": -1375.7,
+          "2018": -1526.72,
+          "2019": -1588.8,
+          "2020": -935.32,
+          "2021": -1372.18,
+          "2022": -1475.09,
+          "2023": -876.8,
+          "2024": -1229.92
+        }
+      },
+      "double": {
+        "window_days": 2719,
+        "trades": 1054,
+        "win_rate": 0.2049,
+        "net_usd": -11613.34,
+        "avg_per_trade": -11.02,
+        "avg_per_window_day": -4.27,
+        "worst_day": -31.97,
+        "best_day": 61.46,
+        "max_drawdown_usd": 11685.16,
+        "profit_factor": 0.185,
+        "by_year": {
+          "2014": -803.19,
+          "2015": -776.67,
+          "2016": -1196.48,
+          "2017": -407.11,
+          "2018": -687.2,
+          "2019": -987.46,
+          "2020": -1115.19,
+          "2021": -1546.96,
+          "2022": -1805.11,
+          "2023": -890.71,
+          "2024": -1397.27
+        }
+      }
+    },
+    {
+      "window": "london_open",
+      "rule": "orb/time-exit/filter",
+      "base": {
+        "window_days": 2823,
+        "trades": 1513,
+        "win_rate": 0.2333,
+        "net_usd": -14954.59,
+        "avg_per_trade": -9.88,
+        "avg_per_window_day": -5.3,
+        "worst_day": -31.69,
+        "best_day": 108.77,
+        "max_drawdown_usd": 14954.59,
+        "profit_factor": 0.266,
+        "by_year": {
+          "2014": -869.03,
+          "2015": -1347.27,
+          "2016": -1136.01,
+          "2017": -1208.25,
+          "2018": -1544.66,
+          "2019": -1453.09,
+          "2020": -1651.54,
+          "2021": -1804.67,
+          "2022": -1199.05,
+          "2023": -1533.08,
+          "2024": -1207.94
+        }
+      },
+      "double": {
+        "window_days": 2823,
+        "trades": 959,
+        "win_rate": 0.1867,
+        "net_usd": -10828.08,
+        "avg_per_trade": -11.29,
+        "avg_per_window_day": -3.84,
+        "worst_day": -31.96,
+        "best_day": 85.84,
+        "max_drawdown_usd": 10828.08,
+        "profit_factor": 0.185,
+        "by_year": {
+          "2014": -270.61,
+          "2015": -358.95,
+          "2016": -685.95,
+          "2017": -376.0,
+          "2018": -306.99,
+          "2019": -845.88,
+          "2020": -1618.54,
+          "2021": -1699.06,
+          "2022": -1369.27,
+          "2023": -1658.73,
+          "2024": -1638.11
+        }
+      }
+    },
+    {
+      "window": "london_open",
+      "rule": "orb/2R/filter",
+      "base": {
+        "window_days": 2823,
+        "trades": 1513,
+        "win_rate": 0.2333,
+        "net_usd": -15056.85,
+        "avg_per_trade": -9.95,
+        "avg_per_window_day": -5.33,
+        "worst_day": -31.69,
+        "best_day": 53.29,
+        "max_drawdown_usd": 15056.85,
+        "profit_factor": 0.261,
+        "by_year": {
+          "2014": -889.64,
+          "2015": -1347.44,
+          "2016": -1118.23,
+          "2017": -1208.25,
+          "2018": -1544.66,
+          "2019": -1491.48,
+          "2020": -1659.55,
+          "2021": -1867.48,
+          "2022": -1189.28,
+          "2023": -1543.18,
+          "2024": -1197.66
+        }
+      },
+      "double": {
+        "window_days": 2823,
+        "trades": 959,
+        "win_rate": 0.1867,
+        "net_usd": -10853.66,
+        "avg_per_trade": -11.32,
+        "avg_per_window_day": -3.84,
+        "worst_day": -31.96,
+        "best_day": 50.39,
+        "max_drawdown_usd": 10853.66,
+        "profit_factor": 0.183,
+        "by_year": {
+          "2014": -284.13,
+          "2015": -337.72,
+          "2016": -685.95,
+          "2017": -376.0,
+          "2018": -306.99,
+          "2019": -845.88,
+          "2020": -1624.15,
+          "2021": -1747.96,
+          "2022": -1379.1,
+          "2023": -1652.47,
+          "2024": -1613.32
+        }
+      }
+    },
+    {
+      "window": "london_open",
+      "rule": "orb/1R/filter",
+      "base": {
+        "window_days": 2823,
+        "trades": 1513,
+        "win_rate": 0.2406,
+        "net_usd": -15147.0,
+        "avg_per_trade": -10.01,
+        "avg_per_window_day": -5.37,
+        "worst_day": -31.69,
+        "best_day": 27.03,
+        "max_drawdown_usd": 15153.54,
+        "profit_factor": 0.252,
+        "by_year": {
+          "2014": -870.51,
+          "2015": -1348.73,
+          "2016": -1160.93,
+          "2017": -1157.0,
+          "2018": -1504.51,
+          "2019": -1581.74,
+          "2020": -1490.71,
+          "2021": -1977.49,
+          "2022": -1258.13,
+          "2023": -1542.53,
+          "2024": -1254.72
+        }
+      },
+      "double": {
+        "window_days": 2823,
+        "trades": 959,
+        "win_rate": 0.1929,
+        "net_usd": -10956.65,
+        "avg_per_trade": -11.43,
+        "avg_per_window_day": -3.88,
+        "worst_day": -31.96,
+        "best_day": 24.07,
+        "max_drawdown_usd": 10956.65,
+        "profit_factor": 0.169,
+        "by_year": {
+          "2014": -292.23,
+          "2015": -350.91,
+          "2016": -658.46,
+          "2017": -376.0,
+          "2018": -306.99,
+          "2019": -845.14,
+          "2020": -1564.0,
+          "2021": -1803.59,
+          "2022": -1396.52,
+          "2023": -1668.0,
+          "2024": -1694.83
+        }
+      }
+    },
+    {
+      "window": "us_data",
+      "rule": "orb/2R/all-days",
+      "base": {
+        "window_days": 2719,
+        "trades": 1810,
+        "win_rate": 0.2331,
+        "net_usd": -19262.81,
+        "avg_per_trade": -10.64,
+        "avg_per_window_day": -7.08,
+        "worst_day": -32.46,
+        "best_day": 56.83,
+        "max_drawdown_usd": 19307.44,
+        "profit_factor": 0.238,
+        "by_year": {
+          "2014": -2032.15,
+          "2015": -1489.72,
+          "2016": -2353.09,
+          "2017": -2331.86,
+          "2018": -2423.87,
+          "2019": -2297.81,
+          "2020": -988.4,
+          "2021": -1575.02,
+          "2022": -1510.11,
+          "2023": -1028.35,
+          "2024": -1232.45
+        }
+      },
+      "double": {
+        "window_days": 2719,
+        "trades": 1810,
+        "win_rate": 0.1608,
+        "net_usd": -24859.08,
+        "avg_per_trade": -13.73,
+        "avg_per_window_day": -9.14,
+        "worst_day": -32.97,
+        "best_day": 54.22,
+        "max_drawdown_usd": 24896.02,
+        "profit_factor": 0.129,
+        "by_year": {
+          "2014": -2448.87,
+          "2015": -1987.52,
+          "2016": -2843.33,
+          "2017": -2936.09,
+          "2018": -3138.38,
+          "2019": -3012.27,
+          "2020": -1475.42,
+          "2021": -2053.54,
+          "2022": -1917.56,
+          "2023": -1360.52,
+          "2024": -1685.57
+        }
+      }
+    },
+    {
+      "window": "us_data",
+      "rule": "orb/1R/all-days",
+      "base": {
+        "window_days": 2719,
+        "trades": 1810,
+        "win_rate": 0.2425,
+        "net_usd": -19318.69,
+        "avg_per_trade": -10.67,
+        "avg_per_window_day": -7.11,
+        "worst_day": -32.46,
+        "best_day": 27.85,
+        "max_drawdown_usd": 19337.84,
+        "profit_factor": 0.228,
+        "by_year": {
+          "2014": -2022.81,
+          "2015": -1429.35,
+          "2016": -2323.18,
+          "2017": -2325.82,
+          "2018": -2479.58,
+          "2019": -2243.12,
+          "2020": -1103.37,
+          "2021": -1617.3,
+          "2022": -1641.43,
+          "2023": -1060.47,
+          "2024": -1072.27
+        }
+      },
+      "double": {
+        "window_days": 2719,
+        "trades": 1810,
+        "win_rate": 0.1657,
+        "net_usd": -24935.23,
+        "avg_per_trade": -13.78,
+        "avg_per_window_day": -9.17,
+        "worst_day": -32.97,
+        "best_day": 25.99,
+        "max_drawdown_usd": 24945.28,
+        "profit_factor": 0.123,
+        "by_year": {
+          "2014": -2458.18,
+          "2015": -1980.77,
+          "2016": -2827.22,
+          "2017": -2907.97,
+          "2018": -3099.97,
+          "2019": -3004.79,
+          "2020": -1539.71,
+          "2021": -2094.14,
+          "2022": -1998.75,
+          "2023": -1378.95,
+          "2024": -1644.78
+        }
+      }
+    },
+    {
+      "window": "us_data",
+      "rule": "orb/time-exit/all-days",
+      "base": {
+        "window_days": 2719,
+        "trades": 1810,
+        "win_rate": 0.2326,
+        "net_usd": -19326.68,
+        "avg_per_trade": -10.68,
+        "avg_per_window_day": -7.11,
+        "worst_day": -32.46,
+        "best_day": 115.69,
+        "max_drawdown_usd": 19387.13,
+        "profit_factor": 0.235,
+        "by_year": {
+          "2014": -1999.25,
+          "2015": -1499.29,
+          "2016": -2359.39,
+          "2017": -2331.86,
+          "2018": -2417.65,
+          "2019": -2290.37,
+          "2020": -1025.58,
+          "2021": -1587.57,
+          "2022": -1586.84,
+          "2023": -1021.69,
+          "2024": -1207.21
+        }
+      },
+      "double": {
+        "window_days": 2719,
+        "trades": 1810,
+        "win_rate": 0.1608,
+        "net_usd": -24851.85,
+        "avg_per_trade": -13.73,
+        "avg_per_window_day": -9.14,
+        "worst_day": -32.97,
+        "best_day": 86.8,
+        "max_drawdown_usd": 24900.41,
+        "profit_factor": 0.129,
+        "by_year": {
+          "2014": -2415.12,
+          "2015": -1991.58,
+          "2016": -2843.33,
+          "2017": -2936.09,
+          "2018": -3102.56,
+          "2019": -2969.67,
+          "2020": -1489.61,
+          "2021": -2063.92,
+          "2022": -1988.99,
+          "2023": -1374.77,
+          "2024": -1676.22
+        }
+      }
+    },
+    {
+      "window": "asia_open",
+      "rule": "orb/1R/all-days",
+      "base": {
+        "window_days": 2443,
+        "trades": 1365,
+        "win_rate": 0.1282,
+        "net_usd": -21351.34,
+        "avg_per_trade": -15.64,
+        "avg_per_window_day": -8.74,
+        "worst_day": -33.94,
+        "best_day": 25.79,
+        "max_drawdown_usd": 21351.34,
+        "profit_factor": 0.085,
+        "by_year": {
+          "2014": -1290.16,
+          "2015": -1884.64,
+          "2016": -1952.5,
+          "2017": -2431.29,
+          "2018": -3002.39,
+          "2019": -2215.43,
+          "2020": -1319.21,
+          "2021": -1966.99,
+          "2022": -2229.54,
+          "2023": -1607.64,
+          "2024": -1451.56
+        }
+      },
+      "double": {
+        "window_days": 2443,
+        "trades": 1365,
+        "win_rate": 0.0747,
+        "net_usd": -25965.26,
+        "avg_per_trade": -19.02,
+        "avg_per_window_day": -10.63,
+        "worst_day": -34.0,
+        "best_day": 25.26,
+        "max_drawdown_usd": 25965.26,
+        "profit_factor": 0.034,
+        "by_year": {
+          "2014": -1561.97,
+          "2015": -2178.98,
+          "2016": -2600.38,
+          "2017": -2843.41,
+          "2018": -3485.33,
+          "2019": -2639.54,
+          "2020": -1596.47,
+          "2021": -2415.72,
+          "2022": -2872.64,
+          "2023": -1912.31,
+          "2024": -1858.51
+        }
+      }
+    },
+    {
+      "window": "asia_open",
+      "rule": "orb/2R/all-days",
+      "base": {
+        "window_days": 2443,
+        "trades": 1365,
+        "win_rate": 0.1231,
+        "net_usd": -21448.36,
+        "avg_per_trade": -15.71,
+        "avg_per_window_day": -8.78,
+        "worst_day": -33.94,
+        "best_day": 49.2,
+        "max_drawdown_usd": 21448.36,
+        "profit_factor": 0.086,
+        "by_year": {
+          "2014": -1277.4,
+          "2015": -1878.52,
+          "2016": -2055.0,
+          "2017": -2405.71,
+          "2018": -3021.75,
+          "2019": -2224.36,
+          "2020": -1376.79,
+          "2021": -1924.72,
+          "2022": -2210.64,
+          "2023": -1580.94,
+          "2024": -1492.55
+        }
+      },
+      "double": {
+        "window_days": 2443,
+        "trades": 1365,
+        "win_rate": 0.0703,
+        "net_usd": -26024.12,
+        "avg_per_trade": -19.07,
+        "avg_per_window_day": -10.65,
+        "worst_day": -34.0,
+        "best_day": 41.95,
+        "max_drawdown_usd": 26024.12,
+        "profit_factor": 0.035,
+        "by_year": {
+          "2014": -1577.18,
+          "2015": -2177.77,
+          "2016": -2647.89,
+          "2017": -2819.57,
+          "2018": -3498.82,
+          "2019": -2642.6,
+          "2020": -1647.45,
+          "2021": -2398.59,
+          "2022": -2831.39,
+          "2023": -1885.7,
+          "2024": -1897.16
+        }
+      }
+    },
+    {
+      "window": "asia_open",
+      "rule": "orb/time-exit/all-days",
+      "base": {
+        "window_days": 2443,
+        "trades": 1365,
+        "win_rate": 0.1223,
+        "net_usd": -21521.63,
+        "avg_per_trade": -15.77,
+        "avg_per_window_day": -8.81,
+        "worst_day": -33.94,
+        "best_day": 84.3,
+        "max_drawdown_usd": 21521.63,
+        "profit_factor": 0.084,
+        "by_year": {
+          "2014": -1295.22,
+          "2015": -1878.52,
+          "2016": -2079.75,
+          "2017": -2425.53,
+          "2018": -3021.75,
+          "2019": -2224.36,
+          "2020": -1376.79,
+          "2021": -1906.73,
+          "2022": -2240.23,
+          "2023": -1580.21,
+          "2024": -1492.55
+        }
+      },
+      "double": {
+        "window_days": 2443,
+        "trades": 1365,
+        "win_rate": 0.0696,
+        "net_usd": -26138.0,
+        "avg_per_trade": -19.15,
+        "avg_per_window_day": -10.7,
+        "worst_day": -34.0,
+        "best_day": 61.68,
+        "max_drawdown_usd": 26138.0,
+        "profit_factor": 0.032,
+        "by_year": {
+          "2014": -1577.18,
+          "2015": -2177.77,
+          "2016": -2694.03,
+          "2017": -2842.94,
+          "2018": -3498.82,
+          "2019": -2642.6,
+          "2020": -1647.45,
+          "2021": -2407.45,
+          "2022": -2860.92,
+          "2023": -1891.68,
+          "2024": -1897.16
+        }
+      }
+    },
+    {
+      "window": "london_open",
+      "rule": "orb/time-exit/all-days",
+      "base": {
+        "window_days": 2823,
+        "trades": 2031,
+        "win_rate": 0.2152,
+        "net_usd": -22913.1,
+        "avg_per_trade": -11.28,
+        "avg_per_window_day": -8.12,
+        "worst_day": -32.38,
+        "best_day": 108.77,
+        "max_drawdown_usd": 22913.1,
+        "profit_factor": 0.231,
+        "by_year": {
+          "2014": -2092.69,
+          "2015": -2607.13,
+          "2016": -2215.45,
+          "2017": -2640.13,
+          "2018": -2811.47,
+          "2019": -2473.46,
+          "2020": -1969.47,
+          "2021": -1856.86,
+          "2022": -1310.0,
+          "2023": -1674.73,
+          "2024": -1261.75
+        }
+      },
+      "double": {
+        "window_days": 2823,
+        "trades": 2031,
+        "win_rate": 0.1433,
+        "net_usd": -29976.82,
+        "avg_per_trade": -14.76,
+        "avg_per_window_day": -10.62,
+        "worst_day": -33.72,
+        "best_day": 85.84,
+        "max_drawdown_usd": 29976.82,
+        "profit_factor": 0.118,
+        "by_year": {
+          "2014": -2645.55,
+          "2015": -3299.99,
+          "2016": -2800.23,
+          "2017": -3390.84,
+          "2018": -3556.46,
+          "2019": -3269.18,
+          "2020": -2443.98,
+          "2021": -2454.79,
+          "2022": -1899.05,
+          "2023": -2355.93,
+          "2024": -1860.83
+        }
+      }
+    },
+    {
+      "window": "london_open",
+      "rule": "orb/2R/all-days",
+      "base": {
+        "window_days": 2823,
+        "trades": 2031,
+        "win_rate": 0.2152,
+        "net_usd": -23158.68,
+        "avg_per_trade": -11.4,
+        "avg_per_window_day": -8.2,
+        "worst_day": -32.38,
+        "best_day": 53.29,
+        "max_drawdown_usd": 23158.68,
+        "profit_factor": 0.223,
+        "by_year": {
+          "2014": -2164.6,
+          "2015": -2619.3,
+          "2016": -2197.67,
+          "2017": -2752.77,
+          "2018": -2799.74,
+          "2019": -2511.84,
+          "2020": -1958.59,
+          "2021": -1919.67,
+          "2022": -1300.23,
+          "2023": -1682.83,
+          "2024": -1251.47
+        }
+      },
+      "double": {
+        "window_days": 2823,
+        "trades": 2031,
+        "win_rate": 0.1433,
+        "net_usd": -30044.85,
+        "avg_per_trade": -14.79,
+        "avg_per_window_day": -10.64,
+        "worst_day": -33.72,
+        "best_day": 50.39,
+        "max_drawdown_usd": 30044.85,
+        "profit_factor": 0.116,
+        "by_year": {
+          "2014": -2673.6,
+          "2015": -3286.11,
+          "2016": -2784.89,
+          "2017": -3461.4,
+          "2018": -3536.48,
+          "2019": -3309.32,
+          "2020": -2425.68,
+          "2021": -2492.16,
+          "2022": -1889.52,
+          "2023": -2349.66,
+          "2024": -1836.04
+        }
+      }
+    },
+    {
+      "window": "london_open",
+      "rule": "orb/1R/all-days",
+      "base": {
+        "window_days": 2823,
+        "trades": 2031,
+        "win_rate": 0.225,
+        "net_usd": -23243.98,
+        "avg_per_trade": -11.44,
+        "avg_per_window_day": -8.23,
+        "worst_day": -32.38,
+        "best_day": 27.03,
+        "max_drawdown_usd": 23250.52,
+        "profit_factor": 0.214,
+        "by_year": {
+          "2014": -2179.44,
+          "2015": -2621.79,
+          "2016": -2188.59,
+          "2017": -2816.04,
+          "2018": -2777.9,
+          "2019": -2583.0,
+          "2020": -1741.69,
+          "2021": -2029.68,
+          "2022": -1337.69,
+          "2023": -1694.82,
+          "2024": -1273.36
+        }
+      },
+      "double": {
+        "window_days": 2823,
+        "trades": 2031,
+        "win_rate": 0.1492,
+        "net_usd": -30273.45,
+        "avg_per_trade": -14.91,
+        "avg_per_window_day": -10.72,
+        "worst_day": -33.72,
+        "best_day": 25.63,
+        "max_drawdown_usd": 30273.45,
+        "profit_factor": 0.106,
+        "by_year": {
+          "2014": -2740.43,
+          "2015": -3351.38,
+          "2016": -2749.16,
+          "2017": -3494.65,
+          "2018": -3537.04,
+          "2019": -3350.33,
+          "2020": -2242.91,
+          "2021": -2572.7,
+          "2022": -1923.37,
+          "2023": -2393.93,
+          "2024": -1917.55
+        }
+      }
+    },
+    {
+      "window": "asia_open",
+      "rule": "momentum/1R/filter",
+      "base": {
+        "window_days": 2443,
+        "trades": 1180,
+        "win_rate": 0.1297,
+        "net_usd": -25790.67,
+        "avg_per_trade": -21.86,
+        "avg_per_window_day": -10.56,
+        "worst_day": -34.96,
+        "best_day": 24.57,
+        "max_drawdown_usd": 25790.67,
+        "profit_factor": 0.078,
+        "by_year": {
+          "2014": -1286.5,
+          "2015": -1637.15,
+          "2016": -2536.2,
+          "2017": -2155.27,
+          "2018": -1692.28,
+          "2019": -2051.83,
+          "2020": -3136.4,
+          "2021": -2917.15,
+          "2022": -3048.53,
+          "2023": -1824.38,
+          "2024": -3504.98
+        }
+      },
+      "double": {
+        "window_days": 2443,
+        "trades": 621,
+        "win_rate": 0.0998,
+        "net_usd": -14592.5,
+        "avg_per_trade": -23.5,
+        "avg_per_window_day": -5.97,
+        "worst_day": -34.1,
+        "best_day": 22.83,
+        "max_drawdown_usd": 14592.5,
+        "profit_factor": 0.048,
+        "by_year": {
+          "2014": -832.5,
+          "2015": -840.81,
+          "2016": -1370.05,
+          "2017": -793.74,
+          "2018": -653.03,
+          "2019": -1020.02,
+          "2020": -2571.94,
+          "2021": -1438.98,
+          "2022": -1495.81,
+          "2023": -1108.56,
+          "2024": -2467.07
+        }
+      }
+    },
+    {
+      "window": "asia_open",
+      "rule": "momentum/2R/filter",
+      "base": {
+        "window_days": 2443,
+        "trades": 1180,
+        "win_rate": 0.1102,
+        "net_usd": -25890.76,
+        "avg_per_trade": -21.94,
+        "avg_per_window_day": -10.6,
+        "worst_day": -34.96,
+        "best_day": 48.21,
+        "max_drawdown_usd": 25890.76,
+        "profit_factor": 0.087,
+        "by_year": {
+          "2014": -1340.69,
+          "2015": -1713.18,
+          "2016": -2513.98,
+          "2017": -2108.55,
+          "2018": -1643.38,
+          "2019": -1976.92,
+          "2020": -3323.62,
+          "2021": -3037.82,
+          "2022": -2977.25,
+          "2023": -1790.19,
+          "2024": -3465.2
+        }
+      },
+      "double": {
+        "window_days": 2443,
+        "trades": 621,
+        "win_rate": 0.0789,
+        "net_usd": -14777.17,
+        "avg_per_trade": -23.8,
+        "avg_per_window_day": -6.05,
+        "worst_day": -34.1,
+        "best_day": 41.58,
+        "max_drawdown_usd": 14777.17,
+        "profit_factor": 0.048,
+        "by_year": {
+          "2014": -832.5,
+          "2015": -867.72,
+          "2016": -1326.95,
+          "2017": -793.74,
+          "2018": -650.83,
+          "2019": -1009.0,
+          "2020": -2877.97,
+          "2021": -1442.2,
+          "2022": -1511.34,
+          "2023": -1088.27,
+          "2024": -2376.68
+        }
+      }
+    },
+    {
+      "window": "asia_open",
+      "rule": "momentum/time-exit/filter",
+      "base": {
+        "window_days": 2443,
+        "trades": 1180,
+        "win_rate": 0.1085,
+        "net_usd": -26056.17,
+        "avg_per_trade": -22.08,
+        "avg_per_window_day": -10.67,
+        "worst_day": -34.96,
+        "best_day": 135.5,
+        "max_drawdown_usd": 26056.17,
+        "profit_factor": 0.082,
+        "by_year": {
+          "2014": -1340.69,
+          "2015": -1713.18,
+          "2016": -2432.55,
+          "2017": -2102.22,
+          "2018": -1653.84,
+          "2019": -2085.34,
+          "2020": -3485.55,
+          "2021": -3026.39,
+          "2022": -3014.5,
+          "2023": -1823.34,
+          "2024": -3378.58
+        }
+      },
+      "double": {
+        "window_days": 2443,
+        "trades": 621,
+        "win_rate": 0.0789,
+        "net_usd": -14766.78,
+        "avg_per_trade": -23.78,
+        "avg_per_window_day": -6.04,
+        "worst_day": -34.1,
+        "best_day": 93.86,
+        "max_drawdown_usd": 14766.78,
+        "profit_factor": 0.049,
+        "by_year": {
+          "2014": -832.5,
+          "2015": -867.72,
+          "2016": -1291.26,
+          "2017": -793.74,
+          "2018": -650.83,
+          "2019": -1038.3,
+          "2020": -2886.85,
+          "2021": -1441.19,
+          "2022": -1511.34,
+          "2023": -1138.66,
+          "2024": -2314.41
+        }
+      }
+    },
+    {
+      "window": "ny_open",
+      "rule": "momentum/time-exit/filter",
+      "base": {
+        "window_days": 2732,
+        "trades": 2415,
+        "win_rate": 0.2571,
+        "net_usd": -29998.58,
+        "avg_per_trade": -12.42,
+        "avg_per_window_day": -10.98,
+        "worst_day": -33.39,
+        "best_day": 298.33,
+        "max_drawdown_usd": 29998.58,
+        "profit_factor": 0.344,
+        "by_year": {
+          "2014": -2796.83,
+          "2015": -2840.27,
+          "2016": -2890.0,
+          "2017": -3500.22,
+          "2018": -3793.82,
+          "2019": -3359.9,
+          "2020": -2157.2,
+          "2021": -2195.27,
+          "2022": -2953.23,
+          "2023": -1072.24,
+          "2024": -2439.61
+        }
+      },
+      "double": {
+        "window_days": 2732,
+        "trades": 2111,
+        "win_rate": 0.2184,
+        "net_usd": -31992.43,
+        "avg_per_trade": -15.16,
+        "avg_per_window_day": -11.71,
+        "worst_day": -34.02,
+        "best_day": 219.62,
+        "max_drawdown_usd": 31992.43,
+        "profit_factor": 0.234,
+        "by_year": {
+          "2014": -2884.32,
+          "2015": -3015.55,
+          "2016": -3003.11,
+          "2017": -3051.24,
+          "2018": -3048.71,
+          "2019": -3366.75,
+          "2020": -2827.1,
+          "2021": -2861.51,
+          "2022": -3552.54,
+          "2023": -1303.45,
+          "2024": -3078.18
+        }
+      }
+    },
+    {
+      "window": "ny_open",
+      "rule": "momentum/2R/filter",
+      "base": {
+        "window_days": 2732,
+        "trades": 2415,
+        "win_rate": 0.2646,
+        "net_usd": -30104.48,
+        "avg_per_trade": -12.47,
+        "avg_per_window_day": -11.02,
+        "worst_day": -33.39,
+        "best_day": 56.15,
+        "max_drawdown_usd": 30128.41,
+        "profit_factor": 0.335,
+        "by_year": {
+          "2014": -2743.08,
+          "2015": -2998.46,
+          "2016": -2746.76,
+          "2017": -3477.92,
+          "2018": -3978.6,
+          "2019": -3608.24,
+          "2020": -2090.57,
+          "2021": -2242.01,
+          "2022": -2679.0,
+          "2023": -1060.33,
+          "2024": -2479.52
+        }
+      },
+      "double": {
+        "window_days": 2732,
+        "trades": 2111,
+        "win_rate": 0.2231,
+        "net_usd": -32091.92,
+        "avg_per_trade": -15.2,
+        "avg_per_window_day": -11.75,
+        "worst_day": -34.02,
+        "best_day": 52.98,
+        "max_drawdown_usd": 32091.92,
+        "profit_factor": 0.227,
+        "by_year": {
+          "2014": -2802.23,
+          "2015": -3147.26,
+          "2016": -3044.28,
+          "2017": -2985.31,
+          "2018": -3080.89,
+          "2019": -3530.98,
+          "2020": -2675.12,
+          "2021": -2902.43,
+          "2022": -3496.83,
+          "2023": -1313.93,
+          "2024": -3112.67
+        }
+      }
+    },
+    {
+      "window": "ny_open",
+      "rule": "momentum/1R/filter",
+      "base": {
+        "window_days": 2732,
+        "trades": 2415,
+        "win_rate": 0.3043,
+        "net_usd": -30584.65,
+        "avg_per_trade": -12.66,
+        "avg_per_window_day": -11.19,
+        "worst_day": -33.39,
+        "best_day": 27.54,
+        "max_drawdown_usd": 30637.8,
+        "profit_factor": 0.295,
+        "by_year": {
+          "2014": -2815.09,
+          "2015": -3132.55,
+          "2016": -2978.87,
+          "2017": -3246.2,
+          "2018": -4119.63,
+          "2019": -3626.15,
+          "2020": -2206.4,
+          "2021": -2379.03,
+          "2022": -2568.85,
+          "2023": -1209.81,
+          "2024": -2302.08
+        }
+      },
+      "double": {
+        "window_days": 2732,
+        "trades": 2111,
+        "win_rate": 0.2648,
+        "net_usd": -31750.73,
+        "avg_per_trade": -15.04,
+        "avg_per_window_day": -11.62,
+        "worst_day": -34.02,
+        "best_day": 25.5,
+        "max_drawdown_usd": 31750.73,
+        "profit_factor": 0.203,
+        "by_year": {
+          "2014": -2858.18,
+          "2015": -3118.31,
+          "2016": -3017.98,
+          "2017": -2810.22,
+          "2018": -3031.13,
+          "2019": -3599.39,
+          "2020": -2787.8,
+          "2021": -3045.44,
+          "2022": -3189.87,
+          "2023": -1462.68,
+          "2024": -2829.74
+        }
+      }
+    },
+    {
+      "window": "london_fix",
+      "rule": "momentum/time-exit/filter",
+      "base": {
+        "window_days": 2723,
+        "trades": 2454,
+        "win_rate": 0.2368,
+        "net_usd": -31468.14,
+        "avg_per_trade": -12.82,
+        "avg_per_window_day": -11.56,
+        "worst_day": -33.2,
+        "best_day": 620.52,
+        "max_drawdown_usd": 31577.51,
+        "profit_factor": 0.331,
+        "by_year": {
+          "2014": -3688.66,
+          "2015": -2255.97,
+          "2016": -3199.12,
+          "2017": -4025.73,
+          "2018": -4303.66,
+          "2019": -3343.86,
+          "2020": -2382.88,
+          "2021": -2907.72,
+          "2022": -1659.39,
+          "2023": -1264.73,
+          "2024": -2436.43
+        }
+      },
+      "double": {
+        "window_days": 2723,
+        "trades": 2306,
+        "win_rate": 0.1891,
+        "net_usd": -36866.38,
+        "avg_per_trade": -15.99,
+        "avg_per_window_day": -13.54,
+        "worst_day": -34.36,
+        "best_day": 456.75,
+        "max_drawdown_usd": 36937.22,
+        "profit_factor": 0.206,
+        "by_year": {
+          "2014": -4052.17,
+          "2015": -3143.1,
+          "2016": -3765.27,
+          "2017": -3818.52,
+          "2018": -4139.43,
+          "2019": -3697.49,
+          "2020": -3102.85,
+          "2021": -3568.79,
+          "2022": -2712.96,
+          "2023": -1760.6,
+          "2024": -3105.22
+        }
+      }
+    },
+    {
+      "window": "london_fix",
+      "rule": "momentum/1R/filter",
+      "base": {
+        "window_days": 2723,
+        "trades": 2454,
+        "win_rate": 0.2905,
+        "net_usd": -31788.24,
+        "avg_per_trade": -12.95,
+        "avg_per_window_day": -11.67,
+        "worst_day": -33.2,
+        "best_day": 27.61,
+        "max_drawdown_usd": 31897.31,
+        "profit_factor": 0.285,
+        "by_year": {
+          "2014": -3707.93,
+          "2015": -2485.14,
+          "2016": -3244.99,
+          "2017": -4148.82,
+          "2018": -4164.75,
+          "2019": -3239.15,
+          "2020": -2306.23,
+          "2021": -2725.2,
+          "2022": -2541.7,
+          "2023": -1304.96,
+          "2024": -1919.38
+        }
+      },
+      "double": {
+        "window_days": 2723,
+        "trades": 2306,
+        "win_rate": 0.2398,
+        "net_usd": -36447.61,
+        "avg_per_trade": -15.81,
+        "avg_per_window_day": -13.39,
+        "worst_day": -34.36,
+        "best_day": 26.71,
+        "max_drawdown_usd": 36527.9,
+        "profit_factor": 0.179,
+        "by_year": {
+          "2014": -4044.17,
+          "2015": -3180.05,
+          "2016": -3729.99,
+          "2017": -3840.03,
+          "2018": -4018.41,
+          "2019": -3633.96,
+          "2020": -3006.07,
+          "2021": -3392.96,
+          "2022": -3240.28,
+          "2023": -1733.35,
+          "2024": -2628.34
+        }
+      }
+    },
+    {
+      "window": "london_fix",
+      "rule": "momentum/2R/filter",
+      "base": {
+        "window_days": 2723,
+        "trades": 2454,
+        "win_rate": 0.2445,
+        "net_usd": -32361.26,
+        "avg_per_trade": -13.19,
+        "avg_per_window_day": -11.88,
+        "worst_day": -33.2,
+        "best_day": 54.8,
+        "max_drawdown_usd": 32485.26,
+        "profit_factor": 0.306,
+        "by_year": {
+          "2014": -3611.27,
+          "2015": -2270.44,
+          "2016": -3268.02,
+          "2017": -4048.04,
+          "2018": -4320.86,
+          "2019": -3327.33,
+          "2020": -2414.04,
+          "2021": -3020.56,
+          "2022": -2555.61,
+          "2023": -1303.03,
+          "2024": -2222.07
+        }
+      },
+      "double": {
+        "window_days": 2723,
+        "trades": 2306,
+        "win_rate": 0.1951,
+        "net_usd": -37211.69,
+        "avg_per_trade": -16.14,
+        "avg_per_window_day": -13.67,
+        "worst_day": -34.36,
+        "best_day": 51.4,
+        "max_drawdown_usd": 37279.55,
+        "profit_factor": 0.195,
+        "by_year": {
+          "2014": -3942.5,
+          "2015": -3189.32,
+          "2016": -3772.57,
+          "2017": -3757.72,
+          "2018": -4108.1,
+          "2019": -3698.31,
+          "2020": -3090.5,
+          "2021": -3659.17,
+          "2022": -3218.92,
+          "2023": -1784.56,
+          "2024": -2990.04
+        }
+      }
+    },
+    {
+      "window": "us_data",
+      "rule": "momentum/time-exit/filter",
+      "base": {
+        "window_days": 2719,
+        "trades": 2183,
+        "win_rate": 0.2144,
+        "net_usd": -33087.68,
+        "avg_per_trade": -15.16,
+        "avg_per_window_day": -12.17,
+        "worst_day": -34.72,
+        "best_day": 219.44,
+        "max_drawdown_usd": 33093.72,
+        "profit_factor": 0.258,
+        "by_year": {
+          "2014": -3231.23,
+          "2015": -3216.06,
+          "2016": -3478.05,
+          "2017": -3074.07,
+          "2018": -3250.66,
+          "2019": -3401.14,
+          "2020": -2659.28,
+          "2021": -3314.57,
+          "2022": -3265.9,
+          "2023": -1732.16,
+          "2024": -2464.58
+        }
+      },
+      "double": {
+        "window_days": 2719,
+        "trades": 1637,
+        "win_rate": 0.1949,
+        "net_usd": -27612.87,
+        "avg_per_trade": -16.87,
+        "avg_per_window_day": -10.16,
+        "worst_day": -34.16,
+        "best_day": 180.4,
+        "max_drawdown_usd": 27618.05,
+        "profit_factor": 0.181,
+        "by_year": {
+          "2014": -2076.87,
+          "2015": -2722.17,
+          "2016": -2355.49,
+          "2017": -1404.17,
+          "2018": -1542.83,
+          "2019": -2216.19,
+          "2020": -3247.28,
+          "2021": -3654.31,
+          "2022": -3932.69,
+          "2023": -1402.67,
+          "2024": -3058.22
+        }
+      }
+    },
+    {
+      "window": "ny_open",
+      "rule": "momentum/time-exit/all-days",
+      "base": {
+        "window_days": 2732,
+        "trades": 2683,
+        "win_rate": 0.2542,
+        "net_usd": -33147.45,
+        "avg_per_trade": -12.35,
+        "avg_per_window_day": -12.13,
+        "worst_day": -34.1,
+        "best_day": 697.32,
+        "max_drawdown_usd": 33147.45,
+        "profit_factor": 0.347,
+        "by_year": {
+          "2014": -3467.66,
+          "2015": -3083.02,
+          "2016": -2655.97,
+          "2017": -4164.07,
+          "2018": -4241.9,
+          "2019": -3725.91,
+          "2020": -2315.65,
+          "2021": -2391.77,
+          "2022": -3192.26,
+          "2023": -1195.9,
+          "2024": -2713.34
+        }
+      },
+      "double": {
+        "window_days": 2732,
+        "trades": 2683,
+        "win_rate": 0.2054,
+        "net_usd": -41944.38,
+        "avg_per_trade": -15.63,
+        "avg_per_window_day": -15.35,
+        "worst_day": -34.36,
+        "best_day": 435.0,
+        "max_drawdown_usd": 41944.38,
+        "profit_factor": 0.218,
+        "by_year": {
+          "2014": -4310.87,
+          "2015": -3960.24,
+          "2016": -3765.48,
+          "2017": -4961.62,
+          "2018": -5149.14,
+          "2019": -4625.84,
+          "2020": -3100.96,
+          "2021": -3088.4,
+          "2022": -3839.27,
+          "2023": -1731.59,
+          "2024": -3410.98
+        }
+      }
+    },
+    {
+      "window": "us_data",
+      "rule": "momentum/2R/filter",
+      "base": {
+        "window_days": 2719,
+        "trades": 2183,
+        "win_rate": 0.2199,
+        "net_usd": -33371.21,
+        "avg_per_trade": -15.29,
+        "avg_per_window_day": -12.27,
+        "worst_day": -34.72,
+        "best_day": 53.0,
+        "max_drawdown_usd": 33377.25,
+        "profit_factor": 0.249,
+        "by_year": {
+          "2014": -3148.63,
+          "2015": -3201.48,
+          "2016": -3532.94,
+          "2017": -3033.61,
+          "2018": -3256.82,
+          "2019": -3552.82,
+          "2020": -2764.63,
+          "2021": -3607.13,
+          "2022": -3205.84,
+          "2023": -1894.32,
+          "2024": -2173.01
+        }
+      },
+      "double": {
+        "window_days": 2719,
+        "trades": 1637,
+        "win_rate": 0.2004,
+        "net_usd": -27579.86,
+        "avg_per_trade": -16.85,
+        "avg_per_window_day": -10.14,
+        "worst_day": -34.16,
+        "best_day": 47.2,
+        "max_drawdown_usd": 27585.04,
+        "profit_factor": 0.179,
+        "by_year": {
+          "2014": -2042.04,
+          "2015": -2718.12,
+          "2016": -2359.75,
+          "2017": -1404.17,
+          "2018": -1499.75,
+          "2019": -2166.76,
+          "2020": -3346.02,
+          "2021": -3900.61,
+          "2022": -3815.87,
+          "2023": -1472.01,
+          "2024": -2854.78
+        }
+      }
+    },
+    {
+      "window": "us_data",
+      "rule": "momentum/1R/filter",
+      "base": {
+        "window_days": 2719,
+        "trades": 2183,
+        "win_rate": 0.2565,
+        "net_usd": -33591.96,
+        "avg_per_trade": -15.39,
+        "avg_per_window_day": -12.35,
+        "worst_day": -34.72,
+        "best_day": 27.15,
+        "max_drawdown_usd": 33591.96,
+        "profit_factor": 0.22,
+        "by_year": {
+          "2014": -3118.79,
+          "2015": -3292.79,
+          "2016": -3550.47,
+          "2017": -3076.85,
+          "2018": -3341.35,
+          "2019": -3724.57,
+          "2020": -2659.85,
+          "2021": -3646.64,
+          "2022": -3155.67,
+          "2023": -1983.1,
+          "2024": -2041.89
+        }
+      },
+      "double": {
+        "window_days": 2719,
+        "trades": 1637,
+        "win_rate": 0.2382,
+        "net_usd": -27566.13,
+        "avg_per_trade": -16.84,
+        "avg_per_window_day": -10.14,
+        "worst_day": -34.16,
+        "best_day": 25.69,
+        "max_drawdown_usd": 27566.13,
+        "profit_factor": 0.155,
+        "by_year": {
+          "2014": -2032.88,
+          "2015": -2579.37,
+          "2016": -2322.09,
+          "2017": -1405.54,
+          "2018": -1585.43,
+          "2019": -2248.46,
+          "2020": -3280.79,
+          "2021": -4008.22,
+          "2022": -3888.97,
+          "2023": -1556.43,
+          "2024": -2657.96
+        }
+      }
+    },
+    {
+      "window": "ny_open",
+      "rule": "momentum/2R/all-days",
+      "base": {
+        "window_days": 2732,
+        "trades": 2683,
+        "win_rate": 0.2609,
+        "net_usd": -33889.78,
+        "avg_per_trade": -12.63,
+        "avg_per_window_day": -12.4,
+        "worst_day": -34.1,
+        "best_day": 56.15,
+        "max_drawdown_usd": 33889.78,
+        "profit_factor": 0.327,
+        "by_year": {
+          "2014": -3394.91,
+          "2015": -3237.21,
+          "2016": -3189.7,
+          "2017": -4117.97,
+          "2018": -4426.68,
+          "2019": -3974.24,
+          "2020": -2291.92,
+          "2021": -2438.51,
+          "2022": -2920.87,
+          "2023": -1180.03,
+          "2024": -2717.75
+        }
+      },
+      "double": {
+        "window_days": 2732,
+        "trades": 2683,
+        "win_rate": 0.2095,
+        "net_usd": -42446.7,
+        "avg_per_trade": -15.82,
+        "avg_per_window_day": -15.54,
+        "worst_day": -34.36,
+        "best_day": 52.98,
+        "max_drawdown_usd": 42446.7,
+        "profit_factor": 0.205,
+        "by_year": {
+          "2014": -4230.02,
+          "2015": -4098.24,
+          "2016": -4171.74,
+          "2017": -4872.03,
+          "2018": -5221.55,
+          "2019": -4790.08,
+          "2020": -2978.91,
+          "2021": -3129.32,
+          "2022": -3778.63,
+          "2023": -1730.72,
+          "2024": -3445.48
+        }
+      }
+    },
+    {
+      "window": "ny_open",
+      "rule": "momentum/1R/all-days",
+      "base": {
+        "window_days": 2732,
+        "trades": 2683,
+        "win_rate": 0.3004,
+        "net_usd": -34342.71,
+        "avg_per_trade": -12.8,
+        "avg_per_window_day": -12.57,
+        "worst_day": -34.1,
+        "best_day": 27.54,
+        "max_drawdown_usd": 34342.71,
+        "profit_factor": 0.289,
+        "by_year": {
+          "2014": -3569.49,
+          "2015": -3361.42,
+          "2016": -3444.81,
+          "2017": -3878.7,
+          "2018": -4571.23,
+          "2019": -3877.74,
+          "2020": -2437.5,
+          "2021": -2565.97,
+          "2022": -2782.88,
+          "2023": -1382.24,
+          "2024": -2470.74
+        }
+      },
+      "double": {
+        "window_days": 2732,
+        "trades": 2683,
+        "win_rate": 0.2471,
+        "net_usd": -42121.56,
+        "avg_per_trade": -15.7,
+        "avg_per_window_day": -15.42,
+        "worst_day": -34.36,
+        "best_day": 25.5,
+        "max_drawdown_usd": 42121.56,
+        "profit_factor": 0.182,
+        "by_year": {
+          "2014": -4337.71,
+          "2015": -4077.63,
+          "2016": -4221.74,
+          "2017": -4663.44,
+          "2018": -5262.39,
+          "2019": -4782.77,
+          "2020": -3106.88,
+          "2021": -3255.3,
+          "2022": -3444.92,
+          "2023": -1927.74,
+          "2024": -3041.04
+        }
+      }
+    },
+    {
+      "window": "london_fix",
+      "rule": "momentum/time-exit/all-days",
+      "base": {
+        "window_days": 2723,
+        "trades": 2672,
+        "win_rate": 0.2358,
+        "net_usd": -34550.54,
+        "avg_per_trade": -12.93,
+        "avg_per_window_day": -12.69,
+        "worst_day": -33.2,
+        "best_day": 620.52,
+        "max_drawdown_usd": 34659.91,
+        "profit_factor": 0.326,
+        "by_year": {
+          "2014": -4342.79,
+          "2015": -2503.28,
+          "2016": -3414.72,
+          "2017": -4336.57,
+          "2018": -4489.45,
+          "2019": -3545.17,
+          "2020": -2854.2,
+          "2021": -3199.14,
+          "2022": -1752.8,
+          "2023": -1578.88,
+          "2024": -2533.55
+        }
+      },
+      "double": {
+        "window_days": 2723,
+        "trades": 2672,
+        "win_rate": 0.1849,
+        "net_usd": -43676.18,
+        "avg_per_trade": -16.35,
+        "avg_per_window_day": -16.04,
+        "worst_day": -34.36,
+        "best_day": 456.75,
+        "max_drawdown_usd": 43747.02,
+        "profit_factor": 0.198,
+        "by_year": {
+          "2014": -5012.4,
+          "2015": -3620.75,
+          "2016": -4344.54,
+          "2017": -5197.65,
+          "2018": -5309.85,
+          "2019": -4443.42,
+          "2020": -3600.31,
+          "2021": -3907.6,
+          "2022": -2865.08,
+          "2023": -2117.91,
+          "2024": -3256.68
+        }
+      }
+    },
+    {
+      "window": "london_fix",
+      "rule": "momentum/1R/all-days",
+      "base": {
+        "window_days": 2723,
+        "trades": 2672,
+        "win_rate": 0.2897,
+        "net_usd": -34781.87,
+        "avg_per_trade": -13.02,
+        "avg_per_window_day": -12.77,
+        "worst_day": -33.2,
+        "best_day": 27.61,
+        "max_drawdown_usd": 34913.0,
+        "profit_factor": 0.283,
+        "by_year": {
+          "2014": -4246.99,
+          "2015": -2744.99,
+          "2016": -3520.88,
+          "2017": -4478.42,
+          "2018": -4351.07,
+          "2019": -3379.47,
+          "2020": -2709.81,
+          "2021": -2991.24,
+          "2022": -2708.99,
+          "2023": -1613.81,
+          "2024": -2036.21
+        }
+      },
+      "double": {
+        "window_days": 2723,
+        "trades": 2672,
+        "win_rate": 0.2317,
+        "net_usd": -43473.06,
+        "avg_per_trade": -16.27,
+        "avg_per_window_day": -15.97,
+        "worst_day": -34.36,
+        "best_day": 26.71,
+        "max_drawdown_usd": 43571.29,
+        "profit_factor": 0.168,
+        "by_year": {
+          "2014": -5002.49,
+          "2015": -3751.42,
+          "2016": -4360.2,
+          "2017": -5268.41,
+          "2018": -5257.09,
+          "2019": -4379.89,
+          "2020": -3431.09,
+          "2021": -3711.73,
+          "2022": -3440.73,
+          "2023": -2090.66,
+          "2024": -2779.36
+        }
+      }
+    },
+    {
+      "window": "london_open",
+      "rule": "momentum/2R/filter",
+      "base": {
+        "window_days": 2823,
+        "trades": 2124,
+        "win_rate": 0.209,
+        "net_usd": -34866.08,
+        "avg_per_trade": -16.42,
+        "avg_per_window_day": -12.35,
+        "worst_day": -34.16,
+        "best_day": 52.97,
+        "max_drawdown_usd": 34866.08,
+        "profit_factor": 0.225,
+        "by_year": {
+          "2014": -2408.13,
+          "2015": -3204.08,
+          "2016": -3123.76,
+          "2017": -2758.32,
+          "2018": -3087.26,
+          "2019": -3097.56,
+          "2020": -3976.57,
+          "2021": -3293.01,
+          "2022": -3034.02,
+          "2023": -3249.87,
+          "2024": -3633.51
+        }
+      },
+      "double": {
+        "window_days": 2823,
+        "trades": 1423,
+        "win_rate": 0.1757,
+        "net_usd": -26292.7,
+        "avg_per_trade": -18.48,
+        "avg_per_window_day": -9.31,
+        "worst_day": -34.06,
+        "best_day": 47.25,
+        "max_drawdown_usd": 26292.7,
+        "profit_factor": 0.151,
+        "by_year": {
+          "2014": -1201.93,
+          "2015": -1229.77,
+          "2016": -2079.8,
+          "2017": -1051.82,
+          "2018": -1097.03,
+          "2019": -1877.15,
+          "2020": -3775.86,
+          "2021": -3316.25,
+          "2022": -3266.42,
+          "2023": -3181.37,
+          "2024": -4215.3
+        }
+      }
+    },
+    {
+      "window": "london_open",
+      "rule": "momentum/time-exit/filter",
+      "base": {
+        "window_days": 2823,
+        "trades": 2124,
+        "win_rate": 0.2043,
+        "net_usd": -35264.79,
+        "avg_per_trade": -16.6,
+        "avg_per_window_day": -12.49,
+        "worst_day": -34.16,
+        "best_day": 215.56,
+        "max_drawdown_usd": 35264.79,
+        "profit_factor": 0.219,
+        "by_year": {
+          "2014": -2577.6,
+          "2015": -3193.04,
+          "2016": -3107.03,
+          "2017": -2775.23,
+          "2018": -3173.99,
+          "2019": -3115.23,
+          "2020": -4054.68,
+          "2021": -3394.14,
+          "2022": -2964.56,
+          "2023": -3302.87,
+          "2024": -3606.43
+        }
+      },
+      "double": {
+        "window_days": 2823,
+        "trades": 1423,
+        "win_rate": 0.1722,
+        "net_usd": -26612.04,
+        "avg_per_trade": -18.7,
+        "avg_per_window_day": -9.43,
+        "worst_day": -34.06,
+        "best_day": 156.56,
+        "max_drawdown_usd": 26612.04,
+        "profit_factor": 0.143,
+        "by_year": {
+          "2014": -1203.13,
+          "2015": -1256.03,
+          "2016": -2124.74,
+          "2017": -1051.82,
+          "2018": -1097.03,
+          "2019": -1895.82,
+          "2020": -3776.87,
+          "2021": -3476.43,
+          "2022": -3339.83,
+          "2023": -3207.84,
+          "2024": -4182.51
+        }
+      }
+    },
+    {
+      "window": "london_fix",
+      "rule": "momentum/2R/all-days",
+      "base": {
+        "window_days": 2723,
+        "trades": 2672,
+        "win_rate": 0.2429,
+        "net_usd": -35575.7,
+        "avg_per_trade": -13.31,
+        "avg_per_window_day": -13.06,
+        "worst_day": -33.2,
+        "best_day": 54.8,
+        "max_drawdown_usd": 35678.3,
+        "profit_factor": 0.301,
+        "by_year": {
+          "2014": -4265.4,
+          "2015": -2628.16,
+          "2016": -3538.83,
+          "2017": -4353.92,
+          "2018": -4506.64,
+          "2019": -3528.64,
+          "2020": -2841.12,
+          "2021": -3295.69,
+          "2022": -2749.06,
+          "2023": -1617.18,
+          "2024": -2251.05
+        }
+      },
+      "double": {
+        "window_days": 2723,
+        "trades": 2672,
+        "win_rate": 0.1905,
+        "net_usd": -44111.43,
+        "avg_per_trade": -16.51,
+        "avg_per_window_day": -16.2,
+        "worst_day": -34.36,
+        "best_day": 52.66,
+        "max_drawdown_usd": 44179.28,
+        "profit_factor": 0.187,
+        "by_year": {
+          "2014": -4890.4,
+          "2015": -3729.55,
+          "2016": -4381.69,
+          "2017": -5130.06,
+          "2018": -5330.58,
+          "2019": -4444.24,
+          "2020": -3541.32,
+          "2021": -3997.98,
+          "2022": -3446.52,
+          "2023": -2141.87,
+          "2024": -3077.24
+        }
+      }
+    },
+    {
+      "window": "london_open",
+      "rule": "momentum/1R/filter",
+      "base": {
+        "window_days": 2823,
+        "trades": 2124,
+        "win_rate": 0.2349,
+        "net_usd": -35720.36,
+        "avg_per_trade": -16.82,
+        "avg_per_window_day": -12.65,
+        "worst_day": -34.16,
+        "best_day": 26.91,
+        "max_drawdown_usd": 35720.36,
+        "profit_factor": 0.186,
+        "by_year": {
+          "2014": -2541.57,
+          "2015": -3288.82,
+          "2016": -3095.22,
+          "2017": -2772.15,
+          "2018": -3074.45,
+          "2019": -3098.67,
+          "2020": -3774.03,
+          "2021": -3478.34,
+          "2022": -3315.55,
+          "2023": -3276.77,
+          "2024": -4004.8
+        }
+      },
+      "double": {
+        "window_days": 2823,
+        "trades": 1423,
+        "win_rate": 0.201,
+        "net_usd": -26604.76,
+        "avg_per_trade": -18.7,
+        "avg_per_window_day": -9.42,
+        "worst_day": -34.06,
+        "best_day": 23.04,
+        "max_drawdown_usd": 26604.76,
+        "profit_factor": 0.124,
+        "by_year": {
+          "2014": -1204.92,
+          "2015": -1230.14,
+          "2016": -2064.18,
+          "2017": -1051.82,
+          "2018": -1059.3,
+          "2019": -1927.36,
+          "2020": -3583.31,
+          "2021": -3483.1,
+          "2022": -3432.96,
+          "2023": -3187.74,
+          "2024": -4379.95
+        }
+      }
+    },
+    {
+      "window": "us_data",
+      "rule": "momentum/time-exit/all-days",
+      "base": {
+        "window_days": 2719,
+        "trades": 2599,
+        "win_rate": 0.2039,
+        "net_usd": -40620.4,
+        "avg_per_trade": -15.63,
+        "avg_per_window_day": -14.94,
+        "worst_day": -34.72,
+        "best_day": 219.44,
+        "max_drawdown_usd": 40626.45,
+        "profit_factor": 0.244,
+        "by_year": {
+          "2014": -4134.24,
+          "2015": -4247.97,
+          "2016": -4464.5,
+          "2017": -4729.59,
+          "2018": -4438.01,
+          "2019": -4154.46,
+          "2020": -2871.28,
+          "2021": -3548.68,
+          "2022": -3504.93,
+          "2023": -1958.01,
+          "2024": -2568.76
+        }
+      },
+      "double": {
+        "window_days": 2719,
+        "trades": 2599,
+        "win_rate": 0.1562,
+        "net_usd": -49676.13,
+        "avg_per_trade": -19.11,
+        "avg_per_window_day": -18.27,
+        "worst_day": -34.16,
+        "best_day": 180.4,
+        "max_drawdown_usd": 49681.3,
+        "profit_factor": 0.133,
+        "by_year": {
+          "2014": -4757.93,
+          "2015": -5110.25,
+          "2016": -5318.68,
+          "2017": -5489.97,
+          "2018": -5335.18,
+          "2019": -5127.33,
+          "2020": -3804.22,
+          "2021": -4435.71,
+          "2022": -4354.08,
+          "2023": -2476.9,
+          "2024": -3465.88
+        }
+      }
+    },
+    {
+      "window": "us_data",
+      "rule": "momentum/2R/all-days",
+      "base": {
+        "window_days": 2719,
+        "trades": 2599,
+        "win_rate": 0.2093,
+        "net_usd": -40935.87,
+        "avg_per_trade": -15.75,
+        "avg_per_window_day": -15.06,
+        "worst_day": -34.72,
+        "best_day": 53.0,
+        "max_drawdown_usd": 40941.92,
+        "profit_factor": 0.235,
+        "by_year": {
+          "2014": -4041.48,
+          "2015": -4233.39,
+          "2016": -4543.87,
+          "2017": -4673.62,
+          "2018": -4493.63,
+          "2019": -4224.41,
+          "2020": -3044.35,
+          "2021": -3838.12,
+          "2022": -3445.66,
+          "2023": -2120.17,
+          "2024": -2277.19
+        }
+      },
+      "double": {
+        "window_days": 2719,
+        "trades": 2599,
+        "win_rate": 0.1601,
+        "net_usd": -49662.74,
+        "avg_per_trade": -19.11,
+        "avg_per_window_day": -18.27,
+        "worst_day": -34.16,
+        "best_day": 47.2,
+        "max_drawdown_usd": 49667.91,
+        "profit_factor": 0.131,
+        "by_year": {
+          "2014": -4703.6,
+          "2015": -5068.33,
+          "2016": -5317.06,
+          "2017": -5466.43,
+          "2018": -5355.62,
+          "2019": -5149.36,
+          "2020": -3942.24,
+          "2021": -4675.69,
+          "2022": -4230.08,
+          "2023": -2545.59,
+          "2024": -3208.74
+        }
+      }
+    },
+    {
+      "window": "us_data",
+      "rule": "momentum/1R/all-days",
+      "base": {
+        "window_days": 2719,
+        "trades": 2599,
+        "win_rate": 0.2432,
+        "net_usd": -41520.63,
+        "avg_per_trade": -15.98,
+        "avg_per_window_day": -15.27,
+        "worst_day": -34.72,
+        "best_day": 27.15,
+        "max_drawdown_usd": 41520.63,
+        "profit_factor": 0.203,
+        "by_year": {
+          "2014": -4119.2,
+          "2015": -4321.72,
+          "2016": -4563.25,
+          "2017": -4663.18,
+          "2018": -4712.02,
+          "2019": -4500.05,
+          "2020": -2987.1,
+          "2021": -3927.46,
+          "2022": -3421.97,
+          "2023": -2208.96,
+          "2024": -2095.74
+        }
+      },
+      "double": {
+        "window_days": 2719,
+        "trades": 2599,
+        "win_rate": 0.1897,
+        "net_usd": -49863.06,
+        "avg_per_trade": -19.19,
+        "avg_per_window_day": -18.34,
+        "worst_day": -34.16,
+        "best_day": 25.69,
+        "max_drawdown_usd": 49863.06,
+        "profit_factor": 0.11,
+        "by_year": {
+          "2014": -4702.04,
+          "2015": -5035.5,
+          "2016": -5286.57,
+          "2017": -5470.55,
+          "2018": -5485.13,
+          "2019": -5250.81,
+          "2020": -3868.44,
+          "2021": -4806.29,
+          "2022": -4326.03,
+          "2023": -2647.62,
+          "2024": -2984.09
+        }
+      }
+    },
+    {
+      "window": "asia_open",
+      "rule": "momentum/1R/all-days",
+      "base": {
+        "window_days": 2443,
+        "trades": 2033,
+        "win_rate": 0.1166,
+        "net_usd": -45433.15,
+        "avg_per_trade": -22.35,
+        "avg_per_window_day": -18.6,
+        "worst_day": -34.96,
+        "best_day": 25.88,
+        "max_drawdown_usd": 45433.15,
+        "profit_factor": 0.068,
+        "by_year": {
+          "2014": -3017.49,
+          "2015": -2828.2,
+          "2016": -4396.71,
+          "2017": -4908.34,
+          "2018": -4553.01,
+          "2019": -4067.27,
+          "2020": -3744.34,
+          "2021": -5015.85,
+          "2022": -5001.51,
+          "2023": -3009.68,
+          "2024": -4890.75
+        }
+      },
+      "double": {
+        "window_days": 2443,
+        "trades": 2033,
+        "win_rate": 0.0659,
+        "net_usd": -51107.44,
+        "avg_per_trade": -25.14,
+        "avg_per_window_day": -20.92,
+        "worst_day": -35.2,
+        "best_day": 22.83,
+        "max_drawdown_usd": 51107.44,
+        "profit_factor": 0.028,
+        "by_year": {
+          "2014": -3400.44,
+          "2015": -3222.58,
+          "2016": -5069.73,
+          "2017": -5397.9,
+          "2018": -4919.89,
+          "2019": -4536.56,
+          "2020": -4315.01,
+          "2021": -5681.77,
+          "2022": -5630.87,
+          "2023": -3341.71,
+          "2024": -5590.99
+        }
+      }
+    },
+    {
+      "window": "asia_open",
+      "rule": "momentum/2R/all-days",
+      "base": {
+        "window_days": 2443,
+        "trades": 2033,
+        "win_rate": 0.0999,
+        "net_usd": -45463.68,
+        "avg_per_trade": -22.36,
+        "avg_per_window_day": -18.61,
+        "worst_day": -34.96,
+        "best_day": 53.72,
+        "max_drawdown_usd": 45463.68,
+        "profit_factor": 0.077,
+        "by_year": {
+          "2014": -3043.12,
+          "2015": -2914.49,
+          "2016": -4313.14,
+          "2017": -4876.82,
+          "2018": -4490.68,
+          "2019": -3999.92,
+          "2020": -3989.6,
+          "2021": -5110.94,
+          "2022": -4936.56,
+          "2023": -2949.36,
+          "2024": -4839.07
+        }
+      },
+      "double": {
+        "window_days": 2443,
+        "trades": 2033,
+        "win_rate": 0.0546,
+        "net_usd": -51109.08,
+        "avg_per_trade": -25.14,
+        "avg_per_window_day": -20.92,
+        "worst_day": -35.2,
+        "best_day": 46.76,
+        "max_drawdown_usd": 51109.08,
+        "profit_factor": 0.034,
+        "by_year": {
+          "2014": -3383.54,
+          "2015": -3268.34,
+          "2016": -4952.78,
+          "2017": -5381.34,
+          "2018": -4904.34,
+          "2019": -4552.23,
+          "2020": -4651.69,
+          "2021": -5649.57,
+          "2022": -5628.67,
+          "2023": -3296.74,
+          "2024": -5439.86
+        }
+      }
+    },
+    {
+      "window": "asia_open",
+      "rule": "momentum/time-exit/all-days",
+      "base": {
+        "window_days": 2443,
+        "trades": 2033,
+        "win_rate": 0.0984,
+        "net_usd": -45648.02,
+        "avg_per_trade": -22.45,
+        "avg_per_window_day": -18.69,
+        "worst_day": -34.96,
+        "best_day": 135.5,
+        "max_drawdown_usd": 45648.02,
+        "profit_factor": 0.075,
+        "by_year": {
+          "2014": -3041.23,
+          "2015": -2940.81,
+          "2016": -4271.92,
+          "2017": -4870.49,
+          "2018": -4501.14,
+          "2019": -4113.23,
+          "2020": -4170.43,
+          "2021": -5005.08,
+          "2022": -4991.09,
+          "2023": -2985.38,
+          "2024": -4757.21
+        }
+      },
+      "double": {
+        "window_days": 2443,
+        "trades": 2033,
+        "win_rate": 0.0541,
+        "net_usd": -51221.74,
+        "avg_per_trade": -25.2,
+        "avg_per_window_day": -20.97,
+        "worst_day": -35.2,
+        "best_day": 93.86,
+        "max_drawdown_usd": 51221.74,
+        "profit_factor": 0.032,
+        "by_year": {
+          "2014": -3391.7,
+          "2015": -3268.34,
+          "2016": -4977.78,
+          "2017": -5387.01,
+          "2018": -4904.34,
+          "2019": -4601.11,
+          "2020": -4686.21,
+          "2021": -5595.53,
+          "2022": -5650.44,
+          "2023": -3347.84,
+          "2024": -5411.45
+        }
+      }
+    },
+    {
+      "window": "london_open",
+      "rule": "momentum/2R/all-days",
+      "base": {
+        "window_days": 2823,
+        "trades": 2700,
+        "win_rate": 0.1967,
+        "net_usd": -46521.46,
+        "avg_per_trade": -17.23,
+        "avg_per_window_day": -16.48,
+        "worst_day": -34.16,
+        "best_day": 52.97,
+        "max_drawdown_usd": 46521.46,
+        "profit_factor": 0.2,
+        "by_year": {
+          "2014": -4322.93,
+          "2015": -4923.25,
+          "2016": -4717.9,
+          "2017": -5419.21,
+          "2018": -4593.64,
+          "2019": -4321.2,
+          "2020": -4408.41,
+          "2021": -3374.7,
+          "2022": -3199.5,
+          "2023": -3494.83,
+          "2024": -3745.9
+        }
+      },
+      "double": {
+        "window_days": 2823,
+        "trades": 2700,
+        "win_rate": 0.1381,
+        "net_usd": -55811.23,
+        "avg_per_trade": -20.67,
+        "avg_per_window_day": -19.77,
+        "worst_day": -34.25,
+        "best_day": 47.61,
+        "max_drawdown_usd": 55811.23,
+        "profit_factor": 0.102,
+        "by_year": {
+          "2014": -5100.06,
+          "2015": -5645.61,
+          "2016": -5444.61,
+          "2017": -6163.38,
+          "2018": -5538.52,
+          "2019": -5269.22,
+          "2020": -5097.05,
+          "2021": -4237.93,
+          "2022": -4130.36,
+          "2023": -4547.38,
+          "2024": -4637.12
+        }
+      }
+    },
+    {
+      "window": "london_open",
+      "rule": "momentum/time-exit/all-days",
+      "base": {
+        "window_days": 2823,
+        "trades": 2700,
+        "win_rate": 0.193,
+        "net_usd": -46882.75,
+        "avg_per_trade": -17.36,
+        "avg_per_window_day": -16.61,
+        "worst_day": -34.16,
+        "best_day": 215.56,
+        "max_drawdown_usd": 46882.75,
+        "profit_factor": 0.196,
+        "by_year": {
+          "2014": -4479.31,
+          "2015": -4935.43,
+          "2016": -4715.07,
+          "2017": -5355.89,
+          "2018": -4704.85,
+          "2019": -4342.97,
+          "2020": -4439.52,
+          "2021": -3475.84,
+          "2022": -3130.04,
+          "2023": -3585.03,
+          "2024": -3718.82
+        }
+      },
+      "double": {
+        "window_days": 2823,
+        "trades": 2700,
+        "win_rate": 0.1363,
+        "net_usd": -56056.08,
+        "avg_per_trade": -20.76,
+        "avg_per_window_day": -19.86,
+        "worst_day": -34.25,
+        "best_day": 156.56,
+        "max_drawdown_usd": 56056.08,
+        "profit_factor": 0.1,
+        "by_year": {
+          "2014": -5098.88,
+          "2015": -5664.84,
+          "2016": -5490.41,
+          "2017": -6121.4,
+          "2018": -5550.52,
+          "2019": -5311.54,
+          "2020": -5079.52,
+          "2021": -4398.11,
+          "2022": -4179.49,
+          "2023": -4557.06,
+          "2024": -4604.33
+        }
+      }
+    },
+    {
+      "window": "london_open",
+      "rule": "momentum/1R/all-days",
+      "base": {
+        "window_days": 2823,
+        "trades": 2700,
+        "win_rate": 0.2215,
+        "net_usd": -47388.72,
+        "avg_per_trade": -17.55,
+        "avg_per_window_day": -16.79,
+        "worst_day": -34.16,
+        "best_day": 26.91,
+        "max_drawdown_usd": 47388.72,
+        "profit_factor": 0.167,
+        "by_year": {
+          "2014": -4400.57,
+          "2015": -5043.14,
+          "2016": -4678.92,
+          "2017": -5476.94,
+          "2018": -4608.18,
+          "2019": -4299.36,
+          "2020": -4274.51,
+          "2021": -3560.03,
+          "2022": -3426.46,
+          "2023": -3526.47,
+          "2024": -4094.15
+        }
+      },
+      "double": {
+        "window_days": 2823,
+        "trades": 2700,
+        "win_rate": 0.157,
+        "net_usd": -56343.65,
+        "avg_per_trade": -20.87,
+        "avg_per_window_day": -19.96,
+        "worst_day": -34.25,
+        "best_day": 23.04,
+        "max_drawdown_usd": 56343.65,
+        "profit_factor": 0.083,
+        "by_year": {
+          "2014": -5077.43,
+          "2015": -5680.72,
+          "2016": -5500.01,
+          "2017": -6200.47,
+          "2018": -5450.26,
+          "2019": -5322.39,
+          "2020": -4996.23,
+          "2021": -4422.25,
+          "2022": -4341.13,
+          "2023": -4573.83,
+          "2024": -4778.94
+        }
+      }
+    }
+  ],
+  "check_2025": []
+}
