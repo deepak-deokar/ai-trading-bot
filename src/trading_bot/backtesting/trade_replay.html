@@ -1,0 +1,297 @@
+<title>__TITLE__</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+/* Trade replay page, filled by trading_bot.backtesting.trade_replay.render_page.
+   Layout: one column; replay chart beside a result panel, stacked on phones. */
+:root {
+  --bg: #f6f7f9; --panel: #ffffff; --fg: #1b2230; --muted: #5d6779; --line: #dde1e8;
+  --gold: #a87a12; --gold-soft: rgba(196,150,40,.16);
+  --up: #1f8a5b; --down: #c4423a; --up-soft: rgba(31,138,91,.14); --down-soft: rgba(196,66,58,.14);
+  --info: #3d63c9; --info-soft: rgba(61,99,201,.13);
+  --f-display: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --f-body: Inter, -apple-system, "Segoe UI", Arial, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #12151b; --panel: #1a1f28; --fg: #e7eaf0; --muted: #98a2b4; --line: #2c3340;
+  --gold: #e0b44a; --gold-soft: rgba(224,180,74,.15);
+  --up: #3fbf86; --down: #ef6b62; --up-soft: rgba(63,191,134,.16); --down-soft: rgba(239,107,98,.16);
+  --info: #7f9ef0; --info-soft: rgba(127,158,240,.16); color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #12151b; --panel: #1a1f28; --fg: #e7eaf0; --muted: #98a2b4; --line: #2c3340;
+  --gold: #e0b44a; --gold-soft: rgba(224,180,74,.15);
+  --up: #3fbf86; --down: #ef6b62; --up-soft: rgba(63,191,134,.16); --down-soft: rgba(239,107,98,.16);
+  --info: #7f9ef0; --info-soft: rgba(127,158,240,.16); color-scheme: dark }
+body { background: var(--bg); color: var(--fg); font: 15px/1.55 var(--f-body); }
+.wrap { max-width: 1040px; margin: 0 auto; padding-block: 28px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 32px; }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(24px, 4vw, 34px); line-height: 1.15; }
+h2 { font-size: 21px; } h3 { font-size: 16px; }
+p { margin: 0; max-width: 68ch; }
+.muted { color: var(--muted); }
+.eyebrow { font: 600 12px/1 var(--f-body); letter-spacing: .08em; text-transform: uppercase; color: var(--gold); }
+section { display: grid; gap: 16px; min-width: 0; }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 18px; min-width: 0; }
+.mono { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.legend { display: flex; flex-wrap: wrap; gap: 16px; font-size: 13px; color: var(--muted); }
+.sw { display: inline-block; width: 12px; height: 12px; border-radius: 2px; vertical-align: -1px; margin-right: 6px; }
+.neg { color: var(--down); } .pos { color: var(--up); }
+.replay { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 16px; }
+@media (max-width: 820px) { .replay { grid-template-columns: 1fr; } }
+canvas { display: block; width: 100%; }
+#cv { height: 420px; }
+@media (max-width: 600px) { #cv { height: 320px; } }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 12px; }
+button, select { font: 500 14px var(--f-body); color: var(--fg); background: var(--panel); border: 1px solid var(--line);
+  border-radius: 6px; padding: 7px 12px; cursor: pointer; }
+button:hover, select:hover { border-color: var(--gold); }
+button:focus-visible, select:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+button.primary { background: var(--gold); border-color: var(--gold); color: #fff; font-weight: 600; min-width: 84px; }
+.caption { margin-top: 12px; padding: 10px 12px; border-radius: 6px; background: var(--bg); font-size: 14px; min-height: 48px; }
+.side { display: grid; gap: 12px; align-content: start; min-width: 0; }
+.kv { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; font-size: 13.5px; margin: 0; }
+.kv dt { color: var(--muted); } .kv dd { margin: 0; text-align: right; font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.pnl-big { font: 700 28px var(--f-mono); font-variant-numeric: tabular-nums; }
+.chip { display: inline-block; font: 600 11.5px var(--f-body); letter-spacing: .04em; text-transform: uppercase; padding: 3px 8px; border-radius: 99px; }
+.chip.target { background: var(--up-soft); color: var(--up); }
+.chip.stop { background: var(--down-soft); color: var(--down); }
+.chip.time_exit { background: var(--info-soft); color: var(--info); }
+.trade-list { display: flex; flex-wrap: wrap; gap: 6px; }
+.trade-list button { padding: 4px 8px; font: 600 12px var(--f-mono); border-left-width: 4px; }
+.trade-list button.target { border-left-color: var(--up); }
+.trade-list button.stop { border-left-color: var(--down); }
+.trade-list button.time_exit { border-left-color: var(--info); }
+.trade-list button[aria-pressed="true"] { background: var(--gold-soft); border-color: var(--gold); }
+.wf { display: grid; gap: 6px; font-size: 13px; }
+.wf-row { display: grid; grid-template-columns: 112px 1fr 64px; gap: 8px; align-items: center; }
+.wf-row .t { position: relative; height: 14px; }
+.wf-row .t i { position: absolute; top: 0; bottom: 0; border-radius: 2px; }
+.wf-row .v { text-align: right; font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+#eq { height: 220px; }
+ol.steps { margin: 0; padding-left: 20px; display: grid; gap: 4px; max-width: 70ch; }
+</style>
+
+<div class="wrap">
+  <header style="display:grid;gap:10px">
+    <div class="eyebrow">Trade replay · XAUUSD</div>
+    <h1 id="title"></h1>
+    <p class="muted" id="subtitle"></p>
+  </header>
+
+  <section>
+    <div class="panel"><div class="trade-list" id="list" aria-label="Choose a trade"></div></div>
+    <div class="replay">
+      <div class="panel">
+        <canvas id="cv" aria-label="Candle chart of the selected trade"></canvas>
+        <div class="controls">
+          <button class="primary" id="play">Play</button>
+          <button id="back" aria-label="One candle back">◀ Step</button>
+          <button id="fwd" aria-label="One candle forward">Step ▶</button>
+          <button id="end">Show result</button>
+          <label for="speed" class="muted" style="margin-left:auto">Speed</label>
+          <select id="speed"><option value="420">Slow</option><option value="180" selected>Normal</option><option value="60">Fast</option></select>
+        </div>
+        <div class="caption" id="cap"></div>
+        <div class="legend" style="margin-top:10px">
+          <span><i class="sw" style="background:var(--gold-soft);outline:1px solid var(--gold)"></i>Zone</span>
+          <span><i class="sw" style="background:var(--info-soft);outline:1px solid var(--info)"></i>Setup candles</span>
+          <span><i class="sw" style="background:var(--fg)"></i>Entry</span>
+          <span><i class="sw" style="background:var(--down)"></i>Stop</span>
+          <span><i class="sw" style="background:var(--up)"></i>Target</span>
+        </div>
+      </div>
+      <div class="side">
+        <div class="panel" style="display:grid;gap:8px">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+            <span class="mono" id="t-title"></span><span class="chip" id="t-chip"></span>
+          </div>
+          <div class="muted" style="font-size:13px" id="pnl-lbl">Profit / loss right now</div>
+          <div class="pnl-big" id="pnl">–</div>
+          <dl class="kv" id="kv"></dl>
+        </div>
+        <div class="panel" style="display:grid;gap:10px">
+          <h3>Where the money went</h3>
+          <div class="wf" id="wf"></div>
+          <p class="muted" style="font-size:12.5px">Price move is measured on the mid price. Costs come off whether the trade wins or loses.</p>
+        </div>
+      </div>
+    </div>
+    <div class="panel" style="display:grid;gap:8px" id="rules-box">
+      <h3>The rules being replayed</h3>
+      <ol class="steps" id="rules"></ol>
+    </div>
+  </section>
+
+  <section>
+    <h2 id="eq-title">All trades, added up</h2>
+    <div class="panel"><canvas id="eq" aria-label="Running total of all trades"></canvas></div>
+    <p class="muted" id="eq-note"></p>
+  </section>
+</div>
+
+<script>
+const DATA = __REPLAY_DATA__;
+const $ = id => document.getElementById(id);
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const money = (v, d = 2) => (v < 0 ? "−$" : "$") + Math.abs(v).toLocaleString("en-US", {minimumFractionDigits: d, maximumFractionDigits: d});
+const REASON = {target: "Target hit", stop: "Stopped out", time_exit: "Closed at time limit"};
+$("title").textContent = DATA.title;
+$("subtitle").textContent = DATA.subtitle;
+$("rules").innerHTML = DATA.rules.map(r => `<li></li>`).join("");
+[...$("rules").children].forEach((li, i) => li.textContent = DATA.rules[i]);
+$("rules-box").hidden = !DATA.rules.length;
+
+const T = DATA.trades;
+let cur = 0, t = 0, timer = null;
+$("list").innerHTML = T.map((x, i) => `<button class="${x.reason}" data-i="${i}" aria-pressed="false" title="${x.dir} ${x.day} · ${REASON[x.reason]} · ${money(x.net)}">${x.day.slice(5)} ${x.dir[0]} ${x.net >= 0 ? "+" : "−"}${Math.abs(x.net).toFixed(0)}</button>`).join("");
+$("list").addEventListener("click", e => { const b = e.target.closest("button"); if (b) load(+b.dataset.i); });
+
+function startIdx(x) { const f = x.highlights.length ? Math.min(...x.highlights.map(h => h.from)) : x.entry_i; return Math.max(0, f - 6); }
+function lastIdx(x) { return Math.min(x.candles.length - 1, x.exit_i + 4); }
+function load(i) {
+  stop(); cur = i;
+  document.querySelectorAll("#list button").forEach(b => b.setAttribute("aria-pressed", b.dataset.i == i));
+  const x = T[i]; t = startIdx(x);
+  $("t-title").textContent = `${x.dir} · ${x.day}`;
+  $("t-chip").className = "chip " + x.reason; $("t-chip").textContent = REASON[x.reason];
+  const rows = [["Size", `${x.lots.toFixed(2)} lot (${(x.lots * 100).toFixed(0)} oz)`], ["Entry fill", x.entry_fill.toFixed(2)], ["Stop", x.stop.toFixed(2)]];
+  if (x.target !== null) rows.push(["Target", x.target.toFixed(2)]);
+  rows.push(["Exit fill", x.exit_fill.toFixed(2)], ["Entry → exit", `${x.entry_time.slice(11)} → ${x.exit_time.slice(11)}`], ["Held", `${x.hold} min`]);
+  $("kv").innerHTML = rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("");
+  waterfall(x); draw();
+}
+function waterfall(x) {
+  const rows = [["Price move", x.gross], ["Spread", -x.spread], ["Extra + slippage", -x.extra], ["Commission", -x.comm], ["Net result", x.net]];
+  const m = Math.max(...rows.map(r => Math.abs(r[1])), 1);
+  $("wf").innerHTML = rows.map(([k, v], j) => {
+    const w = Math.abs(v) / m * 50, left = v >= 0 ? 50 : 50 - w;
+    return `<div class="wf-row"${j === 4 ? ' style="font-weight:600;border-top:1px solid var(--line);padding-top:6px"' : ""}><span>${k}</span>
+      <div class="t"><i style="left:50%;width:1px;background:var(--line)"></i><i style="left:${left}%;width:${w}%;background:${v >= 0 ? "var(--up)" : "var(--down)"}"></i></div>
+      <span class="v ${v >= 0 ? "pos" : "neg"}">${v >= 0 ? "+" : "−"}${Math.abs(v).toFixed(2)}</span></div>`;
+  }).join("");
+}
+function play() {
+  if (timer) return stop();
+  if (t >= lastIdx(T[cur])) t = startIdx(T[cur]);
+  $("play").textContent = "Pause";
+  timer = setInterval(() => { if (t >= lastIdx(T[cur])) return stop(); t++; draw(); }, +$("speed").value);
+}
+function stop() { clearInterval(timer); timer = null; $("play").textContent = "Play"; }
+$("play").onclick = play;
+$("fwd").onclick = () => { stop(); t = Math.min(T[cur].candles.length - 1, t + 1); draw(); };
+$("back").onclick = () => { stop(); t = Math.max(0, t - 1); draw(); };
+$("end").onclick = () => { stop(); t = lastIdx(T[cur]); draw(); };
+$("speed").onchange = () => { if (timer) { stop(); play(); } };
+
+function setupCanvas(cv) {
+  const r = cv.getBoundingClientRect(), dpr = window.devicePixelRatio || 1;
+  cv.width = Math.round(r.width * dpr); cv.height = Math.round(r.height * dpr);
+  const g = cv.getContext("2d"); g.setTransform(dpr, 0, 0, dpr, 0, 0);
+  return [g, r.width, r.height];
+}
+function niceStep(raw) { const p = Math.pow(10, Math.floor(Math.log10(raw))), f = raw / p; return (f < 1.5 ? 1 : f < 3 ? 2 : f < 7 ? 5 : 10) * p; }
+function marker(g, x, y, kind, c) {
+  g.fillStyle = c; g.strokeStyle = c; g.lineWidth = 2.5; g.beginPath();
+  if (kind === "x") { g.moveTo(x - 6, y - 6); g.lineTo(x + 6, y + 6); g.moveTo(x + 6, y - 6); g.lineTo(x - 6, y + 6); g.stroke(); return; }
+  const s = kind === "up" ? 1 : -1;
+  g.moveTo(x, y); g.lineTo(x - 7, y + 11 * s); g.lineTo(x + 7, y + 11 * s); g.closePath(); g.fill();
+}
+function draw() {
+  const x = T[cur], [g, W, H] = setupCanvas($("cv"));
+  const C = x.candles, n = C.length, d = x.dir === "BUY" ? 1 : -1, oz = x.lots * 100;
+  const padL = 8, padR = 64, padT = 14, padB = 26;
+  const levels = [x.stop, x.entry_fill].concat(x.target === null ? [] : [x.target]);
+  let lo = Math.min(...C.map(c => c[3]), ...levels), hi = Math.max(...C.map(c => c[2]), ...levels);
+  const pad = (hi - lo) * 0.06 || 1; lo -= pad; hi += pad;
+  const X = i => padL + (i + 0.5) * (W - padL - padR) / n, cw = Math.max(1, (W - padL - padR) / n * 0.62);
+  const Y = p => padT + (hi - p) / (hi - lo) * (H - padT - padB);
+  const col = {fg: css("--fg"), mu: css("--muted"), line: css("--line"), up: css("--up"), dn: css("--down"), gold: css("--gold"), goldS: css("--gold-soft"), info: css("--info"), infoS: css("--info-soft")};
+  g.font = "11px " + css("--f-mono");
+  const step = niceStep((hi - lo) / 5);
+  g.strokeStyle = col.line; g.fillStyle = col.mu; g.lineWidth = 1; g.textAlign = "left"; g.textBaseline = "middle";
+  for (let p = Math.ceil(lo / step) * step; p <= hi; p += step) {
+    g.beginPath(); g.moveTo(padL, Y(p)); g.lineTo(W - padR, Y(p)); g.stroke();
+    g.fillText(p.toFixed(step < 1 ? 1 : 0), W - padR + 6, Y(p));
+  }
+  g.textAlign = "center"; g.textBaseline = "top";
+  const every = Math.ceil(n / 7);
+  for (let i = 0; i < n; i += every) g.fillText(C[i][0], X(i), H - padB + 8);
+  if (x.zone) {
+    const zt = Math.max(padT, Math.min(Y(x.zone[0]), Y(x.zone[1]))), zb = Math.min(H - padB, Math.max(Y(x.zone[0]), Y(x.zone[1])));
+    if (zb > zt) { g.fillStyle = col.goldS; g.fillRect(padL, zt, W - padL - padR, zb - zt);
+      g.fillStyle = col.gold; g.textAlign = "left"; g.textBaseline = "top"; g.fillText(x.zone_label, padL + 6, Math.min(zt + 4, H - padB - 14)); }
+  }
+  for (const h of x.highlights) {
+    if (t < h.to) continue;
+    const x0 = X(h.from) - cw, x1 = X(h.to) + cw;
+    g.fillStyle = col.infoS; g.fillRect(x0, padT, x1 - x0, H - padT - padB);
+    g.fillStyle = col.info; g.textAlign = "center"; g.textBaseline = "top"; g.fillText(h.label, (x0 + x1) / 2, padT + 2);
+  }
+  for (let i = 0; i <= Math.min(t, n - 1); i++) {
+    const [, o, h, l, c] = C[i], cx = X(i);
+    g.strokeStyle = g.fillStyle = c >= o ? col.up : col.dn;
+    g.beginPath(); g.moveTo(cx, Y(h)); g.lineTo(cx, Y(l)); g.stroke();
+    const y0 = Y(Math.max(o, c)), y1 = Y(Math.min(o, c));
+    g.fillRect(cx - cw / 2, y0, cw, Math.max(1, y1 - y0));
+  }
+  let pnlNow = null, done = false;
+  const costs = x.spread + x.extra + x.comm;
+  if (t >= x.entry_i) {
+    const xe = X(x.entry_i) - cw, xr = t >= x.exit_i ? X(x.exit_i) + cw : W - padR;
+    const line = (p, c, lab, dash) => { g.setLineDash(dash || []); g.strokeStyle = c; g.lineWidth = 1.5;
+      g.beginPath(); g.moveTo(xe, Y(p)); g.lineTo(xr, Y(p)); g.stroke(); g.setLineDash([]);
+      g.fillStyle = c; g.textAlign = "left"; g.textBaseline = "bottom"; g.fillText(lab, xe + 4, Y(p) - 2); };
+    line(x.stop, col.dn, "STOP " + x.stop.toFixed(2), [5, 4]);
+    if (x.target !== null) line(x.target, col.up, "TARGET " + x.target.toFixed(2), [5, 4]);
+    line(x.entry_fill, col.fg, (d === 1 ? "BUY " : "SELL ") + x.entry_fill.toFixed(2));
+    marker(g, X(x.entry_i), Y(x.entry_fill), d === 1 ? "up" : "down", col.fg);
+    if (t >= x.exit_i) { marker(g, X(x.exit_i), Y(x.exit_fill), "x", x.net >= 0 ? col.up : col.dn); pnlNow = x.net; done = true; }
+    else pnlNow = (C[t][4] - x.entry_mid) * d * oz - costs;
+  }
+  const pe = $("pnl");
+  if (pnlNow === null) { pe.textContent = "No trade yet"; pe.className = "pnl-big muted"; $("pnl-lbl").textContent = "Profit / loss right now"; }
+  else { pe.textContent = (pnlNow >= 0 ? "+" : "−") + "$" + Math.abs(pnlNow).toFixed(2); pe.className = "pnl-big " + (pnlNow >= 0 ? "pos" : "neg");
+    $("pnl-lbl").textContent = done ? "Final result after all costs" : "If closed now, after all costs"; }
+  const time = C[Math.min(t, n - 1)][0];
+  let msg;
+  if (t >= x.exit_i) msg = {target: `Price reached the target. Trade closed at ${x.exit_fill.toFixed(2)}.`,
+      stop: `The stop was hit. Trade closed at ${x.exit_fill.toFixed(2)}. A fill past the stop level is why a loss can be bigger than planned.`,
+      time_exit: `Neither stop nor target was hit before the time limit, so the trade was closed at the market price.`}[x.reason];
+  else if (t >= x.entry_i) msg = `Trade is open. ${d === 1 ? "Bought" : "Sold"} ${x.lots.toFixed(2)} lot at ${x.entry_fill.toFixed(2)}. It starts in the red by the costs (${money(-costs)}) before price has moved at all.`;
+  else { const seen = x.highlights.filter(h => t >= h.to).sort((a, b) => b.to - a.to); msg = seen.length ? seen[0].explain : "Watching price. No setup yet."; }
+  $("cap").textContent = `${time} — ${msg}`;
+}
+function drawEq() {
+  const [g, W, H] = setupCanvas($("eq")), E = DATA.summary.equity;
+  if (E.length < 2) return;
+  const padL = 64, padR = 12, padT = 12, padB = 24;
+  const vals = E.map(e => e[1]), lo = Math.min(0, ...vals), hi = Math.max(0, ...vals);
+  const X = i => padL + i / (E.length - 1) * (W - padL - padR), Y = v => padT + (hi - v) / ((hi - lo) || 1) * (H - padT - padB);
+  g.font = "11px " + css("--f-mono"); g.strokeStyle = css("--line"); g.fillStyle = css("--muted"); g.textAlign = "right"; g.textBaseline = "middle";
+  const st = niceStep(((hi - lo) || 1) / 4);
+  for (let v = Math.ceil(lo / st) * st; v <= hi; v += st) { g.beginPath(); g.moveTo(padL, Y(v)); g.lineTo(W - padR, Y(v)); g.stroke(); g.fillText(money(v, 0), padL - 6, Y(v)); }
+  g.textAlign = "center"; g.textBaseline = "top";
+  const first = E[0][0].slice(0, 4), last = E[E.length - 1][0].slice(0, 4), multi = first !== last;
+  let prev = "", lastX = -99;
+  E.forEach((e, i) => { const key = multi ? e[0].slice(0, 4) : e[0].slice(5, 7);
+    if (key !== prev && X(i) - lastX > 40) { g.fillText(multi ? key : ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][+key - 1], X(i), H - padB + 6); lastX = X(i); }
+    prev = key; });
+  const end = vals[vals.length - 1], c = end >= 0 ? css("--up") : css("--down"), cs = end >= 0 ? css("--up-soft") : css("--down-soft");
+  g.beginPath(); E.forEach((e, i) => i ? g.lineTo(X(i), Y(e[1])) : g.moveTo(X(i), Y(e[1])));
+  g.lineTo(X(E.length - 1), Y(0)); g.lineTo(X(0), Y(0)); g.closePath(); g.fillStyle = cs; g.fill();
+  g.beginPath(); E.forEach((e, i) => i ? g.lineTo(X(i), Y(e[1])) : g.moveTo(X(i), Y(e[1]))); g.strokeStyle = c; g.lineWidth = 2; g.stroke();
+  g.fillStyle = c; g.beginPath(); g.arc(X(E.length - 1), Y(end), 4, 0, 7); g.fill();
+}
+const S = DATA.summary;
+$("eq-title").textContent = `All ${S.n.toLocaleString()} trades, added up`;
+$("eq-note").textContent = `${S.mix.target} hit the target, ${S.mix.stop} were stopped out and ${S.mix.time_exit} were closed at the time limit. Running total after all costs: ${money(S.net, 0)}.` + (DATA.note ? " " + DATA.note : "");
+if (T.length) load(0);
+drawEq();
+let rz; addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => { if (T.length) draw(); drawEq(); }, 120); });
+const redraw = () => { if (T.length) draw(); drawEq(); };
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", redraw);
+new MutationObserver(redraw).observe(document.documentElement, {attributes: true, attributeFilter: ["data-theme"]});
+</script>
