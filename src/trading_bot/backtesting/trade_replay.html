@@ -224,11 +224,15 @@ function draw() {
     if (zb > zt) { g.fillStyle = col.goldS; g.fillRect(padL, zt, W - padL - padR, zb - zt);
       g.fillStyle = col.gold; g.textAlign = "left"; g.textBaseline = "top"; g.fillText(x.zone_label, padL + 6, Math.min(zt + 4, H - padB - 14)); }
   }
+  let labelEnd = -Infinity, row = 0;
   for (const h of x.highlights) {
     if (t < h.to) continue;
-    const x0 = X(h.from) - cw, x1 = X(h.to) + cw;
+    const x0 = X(h.from) - cw / 2 - 1, x1 = X(h.to) + cw / 2 + 1;
     g.fillStyle = col.infoS; g.fillRect(x0, padT, x1 - x0, H - padT - padB);
-    g.fillStyle = col.info; g.textAlign = "center"; g.textBaseline = "top"; g.fillText(h.label, (x0 + x1) / 2, padT + 2);
+    const mid = (x0 + x1) / 2, half = g.measureText(h.label).width / 2;
+    row = mid - half < labelEnd + 4 ? row + 1 : 0;  // stack labels that would touch
+    g.fillStyle = col.info; g.textAlign = "center"; g.textBaseline = "top"; g.fillText(h.label, mid, H - padB - 16 - row * 14);
+    labelEnd = mid + half;
   }
   for (let i = 0; i <= Math.min(t, n - 1); i++) {
     const [, o, h, l, c] = C[i], cx = X(i);
@@ -243,7 +247,7 @@ function draw() {
     const xe = X(x.entry_i) - cw, xr = t >= x.exit_i ? X(x.exit_i) + cw : W - padR;
     const line = (p, c, lab, dash) => { g.setLineDash(dash || []); g.strokeStyle = c; g.lineWidth = 1.5;
       g.beginPath(); g.moveTo(xe, Y(p)); g.lineTo(xr, Y(p)); g.stroke(); g.setLineDash([]);
-      g.fillStyle = c; g.textAlign = "left"; g.textBaseline = "bottom"; g.fillText(lab, xe + 4, Y(p) - 2); };
+      g.fillStyle = c; g.textAlign = "left"; g.textBaseline = "bottom"; g.fillText(lab, xe + cw + 12, Y(p) - 3); };
     line(x.stop, col.dn, "STOP " + x.stop.toFixed(2), [5, 4]);
     if (x.target !== null) line(x.target, col.up, "TARGET " + x.target.toFixed(2), [5, 4]);
     line(x.entry_fill, col.fg, (d === 1 ? "BUY " : "SELL ") + x.entry_fill.toFixed(2));
@@ -255,7 +259,7 @@ function draw() {
   if (pnlNow === null) { pe.textContent = "No trade yet"; pe.className = "pnl-big muted"; $("pnl-lbl").textContent = "Profit / loss right now"; }
   else { pe.textContent = (pnlNow >= 0 ? "+" : "−") + "$" + Math.abs(pnlNow).toFixed(2); pe.className = "pnl-big " + (pnlNow >= 0 ? "pos" : "neg");
     $("pnl-lbl").textContent = done ? "Final result after all costs" : "If closed now, after all costs"; }
-  const time = C[Math.min(t, n - 1)][0];
+  const time = C[t >= x.exit_i ? x.exit_i : Math.min(t, n - 1)][0];  // after the exit, show the exit time
   let msg;
   if (t >= x.exit_i) msg = {target: `Price reached the target. Trade closed at ${x.exit_fill.toFixed(2)}.`,
       stop: `The stop was hit. Trade closed at ${x.exit_fill.toFixed(2)}. A fill past the stop level is why a loss can be bigger than planned.`,

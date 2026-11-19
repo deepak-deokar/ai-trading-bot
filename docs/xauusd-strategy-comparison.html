@@ -356,10 +356,14 @@ function draw() {
     g.fillStyle = col.gold; g.textAlign = "left"; g.textBaseline = "top";
     g.fillText(d === -1 ? "SELL ZONE (yesterday’s upper wick)" : "BUY ZONE (yesterday’s lower wick)", padL + 6, Math.min(Math.max(ct + 4, padT), H - padB - 14)); }
   // sweep + confirm highlights
+  let labelEnd = -Infinity, row = 0;
   const hl = (rng, label) => { if (!rng || t < rng[1]) return;
-    const x0 = X(rng[0]) - cw, x1 = X(rng[1]) + cw;
+    const x0 = X(rng[0]) - cw / 2 - 1, x1 = X(rng[1]) + cw / 2 + 1;
     g.fillStyle = col.infoS; g.fillRect(x0, padT, x1 - x0, H - padT - padB);
-    g.fillStyle = col.info; g.textAlign = "center"; g.textBaseline = "top"; g.fillText(label, (x0 + x1) / 2, padT + 2); };
+    const mid = (x0 + x1) / 2, half = g.measureText(label).width / 2;
+    row = mid - half < labelEnd + 4 ? row + 1 : 0;
+    g.fillStyle = col.info; g.textAlign = "center"; g.textBaseline = "top"; g.fillText(label, mid, H - padB - 16 - row * 14);
+    labelEnd = mid + half; };
   hl(x.sweep_candle, "SWEEP"); hl(x.conf_candle, "CONFIRM");
   // candles
   for (let i = 0; i <= Math.min(t, n - 1); i++) {
@@ -375,7 +379,7 @@ function draw() {
     const xe = X(x.entry_i) - cw, xr = t >= x.exit_i ? X(x.exit_i) + cw : W - padR;
     const line = (p, c, lab, dash) => { g.setLineDash(dash || []); g.strokeStyle = c; g.lineWidth = 1.5;
       g.beginPath(); g.moveTo(xe, Y(p)); g.lineTo(xr, Y(p)); g.stroke(); g.setLineDash([]);
-      g.fillStyle = c; g.textAlign = "left"; g.textBaseline = "bottom"; g.fillText(lab, xe + 4, Y(p) - 2); };
+      g.fillStyle = c; g.textAlign = "left"; g.textBaseline = "bottom"; g.fillText(lab, xe + cw + 12, Y(p) - 3); };
     line(x.stop, col.dn, "STOP " + x.stop.toFixed(2), [5, 4]);
     line(x.target, col.up, "TARGET " + x.target.toFixed(2), [5, 4]);
     line(x.entry_fill, col.fg, (d === 1 ? "BUY " : "SELL ") + x.entry_fill.toFixed(2));
@@ -394,7 +398,7 @@ function draw() {
   else { pe.textContent = (pnlNow >= 0 ? "+" : "−") + "$" + Math.abs(pnlNow).toFixed(2); pe.className = "pnl-big " + (pnlNow >= 0 ? "pos" : "neg");
     $("pnl-lbl").textContent = phase === "done" ? "Final result after all costs" : "If closed now, after all costs"; }
   // caption
-  const cap = $("cap"), time = C[Math.min(t, n - 1)][0];
+  const cap = $("cap"), time = C[t >= x.exit_i ? x.exit_i : Math.min(t, n - 1)][0];
   const S = x.sweep_candle, Cf = x.conf_candle;
   let msg;
   if (t >= x.exit_i) msg = {target: `${time} — Price reached the target. Trade closed at ${x.exit_fill.toFixed(2)}.`,
