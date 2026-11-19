@@ -1,10 +1,10 @@
-"""Excel ledger of every trade of the YouTube sweep strategy (2R, candle-close stop).
+"""Excel ledgers of every trade of the YouTube sweep strategy, one per version.
 
 Sheets: Summary (rules, assumptions, totals), Trades (entry/exit time and price,
 P&L before costs, each cost, net P&L, running total), Daily (end-of-day totals and
 account balance), Yearly. Totals are Excel formulas. 2014-2024 only.
 
-Writes docs/xauusd-sweep-trades.xlsx.
+Writes docs/xauusd-sweep-trades-<target>-<stop>.xlsx for 2R/3R x close/touch stop.
 Needs openpyxl (not in the pinned .venv); run with a Python that has it:
 Usage: PYTHONPATH=src /opt/anaconda3/bin/python3 scripts/export_xauusd_sweep_ledger.py
 """
@@ -18,13 +18,18 @@ from openpyxl.styles import Alignment, Font, PatternFill
 from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.worksheet import Worksheet
 
-from trading_bot.backtesting.session_window import CostModel, Sizing, load_bars
-from trading_bot.backtesting.sweep_strategy import SweepRule, build_days, run_sweep
+from trading_bot.backtesting.session_window import Array, CostModel, Sizing, load_bars
+from trading_bot.backtesting.sweep_strategy import (
+    SweepRule,
+    TradingDay,
+    build_days,
+    run_sweep,
+)
 from trading_bot.data.histdata_bulk import BARS_DIR
 
 COSTS_YAML = Path("config/xauusd_costs_expensive.yaml")
-OUT = Path("docs/xauusd-sweep-trades.xlsx")
-RULE = SweepRule(2.0, "close")
+OUT_DIR = Path("docs")
+RULES = [SweepRule(t, s) for t in (2.0, 3.0) for s in ("close", "touch")]  # type: ignore[arg-type]
 DEV = range(2014, 2025)
 NY = ZoneInfo("America/New_York")
 FONT = "Arial"
@@ -52,7 +57,19 @@ def main() -> None:
     sizing = Sizing()
     bars = load_bars(BARS_DIR, 201401, 202412)
     days = build_days(bars)
-    trades, n_days = run_sweep(bars, days, RULE, costs, sizing, DEV)
+    for rule in RULES:
+        export(rule, bars, days, costs, sizing)
+
+
+def export(
+    rule: SweepRule,
+    bars: dict[str, Array],
+    days: list[TradingDay],
+    costs: CostModel,
+    sizing: Sizing,
+) -> None:
+    out = OUT_DIR / f"xauusd-sweep-trades-{rule.name.replace('/', '-')}.xlsx"
+    trades, n_days = run_sweep(bars, days, rule, costs, sizing, DEV)
     pf = costs.per_fill
 
     wb = Workbook()
@@ -237,7 +254,7 @@ def main() -> None:
         ("", None, None),
         ("Starting account balance $ (edit me)", 3000, USD),
         ("Risk per trade $ (1% of $3,000, fixed)", sizing.risk_usd, USD),
-        ("Variant", RULE.name, None),
+        ("Variant", rule.name, None),
         ("Trading days tested", n_days, "#,##0"),
         ("Days with at least one trade", f"=COUNTA(Daily!A2:A{dlast})", "#,##0"),
         ("Trades", f"=COUNTA(Trades!A2:A{last})", "#,##0"),
@@ -269,10 +286,14 @@ def main() -> None:
             None,
         ),
         (
-            "Lots are sized so hitting the stop loses about $30. The 'stop on candle "
-            "close' rule (as in the video) can lose more when a 15-minute candle "
-            "closes "
-            "far beyond the stop.",
+            "Lots are sized so hitting the stop loses about $30. "
+            + (
+                "The 'stop on candle close' rule (as in the video) can lose more "
+                "when a 15-minute candle closes far beyond the stop."
+                if rule.stop_mode == "close"
+                else "This version uses a normal stop order, which closes the trade "
+                "as soon as price touches the stop (more if price jumps past it)."
+            ),
             None,
             None,
         ),
@@ -296,8 +317,8 @@ def main() -> None:
     for r in (22, 23, 24, 25):
         s.merge_cells(start_row=r, start_column=1, end_row=r, end_column=6)
         s.row_dimensions[r].height = 45
-    wb.save(OUT)
-    print(f"wrote {OUT}: {len(trades)} trades, {len(trade_days)} trading days")
+    wb.save(out)
+    print(f"wrote {out}: {len(trades)} trades, {len(trade_days)} trading days")
 
 
 if __name__ == "__main__":
