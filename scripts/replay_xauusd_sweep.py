@@ -8,8 +8,9 @@ every trade that year. Only 2014-2024 can be replayed; 2025 and 2026 stay unseen
 
 Usage:
   PYTHONPATH=src .venv/bin/python scripts/replay_xauusd_sweep.py \
-      [--year 2024] [--target 2] [--stop close|touch] [--count 30] [--seed 7]
-Writes docs/replays/xauusd-sweep-<target>R-<stop>-stop-<year>.html
+      [--year 2024] [--target 2] [--stop close|touch] [--trend] [--trail]
+      [--count 30] [--seed 7]
+Writes docs/replays/xauusd-sweep-<rule name>-<year>.html
 """
 
 import argparse
@@ -37,13 +38,15 @@ def main() -> None:
     ap.add_argument("--year", type=int, default=LAST_DEV_YEAR)
     ap.add_argument("--target", type=float, default=2.0)
     ap.add_argument("--stop", choices=("close", "touch"), default="close")
+    ap.add_argument("--trend", action="store_true", help="20-hour trend filter")
+    ap.add_argument("--trail", action="store_true", help="moving stop after 1R")
     ap.add_argument("--count", type=int, default=30)
     ap.add_argument("--seed", type=int, default=7)
     a = ap.parse_args()
     if not 2014 <= a.year <= LAST_DEV_YEAR:
         raise SystemExit("only development years 2014-2024 can be replayed")
 
-    rule = SweepRule(a.target, a.stop)
+    rule = SweepRule(a.target, a.stop, trend_filter=a.trend, trail=a.trail)
     costs = CostModel.from_yaml(COSTS_YAML)
     # one month before the year so the first day has a previous day for its zones
     bars = load_bars(BARS_DIR, (a.year - 1) * 100 + 12, a.year * 100 + 12)
@@ -99,13 +102,30 @@ def main() -> None:
             f"Stop just beyond the sweep candle's extreme; target {a.target:g} times "
             f"the risk. {stop_text}",
             "No new trades after 16:00 New York; anything open is closed at 16:45.",
-        ],
+        ]
+        + (
+            [
+                "Trend filter: sell only if the confirmation candle closes below the "
+                "20-hour moving average of hourly closes; buy only if above it."
+            ]
+            if rule.trend_filter
+            else []
+        )
+        + (
+            [
+                "Moving stop: once the trade is 1R in profit, a normal stop follows "
+                "price 1R behind the best level reached."
+            ]
+            if rule.trail
+            else []
+        ),
         records=records,
         all_trades=trades,
         note="Account starts at $3,000.",
     )
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    out = OUT_DIR / f"xauusd-sweep-{rule.name.replace('/', '-')}-{a.year}.html"
+    slug = rule.name.replace("/", "-").replace("+", "-")
+    out = OUT_DIR / f"xauusd-sweep-{slug}-{a.year}.html"
     out.write_text(html)
     print(f"wrote {out} ({len(records)} trades replayed, {len(trades)} in year)")
 

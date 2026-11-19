@@ -5,9 +5,11 @@ import pytest
 
 from trading_bot.backtesting.session_window import BAR_FIELDS, CostModel, Sizing
 from trading_bot.backtesting.sweep_strategy import (
+    HourlyTrend,
     SweepRule,
     TradingDay,
     Zones,
+    hourly_trend,
     simulate_day,
     to_15m,
     trading_day_ordinals,
@@ -43,10 +45,14 @@ def candles_to_bars(
     return bars
 
 
-def run(candles: list[tuple[float, float, float, float]], rule: SweepRule) -> list:
+def run(
+    candles: list[tuple[float, float, float, float]],
+    rule: SweepRule,
+    trend: HourlyTrend | None = None,
+) -> list:
     bars = candles_to_bars(candles)
     day = TradingDay(date(2024, 1, 10), 0, len(bars["minute_utc"]), 0, 0, 0, 0)
-    return simulate_day(bars, day, ZONES, rule, COSTS, Sizing())
+    return simulate_day(bars, day, ZONES, rule, COSTS, Sizing(), trend)
 
 
 SETUP = [
@@ -125,3 +131,57 @@ def test_time_exit_closes_same_day() -> None:
     (t,) = run(candles, SweepRule(2.0, "close"))
     assert t.exit_reason == "time_exit"
     assert BAR_FIELDS  # bars carry every field the simulator reads
+
+
+# sell entry 2006.65 (bid 2006.85 - 0.20), stop 2013 -> risk 6.35, 1R at 2000.30
+DIP_THEN_RALLY = (
+    SETUP
+    + [
+        (2007.0, 2007.0, 1999.0, 1999.0),  # best ask 1999.15 -> 1R reached
+        (1999.0, 2008.0, 1999.0, 2008.0),  # rallies through the trail at 2005.50
+    ]
+    + [(2008.0,) * 4] * 2
+)
+
+
+def test_trail_locks_profit_after_one_r() -> None:
+    (plain,) = run(DIP_THEN_RALLY, SweepRule(2.0, "close"))
+    assert plain.exit_reason == "time_exit"
+    (trailed,) = run(DIP_THEN_RALLY, SweepRule(2.0, "close", trail=True))
+    assert trailed.exit_reason == "trail"
+    assert trailed.exit_bar == 76  # the minute that opens at 2008 (gap past 2005.50)
+    assert trailed.exit == pytest.approx(2008.0 + HALF + 0.20)
+
+
+def test_trail_waits_until_one_r() -> None:
+    candles = SETUP + [(2007.0, 2007.0, 2003.0, 2003.0)] + [(2003.0,) * 4] * 2
+    (plain,) = run(candles, SweepRule(2.0, "close"))
+    (trailed,) = run(candles, SweepRule(2.0, "close", trail=True))
+    assert trailed.exit_reason == plain.exit_reason == "time_exit"
+    assert trailed.pnl_usd == pytest.approx(plain.pnl_usd)
+
+
+def test_trend_filter_blocks_sells_above_the_average() -> None:
+    candles = SETUP + [(2007.0,) * 4] * 2
+    rule = SweepRule(2.0, "close", trend_filter=True)
+    above = HourlyTrend(np.array([0]), np.array([1000.0]))  # price above average
+    below = HourlyTrend(np.array([0]), np.array([3000.0]))
+    assert run(candles, rule, above) == []
+    (t,) = run(candles, rule, below)
+    assert t.direction == -1
+    no_history = HourlyTrend(np.array([0]), np.array([np.nan]))
+    assert run(candles, rule, no_history) == []
+
+
+def test_hourly_trend_uses_only_finished_hours() -> None:
+    hours = 25
+    mid = np.repeat(np.arange(hours, dtype=float), 60)  # each hour closes at its index
+    bars = {"minute_utc": DAY_START + np.arange(len(mid), dtype=np.int64) * 60}
+    for side in ("bid", "ask"):
+        for part in ("open", "high", "low", "close"):
+            bars[f"{side}_{part}"] = mid
+    trend = hourly_trend(bars)
+    start_22 = 22 * 60
+    assert trend.at(start_22) == pytest.approx(np.mean(np.arange(2, 22)))
+    assert trend.at(start_22 + 30) == trend.at(start_22)  # hour 22 not finished yet
+    assert np.isnan(trend.at(10 * 60))  # fewer than 20 finished hours

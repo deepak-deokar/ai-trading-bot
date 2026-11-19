@@ -17,6 +17,11 @@ Rules as described in the video, made exact (assumptions marked *):
 5. Several trades per day, one at a time; *no new entries after 16:00 New York
    and anything still open is closed at 16:45 New York (no overnight).
 
+Optional variants (not in the video): ``trend_filter`` takes a sell only when the
+confirmation candle closes below the 20-hour moving average of hourly closes (buys
+above it); ``trail`` moves a touch stop to 1R behind the best price once the trade
+is 1R in profit (exit reason "trail").
+
 Entries fill at the next 15-minute candle's open (ask for buys, bid for sells)
 plus the cost model's extra spread and slippage; targets fill on touch, checked
 minute by minute; if one minute hits both stop and target the stop wins.
@@ -44,14 +49,50 @@ FORCED_EXIT = time(16, 45)
 MAX_MOTHER_LOOKBACK = 5
 
 
+TREND_HOURS = 20  # trend filter: 20-period moving average of hourly mid closes
+
+
 @dataclass(frozen=True)
 class SweepRule:
     target_r: float
     stop_mode: Literal["close", "touch"]
+    # only sell below / buy above the 20-hour average of hourly closes
+    trend_filter: bool = False
+    # once the trade is 1R in profit, trail a touch stop 1R behind the best price
+    # (this also moves it to break-even or better)
+    trail: bool = False
 
     @property
     def name(self) -> str:
-        return f"{self.target_r:g}R/{self.stop_mode}-stop"
+        extra = ("+trend" if self.trend_filter else "") + (
+            "+trail" if self.trail else ""
+        )
+        return f"{self.target_r:g}R/{self.stop_mode}-stop{extra}"
+
+
+@dataclass(frozen=True)
+class HourlyTrend:
+    """20-hour moving average, known only once each hour has finished."""
+
+    hour_last_minute: Array  # 1-minute index of the last minute of each hour
+    average: Array  # average of the 20 hourly closes ending that hour (nan before)
+
+    def at(self, minute: int) -> float:
+        """Average from the hours fully completed before 1-minute index `minute`."""
+        k = int(np.searchsorted(self.hour_last_minute, minute - 1, side="right")) - 1
+        return float(self.average[k]) if k >= 0 else float("nan")
+
+
+def hourly_trend(bars: dict[str, Array], hours: int = TREND_HOURS) -> HourlyTrend:
+    m = bars["minute_utc"]
+    hb = m // 3600
+    last = np.flatnonzero(np.diff(hb, append=hb[-1] + 1))
+    closes = (bars["bid_close"][last] + bars["ask_close"][last]) / 2
+    avg = np.full(len(closes), np.nan)
+    if len(closes) >= hours:
+        c = np.cumsum(np.concatenate([[0.0], closes]))
+        avg[hours - 1 :] = (c[hours:] - c[:-hours]) / hours
+    return HourlyTrend(last, avg)
 
 
 @dataclass(frozen=True)
@@ -212,14 +253,56 @@ def _manage(
         beyond = mids < stop if direction == 1 else mids > stop
         hit_stop = _first(beyond & candle_end)
 
+    hit_trail, trail_levels = -1, None
+    if rule.trail:
+        risk = abs(entry - stop)
+        if direction == 1:
+            best = np.maximum.accumulate(bars["bid_high"][sl])
+        else:
+            best = np.minimum.accumulate(bars["ask_low"][sl])
+        # the trail for minute i uses the best price up to minute i-1, so a minute
+        # never both sets a new best and stops out on it (we can't see the order)
+        prev_best = np.concatenate([[np.nan], best[:-1]])
+        active = (prev_best - entry) * direction >= risk
+        trail_levels = prev_best - direction * risk
+        if direction == 1:
+            crossed = bars["bid_low"][sl] <= trail_levels
+        else:
+            crossed = bars["ask_high"][sl] >= trail_levels
+        hit_trail = _first(active & crossed)
+
     candidates = [
-        (k, r) for k, r in ((hit_stop, "stop"), (hit_target, "target")) if k >= 0
+        (k, r)
+        for k, r in ((hit_stop, "stop"), (hit_trail, "trail"), (hit_target, "target"))
+        if k >= 0
     ]
     if candidates:
-        k_rel, reason = min(candidates, key=lambda x: (x[0], x[1] != "stop"))
+        k_rel, reason = min(candidates, key=lambda x: (x[0], x[1] == "target"))
     else:
         k_rel, reason = last - s, "time_exit"
     k = s + k_rel
+    if reason == "trail" and trail_levels is not None:
+        o = bars["bid_open"][k] if direction == 1 else bars["ask_open"][k]
+        lvl = float(trail_levels[k_rel])
+        level = min(lvl, o) if direction == 1 else max(lvl, o)
+        exit_px = float(level) - direction * pf
+        pnl = (exit_px - entry) * direction * costs.contract_size_oz * lots
+        pnl -= costs.commission_per_lot * lots
+        hold = int((bars["minute_utc"][k] - bars["minute_utc"][s]) // 60) + 1
+        return HoldTrade(
+            day.day,
+            direction,
+            s,
+            entry,
+            stop,
+            exit_px,
+            lots,
+            pnl,
+            "trail",
+            hold,
+            k,
+            target,
+        )
     if reason == "target":
         o = bars["bid_open"][k] if direction == 1 else bars["ask_open"][k]
         level = max(target, o) if direction == 1 else min(target, o)
@@ -244,6 +327,7 @@ def simulate_day(
     rule: SweepRule,
     costs: CostModel,
     sizing: Sizing,
+    trend: HourlyTrend | None = None,
 ) -> list[HoldTrade]:
     c = to_15m(bars, day.i0, day.i1)
     minutes = bars["minute_utc"]
@@ -288,6 +372,13 @@ def simulate_day(
         d, stop = signal
         if q + 1 >= n:
             break
+        if rule.trend_filter:
+            if trend is None:
+                raise ValueError("trend_filter needs the hourly trend")
+            avg = trend.at(int(c.end[q]))
+            if not (c.close[q] - avg) * d > 0:  # nan (too early) also skips
+                q += 1
+                continue
         s = int(c.start[q + 1])
         if minutes[s] >= entry_cutoff or s > last:
             break
@@ -313,6 +404,7 @@ def run_sweep(
     """All trades on trading days whose year is in `years`, plus days evaluated."""
     trades: list[HoldTrade] = []
     evaluated = 0
+    trend = hourly_trend(bars) if rule.trend_filter else None
     for k, day in enumerate(days):
         if day.day.year not in years:
             continue
@@ -320,5 +412,5 @@ def run_sweep(
         if zones is None:
             continue
         evaluated += 1
-        trades.extend(simulate_day(bars, day, zones, rule, costs, sizing))
+        trades.extend(simulate_day(bars, day, zones, rule, costs, sizing, trend))
     return trades, evaluated

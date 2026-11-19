@@ -259,7 +259,7 @@ def render_page(
 ) -> str:
     mix = {
         r: sum(t.exit_reason == r for t in all_trades)
-        for r in ("stop", "target", "time_exit")
+        for r in ("stop", "trail", "target", "time_exit")
     }
     payload = {
         "title": title,

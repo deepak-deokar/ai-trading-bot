@@ -59,11 +59,13 @@ button.primary { background: var(--gold); border-color: var(--gold); color: #fff
 .chip.target { background: var(--up-soft); color: var(--up); }
 .chip.stop { background: var(--down-soft); color: var(--down); }
 .chip.time_exit { background: var(--info-soft); color: var(--info); }
+.chip.trail { background: var(--gold-soft); color: var(--gold); }
 .trade-list { display: flex; flex-wrap: wrap; gap: 6px; }
 .trade-list button { padding: 4px 8px; font: 600 12px var(--f-mono); border-left-width: 4px; }
 .trade-list button.target { border-left-color: var(--up); }
 .trade-list button.stop { border-left-color: var(--down); }
 .trade-list button.time_exit { border-left-color: var(--info); }
+.trade-list button.trail { border-left-color: var(--gold); }
 .trade-list button[aria-pressed="true"] { background: var(--gold-soft); border-color: var(--gold); }
 .wf { display: grid; gap: 6px; font-size: 13px; }
 .wf-row { display: grid; grid-template-columns: 112px 1fr 64px; gap: 8px; align-items: center; }
@@ -137,7 +139,7 @@ const DATA = __REPLAY_DATA__;
 const $ = id => document.getElementById(id);
 const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 const money = (v, d = 2) => (v < 0 ? "−$" : "$") + Math.abs(v).toLocaleString("en-US", {minimumFractionDigits: d, maximumFractionDigits: d});
-const REASON = {target: "Target hit", stop: "Stopped out", time_exit: "Closed at time limit"};
+const REASON = {target: "Target hit", stop: "Stopped out", trail: "Moving stop hit", time_exit: "Closed at time limit"};
 $("title").textContent = DATA.title;
 $("subtitle").textContent = DATA.subtitle;
 $("rules").innerHTML = DATA.rules.map(r => `<li></li>`).join("");
@@ -263,7 +265,8 @@ function draw() {
   let msg;
   if (t >= x.exit_i) msg = {target: `Price reached the target. Trade closed at ${x.exit_fill.toFixed(2)}.`,
       stop: `The stop was hit. Trade closed at ${x.exit_fill.toFixed(2)}. A fill past the stop level is why a loss can be bigger than planned.`,
-      time_exit: `Neither stop nor target was hit before the time limit, so the trade was closed at the market price.`}[x.reason];
+      time_exit: `Neither stop nor target was hit before the time limit, so the trade was closed at the market price.`,
+      trail: `The moving stop was hit. It had been following price 1R behind the best level, so part of the open profit was kept. Closed at ${x.exit_fill.toFixed(2)}.`}[x.reason];
   else if (t >= x.entry_i) msg = `Trade is open. ${d === 1 ? "Bought" : "Sold"} ${x.lots.toFixed(2)} lot at ${x.entry_fill.toFixed(2)}. It starts in the red by the costs (${money(-costs)}) before price has moved at all.`;
   else { const seen = x.highlights.filter(h => t >= h.to).sort((a, b) => b.to - a.to); msg = seen.length ? seen[0].explain : "Watching price. No setup yet."; }
   $("cap").textContent = `${time} — ${msg}`;
@@ -291,7 +294,7 @@ function drawEq() {
 }
 const S = DATA.summary;
 $("eq-title").textContent = `All ${S.n.toLocaleString()} trades, added up`;
-$("eq-note").textContent = `${S.mix.target} hit the target, ${S.mix.stop} were stopped out and ${S.mix.time_exit} were closed at the time limit. Running total after all costs: ${money(S.net, 0)}.` + (DATA.note ? " " + DATA.note : "");
+$("eq-note").textContent = `${S.mix.target} hit the target, ${S.mix.stop} were stopped out, ${S.mix.trail ? S.mix.trail + " hit the moving stop, " : ""}and ${S.mix.time_exit} were closed at the time limit. Running total after all costs: ${money(S.net, 0)}.` + (DATA.note ? " " + DATA.note : "");
 if (T.length) load(0);
 drawEq();
 let rz; addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => { if (T.length) draw(); drawEq(); }, 120); });
