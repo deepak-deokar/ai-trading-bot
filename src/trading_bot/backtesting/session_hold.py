@@ -189,6 +189,8 @@ class HoldRule:
 @dataclass(frozen=True)
 class HoldTrade(Trade):
     hold_minutes: int = 0
+    exit_bar: int = -1  # index into the day's post-range bars where the trade closed
+    target: float | None = None
 
 
 def condition_ok(day: SessionDay, costs: CostModel) -> bool:
@@ -265,7 +267,18 @@ def simulate_session(
     ) * direction * costs.contract_size_oz * lots - costs.commission_per_lot * lots
     hold = int((day.minutes[k_exit] - day.minutes[j]) // 60) + 1
     return HoldTrade(
-        day.day, direction, j, entry, stop, float(exit_px), lots, pnl, reason, hold
+        day.day,
+        direction,
+        j,
+        entry,
+        stop,
+        float(exit_px),
+        lots,
+        pnl,
+        reason,
+        hold,
+        k_exit,
+        target,
     )
 
 

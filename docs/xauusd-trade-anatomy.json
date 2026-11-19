@@ -1,0 +1,163 @@
+{
+  "london_asia_break__time-exit_no-filter": {
+    "plan": "london_asia_break",
+    "rule": "time-exit/no-filter",
+    "csv": "docs/trade-logs/london_asia_break__time-exit_no-filter.csv",
+    "trades": 2052,
+    "gross_usd": 3864.09,
+    "spread_usd": 5824.04,
+    "extra_spread_slippage_usd": 6303.2,
+    "commission_usd": 1260.64,
+    "net_usd": -9524.85,
+    "gross_win_rate": 0.299,
+    "net_win_rate": 0.288,
+    "avg_gross_per_oz": 0.219,
+    "avg_cost_per_oz": 0.861,
+    "avg_risk_per_oz": 3.953,
+    "avg_mfe_r": 1.598,
+    "avg_mae_r": 0.85,
+    "reached_0_5r": 0.656,
+    "reached_1r": 0.485,
+    "reached_2r": 0.272,
+    "losers_that_were_up_1r": 0.294,
+    "losers_never_up_0_25r": 0.291,
+    "avg_move_5m_per_oz": -0.013,
+    "avg_move_15m_per_oz": 0.006,
+    "pct_up_after_5m": 0.445,
+    "pct_up_after_15m": 0.468,
+    "by_exit": {
+      "stop": {
+        "trades": 1342,
+        "avg_gross_per_oz": -3.513,
+        "avg_net_usd": -28.49
+      },
+      "time_exit": {
+        "trades": 710,
+        "avg_gross_per_oz": 7.274,
+        "avg_net_usd": 40.44
+      }
+    }
+  },
+  "london_asia_break__time-exit_trend": {
+    "plan": "london_asia_break",
+    "rule": "time-exit/trend",
+    "csv": "docs/trade-logs/london_asia_break__time-exit_trend.csv",
+    "trades": 1048,
+    "gross_usd": 1871.09,
+    "spread_usd": 2952.47,
+    "extra_spread_slippage_usd": 3228.8,
+    "commission_usd": 645.76,
+    "net_usd": -4956.49,
+    "gross_win_rate": 0.296,
+    "net_win_rate": 0.285,
+    "avg_gross_per_oz": 0.016,
+    "avg_cost_per_oz": 0.857,
+    "avg_risk_per_oz": 3.937,
+    "avg_mfe_r": 1.612,
+    "avg_mae_r": 0.863,
+    "reached_0_5r": 0.659,
+    "reached_1r": 0.492,
+    "reached_2r": 0.277,
+    "losers_that_were_up_1r": 0.308,
+    "losers_never_up_0_25r": 0.288,
+    "avg_move_5m_per_oz": -0.021,
+    "avg_move_15m_per_oz": -0.038,
+    "pct_up_after_5m": 0.467,
+    "pct_up_after_15m": 0.473,
+    "by_exit": {
+      "stop": {
+        "trades": 695,
+        "avg_gross_per_oz": -3.598,
+        "avg_net_usd": -28.49
+      },
+      "time_exit": {
+        "trades": 353,
+        "avg_gross_per_oz": 7.131,
+        "avg_net_usd": 42.05
+      }
+    }
+  },
+  "ny_opening_drive__time-exit_no-filter": {
+    "plan": "ny_opening_drive",
+    "rule": "time-exit/no-filter",
+    "csv": "docs/trade-logs/ny_opening_drive__time-exit_no-filter.csv",
+    "trades": 2546,
+    "gross_usd": -623.47,
+    "spread_usd": 9174.65,
+    "extra_spread_slippage_usd": 10138.4,
+    "commission_usd": 2027.68,
+    "net_usd": -21965.22,
+    "gross_win_rate": 0.297,
+    "net_win_rate": 0.268,
+    "avg_gross_per_oz": 0.018,
+    "avg_cost_per_oz": 0.852,
+    "avg_risk_per_oz": 3.095,
+    "avg_mfe_r": 1.461,
+    "avg_mae_r": 0.863,
+    "reached_0_5r": 0.619,
+    "reached_1r": 0.446,
+    "reached_2r": 0.25,
+    "losers_that_were_up_1r": 0.269,
+    "losers_never_up_0_25r": 0.32,
+    "avg_move_5m_per_oz": -0.035,
+    "avg_move_15m_per_oz": -0.074,
+    "pct_up_after_5m": 0.445,
+    "pct_up_after_15m": 0.438,
+    "by_exit": {
+      "stop": {
+        "trades": 1668,
+        "avg_gross_per_oz": -2.577,
+        "avg_net_usd": -29.23
+      },
+      "time_exit": {
+        "trades": 878,
+        "avg_gross_per_oz": 4.946,
+        "avg_net_usd": 30.52
+      }
+    }
+  },
+  "ny_opening_drive__2R_trend+cond": {
+    "plan": "ny_opening_drive",
+    "rule": "2R/trend+cond",
+    "csv": "docs/trade-logs/ny_opening_drive__2R_trend+cond.csv",
+    "trades": 1148,
+    "gross_usd": 621.57,
+    "spread_usd": 3785.71,
+    "extra_spread_slippage_usd": 4236.4,
+    "commission_usd": 847.28,
+    "net_usd": -8248.22,
+    "gross_win_rate": 0.342,
+    "net_win_rate": 0.316,
+    "avg_gross_per_oz": 0.062,
+    "avg_cost_per_oz": 0.849,
+    "avg_risk_per_oz": 3.104,
+    "avg_mfe_r": 1.168,
+    "avg_mae_r": 0.826,
+    "reached_0_5r": 0.639,
+    "reached_1r": 0.452,
+    "reached_2r": 0.252,
+    "losers_that_were_up_1r": 0.224,
+    "losers_never_up_0_25r": 0.32,
+    "avg_move_5m_per_oz": -0.031,
+    "avg_move_15m_per_oz": -0.062,
+    "pct_up_after_5m": 0.44,
+    "pct_up_after_15m": 0.448,
+    "by_exit": {
+      "stop": {
+        "trades": 701,
+        "avg_gross_per_oz": -2.757,
+        "avg_net_usd": -29.1
+      },
+      "target": {
+        "trades": 213,
+        "avg_gross_per_oz": 7.368,
+        "avg_net_usd": 50.03
+      },
+      "time_exit": {
+        "trades": 234,
+        "avg_gross_per_oz": 1.858,
+        "avg_net_usd": 6.37
+      }
+    }
+  }
+}

@@ -134,3 +134,20 @@ def test_mid_only_removes_spread() -> None:
     bars["ask_open"] = np.array([2000.4])
     out = mid_only(bars)
     assert out["bid_open"][0] == out["ask_open"][0] == pytest.approx(2000.2)
+
+
+def test_trade_anatomy_reconciles_and_measures_excursions() -> None:
+    from trading_bot.backtesting.trade_anatomy import explain
+
+    mids = [2000.0] * 10 + [2006.0] + [2010.0] * 20 + [2016.0] * 5 + [2008.0] * 30
+    day = make_day(mids)
+    trade = simulate_session(day, NO_FILTER, COSTS, Sizing())
+    assert trade is not None
+    a = explain(day, trade, COSTS)
+    assert a.direction == "BUY" and a.entry_mid == pytest.approx(2010.0)
+    assert a.exit_mid == pytest.approx(2008.0)
+    assert a.gross_per_oz == pytest.approx(-2.0)
+    total = a.gross_usd - a.spread_usd - a.extra_spread_slippage_usd - a.commission_usd
+    assert total == pytest.approx(a.net_usd, abs=0.02)
+    assert a.mfe_per_oz == pytest.approx(6.05)  # mid high 2016.05
+    assert a.mfe_r == pytest.approx(6.05 / 10.0)
