@@ -51,6 +51,8 @@ class ReplayContext:
     zone: tuple[float, float] | None = None
     zone_label: str = ""
     highlights: tuple[Highlight, ...] = field(default_factory=tuple)
+    # support / resistance lines drawn across the chart: (price, name)
+    levels: tuple[tuple[float, str], ...] = field(default_factory=tuple)
 
 
 @dataclass(frozen=True)
@@ -168,6 +170,7 @@ def replay_record(
         "hold": t.hold_minutes,
         "zone": None if ctx.zone is None else [round(z, 2) for z in ctx.zone],
         "zone_label": ctx.zone_label,
+        "levels": [[round(p, 2), name] for p, name in ctx.levels],
         "highlights": [
             {
                 "from": at(h.first_minute),

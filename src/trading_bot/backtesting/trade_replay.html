@@ -103,6 +103,7 @@ ol.steps { margin: 0; padding-left: 20px; display: grid; gap: 4px; max-width: 70
           <span><i class="sw" style="background:var(--fg)"></i>Entry</span>
           <span><i class="sw" style="background:var(--down)"></i>Stop</span>
           <span><i class="sw" style="background:var(--up)"></i>Target</span>
+          <span><i class="sw" style="background:transparent;border-top:2px dotted var(--muted);border-radius:0;height:0;vertical-align:3px"></i>Support / resistance</span>
         </div>
       </div>
       <div class="side">
@@ -207,6 +208,8 @@ function draw() {
   const padL = 8, padR = 64, padT = 14, padB = 26;
   const levels = [x.stop, x.entry_fill].concat(x.target === null ? [] : [x.target]);
   let lo = Math.min(...C.map(c => c[3]), ...levels), hi = Math.max(...C.map(c => c[2]), ...levels);
+  const span = hi - lo;  // show support / resistance lines that are reasonably close
+  for (const [p] of (x.levels || [])) { if (p > lo - span * 0.5 && p < hi + span * 0.5) { lo = Math.min(lo, p); hi = Math.max(hi, p); } }
   const pad = (hi - lo) * 0.06 || 1; lo -= pad; hi += pad;
   const X = i => padL + (i + 0.5) * (W - padL - padR) / n, cw = Math.max(1, (W - padL - padR) / n * 0.62);
   const Y = p => padT + (hi - p) / (hi - lo) * (H - padT - padB);
@@ -227,6 +230,12 @@ function draw() {
       g.fillStyle = col.gold; g.textAlign = "left"; g.textBaseline = "top"; g.fillText(x.zone_label, padL + 6, Math.min(zt + 4, H - padB - 14)); }
   }
   let labelEnd = -Infinity, row = 0;
+  for (const [p, name] of (x.levels || [])) {
+    if (p < lo || p > hi) continue;
+    g.setLineDash([2, 3]); g.strokeStyle = col.mu; g.lineWidth = 1.2;
+    g.beginPath(); g.moveTo(padL, Y(p)); g.lineTo(W - padR, Y(p)); g.stroke(); g.setLineDash([]);
+    g.fillStyle = col.mu; g.textAlign = "right"; g.textBaseline = "bottom"; g.fillText(name + " " + p.toFixed(2), W - padR - 4, Y(p) - 2);
+  }
   for (const h of x.highlights) {
     if (t < h.to) continue;
     const x0 = X(h.from) - cw / 2 - 1, x1 = X(h.to) + cw / 2 + 1;

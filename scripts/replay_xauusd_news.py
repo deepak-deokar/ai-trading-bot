@@ -14,8 +14,10 @@ from pathlib import Path
 
 import numpy as np
 
+from trading_bot.backtesting.levels import key_levels
 from trading_bot.backtesting.news_day import NewsRule, load_events, run_news
 from trading_bot.backtesting.session_window import CostModel, Sizing, load_bars
+from trading_bot.backtesting.sweep_strategy import build_days
 from trading_bot.backtesting.trade_replay import (
     Highlight,
     ReplayContext,
@@ -43,7 +45,10 @@ def main() -> None:
 
     rule = NewsRule(a.side, a.target)
     costs = CostModel.from_yaml(COSTS_YAML)
-    bars = load_bars(BARS_DIR, a.year * 100 + 1, a.year * 100 + 12)
+    first = (a.year - 1) * 100 + 12 if a.year > 2014 else a.year * 100 + 1
+    bars = load_bars(BARS_DIR, first, a.year * 100 + 12)
+    days = build_days(bars)
+    day_index = {d.day: k for k, d in enumerate(days)}
     events = load_events()
     kind = {e.day: e for e in events}
     trades, _ = run_news(bars, events, rule, costs, Sizing(), range(a.year, a.year + 1))
@@ -53,7 +58,16 @@ def main() -> None:
     for t in trades:
         ev = kind[t.day]
         release_first = int(np.searchsorted(bars["minute_utc"], ev.utc()))
+        k = day_index.get(t.day, 0)
+        levels = (
+            tuple(
+                (lv.price, lv.name) for lv in key_levels(bars, days, k, release_first)
+            )
+            if k >= 1
+            else ()
+        )
         ctx = ReplayContext(
+            levels=levels,
             highlights=(
                 Highlight(
                     release_first,
@@ -62,7 +76,7 @@ def main() -> None:
                     f"The {LABEL[ev.kind]} came out at {ev.at:%H:%M}. This 15-minute "
                     "candle sets the direction; entry is at the next candle's open.",
                 ),
-            )
+            ),
         )
         records.append(
             replay_record(
@@ -110,6 +124,9 @@ def main() -> None:
             )
             + " at the next candle's open (08:45 or 14:15).",
             stop_text + " The stop is a normal stop order that fills on touch.",
+            "Dotted lines: yesterday's high and low, and today's high and low before "
+            "the news (support and resistance). They are drawn for reading only; the "
+            "rules above do not use them.",
             exit_text,
         ],
         records=records,

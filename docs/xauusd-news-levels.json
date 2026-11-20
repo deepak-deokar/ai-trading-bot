@@ -1,0 +1,169 @@
+{
+  "levels": "yesterday's high/low, today's high/low before the news",
+  "dev_years": [
+    2014,
+    2024
+  ],
+  "rules": {
+    "momentum/time-exit": {
+      "all": {
+        "trades": 331,
+        "win_rate": 0.402,
+        "gross_per_oz": 0.168,
+        "t_stat": 0.36,
+        "gross_r": 0.069,
+        "net_per_trade": -2.72,
+        "net_usd": -899.58,
+        "stopped": 0.462
+      },
+      "by_room": {
+        "under 1R": {
+          "trades": 150,
+          "win_rate": 0.387,
+          "gross_per_oz": -0.267,
+          "t_stat": -0.4,
+          "gross_r": 0.021,
+          "net_per_trade": -3.05,
+          "net_usd": -457.55,
+          "stopped": 0.447
+        },
+        "1R to 2R": {
+          "trades": 46,
+          "win_rate": 0.239,
+          "gross_per_oz": -0.634,
+          "t_stat": -0.72,
+          "gross_r": -0.004,
+          "net_per_trade": -8.31,
+          "net_usd": -382.3,
+          "stopped": 0.674
+        },
+        "2R or more": {
+          "trades": 40,
+          "win_rate": 0.425,
+          "gross_per_oz": 1.077,
+          "t_stat": 1.13,
+          "gross_r": 0.389,
+          "net_per_trade": 1.04,
+          "net_usd": 41.46,
+          "stopped": 0.55
+        },
+        "no level ahead": {
+          "trades": 95,
+          "win_rate": 0.495,
+          "gross_per_oz": 0.858,
+          "t_stat": 0.81,
+          "gross_r": 0.044,
+          "net_per_trade": -1.07,
+          "net_usd": -101.19,
+          "stopped": 0.347
+        }
+      },
+      "by_protection": {
+        "stop behind a level": {
+          "trades": 221,
+          "win_rate": 0.448,
+          "gross_per_oz": 0.39,
+          "t_stat": 0.62,
+          "gross_r": 0.066,
+          "net_per_trade": -1.26,
+          "net_usd": -277.36,
+          "stopped": 0.371
+        },
+        "no level between entry and stop": {
+          "trades": 110,
+          "win_rate": 0.309,
+          "gross_per_oz": -0.28,
+          "t_stat": -0.5,
+          "gross_r": 0.073,
+          "net_per_trade": -5.66,
+          "net_usd": -622.22,
+          "stopped": 0.645
+        }
+      },
+      "reached_first_level": 0.36,
+      "turned_back_after_reaching": 0.613,
+      "median_room_r": 0.7,
+      "share_no_level_ahead": 0.287
+    },
+    "momentum/2R": {
+      "all": {
+        "trades": 331,
+        "win_rate": 0.408,
+        "gross_per_oz": 0.0,
+        "t_stat": 0.0,
+        "gross_r": 0.004,
+        "net_per_trade": -4.11,
+        "net_usd": -1359.39,
+        "stopped": 0.456
+      },
+      "by_room": {
+        "under 1R": {
+          "trades": 150,
+          "win_rate": 0.387,
+          "gross_per_oz": -0.543,
+          "t_stat": -0.88,
+          "gross_r": -0.067,
+          "net_per_trade": -5.11,
+          "net_usd": -766.66,
+          "stopped": 0.447
+        },
+        "1R to 2R": {
+          "trades": 46,
+          "win_rate": 0.261,
+          "gross_per_oz": -0.592,
+          "t_stat": -0.74,
+          "gross_r": -0.051,
+          "net_per_trade": -8.63,
+          "net_usd": -397.17,
+          "stopped": 0.652
+        },
+        "2R or more": {
+          "trades": 40,
+          "win_rate": 0.45,
+          "gross_per_oz": 0.948,
+          "t_stat": 1.07,
+          "gross_r": 0.334,
+          "net_per_trade": -0.22,
+          "net_usd": -8.75,
+          "stopped": 0.525
+        },
+        "no level ahead": {
+          "trades": 95,
+          "win_rate": 0.495,
+          "gross_per_oz": 0.747,
+          "t_stat": 0.71,
+          "gross_r": 0.006,
+          "net_per_trade": -1.97,
+          "net_usd": -186.81,
+          "stopped": 0.347
+        }
+      },
+      "by_protection": {
+        "stop behind a level": {
+          "trades": 221,
+          "win_rate": 0.448,
+          "gross_per_oz": 0.296,
+          "t_stat": 0.48,
+          "gross_r": 0.041,
+          "net_per_trade": -1.79,
+          "net_usd": -395.2,
+          "stopped": 0.371
+        },
+        "no level between entry and stop": {
+          "trades": 110,
+          "win_rate": 0.327,
+          "gross_per_oz": -0.593,
+          "t_stat": -1.3,
+          "gross_r": -0.07,
+          "net_per_trade": -8.77,
+          "net_usd": -964.19,
+          "stopped": 0.627
+        }
+      },
+      "reached_first_level": 0.356,
+      "turned_back_after_reaching": 0.593,
+      "median_room_r": 0.7,
+      "share_no_level_ahead": 0.287
+    }
+  }
+}
