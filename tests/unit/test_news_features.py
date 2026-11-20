@@ -54,3 +54,49 @@ def test_an_unfinished_hour_is_not_used() -> None:
 def test_no_history_gives_none() -> None:
     news = hours_data(30, war_from=0)
     assert news.features_at(at(30)) is None  # no baseline week yet
+
+
+def test_event_features_conflict_share_and_goldstein() -> None:
+    from trading_bot.backtesting.news_features import (
+        HourlyTable,
+        event_feature_names,
+        event_features_at,
+    )
+    from trading_bot.data.gdelt_news import EVENT_GROUPS, EVENT_REGIONS
+
+    n_hours = 24 * 10
+    cols = ["ev_n", "ev_mentions", "ev_goldstein"]
+    cols += [f"ev_{g}" for g in EVENT_GROUPS]
+    cols += [f"ev_{r}{s}" for r in EVENT_REGIONS for s in ("", "_conflict")]
+    data: dict[str, list[float]] = {c: [] for c in cols}
+    for h in range(n_hours):
+        late = h >= 24 * 9
+        for c in cols:
+            data[c].append(0.0)
+        data["ev_n"][-1] = 10.0
+        data["ev_mentions"][-1] = 100.0
+        data["ev_goldstein"][-1] = -5.0 if late else 1.0
+        data["ev_fighting"][-1] = 40.0 if late else 10.0
+    hours = [T0 + timedelta(hours=h) for h in range(n_hours)]
+    ev = HourlyTable.from_columns(hours, data, weighted={"ev_goldstein": "ev_n"})
+    f = dict(
+        zip(
+            event_feature_names(), event_features_at(ev, at(n_hours)) or (), strict=True
+        )
+    )
+    assert f["ev_goldstein_24h"] == pytest.approx(-5.0)
+    assert f["ev_goldstein_change"] == pytest.approx(-6.0)
+    assert f["ev_fighting_share"] == pytest.approx(0.40)
+    assert f["ev_fighting_surge"] == pytest.approx(log((0.40 + 1e-4) / (0.10 + 1e-4)))
+
+
+def test_extra_queries_refuse_dates_after_2024() -> None:
+    from datetime import date
+
+    from trading_bot.data.gdelt_news import entities_hourly_sql, events_hourly_sql
+
+    with pytest.raises(ValueError):
+        events_hourly_sql(date(2024, 12, 1), date(2025, 1, 2))
+    with pytest.raises(ValueError):
+        entities_hourly_sql(date(2015, 1, 1), date(2015, 2, 1))
+    assert "DATEADDED" in events_hourly_sql(date(2020, 1, 1), date(2020, 1, 2))

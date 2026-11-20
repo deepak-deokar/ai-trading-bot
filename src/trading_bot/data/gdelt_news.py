@@ -170,3 +170,173 @@ def load_hourly(path: Path = NEWS_CSV) -> tuple[list[datetime], dict[str, list[f
         for c in columns()[1:]
     }
     return hours, data
+
+
+# --- extra sources: event records, people and organisations -----------------
+
+EVENTS_TABLE = "gdelt-bq.gdeltv2.events_partitioned"
+EVENTS_CSV = DATA_DIR.parent / "news" / "gdelt_events_hourly_2015_2024.csv"
+ENTITIES_CSV = DATA_DIR.parent / "news" / "gdelt_entities_hourly_2015_2024.csv"
+
+# CAMEO root codes: 13 threaten, 14 protest, 15 show of force, 16 reduce
+# relations, 17 coerce (incl. sanctions), 18 assault, 19 fight, 20 mass violence
+EVENT_GROUPS: dict[str, str] = {
+    "threaten": "EventRootCode = '13'",
+    "protest": "EventRootCode = '14'",
+    "force_posture": "EventRootCode = '15'",
+    "coerce": "EventRootCode IN ('16', '17')",
+    "fighting": "EventRootCode IN ('18', '19', '20')",
+    "material_conflict": "QuadClass = 4",
+    "cooperation": "QuadClass IN (1, 2)",
+}
+# where the event happened (FIPS country codes used by GDELT geography)
+EVENT_REGIONS: dict[str, tuple[str, ...]] = {
+    "russia_ukraine": ("RS", "UP"),
+    "middle_east": ("IS", "IR", "IZ", "SY", "LE", "YM", "SA", "GZ", "WE"),
+    "china_taiwan": ("CH", "TW"),
+    "korea": ("KN", "KS"),
+    "usa": ("US",),
+}
+
+PERSONS: dict[str, str] = {
+    "fed_chair": r"jerome powell|janet yellen",
+    "trump": r"donald trump",
+    "biden": r"joe biden",
+    "xi": r"xi jinping",
+    "putin": r"vladimir putin",
+}
+ORGANISATIONS: dict[str, str] = {
+    "federal_reserve": r"federal reserve",
+    "ecb": r"european central bank",
+    "pboc": r"people'?s bank of china",
+    "world_gold_council": r"world gold council",
+    "opec": r"\bopec\b",
+    "imf": r"international monetary fund",
+    "ai_companies": r"\bnvidia\b|\bopenai\b",
+    "big_funds": r"bridgewater|blackrock|citadel|renaissance technologies",
+}
+
+
+def _range_check(first: date, last: date) -> None:
+    if first < FIRST_DAY or last > LAST_DAY or first > last:
+        raise ValueError(f"dates must lie within {FIRST_DAY}..{LAST_DAY}")
+
+
+def events_hourly_sql(first: date, last: date) -> str:
+    """Event records per hour they were added (= published), with average
+    Goldstein conflict/cooperation score and mention-weighted counts."""
+    _range_check(first, last)
+    aggs = [
+        "COUNT(*) AS ev_n",
+        "SUM(NumMentions) AS ev_mentions",
+        "AVG(GoldsteinScale) AS ev_goldstein",
+        "AVG(AvgTone) AS ev_tone",
+    ]
+    for name, cond in EVENT_GROUPS.items():
+        aggs.append(f"SUM(IF({cond}, NumMentions, 0)) AS ev_{name}")
+    for name, codes in EVENT_REGIONS.items():
+        in_list = ", ".join(f"'{c}'" for c in codes)
+        region = f"ActionGeo_CountryCode IN ({in_list})"
+        aggs.append(f"SUM(IF({region}, NumMentions, 0)) AS ev_{name}")
+        aggs.append(
+            f"SUM(IF({region} AND QuadClass = 4, NumMentions, 0)) "
+            f"AS ev_{name}_conflict"
+        )
+    agg_sql = ",\n  ".join(aggs)
+    return f"""
+WITH a AS (
+  SELECT
+    TIMESTAMP_TRUNC(
+      PARSE_TIMESTAMP('%Y%m%d%H%M%S', CAST(DATEADDED AS STRING)), HOUR
+    ) AS hour,
+    EventRootCode, QuadClass, GoldsteinScale, NumMentions, AvgTone,
+    ActionGeo_CountryCode
+  FROM `{EVENTS_TABLE}`
+  WHERE _PARTITIONTIME >= TIMESTAMP('{first.isoformat()}')
+    AND _PARTITIONTIME < TIMESTAMP_ADD(TIMESTAMP('{last.isoformat()}'), INTERVAL 1 DAY)
+    AND DATEADDED IS NOT NULL
+)
+SELECT hour,
+  {agg_sql}
+FROM a
+WHERE hour >= TIMESTAMP('{first.isoformat()}')
+  AND hour < TIMESTAMP_ADD(TIMESTAMP('{last.isoformat()}'), INTERVAL 1 DAY)
+GROUP BY hour
+ORDER BY hour
+"""
+
+
+def entities_hourly_sql(first: date, last: date) -> str:
+    """Articles per hour mentioning each person / organisation group, and their
+    average tone."""
+    _range_check(first, last)
+    flags = [
+        f"REGEXP_CONTAINS(LOWER(IFNULL(V2Persons, '')), r'{p}') AS p_{n}"
+        for n, p in PERSONS.items()
+    ] + [
+        f"REGEXP_CONTAINS(LOWER(IFNULL(V2Organizations, '')), r\"{p}\") AS o_{n}"
+        for n, p in ORGANISATIONS.items()
+    ]
+    aggs = []
+    for prefix, names in (("p", PERSONS), ("o", ORGANISATIONS)):
+        for n in names:
+            aggs.append(f"COUNTIF({prefix}_{n}) AS n_{n}")
+            aggs.append(f"AVG(IF({prefix}_{n}, tone, NULL)) AS tone_{n}")
+    flag_sql = ",\n    ".join(flags)
+    agg_sql = ",\n  ".join(aggs)
+    return f"""
+WITH a AS (
+  SELECT
+    TIMESTAMP_TRUNC(
+      PARSE_TIMESTAMP('%Y%m%d%H%M%S', CAST(DATE AS STRING)), HOUR
+    ) AS hour,
+    SAFE_CAST(SPLIT(V2Tone, ',')[SAFE_OFFSET(0)] AS FLOAT64) AS tone,
+    {flag_sql}
+  FROM `{TABLE}`
+  WHERE _PARTITIONTIME >= TIMESTAMP('{first.isoformat()}')
+    AND _PARTITIONTIME < TIMESTAMP_ADD(TIMESTAMP('{last.isoformat()}'), INTERVAL 1 DAY)
+    AND DATE IS NOT NULL
+)
+SELECT hour,
+  {agg_sql}
+FROM a
+WHERE hour < TIMESTAMP_ADD(TIMESTAMP('{last.isoformat()}'), INTERVAL 1 DAY)
+GROUP BY hour
+ORDER BY hour
+"""
+
+
+def fetch_table(sql: str, path: Path, max_tb: float, project: str = PROJECT) -> Path:
+    """Run a query (refused by BigQuery above max_tb) and save every column."""
+    from google.cloud import bigquery
+
+    client = bigquery.Client(project=project)
+    cfg = bigquery.QueryJobConfig(maximum_bytes_billed=int(max_tb * 1e12))
+    result = client.query(sql, job_config=cfg).result()
+    names = [f.name for f in result.schema]
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(names)
+        for r in result:
+            w.writerow(
+                [r["hour"].strftime("%Y-%m-%dT%H:00Z")]
+                + ["" if r[c] is None else r[c] for c in names[1:]]
+            )
+    return path
+
+
+def load_table(path: Path) -> tuple[list[datetime], dict[str, list[float]]]:
+    with path.open() as fh:
+        reader = csv.DictReader(fh)
+        rows = list(reader)
+        names = list(reader.fieldnames or [])
+    hours = [datetime.fromisoformat(r["hour"].replace("Z", "+00:00")) for r in rows]
+    if hours and hours[-1].date() > LAST_DAY:
+        raise ValueError("news history must stop at 2024-12-31")
+    data = {
+        c: [float(r[c]) if r[c] != "" else float("nan") for r in rows]
+        for c in names
+        if c != "hour"
+    }
+    return hours, data
