@@ -4,8 +4,15 @@ The pilot parser in ``providers/histdata.py`` validates each tick with Decimal a
 pydantic, which is far too slow for 12 years (~1.5 billion ticks). This module uses
 plain floats and fixed-width parsing to build compact 1-minute bars per month.
 
-Source timestamps are EST without DST (fixed UTC-05:00) per the HistData spec; bars
-are keyed by UTC minute (epoch seconds of the bar open).
+HistData's spec says its timestamps are EST without daylight saving (fixed UTC-05:00).
+That is true only in winter. The XAUUSD feed moves to UTC-04:00 in summer, and the
+dates it switches on changed: through 2018 it follows US daylight saving (New York
+local time); from 2019 it follows UK summer time (London wall time minus 5 hours).
+Found on 2026-11-19 from US jobs-report and CPI (08:30 New York) and FOMC (14:00)
+price spikes, 2014-2025: under these rules every release sits at its scheduled
+minute, including the March and October/November weeks when only one of the US
+and UK is on summer time. Bars are keyed by UTC minute (epoch seconds of the bar
+open).
 """
 
 from __future__ import annotations
@@ -18,8 +25,11 @@ import urllib.parse
 import urllib.request
 from calendar import timegm
 from dataclasses import dataclass, field
+from datetime import UTC, datetime, timedelta
+from functools import cache
 from pathlib import Path
 from zipfile import BadZipFile, ZipFile
+from zoneinfo import ZoneInfo
 
 import numpy as np
 
@@ -37,7 +47,10 @@ PAGE_URL = (
 )
 POST_URL = "https://www.histdata.com/get.php"
 USER_AGENT = "Mozilla/5.0 (research data client)"
-SOURCE_OFFSET_SECONDS = 5 * 3600  # source clock is UTC-05:00 fixed
+US_DST = ZoneInfo("America/New_York")  # source summer dates through 2018
+UK_DST = ZoneInfo("Europe/London")  # source summer dates from 2019
+UK_RULE_FROM_YEAR = 2019
+BASE_OFFSET_SECONDS = 5 * 3600
 MAX_JITTER_SECONDS = 2  # tolerated backward timestamp step between ticks
 
 BAR_FIELDS = (
@@ -116,24 +129,30 @@ class MonthQuality:
     spreads_sample: list[float] = field(default_factory=list)
 
 
-def parse_epoch(stamp: str) -> int:
-    """'YYYYMMDD HHMMSSNNN' in fixed UTC-05:00 -> UTC epoch seconds (whole)."""
-    return (
-        timegm(
-            (
-                int(stamp[0:4]),
-                int(stamp[4:6]),
-                int(stamp[6:8]),
-                int(stamp[9:11]),
-                int(stamp[11:13]),
-                int(stamp[13:15]),
-                0,
-                0,
-                0,
-            )
-        )
-        + SOURCE_OFFSET_SECONDS
+@cache
+def _source_offset(year: int, month: int, day: int, hour: int) -> int:
+    """Seconds to add to a source wall-clock hour to get UTC: 5 h in winter, 4 h in
+    summer (US summer dates through 2018, UK summer dates from 2019)."""
+    if year < UK_RULE_FROM_YEAR:
+        offset = datetime(year, month, day, hour, tzinfo=US_DST).utcoffset()
+        assert offset is not None
+        return -int(offset.total_seconds())
+    winter_utc = datetime(year, month, day, hour, tzinfo=UTC) + timedelta(
+        seconds=BASE_OFFSET_SECONDS
     )
+    in_summer = bool(winter_utc.astimezone(UK_DST).dst())
+    return BASE_OFFSET_SECONDS - (3600 if in_summer else 0)
+
+
+def parse_epoch(stamp: str) -> int:
+    """'YYYYMMDD HHMMSSNNN' source time -> UTC epoch seconds (whole).
+
+    Both clock changes happen early on Sunday mornings, when gold is closed, so no
+    tick sits next to a switch.
+    """
+    y, mo, d, h = int(stamp[0:4]), int(stamp[4:6]), int(stamp[6:8]), int(stamp[9:11])
+    wall = timegm((y, mo, d, h, int(stamp[11:13]), int(stamp[13:15]), 0, 0, 0))
+    return wall + _source_offset(y, mo, d, h)
 
 
 def build_minute_bars(
@@ -148,9 +167,10 @@ def build_minute_bars(
     bo = bh = bl = bc = ao = ah = al = ac = smax = 0.0
     count = 0
     last_epoch = -1
-    # Cached date part: the date prefix changes rarely, so cache its midnight epoch.
-    cached_day = ""
-    day_epoch = 0
+    # Cached date+hour part: it changes rarely, so cache that hour's UTC epoch (the
+    # UTC offset is fixed within a local hour but can change between hours).
+    cached_hour = ""
+    hour_epoch = 0
 
     def flush() -> None:
         minutes.append(current)
@@ -170,15 +190,10 @@ def build_minute_bars(
         try:
             bid = float(parts[1])
             ask = float(parts[2])
-            if stamp[:8] != cached_day:
-                cached_day = stamp[:8]
-                day_epoch = parse_epoch(cached_day + " 000000000")
-            epoch = (
-                day_epoch
-                + int(stamp[9:11]) * 3600
-                + int(stamp[11:13]) * 60
-                + int(stamp[13:15])
-            )
+            if stamp[:11] != cached_hour:
+                cached_hour = stamp[:11]
+                hour_epoch = parse_epoch(cached_hour + "0000000")
+            epoch = hour_epoch + int(stamp[11:13]) * 60 + int(stamp[13:15])
         except ValueError:
             quality.malformed += 1
             continue

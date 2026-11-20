@@ -8,9 +8,39 @@ def epoch(*args: int) -> int:
     return int(datetime(*args, tzinfo=UTC).timestamp())
 
 
-def test_parse_epoch_uses_fixed_utc_minus_five_even_in_summer() -> None:
-    assert parse_epoch("20240716 120000000") == epoch(2024, 7, 16, 17, 0)
+def test_parse_epoch_is_london_time_minus_five_hours() -> None:
+    # UK summer time: source 08:30 = 12:30 UTC (= 08:30 New York, a jobs report)
+    assert parse_epoch("20240705 083000000") == epoch(2024, 7, 5, 12, 30)
+    # winter: source 08:30 = 13:30 UTC
+    assert parse_epoch("20240116 083000000") == epoch(2024, 1, 16, 13, 30)
     assert parse_epoch("20240116 235959999") == epoch(2024, 1, 17, 4, 59, 59)
+
+
+def test_us_only_summer_weeks_stay_on_utc_minus_five() -> None:
+    # 12 March 2024: New York already on summer time, London not yet. The 08:30
+    # New York CPI release (12:30 UTC) shows as 07:30 on the source clock.
+    assert parse_epoch("20240312 073000000") == epoch(2024, 3, 12, 12, 30)
+    # first trading hour after the UK switch (31 March 2024) is on UTC-04:00
+    assert parse_epoch("20240331 180000000") == epoch(2024, 3, 31, 22, 0)
+
+
+def test_through_2018_summer_follows_us_dates() -> None:
+    # 13 March 2018: US already on summer time (UK not); the 08:30 New York CPI
+    # release (12:30 UTC) shows as 08:30 on the source clock in those years
+    assert parse_epoch("20180313 083000000") == epoch(2018, 3, 13, 12, 30)
+    assert parse_epoch("20180116 083000000") == epoch(2018, 1, 16, 13, 30)
+
+
+def test_minute_bars_switch_offset_within_a_file() -> None:
+    data = io.StringIO(
+        "20240329 165900000,2000.10,2000.40,0\n"  # Friday before the UK switch
+        "20240331 180000000,2001.00,2001.20,0\n"  # Sunday reopen, UK summer time
+    )
+    bars, _ = build_minute_bars(data)
+    assert list(bars["minute_utc"]) == [
+        epoch(2024, 3, 29, 21, 59),
+        epoch(2024, 3, 31, 22, 0),
+    ]
 
 
 def test_minute_bars_ohlc_and_spread() -> None:
