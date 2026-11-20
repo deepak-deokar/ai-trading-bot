@@ -135,24 +135,58 @@ def simulate_event(
     stop = lo if direction == 1 else hi
     s = b
     last = int(np.searchsorted(m, ev.utc(_until(ev)))) - 1
+    return execute(
+        bars,
+        ev.day,
+        s,
+        last,
+        direction,
+        costs,
+        sizing,
+        stop=stop,
+        target_r=rule.target_r,
+    )
+
+
+def execute(
+    bars: dict[str, Array],
+    day: date,
+    s: int,
+    last: int,
+    direction: int,
+    costs: CostModel,
+    sizing: Sizing,
+    *,
+    stop: float | None = None,
+    risk: float | None = None,
+    target_r: float | None = None,
+) -> HoldTrade | None:
+    """Open at minute s and manage minute by minute until minute `last` inclusive.
+
+    Give either an absolute ``stop`` level or a ``risk`` distance from the entry
+    fill. ``target_r`` sets a target at that many times the risk (None: no target).
+    """
     if last <= s:
         return None
+    m = bars["minute_utc"]
     pf = costs.per_fill
     if direction == 1:
         entry = float(bars["ask_open"][s]) + pf
-        if stop >= float(bars["bid_open"][s]):
-            return None  # price already through the stop at entry
     else:
         entry = float(bars["bid_open"][s]) - pf
-        if stop <= float(bars["ask_open"][s]):
-            return None
+    if stop is None:
+        if risk is None or risk <= 0:
+            raise ValueError("give a stop level or a positive risk distance")
+        stop = entry - direction * risk
+    if direction == 1 and stop >= float(bars["bid_open"][s]):
+        return None  # price already through the stop at entry
+    if direction == -1 and stop <= float(bars["ask_open"][s]):
+        return None
     lots = lots_for(entry, stop, costs, sizing)
     if lots == 0.0:
         return None
     target = (
-        None
-        if rule.target_r is None
-        else entry + direction * rule.target_r * abs(entry - stop)
+        None if target_r is None else entry + direction * target_r * abs(entry - stop)
     )
     sl = slice(s, last + 1)
     if direction == 1:
@@ -182,7 +216,7 @@ def simulate_event(
     pnl -= costs.commission_per_lot * lots
     hold = int((m[k] - m[s]) // 60) + 1
     return HoldTrade(
-        ev.day, direction, s, entry, stop, exit_px, lots, pnl, reason, hold, k, target
+        day, direction, s, entry, stop, exit_px, lots, pnl, reason, hold, k, target
     )
 
 

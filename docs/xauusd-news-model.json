@@ -1,0 +1,250 @@
+{
+  "design": "see trading_bot.backtesting.news_model",
+  "data_years": [
+    2014,
+    2024
+  ],
+  "test_years": [
+    2016,
+    2024
+  ],
+  "events": 328,
+  "test_events": 270,
+  "share_buy_wins": 0.522,
+  "direction_accuracy": 0.493,
+  "results": {
+    "model, margin 0.00": {
+      "trades": 270,
+      "win_rate": 0.452,
+      "net_usd": -839.5,
+      "avg_per_trade": -3.11,
+      "avg_win": 15.47,
+      "avg_loss": -18.42,
+      "profit_factor": 0.692,
+      "max_drawdown_usd": 973.43,
+      "by_year": {
+        "2016": 32.33,
+        "2017": -58.18,
+        "2018": -391.99,
+        "2019": -20.59,
+        "2020": -133.54,
+        "2021": -46.57,
+        "2022": -114.7,
+        "2023": -30.29,
+        "2024": -75.97
+      },
+      "green_years": 1,
+      "exit_mix": {
+        "stop": 88,
+        "target": 63,
+        "time_exit": 119
+      }
+    },
+    "model, margin 0.05": {
+      "trades": 173,
+      "win_rate": 0.445,
+      "net_usd": -667.85,
+      "avg_per_trade": -3.86,
+      "avg_win": 15.08,
+      "avg_loss": -19.05,
+      "profit_factor": 0.635,
+      "max_drawdown_usd": 815.87,
+      "by_year": {
+        "2016": 29.98,
+        "2017": -58.18,
+        "2018": -265.43,
+        "2019": -39.59,
+        "2020": -90.81,
+        "2021": -64.41,
+        "2022": -193.31,
+        "2023": 51.08,
+        "2024": -37.19
+      },
+      "green_years": 2,
+      "exit_mix": {
+        "stop": 60,
+        "target": 39,
+        "time_exit": 74
+      }
+    },
+    "model, margin 0.10": {
+      "trades": 116,
+      "win_rate": 0.448,
+      "net_usd": -387.77,
+      "avg_per_trade": -3.34,
+      "avg_win": 15.77,
+      "avg_loss": -18.87,
+      "profit_factor": 0.679,
+      "max_drawdown_usd": 596.32,
+      "by_year": {
+        "2016": 2.15,
+        "2017": -59.9,
+        "2018": -134.14,
+        "2019": -96.83,
+        "2020": -48.2,
+        "2021": 25.69,
+        "2022": -181.35,
+        "2023": 57.21,
+        "2024": 47.59
+      },
+      "green_years": 4,
+      "exit_mix": {
+        "stop": 39,
+        "target": 28,
+        "time_exit": 49
+      }
+    },
+    "simple: follow the news candle": {
+      "trades": 270,
+      "win_rate": 0.474,
+      "net_usd": -610.56,
+      "avg_per_trade": -2.26,
+      "avg_win": 15.6,
+      "avg_loss": -18.36,
+      "profit_factor": 0.766,
+      "max_drawdown_usd": 699.91,
+      "by_year": {
+        "2016": -66.47,
+        "2017": -141.91,
+        "2018": -207.95,
+        "2019": 44.8,
+        "2020": -69.19,
+        "2021": 11.47,
+        "2022": -190.06,
+        "2023": 67.42,
+        "2024": -58.68
+      },
+      "green_years": 3,
+      "exit_mix": {
+        "stop": 89,
+        "target": 63,
+        "time_exit": 118
+      }
+    },
+    "simple: against the news candle": {
+      "trades": 270,
+      "win_rate": 0.441,
+      "net_usd": -497.86,
+      "avg_per_trade": -1.84,
+      "avg_win": 17.36,
+      "avg_loss": -16.97,
+      "profit_factor": 0.806,
+      "max_drawdown_usd": 596.12,
+      "by_year": {
+        "2016": -83.31,
+        "2017": -2.2,
+        "2018": 19.19,
+        "2019": -182.25,
+        "2020": -102.84,
+        "2021": -131.34,
+        "2022": 131.78,
+        "2023": -168.21,
+        "2024": 21.32
+      },
+      "green_years": 3,
+      "exit_mix": {
+        "stop": 71,
+        "target": 76,
+        "time_exit": 123
+      }
+    },
+    "simple: always buy": {
+      "trades": 270,
+      "win_rate": 0.478,
+      "net_usd": -426.17,
+      "avg_per_trade": -1.58,
+      "avg_win": 16.13,
+      "avg_loss": -17.78,
+      "profit_factor": 0.83,
+      "max_drawdown_usd": 710.24,
+      "by_year": {
+        "2016": -85.66,
+        "2017": -172.66,
+        "2018": 38.18,
+        "2019": -167.15,
+        "2020": -159.34,
+        "2021": 33.92,
+        "2022": 272.45,
+        "2023": -69.89,
+        "2024": -116.02
+      },
+      "green_years": 3,
+      "exit_mix": {
+        "stop": 83,
+        "target": 65,
+        "time_exit": 122
+      }
+    }
+  },
+  "weights": {
+    "is_jobs": {
+      "avg_weight": -0.066,
+      "same_sign_years": 7
+    },
+    "is_cpi": {
+      "avg_weight": -0.171,
+      "same_sign_years": 9
+    },
+    "news_move": {
+      "avg_weight": -0.064,
+      "same_sign_years": 5
+    },
+    "news_range": {
+      "avg_weight": 0.048,
+      "same_sign_years": 6
+    },
+    "news_close_pos": {
+      "avg_weight": 0.04,
+      "same_sign_years": 5
+    },
+    "pre_news_move": {
+      "avg_weight": -0.461,
+      "same_sign_years": 9
+    },
+    "trend_5d": {
+      "avg_weight": 0.172,
+      "same_sign_years": 5
+    },
+    "trend_20d": {
+      "avg_weight": 0.048,
+      "same_sign_years": 8
+    },
+    "pos_in_yday_range": {
+      "avg_weight": 0.321,
+      "same_sign_years": 9
+    },
+    "room_up": {
+      "avg_weight": 0.115,
+      "same_sign_years": 6
+    },
+    "room_down": {
+      "avg_weight": -0.069,
+      "same_sign_years": 6
+    },
+    "pre_news_range": {
+      "avg_weight": -0.027,
+      "same_sign_years": 5
+    },
+    "broke_level": {
+      "avg_weight": 0.192,
+      "same_sign_years": 5
+    }
+  },
+  "final_model_weights_2014_2024": {
+    "is_jobs": -0.186,
+    "is_cpi": -0.218,
+    "news_move": 0.111,
+    "news_range": -0.007,
+    "news_close_pos": -0.077,
+    "pre_news_move": -0.104,
+    "trend_5d": -0.179,
+    "trend_20d": 0.044,
+    "pos_in_yday_range": 0.272,
+    "room_up": -0.029,
+    "room_down": -0.105,
+    "pre_news_range": -0.018,
+    "broke_level": -0.044
+  },
+  "passed": false,
+  "2025_2026": "not loaded"
+}
