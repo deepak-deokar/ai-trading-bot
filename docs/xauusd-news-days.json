@@ -1,0 +1,433 @@
+{
+  "question": "Does trading only on big US news days, once a day, make money?",
+  "events_file": "config/us_news_events.csv",
+  "dev_years": [
+    2014,
+    2024
+  ],
+  "pass_criteria": "net > 0 at 2x costs, >= 7 of 11 green years, edge t >= 2",
+  "holdout": "2026 not loaded",
+  "dev": [
+    {
+      "rule": "momentum/time-exit",
+      "base": {
+        "events_with_data": 331,
+        "trades": 331,
+        "win_rate": 0.4018,
+        "net_usd": -899.45,
+        "avg_per_trade": -2.72,
+        "max_drawdown_usd": 1576.54,
+        "profit_factor": 0.798,
+        "by_year": {
+          "2014": 11.43,
+          "2015": 564.32,
+          "2016": -175.32,
+          "2017": -247.08,
+          "2018": -402.32,
+          "2019": -22.65,
+          "2020": -126.82,
+          "2021": -56.69,
+          "2022": -332.17,
+          "2023": -4.33,
+          "2024": -107.84
+        },
+        "green_years": 2,
+        "median_risk_per_oz": 6.59,
+        "exit_mix": {
+          "stop": 153,
+          "target": 0,
+          "time_exit": 178
+        }
+      },
+      "double": {
+        "events_with_data": 331,
+        "trades": 330,
+        "win_rate": 0.3818,
+        "net_usd": -1531.04,
+        "avg_per_trade": -4.64,
+        "max_drawdown_usd": 1933.01,
+        "profit_factor": 0.657,
+        "by_year": {
+          "2014": -89.68,
+          "2015": 407.94,
+          "2016": -213.08,
+          "2017": -304.5,
+          "2018": -452.24,
+          "2019": -90.68,
+          "2020": -165.7,
+          "2021": -106.09,
+          "2022": -351.98,
+          "2023": -27.05,
+          "2024": -137.99
+        },
+        "green_years": 1,
+        "median_risk_per_oz": 6.79,
+        "exit_mix": {
+          "stop": 153,
+          "target": 0,
+          "time_exit": 177
+        }
+      },
+      "raw_edge": {
+        "trades": 331,
+        "usd_per_oz": 0.127,
+        "t_stat": 0.27
+      },
+      "by_event": {
+        "nfp": {
+          "trades": 126,
+          "net_usd": -296.12,
+          "avg_per_trade": -2.35,
+          "raw_edge": {
+            "trades": 126,
+            "usd_per_oz": -0.253,
+            "t_stat": -0.34
+          }
+        },
+        "cpi": {
+          "trades": 127,
+          "net_usd": -202.42,
+          "avg_per_trade": -1.59,
+          "raw_edge": {
+            "trades": 127,
+            "usd_per_oz": 0.269,
+            "t_stat": 0.36
+          }
+        },
+        "fomc": {
+          "trades": 78,
+          "net_usd": -400.91,
+          "avg_per_trade": -5.14,
+          "raw_edge": {
+            "trades": 78,
+            "usd_per_oz": 0.512,
+            "t_stat": 0.51
+          }
+        }
+      },
+      "control_raw_edge": {
+        "trades": 2448,
+        "usd_per_oz": 0.135,
+        "t_stat": 1.18,
+        "days_with_data": 2454
+      },
+      "passed": false
+    },
+    {
+      "rule": "momentum/2R",
+      "base": {
+        "events_with_data": 331,
+        "trades": 331,
+        "win_rate": 0.4079,
+        "net_usd": -1359.28,
+        "avg_per_trade": -4.11,
+        "max_drawdown_usd": 1529.33,
+        "profit_factor": 0.69,
+        "by_year": {
+          "2014": -154.67,
+          "2015": 222.73,
+          "2016": -157.25,
+          "2017": -232.26,
+          "2018": -417.96,
+          "2019": -10.79,
+          "2020": -159.85,
+          "2021": -32.61,
+          "2022": -332.17,
+          "2023": 26.38,
+          "2024": -110.84
+        },
+        "green_years": 2,
+        "median_risk_per_oz": 6.59,
+        "exit_mix": {
+          "stop": 151,
+          "target": 32,
+          "time_exit": 148
+        }
+      },
+      "double": {
+        "events_with_data": 331,
+        "trades": 330,
+        "win_rate": 0.3879,
+        "net_usd": -1842.88,
+        "avg_per_trade": -5.58,
+        "max_drawdown_usd": 1918.95,
+        "profit_factor": 0.582,
+        "by_year": {
+          "2014": -215.22,
+          "2015": 151.21,
+          "2016": -204.29,
+          "2017": -304.5,
+          "2018": -453.09,
+          "2019": -70.04,
+          "2020": -181.96,
+          "2021": -80.06,
+          "2022": -351.98,
+          "2023": 3.38,
+          "2024": -136.35
+        },
+        "green_years": 2,
+        "median_risk_per_oz": 6.79,
+        "exit_mix": {
+          "stop": 151,
+          "target": 29,
+          "time_exit": 150
+        }
+      },
+      "raw_edge": {
+        "trades": 331,
+        "usd_per_oz": -0.111,
+        "t_stat": -0.25
+      },
+      "by_event": {
+        "nfp": {
+          "trades": 126,
+          "net_usd": -567.02,
+          "avg_per_trade": -4.5,
+          "raw_edge": {
+            "trades": 126,
+            "usd_per_oz": -0.631,
+            "t_stat": -0.94
+          }
+        },
+        "cpi": {
+          "trades": 127,
+          "net_usd": -572.0,
+          "avg_per_trade": -4.5,
+          "raw_edge": {
+            "trades": 127,
+            "usd_per_oz": -0.102,
+            "t_stat": -0.15
+          }
+        },
+        "fomc": {
+          "trades": 78,
+          "net_usd": -220.25,
+          "avg_per_trade": -2.82,
+          "raw_edge": {
+            "trades": 78,
+            "usd_per_oz": 0.716,
+            "t_stat": 0.71
+          }
+        }
+      },
+      "control_raw_edge": {
+        "trades": 2448,
+        "usd_per_oz": 0.042,
+        "t_stat": 0.51,
+        "days_with_data": 2454
+      },
+      "passed": false
+    },
+    {
+      "rule": "fade/time-exit",
+      "base": {
+        "events_with_data": 331,
+        "trades": 314,
+        "win_rate": 0.207,
+        "net_usd": -2075.61,
+        "avg_per_trade": -6.61,
+        "max_drawdown_usd": 2657.05,
+        "profit_factor": 0.707,
+        "by_year": {
+          "2014": -382.96,
+          "2015": -182.37,
+          "2016": -299.8,
+          "2017": 84.66,
+          "2018": -399.0,
+          "2019": -186.31,
+          "2020": -782.22,
+          "2021": -367.4,
+          "2022": 438.48,
+          "2023": -488.15,
+          "2024": 489.45
+        },
+        "green_years": 3,
+        "median_risk_per_oz": 2.47,
+        "exit_mix": {
+          "stop": 232,
+          "target": 0,
+          "time_exit": 82
+        }
+      },
+      "double": {
+        "events_with_data": 331,
+        "trades": 314,
+        "win_rate": 0.2038,
+        "net_usd": -3287.1,
+        "avg_per_trade": -10.47,
+        "max_drawdown_usd": 3655.05,
+        "profit_factor": 0.55,
+        "by_year": {
+          "2014": -456.57,
+          "2015": -341.39,
+          "2016": -370.09,
+          "2017": -94.76,
+          "2018": -474.25,
+          "2019": -316.65,
+          "2020": -797.23,
+          "2021": -425.61,
+          "2022": 232.05,
+          "2023": -509.15,
+          "2024": 266.54
+        },
+        "green_years": 2,
+        "median_risk_per_oz": 2.67,
+        "exit_mix": {
+          "stop": 232,
+          "target": 0,
+          "time_exit": 82
+        }
+      },
+      "raw_edge": {
+        "trades": 329,
+        "usd_per_oz": 0.346,
+        "t_stat": 0.97
+      },
+      "by_event": {
+        "nfp": {
+          "trades": 122,
+          "net_usd": -1154.92,
+          "avg_per_trade": -9.47,
+          "raw_edge": {
+            "trades": 125,
+            "usd_per_oz": 0.1,
+            "t_stat": 0.16
+          }
+        },
+        "cpi": {
+          "trades": 117,
+          "net_usd": -39.72,
+          "avg_per_trade": -0.34,
+          "raw_edge": {
+            "trades": 126,
+            "usd_per_oz": 1.088,
+            "t_stat": 1.92
+          }
+        },
+        "fomc": {
+          "trades": 75,
+          "net_usd": -880.97,
+          "avg_per_trade": -11.75,
+          "raw_edge": {
+            "trades": 78,
+            "usd_per_oz": -0.459,
+            "t_stat": -0.73
+          }
+        }
+      },
+      "control_raw_edge": {
+        "trades": 2416,
+        "usd_per_oz": -0.038,
+        "t_stat": -0.56,
+        "days_with_data": 2454
+      },
+      "passed": false
+    },
+    {
+      "rule": "fade/2R",
+      "base": {
+        "events_with_data": 331,
+        "trades": 314,
+        "win_rate": 0.2739,
+        "net_usd": -2948.63,
+        "avg_per_trade": -9.39,
+        "max_drawdown_usd": 2997.7,
+        "profit_factor": 0.55,
+        "by_year": {
+          "2014": -390.99,
+          "2015": -441.68,
+          "2016": -201.02,
+          "2017": -151.72,
+          "2018": -390.44,
+          "2019": -74.69,
+          "2020": -622.67,
+          "2021": -229.17,
+          "2022": 85.05,
+          "2023": -486.08,
+          "2024": -45.24
+        },
+        "green_years": 1,
+        "median_risk_per_oz": 2.47,
+        "exit_mix": {
+          "stop": 217,
+          "target": 70,
+          "time_exit": 27
+        }
+      },
+      "double": {
+        "events_with_data": 331,
+        "trades": 314,
+        "win_rate": 0.2643,
+        "net_usd": -3767.97,
+        "avg_per_trade": -12.0,
+        "max_drawdown_usd": 3811.47,
+        "profit_factor": 0.446,
+        "by_year": {
+          "2014": -446.63,
+          "2015": -496.85,
+          "2016": -256.88,
+          "2017": -221.25,
+          "2018": -476.43,
+          "2019": -232.2,
+          "2020": -649.38,
+          "2021": -273.91,
+          "2022": -90.43,
+          "2023": -504.08,
+          "2024": -119.95
+        },
+        "green_years": 0,
+        "median_risk_per_oz": 2.67,
+        "exit_mix": {
+          "stop": 218,
+          "target": 66,
+          "time_exit": 30
+        }
+      },
+      "raw_edge": {
+        "trades": 329,
+        "usd_per_oz": 0.191,
+        "t_stat": 0.72
+      },
+      "by_event": {
+        "nfp": {
+          "trades": 122,
+          "net_usd": -978.88,
+          "avg_per_trade": -8.02,
+          "raw_edge": {
+            "trades": 125,
+            "usd_per_oz": 0.085,
+            "t_stat": 0.18
+          }
+        },
+        "cpi": {
+          "trades": 117,
+          "net_usd": -769.06,
+          "avg_per_trade": -6.57,
+          "raw_edge": {
+            "trades": 126,
+            "usd_per_oz": 0.562,
+            "t_stat": 1.47
+          }
+        },
+        "fomc": {
+          "trades": 75,
+          "net_usd": -1200.69,
+          "avg_per_trade": -16.01,
+          "raw_edge": {
+            "trades": 78,
+            "usd_per_oz": -0.24,
+            "t_stat": -0.46
+          }
+        }
+      },
+      "control_raw_edge": {
+        "trades": 2416,
+        "usd_per_oz": -0.045,
+        "t_stat": -1.13,
+        "days_with_data": 2454
+      },
+      "passed": false
+    }
+  ],
+  "check_2025": []
+}
