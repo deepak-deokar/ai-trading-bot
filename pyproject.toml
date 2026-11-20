@@ -16,6 +16,8 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+news = ["google-cloud-bigquery==3.27.0"]
+ml = ["scikit-learn==1.7.1"]
 dev = [
   "pytest==8.4.1", "pytest-cov==6.2.1", "httpx==0.28.1",
   "ruff==0.12.11", "black==25.1.0", "mypy==1.17.1",
