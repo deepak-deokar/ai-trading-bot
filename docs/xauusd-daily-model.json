@@ -1,0 +1,372 @@
+{
+  "design": "see trading_bot.backtesting.daily_model",
+  "data_years": [
+    2014,
+    2024
+  ],
+  "test_years": [
+    2016,
+    2024
+  ],
+  "days": 2763,
+  "test_days": 2269,
+  "share_buy_wins": 0.506,
+  "direction_accuracy": 0.493,
+  "direction_accuracy_when_confident": 0.502,
+  "results": {
+    "model, margin 0.00": {
+      "trades": 2266,
+      "win_rate": 0.44,
+      "net_usd": -4880.08,
+      "avg_per_trade": -2.15,
+      "avg_win": 13.97,
+      "avg_loss": -14.83,
+      "profit_factor": 0.741,
+      "max_drawdown_usd": 4916.21,
+      "by_year": {
+        "2016": -522.95,
+        "2017": -390.4,
+        "2018": -926.58,
+        "2019": -527.96,
+        "2020": -487.59,
+        "2021": -18.98,
+        "2022": -588.64,
+        "2023": -641.66,
+        "2024": -775.32
+      },
+      "green_years": 0,
+      "exit_mix": {
+        "stop": 485,
+        "target": 390,
+        "time_exit": 1391
+      }
+    },
+    "model, margin 0.05": {
+      "trades": 1013,
+      "win_rate": 0.442,
+      "net_usd": -1818.0,
+      "avg_per_trade": -1.79,
+      "avg_win": 14.76,
+      "avg_loss": -14.92,
+      "profit_factor": 0.784,
+      "max_drawdown_usd": 1833.49,
+      "by_year": {
+        "2016": -394.05,
+        "2017": -126.49,
+        "2018": -443.79,
+        "2019": 91.39,
+        "2020": -212.0,
+        "2021": -74.32,
+        "2022": -154.7,
+        "2023": -531.81,
+        "2024": 27.79
+      },
+      "green_years": 2,
+      "exit_mix": {
+        "stop": 221,
+        "target": 192,
+        "time_exit": 600
+      }
+    },
+    "model, margin 0.10": {
+      "trades": 361,
+      "win_rate": 0.446,
+      "net_usd": -572.0,
+      "avg_per_trade": -1.58,
+      "avg_win": 15.17,
+      "avg_loss": -15.08,
+      "profit_factor": 0.81,
+      "max_drawdown_usd": 609.46,
+      "by_year": {
+        "2016": -99.91,
+        "2017": 11.5,
+        "2018": -169.35,
+        "2019": -89.57,
+        "2020": -41.04,
+        "2021": -1.04,
+        "2022": -71.84,
+        "2023": -144.38,
+        "2024": 33.63
+      },
+      "green_years": 2,
+      "exit_mix": {
+        "stop": 77,
+        "target": 70,
+        "time_exit": 214
+      }
+    },
+    "simple: always buy": {
+      "trades": 2266,
+      "win_rate": 0.454,
+      "net_usd": -4554.53,
+      "avg_per_trade": -2.01,
+      "avg_win": 13.65,
+      "avg_loss": -15.04,
+      "profit_factor": 0.755,
+      "max_drawdown_usd": 4675.6,
+      "by_year": {
+        "2016": -755.16,
+        "2017": -689.69,
+        "2018": -999.13,
+        "2019": -308.38,
+        "2020": -122.36,
+        "2021": -390.05,
+        "2022": -454.73,
+        "2023": -471.38,
+        "2024": -363.64
+      },
+      "green_years": 0,
+      "exit_mix": {
+        "stop": 493,
+        "target": 388,
+        "time_exit": 1385
+      }
+    },
+    "simple: follow the overnight move": {
+      "trades": 2266,
+      "win_rate": 0.438,
+      "net_usd": -5119.47,
+      "avg_per_trade": -2.26,
+      "avg_win": 13.96,
+      "avg_loss": -14.91,
+      "profit_factor": 0.73,
+      "max_drawdown_usd": 5370.86,
+      "by_year": {
+        "2016": -687.33,
+        "2017": -813.13,
+        "2018": -957.62,
+        "2019": -960.25,
+        "2020": -244.98,
+        "2021": -376.55,
+        "2022": -369.22,
+        "2023": -421.15,
+        "2024": -289.24
+      },
+      "green_years": 0,
+      "exit_mix": {
+        "stop": 474,
+        "target": 409,
+        "time_exit": 1383
+      }
+    },
+    "simple: against the overnight move": {
+      "trades": 2266,
+      "win_rate": 0.451,
+      "net_usd": -4848.3,
+      "avg_per_trade": -2.14,
+      "avg_win": 13.55,
+      "avg_loss": -15.01,
+      "profit_factor": 0.74,
+      "max_drawdown_usd": 4820.01,
+      "by_year": {
+        "2016": -632.85,
+        "2017": -1044.26,
+        "2018": -906.71,
+        "2019": -306.86,
+        "2020": -552.72,
+        "2021": -317.55,
+        "2022": -443.02,
+        "2023": -219.72,
+        "2024": -424.62
+      },
+      "green_years": 0,
+      "exit_mix": {
+        "stop": 504,
+        "target": 369,
+        "time_exit": 1393
+      }
+    },
+    "simple: follow the 20-day trend": {
+      "trades": 2266,
+      "win_rate": 0.445,
+      "net_usd": -4771.24,
+      "avg_per_trade": -2.11,
+      "avg_win": 13.81,
+      "avg_loss": -14.86,
+      "profit_factor": 0.745,
+      "max_drawdown_usd": 4900.77,
+      "by_year": {
+        "2016": -695.08,
+        "2017": -599.12,
+        "2018": -944.93,
+        "2019": -572.49,
+        "2020": -525.26,
+        "2021": -138.91,
+        "2022": -447.18,
+        "2023": -234.18,
+        "2024": -614.08
+      },
+      "green_years": 0,
+      "exit_mix": {
+        "stop": 490,
+        "target": 389,
+        "time_exit": 1387
+      }
+    },
+    "simple: against yesterday's US dollar move": {
+      "trades": 2246,
+      "win_rate": 0.432,
+      "net_usd": -5549.0,
+      "avg_per_trade": -2.47,
+      "avg_win": 13.86,
+      "avg_loss": -14.89,
+      "profit_factor": 0.708,
+      "max_drawdown_usd": 5521.63,
+      "by_year": {
+        "2016": -560.97,
+        "2017": -1089.77,
+        "2018": -1403.18,
+        "2019": -845.45,
+        "2020": -607.51,
+        "2021": -95.07,
+        "2022": -548.32,
+        "2023": 125.56,
+        "2024": -524.29
+      },
+      "green_years": 1,
+      "exit_mix": {
+        "stop": 493,
+        "target": 378,
+        "time_exit": 1375
+      }
+    }
+  },
+  "main_at_2x_costs": {
+    "trades": 1013,
+    "win_rate": 0.416,
+    "net_usd": -3193.98,
+    "avg_per_trade": -3.15,
+    "avg_win": 13.86,
+    "avg_loss": -15.25,
+    "profit_factor": 0.646,
+    "max_drawdown_usd": 3210.59,
+    "by_year": {
+      "2016": -690.49,
+      "2017": -331.45,
+      "2018": -663.76,
+      "2019": -129.1,
+      "2020": -324.58,
+      "2021": -89.68,
+      "2022": -234.63,
+      "2023": -711.2,
+      "2024": -19.09
+    },
+    "green_years": 0,
+    "exit_mix": {
+      "stop": 230,
+      "target": 184,
+      "time_exit": 599
+    }
+  },
+  "weights": {
+    "overnight_move": {
+      "avg_weight": -0.016,
+      "same_sign_years": 5
+    },
+    "overnight_range": {
+      "avg_weight": 0.123,
+      "same_sign_years": 8
+    },
+    "pos_in_overnight": {
+      "avg_weight": 0.026,
+      "same_sign_years": 7
+    },
+    "yday_candle": {
+      "avg_weight": 0.017,
+      "same_sign_years": 5
+    },
+    "trend_5d": {
+      "avg_weight": 0.088,
+      "same_sign_years": 9
+    },
+    "trend_20d": {
+      "avg_weight": 0.084,
+      "same_sign_years": 9
+    },
+    "pos_in_yday_range": {
+      "avg_weight": -0.053,
+      "same_sign_years": 8
+    },
+    "room_up": {
+      "avg_weight": -0.059,
+      "same_sign_years": 7
+    },
+    "room_down": {
+      "avg_weight": -0.146,
+      "same_sign_years": 9
+    },
+    "vol_ratio": {
+      "avg_weight": 0.026,
+      "same_sign_years": 5
+    },
+    "usd_1d": {
+      "avg_weight": 0.062,
+      "same_sign_years": 9
+    },
+    "usd_5d": {
+      "avg_weight": 0.064,
+      "same_sign_years": 9
+    },
+    "us10y_1d": {
+      "avg_weight": -0.059,
+      "same_sign_years": 9
+    },
+    "us10y_5d": {
+      "avg_weight": -0.018,
+      "same_sign_years": 6
+    },
+    "curve_10y_3m": {
+      "avg_weight": -0.061,
+      "same_sign_years": 8
+    },
+    "spx_1d": {
+      "avg_weight": -0.044,
+      "same_sign_years": 9
+    },
+    "vix_level": {
+      "avg_weight": 0.034,
+      "same_sign_years": 6
+    },
+    "vix_1d": {
+      "avg_weight": -0.085,
+      "same_sign_years": 9
+    },
+    "jobs_today": {
+      "avg_weight": 0.032,
+      "same_sign_years": 8
+    },
+    "cpi_today": {
+      "avg_weight": -0.029,
+      "same_sign_years": 6
+    },
+    "fed_today": {
+      "avg_weight": 0.018,
+      "same_sign_years": 5
+    }
+  },
+  "final_model_weights_2014_2024": {
+    "overnight_move": 0.04,
+    "overnight_range": -0.04,
+    "pos_in_overnight": 0.031,
+    "yday_candle": 0.104,
+    "trend_5d": 0.049,
+    "trend_20d": 0.023,
+    "pos_in_yday_range": -0.07,
+    "room_up": 0.026,
+    "room_down": -0.045,
+    "vol_ratio": -0.005,
+    "usd_1d": 0.087,
+    "usd_5d": 0.023,
+    "us10y_1d": -0.006,
+    "us10y_5d": 0.004,
+    "curve_10y_3m": -0.034,
+    "spx_1d": -0.005,
+    "vix_level": 0.075,
+    "vix_1d": -0.086,
+    "jobs_today": 0.001,
+    "cpi_today": 0.027,
+    "fed_today": -0.02
+  },
+  "passed": false,
+  "2025_2026": "not loaded"
+}

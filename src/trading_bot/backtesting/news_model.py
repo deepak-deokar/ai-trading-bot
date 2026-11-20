@@ -32,6 +32,7 @@ from __future__ import annotations
 
 from collections.abc import Sequence
 from dataclasses import dataclass
+from typing import Protocol
 
 import numpy as np
 
@@ -78,6 +79,10 @@ class EventRow:
     risk: float  # R in $/oz
     features: tuple[float, ...]
     label: int  # 1 = a buy wins, 0 = a sell wins
+
+    @property
+    def year(self) -> int:
+        return self.event.day.year
 
 
 def _mid(bars: dict[str, Array], part: str, sl: slice | int) -> Array:
@@ -224,15 +229,26 @@ def fit_logistic(
     return LogisticModel(mean, scale, w[:-1], float(w[-1]))
 
 
+class ModelRow(Protocol):
+    @property
+    def year(self) -> int: ...
+
+    @property
+    def features(self) -> tuple[float, ...]: ...
+
+    @property
+    def label(self) -> int: ...
+
+
 def walk_forward(
-    rows: Sequence[EventRow], first_test_year: int, l2: float = 1.0
+    rows: Sequence[ModelRow], first_test_year: int, l2: float = 1.0
 ) -> dict[int, tuple[float, LogisticModel]]:
     """P(buy wins) per row index, each from a model trained on earlier years."""
     out: dict[int, tuple[float, LogisticModel]] = {}
-    years = sorted({r.event.day.year for r in rows})
+    years = sorted({r.year for r in rows})
     x = np.array([r.features for r in rows])
     y = np.array([r.label for r in rows], dtype=float)
-    yr = np.array([r.event.day.year for r in rows])
+    yr = np.array([r.year for r in rows])
     for year in years:
         if year < first_test_year:
             continue

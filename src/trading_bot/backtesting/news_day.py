@@ -72,18 +72,23 @@ class NewsRule:
         return f"{self.side}/{exit_}"
 
 
-def load_events(path: Path = EVENTS_CSV) -> list[NewsEvent]:
-    """Events from the CSV, one per day (the earliest when two share a day)."""
+def load_events(path: Path = EVENTS_CSV, one_per_day: bool = True) -> list[NewsEvent]:
+    """Events from the CSV; by default one per day (the earliest when two share a
+    day), or every event with ``one_per_day=False``."""
     rows = [r for r in path.read_text().splitlines() if r and not r.startswith("#")]
     out: dict[date, NewsEvent] = {}
+    every: list[NewsEvent] = []
     for r in csv.DictReader(rows):
         ev = NewsEvent(
             date.fromisoformat(r["date"]),
             r["event"],
             time.fromisoformat(r["time_ny"]),
         )
+        every.append(ev)
         if ev.day not in out or ev.at < out[ev.day].at:
             out[ev.day] = ev
+    if not one_per_day:
+        return sorted(every, key=lambda e: (e.day, e.at))
     return sorted(out.values(), key=lambda e: e.day)
 
 
