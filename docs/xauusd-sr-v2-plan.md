@@ -72,3 +72,13 @@ The chosen combination, with one trade at a time and at most 2 a day, $30 risk:
 
 The 50%-winners goal is reported separately. If nothing passes development,
 2023-2024 is not looked at. 2025-2026 are never loaded.
+
+## Amendment after the first run (baseline fix)
+
+The first run's twins could enter at any mark 03:00-13:00, including **before** the
+real signal, while keeping the signal's direction. A breakout twin entering before
+the breakout trades the very move that created the signal, so it peeks ahead (the
+breakout twins showed a profit; every real setup scored below its twins). Fixed:
+a twin enters at a random 15-minute mark **after** the real entry, up to 13:00, and
+is dropped if there is none. Nothing else changed: same combinations, same pass
+rules, same costs. The first run's numbers are not used for any choice.
