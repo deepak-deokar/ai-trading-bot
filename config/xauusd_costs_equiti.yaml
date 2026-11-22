@@ -1,0 +1,30 @@
+# Equiti (friend's commission account) XAUUSD costs, as reported by the friend on
+# 2026-11-21: spread "1-2 pips", commission "$5 per standard lot". Not yet checked
+# against an MT5 specification or trade history.
+#
+# Cautious reading used here:
+# * spread: the recorded HistData bid/ask (about $0.33-0.38 in 2023-24) is kept as
+#   it is, with no narrowing. That is already wider than 1-2 pips ($0.10-0.20 if
+#   1 pip = $0.10) and still widens at opens and news like a real broker.
+# * commission: $5 is read as per side, so $10 per lot round trip.
+# * slippage: $0.05 per ounce on every fill.
+# Round trip at a $0.35 recorded spread: 0.35 + 0.10 + 0.10 = about $0.55 per oz
+# (the expensive profile is about $0.83).
+cost_profile: xauusd-equiti-cautious-v1
+contract:
+  contract_size_oz: 100
+  min_lot: 0.01
+  lot_step: 0.01
+  max_lot: 50
+  tick_size: 0.01
+spread:
+  source: data_bid_ask
+  extra_usd_per_oz: 0.0
+commission:
+  usd_per_lot_round_trip: 10.0
+slippage:
+  usd_per_oz_per_fill: 0.05
+swap:
+  applies: false
+stress_test:
+  cost_multiplier: 2.0

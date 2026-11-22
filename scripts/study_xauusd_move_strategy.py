@@ -23,6 +23,7 @@ Usage: PYTHONPATH=src:scripts .venv/bin/python scripts/study_xauusd_move_strateg
 
 import itertools
 import json
+import os
 from pathlib import Path
 from typing import Any
 
@@ -45,9 +46,10 @@ from trading_bot.backtesting.trade_replay import (
 )
 from trading_bot.data.histdata_bulk import BARS_DIR
 
-COSTS_YAML = Path("config/xauusd_costs_expensive.yaml")
-OUT = Path("docs/xauusd-move-strategy")
-REPLAY = Path("docs/replays/xauusd-move-strategy-2023-2024.html")
+COSTS_YAML = Path(os.environ.get("XAU_COSTS", "config/xauusd_costs_expensive.yaml"))
+SUFFIX = os.environ.get("XAU_OUT_SUFFIX", "")  # e.g. "-equiti"
+OUT = Path("docs/xauusd-move-strategy" + SUFFIX)
+REPLAY = Path("docs/replays/xauusd-move-strategy-2023-2024" + SUFFIX + ".html")
 FIT_LAST, VALID = 2020, (2021, 2022)
 TRAIN_LAST, TEST = 2022, (2023, 2024)
 SEED = 7
@@ -240,7 +242,7 @@ def write_replay(
             f"Breakouts taken only on mornings the news model expected to be busy, "
             f"2023-2024 ({len(trades)} trades; model trained on 2015-2022 only). "
             "5-minute mid-price candles, New York time; $3,000 account, $30 risk, "
-            "expensive costs."
+            f"costs: {COSTS_YAML.stem}."
         ),
         rules=[
             "At 08:00 New York a model predicts how much gold will move by 12:00, "
@@ -267,7 +269,7 @@ def render_md(p: dict[str, Any]) -> str:
         "busiest predicted mornings stop orders wait k x ADR above and below the "
         "08:00 price. Rule chosen by fitting 2015-2020 and scoring 2021-2022; "
         "looked at once on 2023-2024 with the model refitted on 2015-2022. "
-        "Expensive costs, $30 risk on $3,000. 2025-2026 not loaded.",
+        f"Costs: {COSTS_YAML.stem}, $30 risk on $3,000. 2025-2026 not loaded.",
         "",
         f"Chosen on 2021-2022: top {b['top_share']:.0%} busiest mornings, k = "
         f"{b['k']}, target {b['target_r']}R: {b['trades']} trades, "

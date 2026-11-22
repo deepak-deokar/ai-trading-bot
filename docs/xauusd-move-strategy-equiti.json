@@ -1,0 +1,766 @@
+{
+  "design": "see this script's docstring",
+  "model_inputs": "news",
+  "model_settings": {
+    "max_depth": 3,
+    "min_samples_leaf": 250,
+    "max_iter": 100,
+    "l2_regularization": 1.0,
+    "max_features": 0.3
+  },
+  "chosen_on_2021_2022": {
+    "top_share": 0.2,
+    "k": 0.2,
+    "target_r": 2.0,
+    "trades": 106,
+    "win_rate": 0.481,
+    "net_usd": -46.88,
+    "avg_per_trade": -0.44,
+    "avg_win": 20.56,
+    "avg_loss": -19.92,
+    "profit_factor": 0.957,
+    "max_drawdown_usd": 351.8,
+    "by_year": {
+      "2021": 230.36,
+      "2022": -277.24
+    },
+    "green_years": 1,
+    "exit_mix": {
+      "stop": 37,
+      "target": 11,
+      "time_exit": 58
+    }
+  },
+  "every_day_2021_2022": {
+    "trades": 477,
+    "win_rate": 0.436,
+    "net_usd": -933.71,
+    "avg_per_trade": -1.96,
+    "avg_win": 17.41,
+    "avg_loss": -16.93,
+    "profit_factor": 0.795,
+    "max_drawdown_usd": 1170.58,
+    "by_year": {
+      "2021": -436.46,
+      "2022": -497.25
+    },
+    "green_years": 0,
+    "exit_mix": {
+      "stop": 142,
+      "target": 30,
+      "time_exit": 305
+    }
+  },
+  "tuning_2021_2022": [
+    {
+      "top_share": 0.2,
+      "k": 0.2,
+      "target_r": 2.0,
+      "trades": 106,
+      "win_rate": 0.481,
+      "net_usd": -46.88,
+      "avg_per_trade": -0.44,
+      "avg_win": 20.56,
+      "avg_loss": -19.92,
+      "profit_factor": 0.957,
+      "max_drawdown_usd": 351.8,
+      "by_year": {
+        "2021": 230.36,
+        "2022": -277.24
+      },
+      "green_years": 1,
+      "exit_mix": {
+        "stop": 37,
+        "target": 11,
+        "time_exit": 58
+      }
+    },
+    {
+      "top_share": 0.2,
+      "k": 0.2,
+      "target_r": 1.5,
+      "trades": 106,
+      "win_rate": 0.481,
+      "net_usd": -94.6,
+      "avg_per_trade": -0.89,
+      "avg_win": 19.63,
+      "avg_loss": -19.92,
+      "profit_factor": 0.914,
+      "max_drawdown_usd": 331.22,
+      "by_year": {
+        "2021": 138.73,
+        "2022": -233.33
+      },
+      "green_years": 1,
+      "exit_mix": {
+        "stop": 37,
+        "target": 18,
+        "time_exit": 51
+      }
+    },
+    {
+      "top_share": 0.2,
+      "k": 0.2,
+      "target_r": 1.0,
+      "trades": 106,
+      "win_rate": 0.509,
+      "net_usd": -132.15,
+      "avg_per_trade": -1.25,
+      "avg_win": 17.19,
+      "avg_loss": -20.39,
+      "profit_factor": 0.875,
+      "max_drawdown_usd": 272.66,
+      "by_year": {
+        "2021": 58.16,
+        "2022": -190.31
+      },
+      "green_years": 1,
+      "exit_mix": {
+        "stop": 36,
+        "target": 31,
+        "time_exit": 39
+      }
+    },
+    {
+      "top_share": 0.4,
+      "k": 0.2,
+      "target_r": 1.0,
+      "trades": 223,
+      "win_rate": 0.511,
+      "net_usd": -140.31,
+      "avg_per_trade": -0.63,
+      "avg_win": 16.64,
+      "avg_loss": -18.69,
+      "profit_factor": 0.931,
+      "max_drawdown_usd": 413.37,
+      "by_year": {
+        "2021": 189.62,
+        "2022": -329.93
+      },
+      "green_years": 1,
+      "exit_mix": {
+        "stop": 67,
+        "target": 65,
+        "time_exit": 91
+      }
+    },
+    {
+      "top_share": 0.2,
+      "k": 0.15,
+      "target_r": 2.0,
+      "trades": 107,
+      "win_rate": 0.393,
+      "net_usd": -161.96,
+      "avg_per_trade": -1.51,
+      "avg_win": 32.55,
+      "avg_loss": -23.53,
+      "profit_factor": 0.894,
+      "max_drawdown_usd": 531.27,
+      "by_year": {
+        "2021": 258.9,
+        "2022": -420.86
+      },
+      "green_years": 1,
+      "exit_mix": {
+        "stop": 55,
+        "target": 19,
+        "time_exit": 33
+      }
+    },
+    {
+      "top_share": 0.4,
+      "k": 0.15,
+      "target_r": 2.0,
+      "trades": 227,
+      "win_rate": 0.41,
+      "net_usd": -185.76,
+      "avg_per_trade": -0.82,
+      "avg_win": 30.84,
+      "avg_loss": -22.79,
+      "profit_factor": 0.939,
+      "max_drawdown_usd": 628.53,
+      "by_year": {
+        "2021": 339.98,
+        "2022": -525.74
+      },
+      "green_years": 1,
+      "exit_mix": {
+        "stop": 106,
+        "target": 37,
+        "time_exit": 84
+      }
+    },
+    {
+      "top_share": 0.2,
+      "k": 0.1,
+      "target_r": 1.0,
+      "trades": 108,
+      "win_rate": 0.481,
+      "net_usd": -217.03,
+      "avg_per_trade": -2.01,
+      "avg_win": 25.91,
+      "avg_loss": -27.94,
+      "profit_factor": 0.861,
+      "max_drawdown_usd": 307.57,
+      "by_year": {
+        "2021": -140.18,
+        "2022": -76.84
+      },
+      "green_years": 0,
+      "exit_mix": {
+        "stop": 56,
+        "target": 51,
+        "time_exit": 1
+      }
+    },
+    {
+      "top_share": 0.3,
+      "k": 0.2,
+      "target_r": 1.0,
+      "trades": 151,
+      "win_rate": 0.517,
+      "net_usd": -242.56,
+      "avg_per_trade": -1.61,
+      "avg_win": 15.94,
+      "avg_loss": -20.35,
+      "profit_factor": 0.837,
+      "max_drawdown_usd": 302.54,
+      "by_year": {
+        "2021": -17.8,
+        "2022": -224.76
+      },
+      "green_years": 0,
+      "exit_mix": {
+        "stop": 52,
+        "target": 42,
+        "time_exit": 57
+      }
+    },
+    {
+      "top_share": 0.3,
+      "k": 0.2,
+      "target_r": 2.0,
+      "trades": 151,
+      "win_rate": 0.483,
+      "net_usd": -244.15,
+      "avg_per_trade": -1.62,
+      "avg_win": 17.9,
+      "avg_loss": -19.88,
+      "profit_factor": 0.843,
+      "max_drawdown_usd": 405.41,
+      "by_year": {
+        "2021": 99.34,
+        "2022": -343.48
+      },
+      "green_years": 1,
+      "exit_mix": {
+        "stop": 54,
+        "target": 13,
+        "time_exit": 84
+      }
+    },
+    {
+      "top_share": 0.3,
+      "k": 0.15,
+      "target_r": 2.0,
+      "trades": 154,
+      "win_rate": 0.409,
+      "net_usd": -252.18,
+      "avg_per_trade": -1.64,
+      "avg_win": 29.4,
+      "avg_loss": -23.13,
+      "profit_factor": 0.88,
+      "max_drawdown_usd": 479.08,
+      "by_year": {
+        "2021": 118.1,
+        "2022": -370.28
+      },
+      "green_years": 1,
+      "exit_mix": {
+        "stop": 75,
+        "target": 25,
+        "time_exit": 54
+      }
+    },
+    {
+      "top_share": 0.3,
+      "k": 0.2,
+      "target_r": 1.5,
+      "trades": 151,
+      "win_rate": 0.49,
+      "net_usd": -255.76,
+      "avg_per_trade": -1.69,
+      "avg_win": 17.46,
+      "avg_loss": -20.1,
+      "profit_factor": 0.835,
+      "max_drawdown_usd": 362.72,
+      "by_year": {
+        "2021": 26.18,
+        "2022": -281.95
+      },
+      "green_years": 1,
+      "exit_mix": {
+        "stop": 54,
+        "target": 23,
+        "time_exit": 74
+      }
+    },
+    {
+      "top_share": 0.4,
+      "k": 0.2,
+      "target_r": 1.5,
+      "trades": 223,
+      "win_rate": 0.48,
+      "net_usd": -255.78,
+      "avg_per_trade": -1.15,
+      "avg_win": 18.03,
+      "avg_loss": -18.84,
+      "profit_factor": 0.883,
+      "max_drawdown_usd": 493.34,
+      "by_year": {
+        "2021": 155.36,
+        "2022": -411.13
+      },
+      "green_years": 1,
+      "exit_mix": {
+        "stop": 72,
+        "target": 32,
+        "time_exit": 119
+      }
+    },
+    {
+      "top_share": 0.2,
+      "k": 0.15,
+      "target_r": 1.5,
+      "trades": 107,
+      "win_rate": 0.411,
+      "net_usd": -262.35,
+      "avg_per_trade": -2.45,
+      "avg_win": 28.6,
+      "avg_loss": -24.14,
+      "profit_factor": 0.828,
+      "max_drawdown_usd": 469.71,
+      "by_year": {
+        "2021": 124.88,
+        "2022": -387.24
+      },
+      "green_years": 1,
+      "exit_mix": {
+        "stop": 55,
+        "target": 24,
+        "time_exit": 28
+      }
+    },
+    {
+      "top_share": 0.4,
+      "k": 0.15,
+      "target_r": 1.5,
+      "trades": 227,
+      "win_rate": 0.432,
+      "net_usd": -279.06,
+      "avg_per_trade": -1.23,
+      "avg_win": 27.42,
+      "avg_loss": -22.99,
+      "profit_factor": 0.906,
+      "max_drawdown_usd": 548.83,
+      "by_year": {
+        "2021": 200.73,
+        "2022": -479.79
+      },
+      "green_years": 1,
+      "exit_mix": {
+        "stop": 103,
+        "target": 54,
+        "time_exit": 70
+      }
+    },
+    {
+      "top_share": 0.3,
+      "k": 0.15,
+      "target_r": 1.0,
+      "trades": 154,
+      "win_rate": 0.474,
+      "net_usd": -301.68,
+      "avg_per_trade": -1.96,
+      "avg_win": 22.26,
+      "avg_loss": -23.78,
+      "profit_factor": 0.843,
+      "max_drawdown_usd": 349.98,
+      "by_year": {
+        "2021": -75.53,
+        "2022": -226.15
+      },
+      "green_years": 0,
+      "exit_mix": {
+        "stop": 70,
+        "target": 57,
+        "time_exit": 27
+      }
+    },
+    {
+      "top_share": 0.2,
+      "k": 0.15,
+      "target_r": 1.0,
+      "trades": 107,
+      "win_rate": 0.458,
+      "net_usd": -302.98,
+      "avg_per_trade": -2.83,
+      "avg_win": 22.68,
+      "avg_loss": -24.38,
+      "profit_factor": 0.786,
+      "max_drawdown_usd": 362.73,
+      "by_year": {
+        "2021": 5.22,
+        "2022": -308.2
+      },
+      "green_years": 1,
+      "exit_mix": {
+        "stop": 52,
+        "target": 39,
+        "time_exit": 16
+      }
+    },
+    {
+      "top_share": 0.4,
+      "k": 0.2,
+      "target_r": 2.0,
+      "trades": 223,
+      "win_rate": 0.471,
+      "net_usd": -344.94,
+      "avg_per_trade": -1.55,
+      "avg_win": 17.81,
+      "avg_loss": -18.77,
+      "profit_factor": 0.844,
+      "max_drawdown_usd": 547.24,
+      "by_year": {
+        "2021": 114.04,
+        "2022": -458.98
+      },
+      "green_years": 1,
+      "exit_mix": {
+        "stop": 73,
+        "target": 15,
+        "time_exit": 135
+      }
+    },
+    {
+      "top_share": 0.3,
+      "k": 0.15,
+      "target_r": 1.5,
+      "trades": 154,
+      "win_rate": 0.429,
+      "net_usd": -357.64,
+      "avg_per_trade": -2.32,
+      "avg_win": 25.93,
+      "avg_loss": -23.51,
+      "profit_factor": 0.827,
+      "max_drawdown_usd": 451.47,
+      "by_year": {
+        "2021": 13.57,
+        "2022": -371.2
+      },
+      "green_years": 1,
+      "exit_mix": {
+        "stop": 74,
+        "target": 32,
+        "time_exit": 48
+      }
+    },
+    {
+      "top_share": 0.3,
+      "k": 0.1,
+      "target_r": 1.0,
+      "trades": 155,
+      "win_rate": 0.471,
+      "net_usd": -418.35,
+      "avg_per_trade": -2.7,
+      "avg_win": 25.63,
+      "avg_loss": -27.92,
+      "profit_factor": 0.817,
+      "max_drawdown_usd": 517.03,
+      "by_year": {
+        "2021": -329.68,
+        "2022": -88.67
+      },
+      "green_years": 0,
+      "exit_mix": {
+        "stop": 82,
+        "target": 71,
+        "time_exit": 2
+      }
+    },
+    {
+      "top_share": 0.4,
+      "k": 0.15,
+      "target_r": 1.0,
+      "trades": 227,
+      "win_rate": 0.467,
+      "net_usd": -451.69,
+      "avg_per_trade": -1.99,
+      "avg_win": 22.12,
+      "avg_loss": -23.11,
+      "profit_factor": 0.838,
+      "max_drawdown_usd": 483.87,
+      "by_year": {
+        "2021": -56.3,
+        "2022": -395.38
+      },
+      "green_years": 0,
+      "exit_mix": {
+        "stop": 98,
+        "target": 82,
+        "time_exit": 47
+      }
+    },
+    {
+      "top_share": 0.2,
+      "k": 0.1,
+      "target_r": 1.5,
+      "trades": 108,
+      "win_rate": 0.37,
+      "net_usd": -467.1,
+      "avg_per_trade": -4.32,
+      "avg_win": 34.55,
+      "avg_loss": -27.19,
+      "profit_factor": 0.747,
+      "max_drawdown_usd": 584.1,
+      "by_year": {
+        "2021": -149.92,
+        "2022": -317.18
+      },
+      "green_years": 0,
+      "exit_mix": {
+        "stop": 65,
+        "target": 33,
+        "time_exit": 10
+      }
+    },
+    {
+      "top_share": 0.3,
+      "k": 0.1,
+      "target_r": 1.5,
+      "trades": 155,
+      "win_rate": 0.381,
+      "net_usd": -573.81,
+      "avg_per_trade": -3.7,
+      "avg_win": 34.77,
+      "avg_loss": -27.34,
+      "profit_factor": 0.781,
+      "max_drawdown_usd": 714.58,
+      "by_year": {
+        "2021": -344.27,
+        "2022": -229.54
+      },
+      "green_years": 0,
+      "exit_mix": {
+        "stop": 93,
+        "target": 49,
+        "time_exit": 13
+      }
+    },
+    {
+      "top_share": 0.2,
+      "k": 0.1,
+      "target_r": 2.0,
+      "trades": 108,
+      "win_rate": 0.306,
+      "net_usd": -611.06,
+      "avg_per_trade": -5.66,
+      "avg_win": 42.73,
+      "avg_loss": -26.95,
+      "profit_factor": 0.698,
+      "max_drawdown_usd": 707.84,
+      "by_year": {
+        "2021": -182.47,
+        "2022": -428.59
+      },
+      "green_years": 0,
+      "exit_mix": {
+        "stop": 71,
+        "target": 24,
+        "time_exit": 13
+      }
+    },
+    {
+      "top_share": 0.4,
+      "k": 0.1,
+      "target_r": 1.0,
+      "trades": 228,
+      "win_rate": 0.461,
+      "net_usd": -749.22,
+      "avg_per_trade": -3.29,
+      "avg_win": 25.24,
+      "avg_loss": -27.64,
+      "profit_factor": 0.78,
+      "max_drawdown_usd": 798.09,
+      "by_year": {
+        "2021": -339.95,
+        "2022": -409.28
+      },
+      "green_years": 0,
+      "exit_mix": {
+        "stop": 121,
+        "target": 100,
+        "time_exit": 7
+      }
+    },
+    {
+      "top_share": 0.3,
+      "k": 0.1,
+      "target_r": 2.0,
+      "trades": 155,
+      "win_rate": 0.323,
+      "net_usd": -803.12,
+      "avg_per_trade": -5.18,
+      "avg_win": 40.98,
+      "avg_loss": -27.16,
+      "profit_factor": 0.718,
+      "max_drawdown_usd": 805.73,
+      "by_year": {
+        "2021": -442.44,
+        "2022": -360.68
+      },
+      "green_years": 0,
+      "exit_mix": {
+        "stop": 101,
+        "target": 33,
+        "time_exit": 21
+      }
+    },
+    {
+      "top_share": 0.4,
+      "k": 0.1,
+      "target_r": 1.5,
+      "trades": 228,
+      "win_rate": 0.377,
+      "net_usd": -944.84,
+      "avg_per_trade": -4.14,
+      "avg_win": 34.07,
+      "avg_loss": -27.29,
+      "profit_factor": 0.756,
+      "max_drawdown_usd": 1058.59,
+      "by_year": {
+        "2021": -308.14,
+        "2022": -636.7
+      },
+      "green_years": 0,
+      "exit_mix": {
+        "stop": 137,
+        "target": 69,
+        "time_exit": 22
+      }
+    },
+    {
+      "top_share": 0.4,
+      "k": 0.1,
+      "target_r": 2.0,
+      "trades": 228,
+      "win_rate": 0.333,
+      "net_usd": -974.81,
+      "avg_per_trade": -4.28,
+      "avg_win": 41.22,
+      "avg_loss": -27.02,
+      "profit_factor": 0.763,
+      "max_drawdown_usd": 989.34,
+      "by_year": {
+        "2021": -286.53,
+        "2022": -688.28
+      },
+      "green_years": 0,
+      "exit_mix": {
+        "stop": 145,
+        "target": 51,
+        "time_exit": 32
+      }
+    }
+  ],
+  "test_2023_2024": {
+    "busy_days": {
+      "trades": 121,
+      "win_rate": 0.463,
+      "net_usd": 115.25,
+      "avg_per_trade": 0.95,
+      "avg_win": 23.32,
+      "avg_loss": -18.32,
+      "profit_factor": 1.097,
+      "max_drawdown_usd": 201.26,
+      "by_year": {
+        "2023": 39.24,
+        "2024": 76.01
+      },
+      "green_years": 2,
+      "exit_mix": {
+        "stop": 41,
+        "target": 13,
+        "time_exit": 67
+      }
+    },
+    "busy_days_at_2x_costs": {
+      "trades": 121,
+      "win_rate": 0.446,
+      "net_usd": 73.22,
+      "avg_per_trade": 0.61,
+      "avg_win": 23.71,
+      "avg_loss": -18.02,
+      "profit_factor": 1.061,
+      "max_drawdown_usd": 229.6,
+      "by_year": {
+        "2023": 21.28,
+        "2024": 51.94
+      },
+      "green_years": 2,
+      "exit_mix": {
+        "stop": 41,
+        "target": 12,
+        "time_exit": 68
+      }
+    },
+    "every_day": {
+      "trades": 430,
+      "win_rate": 0.419,
+      "net_usd": -514.87,
+      "avg_per_trade": -1.2,
+      "avg_win": 19.41,
+      "avg_loss": -16.03,
+      "profit_factor": 0.872,
+      "max_drawdown_usd": 988.98,
+      "by_year": {
+        "2023": -205.59,
+        "2024": -309.28
+      },
+      "green_years": 0,
+      "exit_mix": {
+        "stop": 122,
+        "target": 29,
+        "time_exit": 279
+      }
+    },
+    "quiet_days": {
+      "trades": 52,
+      "win_rate": 0.423,
+      "net_usd": -84.92,
+      "avg_per_trade": -1.63,
+      "avg_win": 13.3,
+      "avg_loss": -12.59,
+      "profit_factor": 0.775,
+      "max_drawdown_usd": 218.74,
+      "by_year": {
+        "2023": 38.93,
+        "2024": -123.85
+      },
+      "green_years": 1,
+      "exit_mix": {
+        "stop": 9,
+        "target": 1,
+        "time_exit": 42
+      }
+    },
+    "days": 462,
+    "busy_days_count": 123,
+    "move_rank_corr": 0.264,
+    "avg_move_busy_days_adr": 0.779,
+    "avg_move_other_days_adr": 0.665
+  },
+  "passed": false,
+  "2025_2026": "not loaded"
+}

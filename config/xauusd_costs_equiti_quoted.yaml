@@ -1,0 +1,20 @@
+# Equiti as quoted by the friend: spread narrowed to about $0.20 (2 pips), $10 per
+# lot round trip, $0.05 slippage per fill. About $0.40 per oz round trip. Optimistic
+# check only; decisions use xauusd_costs_equiti.yaml.
+contract:
+  contract_size_oz: 100
+  min_lot: 0.01
+  lot_step: 0.01
+  max_lot: 50
+  tick_size: 0.01
+spread:
+  source: data_bid_ask
+  extra_usd_per_oz: -0.15   # recorded ~$0.35 narrowed to ~$0.20 (2 pips)
+commission:
+  usd_per_lot_round_trip: 10.0
+slippage:
+  usd_per_oz_per_fill: 0.05
+swap:
+  applies: false
+stress_test:
+  cost_multiplier: 2.0

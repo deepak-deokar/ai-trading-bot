@@ -24,6 +24,7 @@ Usage: PYTHONPATH=src:scripts .venv/bin/python scripts/study_xauusd_candles.py
 
 import itertools
 import json
+import os
 from pathlib import Path
 from typing import Any
 
@@ -44,9 +45,10 @@ from trading_bot.backtesting.session_window import Array, CostModel, Sizing, loa
 from trading_bot.backtesting.sweep_strategy import build_days
 from trading_bot.data.histdata_bulk import BARS_DIR
 
-COSTS_YAML = Path("config/xauusd_costs_expensive.yaml")
-OUT = Path("docs/xauusd-candle-ml")
-HEATMAP = Path("docs/xauusd-candle-ml-heatmap.html")
+COSTS_YAML = Path(os.environ.get("XAU_COSTS", "config/xauusd_costs_expensive.yaml"))
+SUFFIX = os.environ.get("XAU_OUT_SUFFIX", "")  # e.g. "-equiti"
+OUT = Path("docs/xauusd-candle-ml" + SUFFIX)
+HEATMAP = Path("docs/xauusd-candle-ml-heatmap" + SUFFIX + ".html")
 FIT_LAST, VALID = 2020, (2021, 2022)
 TRAIN_LAST, TEST = 2022, (2023, 2024)
 MARGIN = 0.05
@@ -232,7 +234,8 @@ def render_md(r: dict[str, Any]) -> str:
         "day, weekday, volatility; all in units of the 20-day average daily range. "
         "Decision every hour 18:00-15:00 New York; 1:1 trade with R = 0.5 x ADR x "
         "sqrt(hold/240), out at the end of the hold (by 16:45). Trade when the "
-        "model gives >= 55% to one side. Expensive costs, $30 risk on $3,000. "
+        "model gives >= 55% to one side. "
+        f"Costs: {COSTS_YAML.stem}, $30 risk on $3,000. "
         "2025-2026 not loaded.",
         "",
         "## Direction right, by holding time",
@@ -277,8 +280,7 @@ def render_md(r: dict[str, Any]) -> str:
             L.append(f"| {name} | 0 | | | |")
     L += [
         "",
-        f"Passed: **{'yes' if r['passed'] else 'no'}**. Heat map: "
-        "`docs/xauusd-candle-ml-heatmap.html`.",
+        f"Passed: **{'yes' if r['passed'] else 'no'}**. Heat map: `{HEATMAP}`.",
         "",
     ]
     return "\n".join(L)
