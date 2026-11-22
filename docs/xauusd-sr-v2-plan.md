@@ -82,3 +82,34 @@ breakout twins showed a profit; every real setup scored below its twins). Fixed:
 a twin enters at a random 15-minute mark **after** the real entry, up to 13:00, and
 is dropped if there is none. Nothing else changed: same combinations, same pass
 rules, same costs. The first run's numbers are not used for any choice.
+
+## Amendment 2: stricter baseline and a raw "what happens at a level" measure
+
+Added after the second run, on outside review. All of these make passing harder or
+add measurements; none loosens a rule.
+
+* **Two baselines, 1,000 runs each.**
+  * *After-signal twins* (as in amendment 1): same day, a random later 15-minute mark.
+  * *Hour-matched twins*: the same clock time as the real entry, on a random other
+    trading day of the same year; same direction and target, stop distance scaled
+    by that day's ADR (same stop in ADR units). This gives the twins exactly the
+    real trades' time-of-day mix (London and New York opens), with no peeking,
+    because the twin's day did not produce the signal.
+* **Development pass** now needs: beats >= 99% of hour-matched runs **and** >= 95%
+  of after-signal runs, money on 2014-2020 and 2021-2022, >= 200 trades.
+* **Multiple testing**: the report counts how many of the 30 combinations clear
+  the 95th percentile of each baseline, next to the ~1.5 expected by luck (the
+  combinations share levels and price paths, so luck can move several together).
+* **Intrabar ties**: a minute that touches both stop and target counts as a stop
+  (already so in the code; now covered by a test).
+* **Spreads**: the data's 2014-2018 spread is almost constant ($0.51 in 2014,
+  $0.35 in 2015-2018, little widening at news), so those years' costs are likely too
+  low. The 2x-cost test stays; any pass must also survive it on 2014-2020.
+* **After-touch behaviour, no stops or targets.** For each level type, the first
+  time each level is touched (03:00-13:00, price arriving from outside the zone):
+  * did price first move 0.25 ADR beyond the zone back on the side it came from
+    (**held**) or through to the other side (**broke**), within 60 minutes, or
+    neither;
+  * the move after 60 minutes in ADR units, positive = back on the approach side.
+  The same is measured on **fake levels** (each real level moved 0.3-0.7 ADR up or
+  down at random), so the level's effect is the difference from the fake levels.
