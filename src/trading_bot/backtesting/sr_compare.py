@@ -24,7 +24,7 @@ from __future__ import annotations
 
 from collections.abc import Sequence
 from dataclasses import dataclass
-from datetime import date
+from datetime import date, time
 
 import numpy as np
 
@@ -319,4 +319,110 @@ def take(results: Sequence[Result], max_per_day: int = 2) -> list[HoldTrade]:
         out.append(r.trade)
         busy_until = r.trade.exit_bar
         per_day[s.day] = per_day.get(s.day, 0) + 1
+    return out
+
+
+def clock_entry(bars: dict[str, Array], d: TradingDay, clock: time) -> int | None:
+    """1-minute index on day d at New York clock time `clock`, or None."""
+    m = bars["minute_utc"]
+    t = _ny_epoch(d.day, clock)
+    i = int(np.searchsorted(m, t))
+    if i >= d.i1 or i < d.i0 or m[i] - t > MAX_ENTRY_GAP:
+        return None
+    return i
+
+
+def hour_twin(
+    bars: dict[str, Array],
+    mid: Mids,
+    d: TradingDay,
+    adr: float,
+    r: Result,
+    clock: time,
+    costs: CostModel,
+) -> tuple[int, HoldTrade] | None:
+    """The trade r copied to day d at the same clock time, stop in the same ADR
+    units, same direction and target."""
+    e = clock_entry(bars, d, clock)
+    if e is None or e >= last_minute(bars, d):
+        return None
+    s = r.signal
+    risk = r.risk_mid / s.adr * adr
+    stop = float(mid.o[e]) - s.direction * risk
+    t = execute(
+        bars,
+        d.day,
+        e,
+        last_minute(bars, d),
+        s.direction,
+        costs,
+        Sizing(),
+        stop=stop,
+        target_r=r.target_r,
+    )
+    return None if t is None else (e, t)
+
+
+TOUCH_MINUTES = 60
+TOUCH_MOVE = 0.25  # x ADR beyond the zone
+
+
+@dataclass(frozen=True)
+class Touch:
+    day: date
+    ltype: str
+    fake: bool
+    side: int  # +1 came from above (support test), -1 from below
+    outcome: str  # held | broke | neither
+    move_60: float  # x ADR, positive = back on the approach side
+
+
+def touch_events(
+    bars: dict[str, Array],
+    mid: Mids,
+    d: TradingDay,
+    levels: Sequence[float],
+    adr: float,
+    ltype: str,
+    fake: bool,
+    start: int,
+) -> list[Touch]:
+    """First touch of each level from outside its zone, minutes `start` to 13:00,
+    and what price did in the next TOUCH_MINUTES minutes."""
+    m = bars["minute_utc"]
+    z = ZONE * adr
+    end = int(np.searchsorted(m, _ny_epoch(d.day, LAST_CLOSE), side="right"))
+    end = min(end, d.i1)
+    out: list[Touch] = []
+    if end - start < 2:
+        return out
+    hi, lo, cl = mid.h[start:end], mid.lo[start:end], mid.c[start:end]
+    for L in levels:
+        inside = (lo <= L + z) & (hi >= L - z)
+        idx = np.flatnonzero(inside[1:] & (np.abs(cl[:-1] - L) > z)) + 1
+        if len(idx) == 0:
+            continue
+        j = int(idx[0])
+        side = 1 if cl[j - 1] > L else -1
+        a = start + j + 1
+        b = min(a + TOUCH_MINUTES, d.i1)
+        if b - a < TOUCH_MINUTES // 2:
+            continue
+        far = z + TOUCH_MOVE * adr
+        if side == 1:
+            held = np.flatnonzero(mid.h[a:b] >= L + far)
+            broke = np.flatnonzero(mid.lo[a:b] <= L - far)
+        else:
+            held = np.flatnonzero(mid.lo[a:b] <= L - far)
+            broke = np.flatnonzero(mid.h[a:b] >= L + far)
+        h0 = int(held[0]) if len(held) else 10**9
+        b0 = int(broke[0]) if len(broke) else 10**9
+        if h0 == b0 == 10**9:
+            outcome = "neither"
+        elif b0 <= h0:  # same minute counts as a break (the cautious reading)
+            outcome = "broke"
+        else:
+            outcome = "held"
+        move = (float(mid.c[b - 1]) - L) * side / adr
+        out.append(Touch(d.day, ltype, fake, side, outcome, move))
     return out
