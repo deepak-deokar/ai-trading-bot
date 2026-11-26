@@ -1,0 +1,753 @@
+{
+  "days": 2653,
+  "by_year": {
+    "2014": {
+      "year_change_pct": -1.7,
+      "avg_adr_usd": 16.22,
+      "big_range_days_pct": 4.5,
+      "asia": {
+        "n": 201,
+        "avg_adr": -0.0076,
+        "t": -0.35,
+        "up_share": 0.557
+      },
+      "london": {
+        "n": 201,
+        "avg_adr": -0.0085,
+        "t": -0.41,
+        "up_share": 0.493
+      },
+      "ny_am": {
+        "n": 201,
+        "avg_adr": -0.0339,
+        "t": -1.07,
+        "up_share": 0.413
+      },
+      "ny_pm": {
+        "n": 201,
+        "avg_adr": 0.0023,
+        "t": 0.12,
+        "up_share": 0.517
+      },
+      "day_move": {
+        "n": 201,
+        "avg_adr": -0.0422,
+        "t": -0.83,
+        "up_share": 0.448
+      }
+    },
+    "2015": {
+      "year_change_pct": -10.4,
+      "avg_adr_usd": 16.17,
+      "big_range_days_pct": 2.4,
+      "asia": {
+        "n": 250,
+        "avg_adr": 0.0155,
+        "t": 0.97,
+        "up_share": 0.564
+      },
+      "london": {
+        "n": 250,
+        "avg_adr": -0.0413,
+        "t": -2.48,
+        "up_share": 0.392
+      },
+      "ny_am": {
+        "n": 250,
+        "avg_adr": -0.014,
+        "t": -0.46,
+        "up_share": 0.476
+      },
+      "ny_pm": {
+        "n": 250,
+        "avg_adr": -0.0047,
+        "t": -0.31,
+        "up_share": 0.472
+      },
+      "day_move": {
+        "n": 250,
+        "avg_adr": -0.0469,
+        "t": -1.17,
+        "up_share": 0.424
+      }
+    },
+    "2016": {
+      "year_change_pct": 8.0,
+      "avg_adr_usd": 18.22,
+      "big_range_days_pct": 4.0,
+      "asia": {
+        "n": 251,
+        "avg_adr": 0.0538,
+        "t": 2.1,
+        "up_share": 0.53
+      },
+      "london": {
+        "n": 251,
+        "avg_adr": 0.0064,
+        "t": 0.38,
+        "up_share": 0.49
+      },
+      "ny_am": {
+        "n": 251,
+        "avg_adr": -0.0135,
+        "t": -0.51,
+        "up_share": 0.494
+      },
+      "ny_pm": {
+        "n": 251,
+        "avg_adr": -0.0053,
+        "t": -0.27,
+        "up_share": 0.502
+      },
+      "day_move": {
+        "n": 251,
+        "avg_adr": 0.0344,
+        "t": 0.79,
+        "up_share": 0.518
+      }
+    },
+    "2017": {
+      "year_change_pct": 13.2,
+      "avg_adr_usd": 12.57,
+      "big_range_days_pct": 1.2,
+      "asia": {
+        "n": 250,
+        "avg_adr": 0.01,
+        "t": 0.57,
+        "up_share": 0.516
+      },
+      "london": {
+        "n": 250,
+        "avg_adr": 0.0128,
+        "t": 0.85,
+        "up_share": 0.564
+      },
+      "ny_am": {
+        "n": 250,
+        "avg_adr": 0.0221,
+        "t": 0.92,
+        "up_share": 0.512
+      },
+      "ny_pm": {
+        "n": 250,
+        "avg_adr": 0.0024,
+        "t": 0.12,
+        "up_share": 0.52
+      },
+      "day_move": {
+        "n": 250,
+        "avg_adr": 0.0536,
+        "t": 1.34,
+        "up_share": 0.58
+      }
+    },
+    "2018": {
+      "year_change_pct": -1.5,
+      "avg_adr_usd": 12.27,
+      "big_range_days_pct": 2.8,
+      "asia": {
+        "n": 250,
+        "avg_adr": -0.0128,
+        "t": -0.72,
+        "up_share": 0.46
+      },
+      "london": {
+        "n": 250,
+        "avg_adr": 0.0132,
+        "t": 0.69,
+        "up_share": 0.488
+      },
+      "ny_am": {
+        "n": 250,
+        "avg_adr": -0.0037,
+        "t": -0.14,
+        "up_share": 0.504
+      },
+      "ny_pm": {
+        "n": 250,
+        "avg_adr": -0.0192,
+        "t": -1.17,
+        "up_share": 0.46
+      },
+      "day_move": {
+        "n": 250,
+        "avg_adr": -0.0157,
+        "t": -0.38,
+        "up_share": 0.488
+      }
+    },
+    "2019": {
+      "year_change_pct": 18.3,
+      "avg_adr_usd": 15.58,
+      "big_range_days_pct": 3.2,
+      "asia": {
+        "n": 251,
+        "avg_adr": 0.0141,
+        "t": 0.72,
+        "up_share": 0.514
+      },
+      "london": {
+        "n": 251,
+        "avg_adr": 0.0141,
+        "t": 0.89,
+        "up_share": 0.506
+      },
+      "ny_am": {
+        "n": 251,
+        "avg_adr": 0.0089,
+        "t": 0.33,
+        "up_share": 0.514
+      },
+      "ny_pm": {
+        "n": 251,
+        "avg_adr": 0.0053,
+        "t": 0.3,
+        "up_share": 0.514
+      },
+      "day_move": {
+        "n": 251,
+        "avg_adr": 0.0459,
+        "t": 1.12,
+        "up_share": 0.522
+      }
+    },
+    "2020": {
+      "year_change_pct": 25.0,
+      "avg_adr_usd": 30.28,
+      "big_range_days_pct": 6.8,
+      "asia": {
+        "n": 250,
+        "avg_adr": 0.0238,
+        "t": 1.08,
+        "up_share": 0.52
+      },
+      "london": {
+        "n": 250,
+        "avg_adr": 0.015,
+        "t": 0.77,
+        "up_share": 0.584
+      },
+      "ny_am": {
+        "n": 250,
+        "avg_adr": 0.0047,
+        "t": 0.16,
+        "up_share": 0.568
+      },
+      "ny_pm": {
+        "n": 250,
+        "avg_adr": 0.0036,
+        "t": 0.26,
+        "up_share": 0.508
+      },
+      "day_move": {
+        "n": 250,
+        "avg_adr": 0.0516,
+        "t": 1.09,
+        "up_share": 0.58
+      }
+    },
+    "2021": {
+      "year_change_pct": -4.0,
+      "avg_adr_usd": 24.17,
+      "big_range_days_pct": 4.0,
+      "asia": {
+        "n": 251,
+        "avg_adr": 0.0175,
+        "t": 1.08,
+        "up_share": 0.506
+      },
+      "london": {
+        "n": 251,
+        "avg_adr": -0.0261,
+        "t": -1.62,
+        "up_share": 0.494
+      },
+      "ny_am": {
+        "n": 251,
+        "avg_adr": -0.0017,
+        "t": -0.06,
+        "up_share": 0.502
+      },
+      "ny_pm": {
+        "n": 251,
+        "avg_adr": -0.0162,
+        "t": -1.14,
+        "up_share": 0.474
+      },
+      "day_move": {
+        "n": 251,
+        "avg_adr": -0.0228,
+        "t": -0.56,
+        "up_share": 0.502
+      }
+    },
+    "2022": {
+      "year_change_pct": -0.3,
+      "avg_adr_usd": 25.56,
+      "big_range_days_pct": 3.2,
+      "asia": {
+        "n": 250,
+        "avg_adr": -0.0136,
+        "t": -0.76,
+        "up_share": 0.42
+      },
+      "london": {
+        "n": 250,
+        "avg_adr": -0.0163,
+        "t": -0.87,
+        "up_share": 0.524
+      },
+      "ny_am": {
+        "n": 250,
+        "avg_adr": 0.0235,
+        "t": 0.77,
+        "up_share": 0.504
+      },
+      "ny_pm": {
+        "n": 250,
+        "avg_adr": -0.0103,
+        "t": -0.63,
+        "up_share": 0.476
+      },
+      "day_move": {
+        "n": 250,
+        "avg_adr": -0.0092,
+        "t": -0.21,
+        "up_share": 0.516
+      }
+    },
+    "2023": {
+      "year_change_pct": 12.9,
+      "avg_adr_usd": 22.89,
+      "big_range_days_pct": 3.0,
+      "asia": {
+        "n": 200,
+        "avg_adr": 0.0333,
+        "t": 1.78,
+        "up_share": 0.54
+      },
+      "london": {
+        "n": 200,
+        "avg_adr": 0.0072,
+        "t": 0.39,
+        "up_share": 0.52
+      },
+      "ny_am": {
+        "n": 200,
+        "avg_adr": -0.0224,
+        "t": -0.65,
+        "up_share": 0.44
+      },
+      "ny_pm": {
+        "n": 200,
+        "avg_adr": 0.0026,
+        "t": 0.14,
+        "up_share": 0.425
+      },
+      "day_move": {
+        "n": 200,
+        "avg_adr": 0.0292,
+        "t": 0.59,
+        "up_share": 0.485
+      }
+    },
+    "2024": {
+      "year_change_pct": 27.2,
+      "avg_adr_usd": 32.66,
+      "big_range_days_pct": 4.8,
+      "asia": {
+        "n": 249,
+        "avg_adr": 0.0312,
+        "t": 1.7,
+        "up_share": 0.57
+      },
+      "london": {
+        "n": 249,
+        "avg_adr": 0.0165,
+        "t": 0.99,
+        "up_share": 0.546
+      },
+      "ny_am": {
+        "n": 249,
+        "avg_adr": -0.0162,
+        "t": -0.56,
+        "up_share": 0.502
+      },
+      "ny_pm": {
+        "n": 249,
+        "avg_adr": 0.0259,
+        "t": 1.55,
+        "up_share": 0.534
+      },
+      "day_move": {
+        "n": 249,
+        "avg_adr": 0.0676,
+        "t": 1.49,
+        "up_share": 0.546
+      }
+    }
+  },
+  "by_trend_state": {
+    "above_50d_average": {
+      "asia": {
+        "n": 1409,
+        "avg_adr": 0.0081,
+        "t": 0.94,
+        "up_share": 0.493
+      },
+      "london": {
+        "n": 1409,
+        "avg_adr": 0.0034,
+        "t": 0.46,
+        "up_share": 0.522
+      },
+      "ny_am": {
+        "n": 1409,
+        "avg_adr": -0.0024,
+        "t": -0.2,
+        "up_share": 0.519
+      },
+      "ny_pm": {
+        "n": 1409,
+        "avg_adr": 0.0036,
+        "t": 0.46,
+        "up_share": 0.506
+      },
+      "day_move": {
+        "n": 1409,
+        "avg_adr": 0.017,
+        "t": 0.9,
+        "up_share": 0.512
+      }
+    },
+    "below_50d_average": {
+      "asia": {
+        "n": 1244,
+        "avg_adr": 0.023,
+        "t": 2.98,
+        "up_share": 0.543
+      },
+      "london": {
+        "n": 1244,
+        "avg_adr": -0.0052,
+        "t": -0.68,
+        "up_share": 0.494
+      },
+      "ny_am": {
+        "n": 1244,
+        "avg_adr": -0.0043,
+        "t": -0.34,
+        "up_share": 0.47
+      },
+      "ny_pm": {
+        "n": 1244,
+        "avg_adr": -0.007,
+        "t": -1.06,
+        "up_share": 0.476
+      },
+      "day_move": {
+        "n": 1244,
+        "avg_adr": 0.0105,
+        "t": 0.57,
+        "up_share": 0.51
+      }
+    },
+    "20d_change_top_third": {
+      "asia": {
+        "n": 885,
+        "avg_adr": 0.0149,
+        "t": 1.21,
+        "up_share": 0.487
+      },
+      "london": {
+        "n": 885,
+        "avg_adr": 0.0081,
+        "t": 0.84,
+        "up_share": 0.515
+      },
+      "ny_am": {
+        "n": 885,
+        "avg_adr": -0.0125,
+        "t": -0.81,
+        "up_share": 0.506
+      },
+      "ny_pm": {
+        "n": 885,
+        "avg_adr": 0.0046,
+        "t": 0.45,
+        "up_share": 0.518
+      },
+      "day_move": {
+        "n": 885,
+        "avg_adr": 0.0197,
+        "t": 0.81,
+        "up_share": 0.507
+      }
+    },
+    "20d_change_middle": {
+      "asia": {
+        "n": 883,
+        "avg_adr": 0.0001,
+        "t": 0.01,
+        "up_share": 0.506
+      },
+      "london": {
+        "n": 883,
+        "avg_adr": -0.0108,
+        "t": -1.22,
+        "up_share": 0.501
+      },
+      "ny_am": {
+        "n": 883,
+        "avg_adr": -0.0022,
+        "t": -0.14,
+        "up_share": 0.495
+      },
+      "ny_pm": {
+        "n": 883,
+        "avg_adr": -0.0003,
+        "t": -0.04,
+        "up_share": 0.488
+      },
+      "day_move": {
+        "n": 883,
+        "avg_adr": -0.0114,
+        "t": -0.49,
+        "up_share": 0.49
+      }
+    },
+    "20d_change_bottom_third": {
+      "asia": {
+        "n": 885,
+        "avg_adr": 0.0303,
+        "t": 3.32,
+        "up_share": 0.557
+      },
+      "london": {
+        "n": 885,
+        "avg_adr": 0.0007,
+        "t": 0.08,
+        "up_share": 0.512
+      },
+      "ny_am": {
+        "n": 885,
+        "avg_adr": 0.0048,
+        "t": 0.33,
+        "up_share": 0.487
+      },
+      "ny_pm": {
+        "n": 885,
+        "avg_adr": -0.0084,
+        "t": -1.04,
+        "up_share": 0.47
+      },
+      "day_move": {
+        "n": 885,
+        "avg_adr": 0.0334,
+        "t": 1.58,
+        "up_share": 0.537
+      }
+    }
+  },
+  "trend_by_period": {
+    "2014-2018": {
+      "above_50d_average": {
+        "asia": {
+          "n": 558,
+          "avg_adr": -0.005,
+          "t": -0.35,
+          "up_share": 0.468
+        },
+        "london": {
+          "n": 558,
+          "avg_adr": 0.0136,
+          "t": 1.16,
+          "up_share": 0.522
+        },
+        "ny_am": {
+          "n": 558,
+          "avg_adr": -0.0023,
+          "t": -0.13,
+          "up_share": 0.513
+        },
+        "ny_pm": {
+          "n": 558,
+          "avg_adr": -0.0162,
+          "t": -1.28,
+          "up_share": 0.491
+        },
+        "day_move": {
+          "n": 558,
+          "avg_adr": -0.0111,
+          "t": -0.4,
+          "up_share": 0.484
+        }
+      },
+      "below_50d_average": {
+        "asia": {
+          "n": 644,
+          "avg_adr": 0.0278,
+          "t": 2.48,
+          "up_share": 0.573
+        },
+        "london": {
+          "n": 644,
+          "avg_adr": -0.0179,
+          "t": -1.67,
+          "up_share": 0.453
+        },
+        "ny_am": {
+          "n": 644,
+          "avg_adr": -0.0122,
+          "t": -0.68,
+          "up_share": 0.457
+        },
+        "ny_pm": {
+          "n": 644,
+          "avg_adr": 0.0043,
+          "t": 0.43,
+          "up_share": 0.495
+        },
+        "day_move": {
+          "n": 644,
+          "avg_adr": 0.0064,
+          "t": 0.24,
+          "up_share": 0.502
+        }
+      }
+    },
+    "2019-2022": {
+      "above_50d_average": {
+        "asia": {
+          "n": 541,
+          "avg_adr": 0.0081,
+          "t": 0.57,
+          "up_share": 0.479
+        },
+        "london": {
+          "n": 541,
+          "avg_adr": 0.0003,
+          "t": 0.02,
+          "up_share": 0.534
+        },
+        "ny_am": {
+          "n": 541,
+          "avg_adr": 0.0079,
+          "t": 0.39,
+          "up_share": 0.549
+        },
+        "ny_pm": {
+          "n": 541,
+          "avg_adr": 0.0043,
+          "t": 0.35,
+          "up_share": 0.516
+        },
+        "day_move": {
+          "n": 541,
+          "avg_adr": 0.0271,
+          "t": 0.86,
+          "up_share": 0.536
+        }
+      },
+      "below_50d_average": {
+        "asia": {
+          "n": 461,
+          "avg_adr": 0.0132,
+          "t": 1.08,
+          "up_share": 0.503
+        },
+        "london": {
+          "n": 461,
+          "avg_adr": -0.0076,
+          "t": -0.59,
+          "up_share": 0.518
+        },
+        "ny_am": {
+          "n": 461,
+          "avg_adr": 0.01,
+          "t": 0.48,
+          "up_share": 0.49
+        },
+        "ny_pm": {
+          "n": 461,
+          "avg_adr": -0.0145,
+          "t": -1.64,
+          "up_share": 0.466
+        },
+        "day_move": {
+          "n": 461,
+          "avg_adr": 0.0038,
+          "t": 0.13,
+          "up_share": 0.523
+        }
+      }
+    },
+    "2023-2024": {
+      "above_50d_average": {
+        "asia": {
+          "n": 310,
+          "avg_adr": 0.0317,
+          "t": 1.91,
+          "up_share": 0.565
+        },
+        "london": {
+          "n": 310,
+          "avg_adr": -0.0095,
+          "t": -0.65,
+          "up_share": 0.503
+        },
+        "ny_am": {
+          "n": 310,
+          "avg_adr": -0.0206,
+          "t": -0.75,
+          "up_share": 0.477
+        },
+        "ny_pm": {
+          "n": 310,
+          "avg_adr": 0.0379,
+          "t": 2.37,
+          "up_share": 0.516
+        },
+        "day_move": {
+          "n": 310,
+          "avg_adr": 0.0499,
+          "t": 1.2,
+          "up_share": 0.523
+        }
+      },
+      "below_50d_average": {
+        "asia": {
+          "n": 139,
+          "avg_adr": 0.0331,
+          "t": 1.62,
+          "up_share": 0.54
+        },
+        "london": {
+          "n": 139,
+          "avg_adr": 0.0611,
+          "t": 2.75,
+          "up_share": 0.604
+        },
+        "ny_am": {
+          "n": 139,
+          "avg_adr": -0.0153,
+          "t": -0.41,
+          "up_share": 0.468
+        },
+        "ny_pm": {
+          "n": 139,
+          "avg_adr": -0.0344,
+          "t": -1.86,
+          "up_share": 0.417
+        },
+        "day_move": {
+          "n": 139,
+          "avg_adr": 0.0516,
+          "t": 0.94,
+          "up_share": 0.511
+        }
+      }
+    }
+  },
+  "2025_2026": "not loaded"
+}
