@@ -239,8 +239,7 @@ def events_hourly_sql(first: date, last: date) -> str:
         region = f"ActionGeo_CountryCode IN ({in_list})"
         aggs.append(f"SUM(IF({region}, NumMentions, 0)) AS ev_{name}")
         aggs.append(
-            f"SUM(IF({region} AND QuadClass = 4, NumMentions, 0)) "
-            f"AS ev_{name}_conflict"
+            f"SUM(IF({region} AND QuadClass = 4, NumMentions, 0)) AS ev_{name}_conflict"
         )
     agg_sql = ",\n  ".join(aggs)
     return f"""
@@ -340,3 +339,70 @@ def load_table(path: Path) -> tuple[list[datetime], dict[str, list[float]]]:
         if c != "hour"
     }
     return hours, data
+
+
+# --- gold headlines ----------------------------------------------------------
+
+HEADLINES_CSV = DATA_DIR.parent / "news" / "gdelt_gold_headlines_2015_2024.csv"
+# an article counts as gold news if GDELT tagged it with a gold theme, or its
+# page title mentions gold / bullion / precious metals
+GOLD_TITLE = r"\bgold\b|\bbullion\b|precious metal"
+
+
+def headlines_sql(first: date, last: date) -> str:
+    """Every gold article's 15-minute GDELT batch time, page title, tone and
+    source, plus whether it also carries a central-bank theme."""
+    _range_check(first, last)
+    gold = _pattern(CATEGORIES["gold"])
+    cb = _pattern(CATEGORIES["central_banks"])
+    return f"""
+WITH a AS (
+  SELECT
+    PARSE_TIMESTAMP('%Y%m%d%H%M%S', CAST(DATE AS STRING)) AS ts,
+    REGEXP_EXTRACT(Extras, r'<PAGE_TITLE>(.*?)</PAGE_TITLE>') AS title,
+    SAFE_CAST(SPLIT(V2Tone, ',')[SAFE_OFFSET(0)] AS FLOAT64) AS tone,
+    SourceCommonName AS source,
+    REGEXP_CONTAINS(IFNULL(V2Themes, ''), r'{gold}') AS gold_theme,
+    REGEXP_CONTAINS(IFNULL(V2Themes, ''), r'{cb}') AS cb_theme
+  FROM `{TABLE}`
+  WHERE _PARTITIONTIME >= TIMESTAMP('{first.isoformat()}')
+    AND _PARTITIONTIME < TIMESTAMP_ADD(TIMESTAMP('{last.isoformat()}'), INTERVAL 1 DAY)
+    AND DATE IS NOT NULL
+)
+SELECT ts, title, tone, source, gold_theme, cb_theme
+FROM a
+WHERE title IS NOT NULL
+  AND (gold_theme OR REGEXP_CONTAINS(LOWER(title), r'{GOLD_TITLE}'))
+  AND ts < TIMESTAMP_ADD(TIMESTAMP('{last.isoformat()}'), INTERVAL 1 DAY)
+"""
+
+
+def fetch_headlines(
+    first: date,
+    last: date,
+    max_tb: float,
+    path: Path = HEADLINES_CSV,
+    project: str = PROJECT,
+) -> Path:
+    """Run the headline query (refused by BigQuery above max_tb) and save it."""
+    from google.cloud import bigquery
+
+    client = bigquery.Client(project=project)
+    cfg = bigquery.QueryJobConfig(maximum_bytes_billed=int(max_tb * 1e12))
+    result = client.query(headlines_sql(first, last), job_config=cfg).result()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(["ts", "title", "tone", "source", "gold_theme", "cb_theme"])
+        for r in result:
+            w.writerow(
+                [
+                    r["ts"].strftime("%Y-%m-%dT%H:%M:%SZ"),
+                    r["title"],
+                    "" if r["tone"] is None else r["tone"],
+                    r["source"] or "",
+                    int(bool(r["gold_theme"])),
+                    int(bool(r["cb_theme"])),
+                ]
+            )
+    return path
