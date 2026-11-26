@@ -1,0 +1,555 @@
+<title>Gold Practice Desk</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap">
+<style>
+/* Layout: chart on the left, order ticket + account on the right; stacks to one column on phones. */
+:root {
+  --bg: #f6f5f1;
+  --panel: #ffffff;
+  --line: #e2ded3;
+  --fg: #1d1c19;
+  --muted: #6d6a60;
+  --gold: #a8740d;
+  --gold-soft: #f3e6c8;
+  --up: #1f7a52;
+  --down: #b3322a;
+  --up-soft: #e0f0e8;
+  --down-soft: #f6e1df;
+  --grid: #ece9e1;
+  --f-display: "Space Grotesk", "IBM Plex Sans", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15140f; --panel: #1e1c17; --line: #34312a; --fg: #ece8de; --muted: #9d988a;
+    --gold: #e0a93a; --gold-soft: #3a2f18; --up: #4fbf8a; --down: #e46a5f;
+    --up-soft: #173126; --down-soft: #3a1d1a; --grid: #26241e; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #15140f; --panel: #1e1c17; --line: #34312a; --fg: #ece8de; --muted: #9d988a;
+  --gold: #e0a93a; --gold-soft: #3a2f18; --up: #4fbf8a; --down: #e46a5f;
+  --up-soft: #173126; --down-soft: #3a1d1a; --grid: #26241e; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg); font-family: var(--f-body); font-size: 14px;
+  line-height: 1.45;
+}
+.wrap {
+  max-width: 1320px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 18px 40px;
+}
+header.top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 18px; margin-bottom: 14px; }
+h1 { font-family: var(--f-display); font-size: 1.45rem; margin: 0; letter-spacing: -0.01em; }
+h1 span { color: var(--gold); }
+.sub { color: var(--muted); max-width: 70ch; }
+.grid { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 14px; align-items: start; }
+@media (max-width: 900px) { .grid { grid-template-columns: minmax(0, 1fr); } }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; }
+.chart-panel { padding: 10px 10px 8px; min-width: 0; }
+.dayline { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; padding: 2px 4px 8px; font-size: 13px; }
+.dayline b { font-family: var(--f-mono); font-weight: 500; }
+.tag { font-family: var(--f-mono); font-size: 12px; padding: 2px 7px; border-radius: 99px; background: var(--gold-soft); color: var(--fg); }
+.clock { font-family: var(--f-mono); font-size: 15px; font-weight: 600; }
+#chart { height: 460px; width: 100%; }
+@media (max-width: 600px) { #chart { height: 340px; } }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; padding: 10px 4px 2px; align-items: center; }
+button, select, input {
+  font: inherit; color: var(--fg); background: var(--panel); border: 1px solid var(--line);
+  border-radius: 7px; padding: 7px 11px;
+}
+button { cursor: pointer; font-weight: 500; }
+button:hover:not(:disabled) { border-color: var(--gold); }
+button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px solid var(--gold); outline-offset: 1px; }
+button:disabled { opacity: 0.45; cursor: not-allowed; }
+.kbd { font-family: var(--f-mono); font-size: 11px; color: var(--muted); }
+.side { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.ticket, .account, .maths, .log { padding: 14px; }
+h2 { font-family: var(--f-display); font-size: 1rem; margin: 0 0 10px; display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+h2 small { font-family: var(--f-body); font-weight: 400; color: var(--muted); font-size: 12px; }
+.fields { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 10px; }
+.fields label { display: flex; flex-direction: column; gap: 3px; font-size: 12px; color: var(--muted); min-width: 0; }
+.fields input, .fields select { width: 100%; font-family: var(--f-mono); }
+.sides { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+.buy { background: var(--up); color: #fff; border-color: var(--up); padding: 10px; }
+.sell { background: var(--down); color: #fff; border-color: var(--down); padding: 10px; }
+.buy:hover:not(:disabled), .sell:hover:not(:disabled) { filter: brightness(1.08); border-color: transparent; }
+dl.kv { display: grid; grid-template-columns: 1fr auto; gap: 4px 10px; margin: 12px 0 0; font-size: 13px; }
+dl.kv dt { color: var(--muted); }
+dl.kv dd { margin: 0; text-align: right; font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.hurdle { margin-top: 10px; padding: 9px 10px; border-radius: 8px; background: var(--gold-soft); font-size: 13px; }
+.hurdle b { font-family: var(--f-mono); }
+.warn { color: var(--down); font-size: 12px; margin-top: 6px; }
+.open-trade { margin-top: 12px; padding: 10px; border-radius: 8px; border: 1px dashed var(--line); font-size: 13px; }
+.pnl-pos { color: var(--up); } .pnl-neg { color: var(--down); }
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.stat { padding: 8px; border-radius: 8px; background: var(--bg); }
+.stat .l { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+.stat .v { font-family: var(--f-mono); font-size: 16px; font-weight: 600; font-variant-numeric: tabular-nums; }
+#equity { width: 100%; height: 70px; display: block; margin-top: 10px; }
+.verdict { margin-top: 10px; font-size: 13px; padding: 9px 10px; border-radius: 8px; border: 1px solid var(--line); }
+.maths p { margin: 0 0 8px; font-size: 13px; }
+.maths code { font-family: var(--f-mono); font-size: 12px; background: var(--bg); padding: 1px 5px; border-radius: 4px; }
+.log-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 12.5px; }
+th, td { padding: 5px 6px; border-bottom: 1px solid var(--line); text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+th { color: var(--muted); font-weight: 500; font-size: 11.5px; }
+td { font-family: var(--f-mono); }
+th:first-child, td:first-child { text-align: left; }
+.result { margin-top: 10px; padding: 10px 12px; border-radius: 8px; font-size: 13.5px; }
+.result.win { background: var(--up-soft); } .result.loss { background: var(--down-soft); }
+.row-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.foot { color: var(--muted); font-size: 12px; margin-top: 18px; max-width: 90ch; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <h1>Gold <span>Practice Desk</span></h1>
+    <div class="sub">A real XAUUSD day from 2014–2022, revealed one 5-minute candle at a time. Trade it like a $3,000 account: real spread, commission, lot sizing and margin. The date stays hidden until the day ends.</div>
+  </header>
+
+  <div class="grid">
+    <section class="panel chart-panel">
+      <div class="dayline">
+        <span class="tag" id="dayTag">Mystery day</span>
+        <span>New York time <span class="clock" id="clock">--:--</span></span>
+        <span>Price <b id="price">-</b></span>
+        <span>Typical daily range (ADR) <b id="adr">-</b></span>
+        <span>Spread <b id="spreadNow">-</b></span>
+      </div>
+      <div id="chart" role="img" aria-label="Gold price chart"></div>
+      <div class="controls">
+        <button id="next">Next candle <span class="kbd">→</span></button>
+        <button id="hour">+1 hour <span class="kbd">H</span></button>
+        <button id="play">Play <span class="kbd">Space</span></button>
+        <select id="speed" aria-label="Play speed">
+          <option value="600">Slow</option>
+          <option value="250" selected>Normal</option>
+          <option value="80">Fast</option>
+        </select>
+        <button id="newDay">New day <span class="kbd">N</span></button>
+        <span class="kbd" id="progress"></span>
+      </div>
+      <div id="dayResult"></div>
+    </section>
+
+    <aside class="side">
+      <section class="panel ticket">
+        <h2>Order ticket <small>fills at the next candle's open</small></h2>
+        <div class="fields">
+          <label>Risk per trade
+            <select id="risk">
+              <option value="0.005">0.5% ($15)</option>
+              <option value="0.01" selected>1% ($30)</option>
+              <option value="0.02">2% ($60)</option>
+            </select>
+          </label>
+          <label>Stop distance ($)
+            <input id="stop" type="number" min="1" step="0.5" value="10">
+          </label>
+          <label>Target
+            <select id="target">
+              <option value="1">1R (1:1)</option>
+              <option value="1.5">1.5R</option>
+              <option value="2" selected>2R</option>
+              <option value="3">3R</option>
+              <option value="0">None (exit 16:45)</option>
+            </select>
+          </label>
+          <label>Leverage
+            <select id="lev">
+              <option value="100">1:100</option>
+              <option value="500">1:500</option>
+              <option value="1000" selected>1:1000</option>
+              <option value="2000">1:2000</option>
+            </select>
+          </label>
+          <label>Spread ($/oz)
+            <select id="spreadMode">
+              <option value="day" selected>Recorded that day</option>
+              <option value="0.15">Raw account $0.15</option>
+              <option value="0.25">$0.25</option>
+              <option value="0.50">Standard $0.50</option>
+            </select>
+          </label>
+          <label>Commission ($/lot round trip)
+            <input id="comm" type="number" min="0" step="1" value="7">
+          </label>
+        </div>
+        <div class="sides">
+          <button class="buy" id="buy">Buy <span class="kbd" style="color:inherit;opacity:.8">B</span></button>
+          <button class="sell" id="sell">Sell <span class="kbd" style="color:inherit;opacity:.8">S</span></button>
+        </div>
+        <dl class="kv" id="calc"></dl>
+        <div class="hurdle" id="hurdle"></div>
+        <div id="openTrade"></div>
+      </section>
+
+      <section class="panel account">
+        <h2>Account <small id="acctNote">starts at $3,000</small></h2>
+        <div class="stats">
+          <div class="stat"><div class="l">Balance</div><div class="v" id="bal">$3,000</div></div>
+          <div class="stat"><div class="l">Trades</div><div class="v" id="nTr">0</div></div>
+          <div class="stat"><div class="l">Win rate</div><div class="v" id="wr">-</div></div>
+          <div class="stat"><div class="l">Avg win</div><div class="v" id="aw">-</div></div>
+          <div class="stat"><div class="l">Avg loss</div><div class="v" id="al">-</div></div>
+          <div class="stat"><div class="l">Costs paid</div><div class="v" id="cp">$0</div></div>
+        </div>
+        <canvas id="equity" aria-label="Balance after each trade"></canvas>
+        <div class="verdict" id="verdict">Make a few trades. After each one, the same trade is replayed at 200 random times on the same day so you can see whether your timing beat chance.</div>
+        <div class="row-actions"><button id="reset">Reset account</button><span class="kbd" id="resetAsk" hidden></span></div>
+      </section>
+
+      <section class="panel maths">
+        <h2>The maths of this trade</h2>
+        <div id="mathsBody"></div>
+      </section>
+    </aside>
+  </div>
+
+  <section class="panel log" style="margin-top:14px">
+    <h2>Trade log <small>kept in this browser</small></h2>
+    <div class="log-wrap">
+      <table>
+        <thead><tr><th>Day</th><th>Side</th><th>Entry NY</th><th>Lots</th><th>Stop $</th><th>Target</th><th>Exit</th><th>Result</th><th>Costs</th><th>Random avg</th></tr></thead>
+        <tbody id="logBody"><tr><td colspan="10" style="text-align:left;font-family:var(--f-body);color:var(--muted)">No trades yet.</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <p class="foot">Prices are the mid of recorded bid/ask minute data (HistData), grouped into candles. Fills: a buy pays half the spread above the mid plus $0.05 slippage, a sell the same below; exits pay it again. A candle that touches both the stop and the target counts as the stop. Every open trade is closed at 16:45 New York, so nothing is held overnight. Only 2014–2022 days are used; 2023 onward stays reserved for testing the bot.</p>
+</div>
+
+<script src="https://unpkg.com/lightweight-charts@4.1.3/dist/lightweight-charts.standalone.production.js"></script>
+<script>
+(() => {
+  const START_BAL = 3000, OZ = 100, SLIP = 0.05, MIN_LOT = 0.01, RANDOM_N = 200;
+  // minutes since 17:00 New York (the trading day starts at 17:00)
+  const LAST_ENTRY = 23 * 60 + 40, FORCE_EXIT = 23 * 60 + 45, FIRST_SHOW = 60;
+  const $ = id => document.getElementById(id);
+  const fmt$ = v => (v < 0 ? "−$" : "$") + Math.abs(v).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const fmt0 = v => (v < 0 ? "−$" : "$") + Math.abs(v).toLocaleString("en-US", { maximumFractionDigits: 0 });
+  const pct = v => (100 * v).toFixed(1) + "%";
+  const hm = t => { const d = new Date(t * 1000); return String(d.getUTCHours()).padStart(2, "0") + ":" + String(d.getUTCMinutes()).padStart(2, "0"); };
+  const mins = t => { const d = new Date(t * 1000); return (d.getUTCHours() * 60 + d.getUTCMinutes() - 17 * 60 + 1440) % 1440; };
+  const store = {
+    get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch { return d; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
+  };
+
+  let DAYS = [], day = null, shown = 0, trade = null, pending = null, timer = null;
+  let trades = store.get("gpd-trades", []);
+  let used = store.get("gpd-used", []);
+  let chart, series, lines = [];
+
+  // ---------- theme-aware chart ----------
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  function chartTheme() {
+    if (!chart) return;
+    chart.applyOptions({
+      layout: { background: { color: css("--panel") }, textColor: css("--muted"), fontFamily: "IBM Plex Mono, monospace" },
+      grid: { vertLines: { color: css("--grid") }, horzLines: { color: css("--grid") } },
+      rightPriceScale: { borderColor: css("--line") }, timeScale: { borderColor: css("--line") }
+    });
+    series.applyOptions({ upColor: css("--up"), downColor: css("--down"), wickUpColor: css("--up"), wickDownColor: css("--down"), borderVisible: false });
+    drawLines();
+  }
+  function makeChart() {
+    chart = LightweightCharts.createChart($("chart"), {
+      autoSize: true,
+      timeScale: { timeVisible: true, secondsVisible: false, rightOffset: 6 },
+      crosshair: { mode: 0 },
+      localization: { timeFormatter: t => hm(t) }
+    });
+    series = chart.addCandlestickSeries({ priceFormat: { type: "price", precision: 2, minMove: 0.01 } });
+    chartTheme();
+    matchMedia("(prefers-color-scheme: dark)").addEventListener("change", chartTheme);
+    new MutationObserver(chartTheme).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+  }
+
+  // ---------- day handling ----------
+  function pickDay() {
+    let pool = DAYS.map((_, i) => i).filter(i => !used.includes(i));
+    if (!pool.length) { used = []; pool = DAYS.map((_, i) => i); }
+    const i = pool[Math.floor(Math.random() * pool.length)];
+    used.push(i); store.set("gpd-used", used);
+    return i;
+  }
+  function loadDay(i) {
+    stop();
+    day = DAYS[i]; day.idx = i; trade = null; pending = null;
+    // show up to 18:00 New York so Asia can be traded
+    shown = Math.max(1, day.day.findIndex(c => mins(c[0]) >= FIRST_SHOW) + 1);
+    $("dayTag").textContent = "Mystery " + day.weekday;
+    $("adr").textContent = "$" + day.adr.toFixed(2);
+    $("dayResult").innerHTML = "";
+    render(true);
+  }
+  const spreadUsed = () => $("spreadMode").value === "day" ? day.spread : +$("spreadMode").value;
+  const cur = () => day.day[shown - 1];
+  const nextCandle = () => day.day[shown];
+  const ended = () => shown >= day.day.length || mins(cur()[0]) >= FORCE_EXIT;
+
+  function render(fit) {
+    const data = [...day.prev, ...day.day.slice(0, shown)].map(c => ({ time: c[0], open: c[1], high: c[2], low: c[3], close: c[4] }));
+    series.setData(data);
+    const markers = [];
+    for (const t of [trade, ...(day.closed || [])].filter(Boolean)) {
+      if (t.entryTime) markers.push({ time: t.entryTime, position: t.dir > 0 ? "belowBar" : "aboveBar", color: t.dir > 0 ? css("--up") : css("--down"), shape: t.dir > 0 ? "arrowUp" : "arrowDown", text: t.dir > 0 ? "Buy" : "Sell" });
+      if (t.exitTime) markers.push({ time: t.exitTime, position: "inBar", color: css("--gold"), shape: "circle", text: t.reason });
+    }
+    markers.sort((a, b) => a.time - b.time);
+    series.setMarkers(markers);
+    drawLines();
+    if (fit) chart.timeScale().setVisibleLogicalRange({ from: data.length - 140, to: data.length + 8 });
+    const c = cur();
+    $("clock").textContent = hm(c[0]);
+    $("price").textContent = c[4].toFixed(2);
+    $("spreadNow").textContent = "$" + spreadUsed().toFixed(2);
+    $("progress").textContent = `${shown} / ${day.day.length} candles`;
+    $("next").disabled = $("hour").disabled = $("play").disabled = ended();
+    $("newDay").disabled = !!(trade || pending) && !ended();
+    updateTicket();
+    updateOpen();
+  }
+  function drawLines() {
+    if (!series || !day) return;
+    lines.forEach(l => series.removePriceLine(l)); lines = [];
+    const add = (price, color, title, style = 2) => lines.push(series.createPriceLine({ price, color, lineWidth: 1, lineStyle: style, axisLabelVisible: true, title }));
+    add(day.yHigh, css("--muted"), "Yesterday high", 1);
+    add(day.yLow, css("--muted"), "Yesterday low", 1);
+    const t = trade || pending;
+    if (trade) {
+      add(trade.entry, css("--gold"), "Entry", 0);
+      add(trade.stop, css("--down"), "Stop");
+      if (trade.target) add(trade.target, css("--up"), "Target");
+    }
+  }
+
+  // ---------- sizing and costs ----------
+  function plan(dir) {
+    const bal = balance();
+    const riskPct = +$("risk").value, riskUsd = bal * riskPct;
+    const stopD = Math.max(0.5, +$("stop").value || 0);
+    const spread = spreadUsed(), comm = Math.max(0, +$("comm").value || 0);
+    const raw = riskUsd / ((stopD + SLIP) * OZ);
+    const lots = Math.floor(raw / MIN_LOT + 1e-9) * MIN_LOT;
+    const R = +$("target").value;
+    const price = (nextCandle() || cur())[1];
+    const lev = +$("lev").value;
+    const costUsd = lots * OZ * (spread + 2 * SLIP) + comm * lots;
+    const riskAct = lots * OZ * stopD;
+    const win = R ? R * riskAct - costUsd : null, loss = riskAct + costUsd;
+    const be = R ? loss / (win + loss) : null;
+    const randomWin = R ? 1 / (1 + R) : null;
+    return { dir, bal, riskPct, riskUsd, stopD, spread, comm, lots, R, price, lev, costUsd, riskAct, win, loss, be, randomWin,
+      margin: lots * OZ * price / lev, perDollar: lots * OZ };
+  }
+  function updateTicket() {
+    const p = plan(1);
+    const can = p.lots >= MIN_LOT && !trade && !pending && !ended() && mins(cur()[0]) < LAST_ENTRY;
+    $("buy").disabled = $("sell").disabled = !can;
+    $("calc").innerHTML = `
+      <dt>Lot size</dt><dd>${p.lots.toFixed(2)} lots = ${(p.lots * OZ).toFixed(0)} oz</dd>
+      <dt>Each $1 gold moves</dt><dd>${fmt$(p.perDollar)}</dd>
+      <dt>Lose if stop hit</dt><dd class="pnl-neg">${fmt$(-p.loss)}</dd>
+      <dt>Win if target hit</dt><dd class="pnl-pos">${p.R ? fmt$(p.win) : "open"}</dd>
+      <dt>Costs this trade</dt><dd>${fmt$(p.costUsd)} (${pct(p.costUsd / Math.max(p.riskAct, 1e-9))} of risk)</dd>
+      <dt>Margin held (1:${p.lev})</dt><dd>${fmt$(p.margin)} of ${fmt0(p.bal)}</dd>
+      <dt>Max lots this margin allows</dt><dd>${(Math.floor(p.bal * p.lev / (OZ * p.price) * 100) / 100).toFixed(2)}</dd>`;
+    $("hurdle").innerHTML = p.lots < MIN_LOT
+      ? `<span class="warn">A $${p.stopD} stop needs more than ${fmt0(p.riskUsd)} even at 0.01 lots. Use a smaller stop or more risk.</span>`
+      : p.R
+        ? `To break even at ${p.R}R you must win <b>${pct(p.be)}</b> of trades. Random entries win about <b>${pct(p.randomWin)}</b>. The gap is the cost.`
+        : `No target: the trade closes at the stop or at 16:45. Random entries average about <b>${fmt$(-p.costUsd)}</b> a trade (the cost).`;
+    $("mathsBody").innerHTML = `
+      <p>Lots = risk ÷ (stop × 100 oz) = <code>${fmt0(p.riskUsd)} ÷ ($${(p.stopD + SLIP).toFixed(2)} × 100)</code> → <code>${p.lots.toFixed(2)}</code> (rounded down to 0.01).</p>
+      <p>Cost = lots × 100 × (spread + slippage in and out) + commission = <code>${p.lots.toFixed(2)} × 100 × $${(p.spread + 2 * SLIP).toFixed(2)} + $${(p.comm * p.lots).toFixed(2)}</code> = <code>${fmt$(p.costUsd)}</code>.</p>
+      ${p.R ? `<p>Break-even win rate = loss ÷ (win + loss) = <code>${p.loss.toFixed(2)} ÷ (${p.win.toFixed(2)} + ${p.loss.toFixed(2)})</code> = <code>${pct(p.be)}</code>.</p>` : ""}
+      <p>Leverage only sets the margin: <code>${p.lots.toFixed(2)} × 100 × $${p.price.toFixed(0)} ÷ ${p.lev}</code> = <code>${fmt$(p.margin)}</code>. Profit and loss don't change with it.</p>`;
+  }
+
+  // ---------- trading ----------
+  function order(dir) {
+    if ($("buy").disabled) return;
+    pending = plan(dir);
+    $("openTrade").innerHTML = `<div class="open-trade">${dir > 0 ? "Buy" : "Sell"} ${pending.lots.toFixed(2)} lots: fills at the next candle's open.</div>`;
+    step();
+  }
+  function fill(p, c) {
+    const half = p.spread / 2;
+    const entry = c[1] + p.dir * (half + SLIP);
+    return {
+      dir: p.dir, lots: p.lots, stopD: p.stopD, R: p.R, spread: p.spread, comm: p.comm,
+      entry, entryTime: c[0], entryMin: mins(c[0]),
+      stop: entry - p.dir * p.stopD,
+      target: p.R ? entry + p.dir * p.R * p.stopD : null,
+      costUsd: p.costUsd, day: day.date, dayIdx: day.idx
+    };
+  }
+  // check a candle against an open trade; returns exit or null
+  function check(t, c) {
+    const half = t.spread / 2;
+    const exitLow = c[3] - t.dir * half, exitHigh = c[2] - t.dir * half; // bid for longs, ask for shorts
+    const worst = t.dir > 0 ? exitLow : exitHigh, best = t.dir > 0 ? exitHigh : exitLow;
+    const hitStop = t.dir > 0 ? worst <= t.stop : worst >= t.stop;
+    const hitTgt = t.target != null && (t.dir > 0 ? best >= t.target : best <= t.target);
+    const openSide = c[1] - t.dir * half;
+    if (hitStop) return { px: t.dir > 0 ? Math.min(t.stop, openSide) : Math.max(t.stop, openSide), reason: "Stop" };
+    if (hitTgt) return { px: t.dir > 0 ? Math.max(t.target, openSide) : Math.min(t.target, openSide), reason: "Target" };
+    if (mins(c[0]) >= FORCE_EXIT) return { px: c[4] - t.dir * half, reason: "16:45" };
+    return null;
+  }
+  function pnlOf(t, px) {
+    const exit = px - t.dir * SLIP;
+    return (exit - t.entry) * t.dir * OZ * t.lots - t.comm * t.lots;
+  }
+  function closeTrade(t, ex, c) {
+    t.exit = ex.px; t.exitTime = c[0]; t.reason = ex.reason;
+    t.pnl = pnlOf(t, ex.px);
+    t.random = randomTwins(t);
+    (day.closed = day.closed || []).push(t);
+    trades.push({ day: t.day, dir: t.dir, entryMin: t.entryMin, lots: t.lots, stopD: t.stopD, R: t.R, reason: t.reason, pnl: t.pnl, cost: t.costUsd, rAvg: t.random.avg, rWin: t.random.win });
+    store.set("gpd-trades", trades);
+    trade = null;
+    const win = t.pnl > 0;
+    $("openTrade").innerHTML = `<div class="result ${win ? "win" : "loss"}"><b>${t.reason}: ${fmt$(t.pnl)}</b> (costs ${fmt$(t.costUsd)}).<br>Same trade at ${RANDOM_N} random times today: average <b>${fmt$(t.random.avg)}</b>, ${pct(t.random.win)} winners. ${t.pnl > t.random.avg ? "Your timing beat random on this one." : "Random timing did better on this one."}</div>`;
+    updateAccount();
+  }
+  function randomTwins(t) {
+    const idx = day.day.map((c, i) => i).filter(i => { const m = mins(day.day[i][0]); return m >= FIRST_SHOW && m < LAST_ENTRY; });
+    let sum = 0, wins = 0, n = 0;
+    for (let k = 0; k < RANDOM_N; k++) {
+      const i = idx[Math.floor(Math.random() * idx.length)];
+      const c = day.day[i];
+      const tw = fill({ dir: t.dir, lots: t.lots, stopD: t.stopD, R: t.R, spread: t.spread, comm: t.comm, costUsd: t.costUsd }, c);
+      let ex = null, j = i;
+      for (; j < day.day.length && !ex; j++) ex = check(tw, day.day[j]);
+      if (!ex) { const last = day.day[day.day.length - 1]; ex = { px: last[4] - t.dir * t.spread / 2 }; }
+      const p = pnlOf(tw, ex.px);
+      sum += p; wins += p > 0; n++;
+    }
+    return { avg: sum / n, win: wins / n };
+  }
+  function step() {
+    if (ended()) { endDay(); return; }
+    const c = nextCandle();
+    shown++;
+    if (pending) { trade = fill(pending, c); pending = null; }
+    if (trade) {
+      const ex = check(trade, c);
+      if (ex) closeTrade(trade, ex, c);
+    }
+    render(false);
+    chart.timeScale().scrollToRealTime();
+    if (ended()) endDay();
+  }
+  function closeNow() {
+    if (!trade || ended()) return;
+    const c = nextCandle(); shown++;
+    closeTrade(trade, { px: c[1] - trade.dir * trade.spread / 2, reason: "Manual" }, c);
+    render(false);
+  }
+  function endDay() {
+    stop();
+    if (trade) { const c = cur(); closeTrade(trade, { px: c[4] - trade.dir * trade.spread / 2, reason: "16:45" }, c); }
+    $("dayTag").textContent = new Date(day.date + "T12:00:00Z").toLocaleDateString("en-US", { weekday: "short", year: "numeric", month: "short", day: "numeric" });
+    const first = day.day[0][1], last = day.day[day.day.length - 1][4];
+    const hi = Math.max(...day.day.map(c => c[2])), lo = Math.min(...day.day.map(c => c[3]));
+    $("dayResult").innerHTML = `<div class="result" style="background:var(--gold-soft)">Day over. Gold went from <b>${first.toFixed(2)}</b> to <b>${last.toFixed(2)}</b> (${(last - first >= 0 ? "+" : "")}${(last - first).toFixed(2)}), range ${(hi - lo).toFixed(2)} vs typical ${day.adr.toFixed(2)}. Press <b>New day</b> for another.</div>`;
+    render(false);
+  }
+  function updateOpen() {
+    if (!trade) return;
+    const c = cur();
+    const mark = c[4] - trade.dir * trade.spread / 2;
+    const u = pnlOf(trade, mark);
+    $("openTrade").innerHTML = `<div class="open-trade">${trade.dir > 0 ? "Long" : "Short"} ${trade.lots.toFixed(2)} lots from ${trade.entry.toFixed(2)} · stop ${trade.stop.toFixed(2)}${trade.target ? " · target " + trade.target.toFixed(2) : ""}<br>Open P&amp;L if closed now: <b class="${u >= 0 ? "pnl-pos" : "pnl-neg"}">${fmt$(u)}</b><div class="row-actions"><button id="closeBtn">Close at next open</button></div></div>`;
+    $("closeBtn").onclick = closeNow;
+  }
+
+  // ---------- account ----------
+  const balance = () => START_BAL + trades.reduce((s, t) => s + t.pnl, 0);
+  function updateAccount() {
+    const n = trades.length, wins = trades.filter(t => t.pnl > 0), losses = trades.filter(t => t.pnl <= 0);
+    $("bal").textContent = fmt0(balance());
+    $("bal").className = "v " + (balance() >= START_BAL ? "pnl-pos" : "pnl-neg");
+    $("nTr").textContent = n;
+    $("wr").textContent = n ? pct(wins.length / n) : "-";
+    $("aw").textContent = wins.length ? fmt0(wins.reduce((s, t) => s + t.pnl, 0) / wins.length) : "-";
+    $("al").textContent = losses.length ? fmt0(losses.reduce((s, t) => s + t.pnl, 0) / losses.length) : "-";
+    $("cp").textContent = fmt0(trades.reduce((s, t) => s + t.cost, 0));
+    if (n) {
+      const you = trades.reduce((s, t) => s + t.pnl, 0) / n, rnd = trades.reduce((s, t) => s + t.rAvg, 0) / n;
+      const beat = trades.filter(t => t.pnl > t.rAvg).length;
+      $("verdict").innerHTML = `Per trade you average <b>${fmt$(you)}</b>; the same trades at random times average <b>${fmt$(rnd)}</b>. Your timing added <b class="${you - rnd >= 0 ? "pnl-pos" : "pnl-neg"}">${fmt$(you - rnd)}</b> a trade and beat random on ${beat} of ${n}. ${n < 30 ? "Under 30 trades this is mostly luck; keep going." : n < 100 ? "Getting meaningful; 100+ trades gives a fair read." : "With 100+ trades this is a fair read of your edge."}`;
+    }
+    drawEquity(); drawLog();
+  }
+  function drawEquity() {
+    const cv = $("equity"), dpr = devicePixelRatio || 1, w = cv.clientWidth, h = cv.clientHeight;
+    cv.width = w * dpr; cv.height = h * dpr;
+    const g = cv.getContext("2d"); g.scale(dpr, dpr); g.clearRect(0, 0, w, h);
+    const eq = [START_BAL]; trades.forEach(t => eq.push(eq[eq.length - 1] + t.pnl));
+    if (eq.length < 2) { g.fillStyle = css("--muted"); g.font = "12px IBM Plex Sans, sans-serif"; g.fillText("Balance line appears after your first trade", 4, h / 2); return; }
+    const lo = Math.min(...eq, START_BAL), hi = Math.max(...eq, START_BAL), pad = 6;
+    const x = i => pad + i * (w - 2 * pad) / (eq.length - 1), y = v => h - pad - (v - lo) / Math.max(hi - lo, 1) * (h - 2 * pad);
+    g.strokeStyle = css("--line"); g.setLineDash([3, 3]); g.beginPath(); g.moveTo(pad, y(START_BAL)); g.lineTo(w - pad, y(START_BAL)); g.stroke(); g.setLineDash([]);
+    g.strokeStyle = css("--gold"); g.lineWidth = 2; g.beginPath(); eq.forEach((v, i) => i ? g.lineTo(x(i), y(v)) : g.moveTo(x(i), y(v))); g.stroke();
+    g.fillStyle = css("--gold"); g.beginPath(); g.arc(x(eq.length - 1), y(eq[eq.length - 1]), 3, 0, 7); g.fill();
+  }
+  function drawLog() {
+    if (!trades.length) return;
+    const t2 = m => { const w = (m + 17 * 60) % 1440; return String(Math.floor(w / 60)).padStart(2, "0") + ":" + String(w % 60).padStart(2, "0"); };
+    $("logBody").innerHTML = trades.slice().reverse().map(t => `<tr><td>${t.day}</td><td>${t.dir > 0 ? "Buy" : "Sell"}</td><td>${t2(t.entryMin)}</td><td>${t.lots.toFixed(2)}</td><td>${t.stopD}</td><td>${t.R ? t.R + "R" : "16:45"}</td><td>${t.reason}</td><td class="${t.pnl > 0 ? "pnl-pos" : "pnl-neg"}">${fmt$(t.pnl)}</td><td>${fmt$(t.cost)}</td><td>${fmt$(t.rAvg)}</td></tr>`).join("");
+  }
+
+  // ---------- controls ----------
+  function stop() { clearInterval(timer); timer = null; $("play").firstChild.textContent = "Play "; }
+  function play() {
+    if (timer) return stop();
+    $("play").firstChild.textContent = "Pause ";
+    timer = setInterval(() => { if (ended()) stop(); else step(); }, +$("speed").value);
+  }
+  $("next").onclick = step;
+  $("hour").onclick = () => { for (let i = 0; i < 12 && !ended(); i++) step(); };
+  $("play").onclick = play;
+  $("speed").onchange = () => { if (timer) { stop(); play(); } };
+  $("newDay").onclick = () => loadDay(pickDay());
+  $("buy").onclick = () => order(1);
+  $("sell").onclick = () => order(-1);
+  ["risk", "stop", "target", "lev", "spreadMode", "comm"].forEach(id => $(id).addEventListener("input", () => { if (day) render(false); }));
+  $("reset").onclick = () => {
+    const ask = $("resetAsk");
+    if (ask.hidden) { ask.hidden = false; ask.textContent = "Click again to clear all trades"; setTimeout(() => ask.hidden = true, 3000); return; }
+    trades = []; store.set("gpd-trades", trades); ask.hidden = true;
+    $("logBody").innerHTML = `<tr><td colspan="10" style="text-align:left;font-family:var(--f-body);color:var(--muted)">No trades yet.</td></tr>`;
+    $("verdict").textContent = "Account reset to $3,000.";
+    updateAccount(); render(false);
+  };
+  document.addEventListener("keydown", e => {
+    if (e.target.matches("input, select")) return;
+    const k = e.key.toLowerCase();
+    if (k === "arrowright") { e.preventDefault(); step(); }
+    else if (k === " ") { e.preventDefault(); play(); }
+    else if (k === "h") $("hour").click();
+    else if (k === "n" && !$("newDay").disabled) $("newDay").click();
+    else if (k === "b") order(1);
+    else if (k === "s") order(-1);
+  });
+
+  makeChart();
+  fetch("days.json").then(r => r.json()).then(d => {
+    DAYS = d;
+    const i = pickDay(); loadDay(i);
+    $("stop").value = Math.round(day.adr * 0.4 * 2) / 2;
+    render(true); updateAccount();
+  }).catch(() => { $("dayTag").textContent = "Could not load the practice days"; });
+})();
+</script>
