@@ -419,18 +419,27 @@ th:first-child, td:first-child { text-align: left; }
     store.set("gpd-trades", trades);
     trade = null;
     const win = t.pnl > 0;
-    $("openTrade").innerHTML = `<div class="result ${win ? "win" : "loss"}"><b>${t.reason}: ${fmt$(t.pnl)}</b> (costs ${fmt$(t.costUsd)}).<br>Same trade at ${RANDOM_N} random times today: average <b>${fmt$(t.random.avg)}</b>, ${pct(t.random.win)} winners. ${t.pnl > t.random.avg ? "Your timing beat random on this one." : "Random timing did better on this one."}</div>`;
+    $("openTrade").innerHTML = `<div class="result ${win ? "win" : "loss"}"><b>${t.reason}: ${fmt$(t.pnl)}</b> (costs ${fmt$(t.costUsd)}).<br>Same trade at ${RANDOM_N} random times today${t.reason === "Manual" ? ", each closed after the same holding time" : ""}: average <b>${fmt$(t.random.avg)}</b>, ${pct(t.random.win)} winners. ${t.pnl > t.random.avg ? "Your timing beat random on this one." : "Random timing did better on this one."}</div>`;
     updateAccount();
   }
   function randomTwins(t) {
-    const idx = day.day.map((c, i) => i).filter(i => { const m = mins(day.day[i][0]); return m >= FIRST_SHOW && m < LAST_ENTRY; });
+    // A manual close is matched by closing each random trade after the same number
+    // of candles (at that candle's open), unless its stop or target comes first.
+    const at = time => day.day.findIndex(c => c[0] === time);
+    const hold = t.reason === "Manual" ? at(t.exitTime) - at(t.entryTime) : null;
+    const idx = day.day.map((c, i) => i).filter(i => {
+      const m = mins(day.day[i][0]);
+      return m >= FIRST_SHOW && m < LAST_ENTRY && (hold == null || i + hold < day.day.length);
+    });
     let sum = 0, wins = 0, n = 0;
     for (let k = 0; k < RANDOM_N; k++) {
       const i = idx[Math.floor(Math.random() * idx.length)];
       const c = day.day[i];
       const tw = fill({ dir: t.dir, lots: t.lots, stopD: t.stopD, R: t.R, spread: t.spread, comm: t.comm, costUsd: t.costUsd }, c);
+      const stopAt = hold == null ? day.day.length : i + hold;
       let ex = null, j = i;
-      for (; j < day.day.length && !ex; j++) ex = check(tw, day.day[j]);
+      for (; j < stopAt && !ex; j++) ex = check(tw, day.day[j]);
+      if (!ex && hold != null) ex = { px: day.day[i + hold][1] - t.dir * t.spread / 2 };
       if (!ex) { const last = day.day[day.day.length - 1]; ex = { px: last[4] - t.dir * t.spread / 2 }; }
       const p = pnlOf(tw, ex.px);
       sum += p; wins += p > 0; n++;
