@@ -81,3 +81,22 @@ Most gold headlines describe a move that has already happened ("gold rises as ..
 and price inputs already contain that. If the headline inputs only repeat past
 moves, direction accuracy will stay near 50%. Any real gain is more likely to come
 from cause words (central-bank buying, safe-haven demand) than from move words.
+
+## Amendment 1 (after the pull, before any model or result was run)
+
+Two facts about the data, found by counting rows only (no prices or outcomes looked at):
+
+1. **GDELT has page titles only from 2019-09-22.** The pull returned no titles for
+   2015-02 to 2019-09. So the planned 2015-2020 fit is impossible. New split, still
+   inside the 2014-2022 training years: **fit 2019-10-01..2021, choose on 2022,
+   refit on 2019-10..2022, look once at 2023-2024.** The v2 news reference is tuned on
+   exactly the same days so the comparison is fair. About 560 fit days and 250
+   choosing days: small, so results will be noisy.
+2. **The GDELT gold theme is very noisy.** Of 15.2 million articles, 98% carry the
+   theme, but most are not about gold (crime, awards, shops; about two thirds are not
+   in English). Only articles whose **title** mentions gold, bullion or precious
+   metals are kept (about 616,000 after removing same-day repeats). Gold medals and
+   "Gold Coast" remain in; the text model can learn to ignore them, and the word
+   lists are not changed.
+
+The TF-IDF minimum stays at 20 days (now out of about 560 fit days).
