@@ -1,3 +1,4 @@
+# ruff: noqa: E501, E741
 """What-if costs for the Asia buy, 2014-2022 only (2023-24 untouched)."""
 
 from datetime import datetime, time
