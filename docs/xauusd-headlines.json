@@ -1,0 +1,346 @@
+{
+  "rules": "docs/xauusd-headlines-plan.md",
+  "headlines_after_cleaning": 615680,
+  "days_without_headlines": 1162,
+  "rows": {
+    "fit_2019_10_2021": 535,
+    "valid_2022": 258,
+    "test_2023_2024": 462
+  },
+  "diagnostic_2019_2022": {
+    "bottom_fifth_buy_won": 0.5346,
+    "middle_buy_won": 0.5116,
+    "top_fifth_buy_won": 0.5283,
+    "all_buy_won": 0.5195,
+    "cut_points": [
+      -0.001,
+      0.083
+    ]
+  },
+  "winner": "headline_text",
+  "results": {
+    "v2_news": {
+      "params": {
+        "max_depth": 3,
+        "min_samples_leaf": 100,
+        "max_iter": 100,
+        "l2_regularization": 20.0,
+        "max_features": 1.0
+      },
+      "valid_log_loss": 0.70126,
+      "valid_accuracy": 0.5039,
+      "test_log_loss": 0.70186,
+      "test_accuracy": 0.4567,
+      "trades": {
+        "trades": 220,
+        "win_rate": 0.459,
+        "net_usd": -641.81,
+        "avg_per_trade": -2.92,
+        "avg_win": 12.38,
+        "avg_loss": -15.9,
+        "profit_factor": 0.661,
+        "max_drawdown_usd": 771.7,
+        "by_year": {
+          "2023": -441.35,
+          "2024": -200.46
+        },
+        "green_years": 0,
+        "exit_mix": {
+          "stop": 56,
+          "target": 36,
+          "time_exit": 128
+        }
+      },
+      "net_usd_2x": -804.19
+    },
+    "news_words": {
+      "params": {
+        "max_depth": 2,
+        "min_samples_leaf": 250,
+        "max_iter": 100,
+        "l2_regularization": 20.0,
+        "max_features": 0.3
+      },
+      "valid_log_loss": 0.70286,
+      "valid_accuracy": 0.4845,
+      "test_log_loss": 0.69936,
+      "test_accuracy": 0.474,
+      "trades": {
+        "trades": 61,
+        "win_rate": 0.41,
+        "net_usd": -207.49,
+        "avg_per_trade": -3.4,
+        "avg_win": 14.92,
+        "avg_loss": -16.12,
+        "profit_factor": 0.643,
+        "max_drawdown_usd": 280.04,
+        "by_year": {
+          "2023": -189.01,
+          "2024": -18.48
+        },
+        "green_years": 0,
+        "exit_mix": {
+          "stop": 19,
+          "target": 14,
+          "time_exit": 28
+        }
+      },
+      "net_usd_2x": -237.23
+    },
+    "headline_text": {
+      "params": {
+        "C": 1.0,
+        "vocabulary": 15909
+      },
+      "valid_log_loss": 0.69256,
+      "valid_accuracy": 0.531,
+      "test_log_loss": 0.69396,
+      "test_accuracy": 0.5087,
+      "trades": {
+        "trades": 50,
+        "win_rate": 0.4,
+        "net_usd": -126.6,
+        "avg_per_trade": -2.53,
+        "avg_win": 9.55,
+        "avg_loss": -10.59,
+        "profit_factor": 0.601,
+        "max_drawdown_usd": 177.28,
+        "by_year": {
+          "2023": 0.1,
+          "2024": -126.69
+        },
+        "green_years": 1,
+        "exit_mix": {
+          "stop": 9,
+          "target": 3,
+          "time_exit": 38
+        }
+      },
+      "net_usd_2x": -158.56
+    },
+    "words_only": {
+      "params": {
+        "max_depth": 2,
+        "min_samples_leaf": 250,
+        "max_iter": 100,
+        "l2_regularization": 20.0,
+        "max_features": 0.3
+      },
+      "valid_log_loss": 0.69957,
+      "valid_accuracy": 0.4806,
+      "test_log_loss": 0.69833,
+      "test_accuracy": 0.4892,
+      "trades": {
+        "trades": 95,
+        "win_rate": 0.442,
+        "net_usd": -150.16,
+        "avg_per_trade": -1.58,
+        "avg_win": 15.02,
+        "avg_loss": -14.74,
+        "profit_factor": 0.808,
+        "max_drawdown_usd": 196.55,
+        "by_year": {
+          "2023": -48.76,
+          "2024": -101.4
+        },
+        "green_years": 0,
+        "exit_mix": {
+          "stop": 27,
+          "target": 20,
+          "time_exit": 48
+        }
+      },
+      "net_usd_2x": -243.52
+    }
+  },
+  "always_buy_test": {
+    "trades": 462,
+    "win_rate": 0.446,
+    "net_usd": -856.22,
+    "avg_per_trade": -1.85,
+    "avg_win": 13.54,
+    "avg_loss": -14.24,
+    "profit_factor": 0.765,
+    "max_drawdown_usd": 901.06,
+    "by_year": {
+      "2023": -492.59,
+      "2024": -363.64
+    },
+    "green_years": 0,
+    "exit_mix": {
+      "stop": 111,
+      "target": 89,
+      "time_exit": 262
+    }
+  },
+  "move_size": {
+    "v2_news": {
+      "valid_r2": 0.0447,
+      "test_r2": 0.0159,
+      "test_rank_corr": 0.1487
+    },
+    "news_words": {
+      "valid_r2": 0.0433,
+      "test_r2": 0.0161,
+      "test_rank_corr": 0.1484
+    }
+  },
+  "text_model_words": {
+    "before_gold_rose": [
+      "virus cases",
+      "holds",
+      "cases",
+      "may 2021",
+      "gold etfs",
+      "q4",
+      "24k gold",
+      "gold bond",
+      "qatar",
+      "element79",
+      "year gold",
+      "element79 gold",
+      "treasure hunt",
+      "last week",
+      "2021",
+      "crisis",
+      "pandemic",
+      "resources corp",
+      "jahr",
+      "northern"
+    ],
+    "before_gold_fell": [
+      "condor gold",
+      "condor",
+      "snowline gold",
+      "snowline",
+      "tonnes",
+      "53",
+      "high as",
+      "aex",
+      "east",
+      "aex gold",
+      "targets at",
+      "one gold",
+      "plc",
+      "para",
+      "march 2021",
+      "kevin",
+      "zone",
+      "bill",
+      "zu",
+      "to create"
+    ]
+  },
+  "top_tuning": [
+    {
+      "candidate": "headline_text",
+      "params": {
+        "C": 1.0,
+        "vocabulary": 15909
+      },
+      "valid_log_loss": 0.69256,
+      "valid_accuracy": 0.531
+    },
+    {
+      "candidate": "headline_text",
+      "params": {
+        "C": 0.1,
+        "vocabulary": 15909
+      },
+      "valid_log_loss": 0.69545,
+      "valid_accuracy": 0.4922
+    },
+    {
+      "candidate": "headline_text",
+      "params": {
+        "C": 0.01,
+        "vocabulary": 15909
+      },
+      "valid_log_loss": 0.6962,
+      "valid_accuracy": 0.4922
+    },
+    {
+      "candidate": "words_only",
+      "params": {
+        "max_depth": 2,
+        "min_samples_leaf": 250,
+        "max_iter": 100,
+        "l2_regularization": 20.0,
+        "max_features": 0.3
+      },
+      "valid_log_loss": 0.69957,
+      "valid_accuracy": 0.4806
+    },
+    {
+      "candidate": "words_only",
+      "params": {
+        "max_depth": 3,
+        "min_samples_leaf": 250,
+        "max_iter": 100,
+        "l2_regularization": 20.0,
+        "max_features": 0.3
+      },
+      "valid_log_loss": 0.69957,
+      "valid_accuracy": 0.4806
+    },
+    {
+      "candidate": "headline_text",
+      "params": {
+        "C": 10.0,
+        "vocabulary": 15909
+      },
+      "valid_log_loss": 0.69965,
+      "valid_accuracy": 0.5891
+    },
+    {
+      "candidate": "words_only",
+      "params": {
+        "max_depth": 2,
+        "min_samples_leaf": 250,
+        "max_iter": 100,
+        "l2_regularization": 20.0,
+        "max_features": 1.0
+      },
+      "valid_log_loss": 0.69977,
+      "valid_accuracy": 0.4845
+    },
+    {
+      "candidate": "words_only",
+      "params": {
+        "max_depth": 3,
+        "min_samples_leaf": 250,
+        "max_iter": 100,
+        "l2_regularization": 20.0,
+        "max_features": 1.0
+      },
+      "valid_log_loss": 0.69977,
+      "valid_accuracy": 0.4845
+    },
+    {
+      "candidate": "words_only",
+      "params": {
+        "max_depth": 2,
+        "min_samples_leaf": 250,
+        "max_iter": 100,
+        "l2_regularization": 1.0,
+        "max_features": 0.3
+      },
+      "valid_log_loss": 0.70035,
+      "valid_accuracy": 0.4845
+    },
+    {
+      "candidate": "words_only",
+      "params": {
+        "max_depth": 3,
+        "min_samples_leaf": 250,
+        "max_iter": 100,
+        "l2_regularization": 1.0,
+        "max_features": 0.3
+      },
+      "valid_log_loss": 0.70035,
+      "valid_accuracy": 0.4845
+    }
+  ],
+  "passed": false,
+  "2025_2026": "not loaded"
+}
