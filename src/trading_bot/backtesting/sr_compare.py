@@ -80,7 +80,7 @@ class Signal:
 @dataclass(frozen=True)
 class Result:
     signal: Signal
-    target_r: float
+    target_r: float | None  # None = hold to the time exit
     risk_mid: float  # stop distance from the entry minute's mid open
     trade: HoldTrade
 
@@ -221,12 +221,9 @@ def find_signals(
         ]
     out: list[Signal] = []
     for lt in ltypes:
-        if lt == "all":
-            late = [x for t in TYPES for x in by_type[t]]
-            early_raw = [x for t in TYPES if t != "asia" for x in by_type[t]]
-        else:
-            late = list(by_type[lt])
-            early_raw = [] if lt == "asia" else late
+        parts = TYPES if lt == "all" else tuple(lt.split("+"))  # "a+b" = both
+        late = [x for t in parts for x in by_type[t]]
+        early_raw = [x for t in parts if t != "asia" for x in by_type[t]]
         levels = merge_levels(late, z)
         early = merge_levels(early_raw, z)
         out += _scan(levels, early, lt, d, m, mid, adr, asia_end)

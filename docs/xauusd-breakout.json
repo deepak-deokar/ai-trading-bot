@@ -1,0 +1,1390 @@
+{
+  "plan": "docs/xauusd-breakout-plan.md",
+  "costs": "xauusd_costs_equiti",
+  "twin_runs_raw": 200,
+  "twin_runs_net": 1000,
+  "step1": [
+    {
+      "variant": "prev_day / stop level / target 1.0R",
+      "trades": 1470,
+      "early": {
+        "trades": 1102,
+        "raw_r": 0.0919,
+        "twin_r": -0.0048,
+        "excess_r": 0.0967,
+        "cost_r": 0.1502,
+        "win_rate_raw": 0.544,
+        "avg_stop_usd": 4.6
+      },
+      "late": {
+        "trades": 368,
+        "raw_r": -0.0624,
+        "twin_r": -0.0006,
+        "excess_r": -0.0617,
+        "cost_r": 0.0794,
+        "win_rate_raw": 0.462,
+        "avg_stop_usd": 6.66
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day / stop level / target 1.5R",
+      "trades": 1470,
+      "early": {
+        "trades": 1102,
+        "raw_r": 0.0654,
+        "twin_r": -0.0007,
+        "excess_r": 0.0661,
+        "cost_r": 0.1398,
+        "win_rate_raw": 0.467,
+        "avg_stop_usd": 4.6
+      },
+      "late": {
+        "trades": 368,
+        "raw_r": 0.0093,
+        "twin_r": 0.0022,
+        "excess_r": 0.0071,
+        "cost_r": 0.0924,
+        "win_rate_raw": 0.432,
+        "avg_stop_usd": 6.66
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day / stop level / target 2.0R",
+      "trades": 1470,
+      "early": {
+        "trades": 1102,
+        "raw_r": 0.0696,
+        "twin_r": -0.0036,
+        "excess_r": 0.0732,
+        "cost_r": 0.1616,
+        "win_rate_raw": 0.439,
+        "avg_stop_usd": 4.6
+      },
+      "late": {
+        "trades": 368,
+        "raw_r": 0.0185,
+        "twin_r": 0.0117,
+        "excess_r": 0.0068,
+        "cost_r": 0.0821,
+        "win_rate_raw": 0.405,
+        "avg_stop_usd": 6.66
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day / stop level / target close",
+      "trades": 1470,
+      "early": {
+        "trades": 1102,
+        "raw_r": 0.0805,
+        "twin_r": 0.0164,
+        "excess_r": 0.0641,
+        "cost_r": 0.1477,
+        "win_rate_raw": 0.416,
+        "avg_stop_usd": 4.6
+      },
+      "late": {
+        "trades": 368,
+        "raw_r": 0.0622,
+        "twin_r": 0.0186,
+        "excess_r": 0.0436,
+        "cost_r": 0.0991,
+        "win_rate_raw": 0.397,
+        "avg_stop_usd": 6.66
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day / stop 0.25ADR / target 1.0R",
+      "trades": 1500,
+      "early": {
+        "trades": 1124,
+        "raw_r": 0.0954,
+        "twin_r": -0.0019,
+        "excess_r": 0.0973,
+        "cost_r": 0.1508,
+        "win_rate_raw": 0.549,
+        "avg_stop_usd": 4.29
+      },
+      "late": {
+        "trades": 376,
+        "raw_r": -0.0844,
+        "twin_r": -0.01,
+        "excess_r": -0.0744,
+        "cost_r": 0.086,
+        "win_rate_raw": 0.455,
+        "avg_stop_usd": 6.13
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day / stop 0.25ADR / target 1.5R",
+      "trades": 1500,
+      "early": {
+        "trades": 1124,
+        "raw_r": 0.0749,
+        "twin_r": -0.0053,
+        "excess_r": 0.0802,
+        "cost_r": 0.149,
+        "win_rate_raw": 0.467,
+        "avg_stop_usd": 4.29
+      },
+      "late": {
+        "trades": 376,
+        "raw_r": -0.0448,
+        "twin_r": 0.0045,
+        "excess_r": -0.0493,
+        "cost_r": 0.0899,
+        "win_rate_raw": 0.404,
+        "avg_stop_usd": 6.13
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day / stop 0.25ADR / target 2.0R",
+      "trades": 1500,
+      "early": {
+        "trades": 1124,
+        "raw_r": 0.0727,
+        "twin_r": -0.0054,
+        "excess_r": 0.0782,
+        "cost_r": 0.1445,
+        "win_rate_raw": 0.438,
+        "avg_stop_usd": 4.29
+      },
+      "late": {
+        "trades": 376,
+        "raw_r": -0.0435,
+        "twin_r": 0.0074,
+        "excess_r": -0.0509,
+        "cost_r": 0.0736,
+        "win_rate_raw": 0.378,
+        "avg_stop_usd": 6.13
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day / stop 0.25ADR / target close",
+      "trades": 1500,
+      "early": {
+        "trades": 1124,
+        "raw_r": 0.0851,
+        "twin_r": 0.0155,
+        "excess_r": 0.0696,
+        "cost_r": 0.1432,
+        "win_rate_raw": 0.412,
+        "avg_stop_usd": 4.29
+      },
+      "late": {
+        "trades": 376,
+        "raw_r": -0.0145,
+        "twin_r": 0.0188,
+        "excess_r": -0.0333,
+        "cost_r": 0.089,
+        "win_rate_raw": 0.367,
+        "avg_stop_usd": 6.13
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day / stop 0.4ADR / target 1.0R",
+      "trades": 1500,
+      "early": {
+        "trades": 1124,
+        "raw_r": 0.0134,
+        "twin_r": -0.0029,
+        "excess_r": 0.0163,
+        "cost_r": 0.0981,
+        "win_rate_raw": 0.511,
+        "avg_stop_usd": 6.86
+      },
+      "late": {
+        "trades": 376,
+        "raw_r": -0.0043,
+        "twin_r": -0.0072,
+        "excess_r": 0.0028,
+        "cost_r": 0.0481,
+        "win_rate_raw": 0.487,
+        "avg_stop_usd": 9.81
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day / stop 0.4ADR / target 1.5R",
+      "trades": 1500,
+      "early": {
+        "trades": 1124,
+        "raw_r": 0.0104,
+        "twin_r": 0.0007,
+        "excess_r": 0.0097,
+        "cost_r": 0.0958,
+        "win_rate_raw": 0.479,
+        "avg_stop_usd": 6.86
+      },
+      "late": {
+        "trades": 376,
+        "raw_r": 0.0226,
+        "twin_r": 0.0022,
+        "excess_r": 0.0204,
+        "cost_r": 0.0625,
+        "win_rate_raw": 0.465,
+        "avg_stop_usd": 9.81
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day / stop 0.4ADR / target 2.0R",
+      "trades": 1500,
+      "early": {
+        "trades": 1124,
+        "raw_r": 0.006,
+        "twin_r": 0.0008,
+        "excess_r": 0.0052,
+        "cost_r": 0.0872,
+        "win_rate_raw": 0.466,
+        "avg_stop_usd": 6.86
+      },
+      "late": {
+        "trades": 376,
+        "raw_r": 0.0279,
+        "twin_r": 0.0039,
+        "excess_r": 0.024,
+        "cost_r": 0.0602,
+        "win_rate_raw": 0.46,
+        "avg_stop_usd": 9.81
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day / stop 0.4ADR / target close",
+      "trades": 1500,
+      "early": {
+        "trades": 1124,
+        "raw_r": 0.023,
+        "twin_r": 0.0092,
+        "excess_r": 0.0138,
+        "cost_r": 0.0936,
+        "win_rate_raw": 0.465,
+        "avg_stop_usd": 6.86
+      },
+      "late": {
+        "trades": 376,
+        "raw_r": 0.0267,
+        "twin_r": 0.0038,
+        "excess_r": 0.0229,
+        "cost_r": 0.0597,
+        "win_rate_raw": 0.457,
+        "avg_stop_usd": 9.81
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day / stop 0.6ADR / target 1.0R",
+      "trades": 1485,
+      "early": {
+        "trades": 1109,
+        "raw_r": 0.0083,
+        "twin_r": -0.0017,
+        "excess_r": 0.01,
+        "cost_r": 0.0636,
+        "win_rate_raw": 0.512,
+        "avg_stop_usd": 10.0
+      },
+      "late": {
+        "trades": 376,
+        "raw_r": -0.0053,
+        "twin_r": -0.0025,
+        "excess_r": -0.0027,
+        "cost_r": 0.0378,
+        "win_rate_raw": 0.487,
+        "avg_stop_usd": 14.71
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day / stop 0.6ADR / target 1.5R",
+      "trades": 1485,
+      "early": {
+        "trades": 1109,
+        "raw_r": 0.009,
+        "twin_r": 0.0047,
+        "excess_r": 0.0043,
+        "cost_r": 0.0628,
+        "win_rate_raw": 0.5,
+        "avg_stop_usd": 10.0
+      },
+      "late": {
+        "trades": 376,
+        "raw_r": -0.0013,
+        "twin_r": -0.0007,
+        "excess_r": -0.0006,
+        "cost_r": 0.0375,
+        "win_rate_raw": 0.479,
+        "avg_stop_usd": 14.71
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day / stop 0.6ADR / target 2.0R",
+      "trades": 1485,
+      "early": {
+        "trades": 1109,
+        "raw_r": 0.0107,
+        "twin_r": 0.0062,
+        "excess_r": 0.0045,
+        "cost_r": 0.064,
+        "win_rate_raw": 0.498,
+        "avg_stop_usd": 10.0
+      },
+      "late": {
+        "trades": 376,
+        "raw_r": -0.0051,
+        "twin_r": -0.0032,
+        "excess_r": -0.0019,
+        "cost_r": 0.0361,
+        "win_rate_raw": 0.479,
+        "avg_stop_usd": 14.71
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day / stop 0.6ADR / target close",
+      "trades": 1485,
+      "early": {
+        "trades": 1109,
+        "raw_r": 0.0154,
+        "twin_r": 0.0059,
+        "excess_r": 0.0095,
+        "cost_r": 0.0628,
+        "win_rate_raw": 0.498,
+        "avg_stop_usd": 10.0
+      },
+      "late": {
+        "trades": 376,
+        "raw_r": -0.0009,
+        "twin_r": 0.0035,
+        "excess_r": -0.0044,
+        "cost_r": 0.0373,
+        "win_rate_raw": 0.479,
+        "avg_stop_usd": 14.71
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day / stop 0.8ADR / target 1.0R",
+      "trades": 1461,
+      "early": {
+        "trades": 1093,
+        "raw_r": 0.0039,
+        "twin_r": -0.0047,
+        "excess_r": 0.0086,
+        "cost_r": 0.0471,
+        "win_rate_raw": 0.504,
+        "avg_stop_usd": 13.03
+      },
+      "late": {
+        "trades": 368,
+        "raw_r": 0.0023,
+        "twin_r": 0.0008,
+        "excess_r": 0.0015,
+        "cost_r": 0.0296,
+        "win_rate_raw": 0.486,
+        "avg_stop_usd": 19.33
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day / stop 0.8ADR / target 1.5R",
+      "trades": 1461,
+      "early": {
+        "trades": 1093,
+        "raw_r": 0.0081,
+        "twin_r": 0.0025,
+        "excess_r": 0.0056,
+        "cost_r": 0.0498,
+        "win_rate_raw": 0.502,
+        "avg_stop_usd": 13.03
+      },
+      "late": {
+        "trades": 368,
+        "raw_r": -0.0009,
+        "twin_r": 0.0024,
+        "excess_r": -0.0033,
+        "cost_r": 0.0284,
+        "win_rate_raw": 0.484,
+        "avg_stop_usd": 19.33
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day / stop 0.8ADR / target 2.0R",
+      "trades": 1461,
+      "early": {
+        "trades": 1093,
+        "raw_r": 0.0098,
+        "twin_r": 0.0017,
+        "excess_r": 0.0081,
+        "cost_r": 0.0486,
+        "win_rate_raw": 0.502,
+        "avg_stop_usd": 13.03
+      },
+      "late": {
+        "trades": 368,
+        "raw_r": 0.004,
+        "twin_r": 0.0058,
+        "excess_r": -0.0018,
+        "cost_r": 0.0311,
+        "win_rate_raw": 0.484,
+        "avg_stop_usd": 19.33
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day / stop 0.8ADR / target close",
+      "trades": 1461,
+      "early": {
+        "trades": 1093,
+        "raw_r": 0.0117,
+        "twin_r": 0.0021,
+        "excess_r": 0.0096,
+        "cost_r": 0.0487,
+        "win_rate_raw": 0.502,
+        "avg_stop_usd": 13.03
+      },
+      "late": {
+        "trades": 368,
+        "raw_r": 0.0025,
+        "twin_r": 0.0025,
+        "excess_r": 0.0,
+        "cost_r": 0.0293,
+        "win_rate_raw": 0.484,
+        "avg_stop_usd": 19.33
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "swing / stop level / target 1.0R",
+      "trades": 4398,
+      "early": {
+        "trades": 3348,
+        "raw_r": 0.0377,
+        "twin_r": -0.0031,
+        "excess_r": 0.0408,
+        "cost_r": 0.1394,
+        "win_rate_raw": 0.514,
+        "avg_stop_usd": 4.54
+      },
+      "late": {
+        "trades": 1050,
+        "raw_r": -0.0026,
+        "twin_r": 0.0016,
+        "excess_r": -0.0042,
+        "cost_r": 0.0803,
+        "win_rate_raw": 0.49,
+        "avg_stop_usd": 6.42
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "swing / stop level / target 1.5R",
+      "trades": 4398,
+      "early": {
+        "trades": 3348,
+        "raw_r": 0.033,
+        "twin_r": 0.0003,
+        "excess_r": 0.0328,
+        "cost_r": 0.1372,
+        "win_rate_raw": 0.449,
+        "avg_stop_usd": 4.54
+      },
+      "late": {
+        "trades": 1050,
+        "raw_r": 0.0483,
+        "twin_r": 0.0091,
+        "excess_r": 0.0392,
+        "cost_r": 0.08,
+        "win_rate_raw": 0.449,
+        "avg_stop_usd": 6.42
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "swing / stop level / target 2.0R",
+      "trades": 4398,
+      "early": {
+        "trades": 3348,
+        "raw_r": 0.0384,
+        "twin_r": -0.0015,
+        "excess_r": 0.0399,
+        "cost_r": 0.1318,
+        "win_rate_raw": 0.423,
+        "avg_stop_usd": 4.54
+      },
+      "late": {
+        "trades": 1050,
+        "raw_r": 0.0582,
+        "twin_r": 0.0071,
+        "excess_r": 0.0511,
+        "cost_r": 0.0976,
+        "win_rate_raw": 0.422,
+        "avg_stop_usd": 6.42
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "swing / stop level / target close",
+      "trades": 4398,
+      "early": {
+        "trades": 3348,
+        "raw_r": 0.0499,
+        "twin_r": 0.0206,
+        "excess_r": 0.0293,
+        "cost_r": 0.1428,
+        "win_rate_raw": 0.4,
+        "avg_stop_usd": 4.54
+      },
+      "late": {
+        "trades": 1050,
+        "raw_r": 0.0508,
+        "twin_r": 0.0214,
+        "excess_r": 0.0294,
+        "cost_r": 0.089,
+        "win_rate_raw": 0.39,
+        "avg_stop_usd": 6.42
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "swing / stop 0.25ADR / target 1.0R",
+      "trades": 4498,
+      "early": {
+        "trades": 3424,
+        "raw_r": 0.0499,
+        "twin_r": -0.003,
+        "excess_r": 0.0529,
+        "cost_r": 0.1465,
+        "win_rate_raw": 0.523,
+        "avg_stop_usd": 4.3
+      },
+      "late": {
+        "trades": 1074,
+        "raw_r": -0.0326,
+        "twin_r": -0.0039,
+        "excess_r": -0.0287,
+        "cost_r": 0.0772,
+        "win_rate_raw": 0.472,
+        "avg_stop_usd": 6.11
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "swing / stop 0.25ADR / target 1.5R",
+      "trades": 4498,
+      "early": {
+        "trades": 3424,
+        "raw_r": 0.0592,
+        "twin_r": -0.0025,
+        "excess_r": 0.0617,
+        "cost_r": 0.1528,
+        "win_rate_raw": 0.456,
+        "avg_stop_usd": 4.3
+      },
+      "late": {
+        "trades": 1074,
+        "raw_r": 0.0158,
+        "twin_r": 0.0116,
+        "excess_r": 0.0042,
+        "cost_r": 0.088,
+        "win_rate_raw": 0.432,
+        "avg_stop_usd": 6.11
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "swing / stop 0.25ADR / target 2.0R",
+      "trades": 4498,
+      "early": {
+        "trades": 3424,
+        "raw_r": 0.0592,
+        "twin_r": -0.003,
+        "excess_r": 0.0622,
+        "cost_r": 0.1502,
+        "win_rate_raw": 0.426,
+        "avg_stop_usd": 4.3
+      },
+      "late": {
+        "trades": 1074,
+        "raw_r": 0.024,
+        "twin_r": 0.0131,
+        "excess_r": 0.0109,
+        "cost_r": 0.0894,
+        "win_rate_raw": 0.403,
+        "avg_stop_usd": 6.11
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "swing / stop 0.25ADR / target close",
+      "trades": 4498,
+      "early": {
+        "trades": 3424,
+        "raw_r": 0.0677,
+        "twin_r": 0.014,
+        "excess_r": 0.0537,
+        "cost_r": 0.1531,
+        "win_rate_raw": 0.403,
+        "avg_stop_usd": 4.3
+      },
+      "late": {
+        "trades": 1074,
+        "raw_r": 0.0256,
+        "twin_r": 0.0274,
+        "excess_r": -0.0017,
+        "cost_r": 0.0918,
+        "win_rate_raw": 0.376,
+        "avg_stop_usd": 6.11
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "swing / stop 0.4ADR / target 1.0R",
+      "trades": 4498,
+      "early": {
+        "trades": 3424,
+        "raw_r": 0.0192,
+        "twin_r": -0.0007,
+        "excess_r": 0.0199,
+        "cost_r": 0.0942,
+        "win_rate_raw": 0.502,
+        "avg_stop_usd": 6.89
+      },
+      "late": {
+        "trades": 1074,
+        "raw_r": -0.0035,
+        "twin_r": 0.0009,
+        "excess_r": -0.0044,
+        "cost_r": 0.0502,
+        "win_rate_raw": 0.489,
+        "avg_stop_usd": 9.77
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "swing / stop 0.4ADR / target 1.5R",
+      "trades": 4498,
+      "early": {
+        "trades": 3424,
+        "raw_r": 0.0189,
+        "twin_r": -0.0005,
+        "excess_r": 0.0193,
+        "cost_r": 0.0882,
+        "win_rate_raw": 0.471,
+        "avg_stop_usd": 6.89
+      },
+      "late": {
+        "trades": 1074,
+        "raw_r": 0.0069,
+        "twin_r": 0.0099,
+        "excess_r": -0.003,
+        "cost_r": 0.0514,
+        "win_rate_raw": 0.455,
+        "avg_stop_usd": 9.77
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "swing / stop 0.4ADR / target 2.0R",
+      "trades": 4498,
+      "early": {
+        "trades": 3424,
+        "raw_r": 0.0297,
+        "twin_r": 0.0017,
+        "excess_r": 0.028,
+        "cost_r": 0.0924,
+        "win_rate_raw": 0.463,
+        "avg_stop_usd": 6.89
+      },
+      "late": {
+        "trades": 1074,
+        "raw_r": -0.0078,
+        "twin_r": -0.0011,
+        "excess_r": -0.0067,
+        "cost_r": 0.0553,
+        "win_rate_raw": 0.444,
+        "avg_stop_usd": 9.77
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "swing / stop 0.4ADR / target close",
+      "trades": 4498,
+      "early": {
+        "trades": 3424,
+        "raw_r": 0.0272,
+        "twin_r": 0.0088,
+        "excess_r": 0.0184,
+        "cost_r": 0.0923,
+        "win_rate_raw": 0.461,
+        "avg_stop_usd": 6.89
+      },
+      "late": {
+        "trades": 1074,
+        "raw_r": 0.0114,
+        "twin_r": 0.0086,
+        "excess_r": 0.0028,
+        "cost_r": 0.0557,
+        "win_rate_raw": 0.441,
+        "avg_stop_usd": 9.77
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "swing / stop 0.6ADR / target 1.0R",
+      "trades": 4456,
+      "early": {
+        "trades": 3382,
+        "raw_r": 0.0187,
+        "twin_r": 0.0,
+        "excess_r": 0.0187,
+        "cost_r": 0.061,
+        "win_rate_raw": 0.498,
+        "avg_stop_usd": 10.06
+      },
+      "late": {
+        "trades": 1074,
+        "raw_r": -0.0036,
+        "twin_r": 0.0018,
+        "excess_r": -0.0054,
+        "cost_r": 0.0374,
+        "win_rate_raw": 0.482,
+        "avg_stop_usd": 14.66
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "swing / stop 0.6ADR / target 1.5R",
+      "trades": 4456,
+      "early": {
+        "trades": 3382,
+        "raw_r": 0.029,
+        "twin_r": 0.0012,
+        "excess_r": 0.0277,
+        "cost_r": 0.0643,
+        "win_rate_raw": 0.489,
+        "avg_stop_usd": 10.06
+      },
+      "late": {
+        "trades": 1074,
+        "raw_r": -0.0144,
+        "twin_r": -0.0012,
+        "excess_r": -0.0132,
+        "cost_r": 0.0374,
+        "win_rate_raw": 0.469,
+        "avg_stop_usd": 14.66
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "swing / stop 0.6ADR / target 2.0R",
+      "trades": 4456,
+      "early": {
+        "trades": 3382,
+        "raw_r": 0.026,
+        "twin_r": 0.0043,
+        "excess_r": 0.0218,
+        "cost_r": 0.0649,
+        "win_rate_raw": 0.487,
+        "avg_stop_usd": 10.06
+      },
+      "late": {
+        "trades": 1074,
+        "raw_r": -0.0061,
+        "twin_r": -0.0024,
+        "excess_r": -0.0036,
+        "cost_r": 0.0379,
+        "win_rate_raw": 0.468,
+        "avg_stop_usd": 14.66
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "swing / stop 0.6ADR / target close",
+      "trades": 4456,
+      "early": {
+        "trades": 3382,
+        "raw_r": 0.0235,
+        "twin_r": 0.0039,
+        "excess_r": 0.0196,
+        "cost_r": 0.0638,
+        "win_rate_raw": 0.487,
+        "avg_stop_usd": 10.06
+      },
+      "late": {
+        "trades": 1074,
+        "raw_r": -0.0003,
+        "twin_r": 0.0054,
+        "excess_r": -0.0056,
+        "cost_r": 0.0397,
+        "win_rate_raw": 0.468,
+        "avg_stop_usd": 14.66
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "swing / stop 0.8ADR / target 1.0R",
+      "trades": 4382,
+      "early": {
+        "trades": 3339,
+        "raw_r": 0.0185,
+        "twin_r": -0.001,
+        "excess_r": 0.0195,
+        "cost_r": 0.0499,
+        "win_rate_raw": 0.495,
+        "avg_stop_usd": 13.15
+      },
+      "late": {
+        "trades": 1043,
+        "raw_r": -0.0067,
+        "twin_r": -0.0007,
+        "excess_r": -0.006,
+        "cost_r": 0.0305,
+        "win_rate_raw": 0.477,
+        "avg_stop_usd": 19.15
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "swing / stop 0.8ADR / target 1.5R",
+      "trades": 4382,
+      "early": {
+        "trades": 3339,
+        "raw_r": 0.0169,
+        "twin_r": 0.0009,
+        "excess_r": 0.0161,
+        "cost_r": 0.049,
+        "win_rate_raw": 0.492,
+        "avg_stop_usd": 13.15
+      },
+      "late": {
+        "trades": 1043,
+        "raw_r": -0.0008,
+        "twin_r": -0.0022,
+        "excess_r": 0.0014,
+        "cost_r": 0.0286,
+        "win_rate_raw": 0.475,
+        "avg_stop_usd": 19.15
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "swing / stop 0.8ADR / target 2.0R",
+      "trades": 4382,
+      "early": {
+        "trades": 3339,
+        "raw_r": 0.0159,
+        "twin_r": -0.0008,
+        "excess_r": 0.0166,
+        "cost_r": 0.048,
+        "win_rate_raw": 0.492,
+        "avg_stop_usd": 13.15
+      },
+      "late": {
+        "trades": 1043,
+        "raw_r": 0.0058,
+        "twin_r": -0.0009,
+        "excess_r": 0.0067,
+        "cost_r": 0.0302,
+        "win_rate_raw": 0.475,
+        "avg_stop_usd": 19.15
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "swing / stop 0.8ADR / target close",
+      "trades": 4382,
+      "early": {
+        "trades": 3339,
+        "raw_r": 0.0148,
+        "twin_r": 0.0007,
+        "excess_r": 0.0141,
+        "cost_r": 0.0482,
+        "win_rate_raw": 0.492,
+        "avg_stop_usd": 13.15
+      },
+      "late": {
+        "trades": 1043,
+        "raw_r": 0.0038,
+        "twin_r": 0.0014,
+        "excess_r": 0.0025,
+        "cost_r": 0.0298,
+        "win_rate_raw": 0.475,
+        "avg_stop_usd": 19.15
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day+swing / stop level / target 1.0R",
+      "trades": 5156,
+      "early": {
+        "trades": 3918,
+        "raw_r": 0.0421,
+        "twin_r": -0.0024,
+        "excess_r": 0.0445,
+        "cost_r": 0.1372,
+        "win_rate_raw": 0.517,
+        "avg_stop_usd": 4.55
+      },
+      "late": {
+        "trades": 1238,
+        "raw_r": -0.0109,
+        "twin_r": -0.0009,
+        "excess_r": -0.01,
+        "cost_r": 0.0813,
+        "win_rate_raw": 0.488,
+        "avg_stop_usd": 6.46
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day+swing / stop level / target 1.5R",
+      "trades": 5156,
+      "early": {
+        "trades": 3918,
+        "raw_r": 0.0341,
+        "twin_r": -0.0018,
+        "excess_r": 0.0359,
+        "cost_r": 0.1364,
+        "win_rate_raw": 0.45,
+        "avg_stop_usd": 4.55
+      },
+      "late": {
+        "trades": 1238,
+        "raw_r": 0.0421,
+        "twin_r": 0.0045,
+        "excess_r": 0.0376,
+        "cost_r": 0.0828,
+        "win_rate_raw": 0.447,
+        "avg_stop_usd": 6.46
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day+swing / stop level / target 2.0R",
+      "trades": 5156,
+      "early": {
+        "trades": 3918,
+        "raw_r": 0.0443,
+        "twin_r": 0.0002,
+        "excess_r": 0.0441,
+        "cost_r": 0.14,
+        "win_rate_raw": 0.424,
+        "avg_stop_usd": 4.55
+      },
+      "late": {
+        "trades": 1238,
+        "raw_r": 0.0501,
+        "twin_r": 0.0107,
+        "excess_r": 0.0395,
+        "cost_r": 0.0948,
+        "win_rate_raw": 0.42,
+        "avg_stop_usd": 6.46
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day+swing / stop level / target close",
+      "trades": 5156,
+      "early": {
+        "trades": 3918,
+        "raw_r": 0.0495,
+        "twin_r": 0.0172,
+        "excess_r": 0.0323,
+        "cost_r": 0.1423,
+        "win_rate_raw": 0.4,
+        "avg_stop_usd": 4.55
+      },
+      "late": {
+        "trades": 1238,
+        "raw_r": 0.0527,
+        "twin_r": 0.027,
+        "excess_r": 0.0257,
+        "cost_r": 0.0928,
+        "win_rate_raw": 0.392,
+        "avg_stop_usd": 6.46
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day+swing / stop 0.25ADR / target 1.0R",
+      "trades": 5269,
+      "early": {
+        "trades": 4005,
+        "raw_r": 0.0533,
+        "twin_r": -0.0037,
+        "excess_r": 0.0571,
+        "cost_r": 0.145,
+        "win_rate_raw": 0.525,
+        "avg_stop_usd": 4.3
+      },
+      "late": {
+        "trades": 1264,
+        "raw_r": -0.0388,
+        "twin_r": -0.0017,
+        "excess_r": -0.037,
+        "cost_r": 0.0808,
+        "win_rate_raw": 0.472,
+        "avg_stop_usd": 6.11
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day+swing / stop 0.25ADR / target 1.5R",
+      "trades": 5269,
+      "early": {
+        "trades": 4005,
+        "raw_r": 0.06,
+        "twin_r": -0.0042,
+        "excess_r": 0.0642,
+        "cost_r": 0.1509,
+        "win_rate_raw": 0.457,
+        "avg_stop_usd": 4.3
+      },
+      "late": {
+        "trades": 1264,
+        "raw_r": 0.0012,
+        "twin_r": 0.006,
+        "excess_r": -0.0048,
+        "cost_r": 0.0893,
+        "win_rate_raw": 0.427,
+        "avg_stop_usd": 6.11
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day+swing / stop 0.25ADR / target 2.0R",
+      "trades": 5269,
+      "early": {
+        "trades": 4005,
+        "raw_r": 0.0564,
+        "twin_r": -0.0021,
+        "excess_r": 0.0584,
+        "cost_r": 0.1502,
+        "win_rate_raw": 0.426,
+        "avg_stop_usd": 4.3
+      },
+      "late": {
+        "trades": 1264,
+        "raw_r": 0.0049,
+        "twin_r": 0.0133,
+        "excess_r": -0.0084,
+        "cost_r": 0.0875,
+        "win_rate_raw": 0.398,
+        "avg_stop_usd": 6.11
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day+swing / stop 0.25ADR / target close",
+      "trades": 5269,
+      "early": {
+        "trades": 4005,
+        "raw_r": 0.0657,
+        "twin_r": 0.0165,
+        "excess_r": 0.0491,
+        "cost_r": 0.15,
+        "win_rate_raw": 0.402,
+        "avg_stop_usd": 4.3
+      },
+      "late": {
+        "trades": 1264,
+        "raw_r": 0.0207,
+        "twin_r": 0.0265,
+        "excess_r": -0.0058,
+        "cost_r": 0.0929,
+        "win_rate_raw": 0.376,
+        "avg_stop_usd": 6.11
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day+swing / stop 0.4ADR / target 1.0R",
+      "trades": 5269,
+      "early": {
+        "trades": 4005,
+        "raw_r": 0.0176,
+        "twin_r": -0.0035,
+        "excess_r": 0.0211,
+        "cost_r": 0.0958,
+        "win_rate_raw": 0.504,
+        "avg_stop_usd": 6.88
+      },
+      "late": {
+        "trades": 1264,
+        "raw_r": -0.0072,
+        "twin_r": -0.0001,
+        "excess_r": -0.0072,
+        "cost_r": 0.0504,
+        "win_rate_raw": 0.491,
+        "avg_stop_usd": 9.77
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day+swing / stop 0.4ADR / target 1.5R",
+      "trades": 5269,
+      "early": {
+        "trades": 4005,
+        "raw_r": 0.0127,
+        "twin_r": -0.0002,
+        "excess_r": 0.0129,
+        "cost_r": 0.0895,
+        "win_rate_raw": 0.471,
+        "avg_stop_usd": 6.88
+      },
+      "late": {
+        "trades": 1264,
+        "raw_r": 0.012,
+        "twin_r": 0.0034,
+        "excess_r": 0.0086,
+        "cost_r": 0.0538,
+        "win_rate_raw": 0.46,
+        "avg_stop_usd": 9.77
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day+swing / stop 0.4ADR / target 2.0R",
+      "trades": 5269,
+      "early": {
+        "trades": 4005,
+        "raw_r": 0.0207,
+        "twin_r": 0.0016,
+        "excess_r": 0.0191,
+        "cost_r": 0.0912,
+        "win_rate_raw": 0.462,
+        "avg_stop_usd": 6.88
+      },
+      "late": {
+        "trades": 1264,
+        "raw_r": 0.0016,
+        "twin_r": 0.0029,
+        "excess_r": -0.0013,
+        "cost_r": 0.0552,
+        "win_rate_raw": 0.45,
+        "avg_stop_usd": 9.77
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day+swing / stop 0.4ADR / target close",
+      "trades": 5269,
+      "early": {
+        "trades": 4005,
+        "raw_r": 0.0244,
+        "twin_r": 0.0097,
+        "excess_r": 0.0147,
+        "cost_r": 0.0926,
+        "win_rate_raw": 0.46,
+        "avg_stop_usd": 6.88
+      },
+      "late": {
+        "trades": 1264,
+        "raw_r": 0.017,
+        "twin_r": 0.0084,
+        "excess_r": 0.0086,
+        "cost_r": 0.0568,
+        "win_rate_raw": 0.448,
+        "avg_stop_usd": 9.77
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day+swing / stop 0.6ADR / target 1.0R",
+      "trades": 5222,
+      "early": {
+        "trades": 3958,
+        "raw_r": 0.012,
+        "twin_r": -0.0013,
+        "excess_r": 0.0132,
+        "cost_r": 0.0609,
+        "win_rate_raw": 0.498,
+        "avg_stop_usd": 10.07
+      },
+      "late": {
+        "trades": 1264,
+        "raw_r": -0.0012,
+        "twin_r": 0.0,
+        "excess_r": -0.0012,
+        "cost_r": 0.0375,
+        "win_rate_raw": 0.488,
+        "avg_stop_usd": 14.65
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day+swing / stop 0.6ADR / target 1.5R",
+      "trades": 5222,
+      "early": {
+        "trades": 3958,
+        "raw_r": 0.0204,
+        "twin_r": 0.0018,
+        "excess_r": 0.0186,
+        "cost_r": 0.0634,
+        "win_rate_raw": 0.488,
+        "avg_stop_usd": 10.07
+      },
+      "late": {
+        "trades": 1264,
+        "raw_r": -0.0066,
+        "twin_r": -0.0011,
+        "excess_r": -0.0055,
+        "cost_r": 0.0377,
+        "win_rate_raw": 0.476,
+        "avg_stop_usd": 14.65
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day+swing / stop 0.6ADR / target 2.0R",
+      "trades": 5222,
+      "early": {
+        "trades": 3958,
+        "raw_r": 0.0188,
+        "twin_r": 0.0044,
+        "excess_r": 0.0144,
+        "cost_r": 0.0638,
+        "win_rate_raw": 0.487,
+        "avg_stop_usd": 10.07
+      },
+      "late": {
+        "trades": 1264,
+        "raw_r": -0.0017,
+        "twin_r": -0.0031,
+        "excess_r": 0.0015,
+        "cost_r": 0.0376,
+        "win_rate_raw": 0.475,
+        "avg_stop_usd": 14.65
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day+swing / stop 0.6ADR / target close",
+      "trades": 5222,
+      "early": {
+        "trades": 3958,
+        "raw_r": 0.0194,
+        "twin_r": 0.0051,
+        "excess_r": 0.0142,
+        "cost_r": 0.0633,
+        "win_rate_raw": 0.487,
+        "avg_stop_usd": 10.07
+      },
+      "late": {
+        "trades": 1264,
+        "raw_r": 0.0027,
+        "twin_r": 0.0,
+        "excess_r": 0.0027,
+        "cost_r": 0.0393,
+        "win_rate_raw": 0.475,
+        "avg_stop_usd": 14.65
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day+swing / stop 0.8ADR / target 1.0R",
+      "trades": 5140,
+      "early": {
+        "trades": 3909,
+        "raw_r": 0.0124,
+        "twin_r": -0.0019,
+        "excess_r": 0.0143,
+        "cost_r": 0.0492,
+        "win_rate_raw": 0.494,
+        "avg_stop_usd": 13.16
+      },
+      "late": {
+        "trades": 1231,
+        "raw_r": -0.0062,
+        "twin_r": -0.002,
+        "excess_r": -0.0042,
+        "cost_r": 0.0297,
+        "win_rate_raw": 0.483,
+        "avg_stop_usd": 19.19
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day+swing / stop 0.8ADR / target 1.5R",
+      "trades": 5140,
+      "early": {
+        "trades": 3909,
+        "raw_r": 0.0123,
+        "twin_r": 0.0002,
+        "excess_r": 0.0121,
+        "cost_r": 0.0487,
+        "win_rate_raw": 0.492,
+        "avg_stop_usd": 13.16
+      },
+      "late": {
+        "trades": 1231,
+        "raw_r": -0.0015,
+        "twin_r": -0.0016,
+        "excess_r": 0.0001,
+        "cost_r": 0.0284,
+        "win_rate_raw": 0.48,
+        "avg_stop_usd": 19.19
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day+swing / stop 0.8ADR / target 2.0R",
+      "trades": 5140,
+      "early": {
+        "trades": 3909,
+        "raw_r": 0.0127,
+        "twin_r": 0.0011,
+        "excess_r": 0.0117,
+        "cost_r": 0.0481,
+        "win_rate_raw": 0.492,
+        "avg_stop_usd": 13.16
+      },
+      "late": {
+        "trades": 1231,
+        "raw_r": 0.0046,
+        "twin_r": 0.005,
+        "excess_r": -0.0004,
+        "cost_r": 0.0305,
+        "win_rate_raw": 0.48,
+        "avg_stop_usd": 19.19
+      },
+      "passes_step1": false
+    },
+    {
+      "variant": "prev_day+swing / stop 0.8ADR / target close",
+      "trades": 5140,
+      "early": {
+        "trades": 3909,
+        "raw_r": 0.0126,
+        "twin_r": 0.001,
+        "excess_r": 0.0116,
+        "cost_r": 0.0482,
+        "win_rate_raw": 0.492,
+        "avg_stop_usd": 13.16
+      },
+      "late": {
+        "trades": 1231,
+        "raw_r": 0.002,
+        "twin_r": 0.0038,
+        "excess_r": -0.0018,
+        "cost_r": 0.0296,
+        "win_rate_raw": 0.48,
+        "avg_stop_usd": 19.19
+      },
+      "passes_step1": false
+    }
+  ],
+  "step2": [],
+  "test_2023_2024": null
+}
